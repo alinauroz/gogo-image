@@ -3,6 +3,7 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom';
 
 import TopBar from './Components/TopBar'
+import Footer from './Components/Footer'
 import About from './Components/pages/About'
 import WhyUs from './Components/pages/WhyUs'
 import Login from './Components/pages/LogSign'
@@ -16,7 +17,7 @@ function App() {
   return (
     <>
       <TopBar />
-      <main style = {{marginTop: 50}}>
+      <main style = {{marginTop: 50, minHeight: window.innerHeight - 100}}>
         <Switch>
           <Route>
             <Route path="/about" component={About} />
@@ -27,6 +28,7 @@ function App() {
           </Route>
         </Switch>
       </main>
+      <Footer />
     </>
   );
 }
