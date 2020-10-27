@@ -5,7 +5,7 @@ export function Text (props) {
 }
 
 export function View (props) {
-    return <div>{props.children}</div>
+    return <div className = 'View'>{props.children}</div>
 }
 
 export function Image (props) {
