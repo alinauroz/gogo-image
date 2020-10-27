@@ -1,11 +1,16 @@
 import React from 'react'
 
 export function Text (props) {
-    return <p>{props.children}</p>
+    return <p style = {props.style}>{props.children}</p>
 }
 
 export function View (props) {
-    return <div className = 'View'>{props.children}</div>
+    return <div 
+                className = 'View'
+                style = {props.style}
+            >
+                {props.children}
+            </div>
 }
 
 export function Image (props) {

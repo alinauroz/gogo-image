@@ -1,9 +1,10 @@
+import React from 'react'
 import './App.css';
-import {Text} from './Components/Basic/AppComponents'
+import TopBar from './Components/TopBar'
 
 function App() {
   return (
-    <Text>Hello World</Text>
+    <TopBar />
   );
 }
 

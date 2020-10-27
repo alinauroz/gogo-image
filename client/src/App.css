@@ -3,3 +3,12 @@
   display: flex;
   flex-direction: row;
 }
+
+.topbar-links {
+  text-decoration: none;
+  color: #333;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 20px 10px;
+  overflow: hidden;
+}
