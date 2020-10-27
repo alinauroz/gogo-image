@@ -32,13 +32,19 @@ export default function (props) {
                 <br /><br />
                 {
                     selected ? 
-                    <FormRenderer 
-                        fields = {signupFields}
-                    />
+                    <form action = '' onSubmit = {() => {}}>
+                        <FormRenderer 
+                            fields = {signupFields}
+                        />
+                        <input type = 'submit' value = 'Sign Up' />
+                    </form>
                     : 
-                    <FormRenderer 
-                        fields = {loginFields}
-                    />
+                    <form action = '' onSubmit = {() => {}}>
+                        <FormRenderer 
+                            fields = {loginFields}
+                        />
+                        <input type = 'submit' value = 'Login' />
+                    </form>
                 }
             </View>
         </Box>
