@@ -12,3 +12,27 @@
   margin: 20px 10px;
   overflow: hidden;
 }
+
+.navbox {
+  margin-top: 50px;
+  max-width: 50%;
+  margin-left: calc(25% - 20px);
+  padding: 10px;
+  border: 1px solid #333;
+  box-shadow: 2px 2px 4px #333;
+}
+
+.navbox-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 20px;
+}
+
+.navbox-title-shadow {
+  font-size: 46px;
+  font-weight: bold;
+  margin: 0;
+  position: absolute;
+  color: #33333322
+}
