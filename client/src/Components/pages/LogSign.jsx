@@ -36,14 +36,14 @@ export default function (props) {
                         <FormRenderer 
                             fields = {signupFields}
                         />
-                        <input type = 'submit' value = 'Sign Up' />
+                        <input type = 'submit' value = 'Sign Up' className = 'action-button' />
                     </form>
                     : 
                     <form action = '' onSubmit = {() => {}}>
                         <FormRenderer 
                             fields = {loginFields}
                         />
-                        <input type = 'submit' value = 'Login' />
+                        <input type = 'submit' value = 'Login' className = 'action-button' />
                     </form>
                 }
             </View>
