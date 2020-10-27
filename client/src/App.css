@@ -36,3 +36,12 @@
   position: absolute;
   color: #33333322
 }
+
+.box {
+  padding: 10px;
+  width: 400px;
+  margin-left: calc(50% - 210px);
+  min-width: 300px;
+  border: 1px solid #888888;
+  border-radius: 2px;
+}
