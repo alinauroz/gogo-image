@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <TopBar />
-      <main style = {{marginTop: 50, minHeight: window.innerHeight - 100}}>
+      <main style = {{marginTop: 50, minHeight: window.innerHeight - 200}}>
         <Switch>
           <Route>
             <Route path="/about" component={About} />
