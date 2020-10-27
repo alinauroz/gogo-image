@@ -68,6 +68,7 @@ input:focus, button:focus {
   width: calc(50% - 0px);
   display: inline-block;
   vertical-align: top;
+  margin-top: 15px;
 }
 
 .field-title {
