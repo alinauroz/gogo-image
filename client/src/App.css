@@ -43,8 +43,8 @@ input:focus, button:focus {
 
 .box {
   padding: 10px;
-  width: 400px;
-  margin-left: calc(50% - 210px);
+  width: 500px;
+  margin-left: calc(50% - 260px);
   min-width: 300px;
   border: 1px solid #888888;
   border-radius: 2px;
@@ -62,4 +62,24 @@ input:focus, button:focus {
 .pair-button-selected {
   background-color: #34931b;
   color: white;
+}
+
+.field-container {
+  width: calc(50% - 0px);
+  display: inline-block;
+  vertical-align: top;
+}
+
+.field-title {
+  margin: 0px;
+  font-size: 13px;
+}
+
+.field-input {
+  margin-top: 3px;
+  border: 1px solid #dddddd;
+  padding: 4px;
+  border-radius: 2px;
+  width: calc(100% - 24px);
+  height: 20px;
 }
