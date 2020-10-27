@@ -17,7 +17,7 @@ export default function () {
             <div
                 style = {{marginRight: 20, float: 'right', display: 'inline-block', marginTop: 20}}
             >
-                <Link to = '/home' className = 'topbar-links'>Home</Link>
+                <Link to = '/' className = 'topbar-links'>Home</Link>
                 <Link to = '/about' className = 'topbar-links'>About</Link>
                 <Link to = '/why-us' className = 'topbar-links'>Why Us</Link>
                 <Link to = '/blog' className = 'topbar-links'>Blog</Link>

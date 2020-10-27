@@ -8,6 +8,7 @@ import About from './Components/pages/About'
 import WhyUs from './Components/pages/WhyUs'
 import Login from './Components/pages/LogSign'
 import Terms from './Components/pages/Terms'
+import Home from './Components/pages/Home'
 
 function Signup () {
   return <Login selected={1} />
@@ -20,6 +21,7 @@ function App() {
       <main style = {{marginTop: 50, minHeight: window.innerHeight - 200}}>
         <Switch>
           <Route>
+            <Route path="/" component={Home} />
             <Route path="/about" component={About} />
             <Route path="/why-us" component={WhyUs} />
             <Route path="/terms" component={Terms} />
