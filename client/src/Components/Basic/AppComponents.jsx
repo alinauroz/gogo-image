@@ -27,3 +27,14 @@ export function Image (props) {
         />
     )
 }
+
+export function Button (props) {
+    return (
+        <button
+            className = {props.className}
+            onClick = {props.onPress}
+        >
+            {props.value}
+        </button>
+    )
+}

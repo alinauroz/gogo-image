@@ -4,6 +4,10 @@
   flex-direction: row;
 }
 
+input:focus, button:focus {
+  outline: none;
+}
+
 .topbar-links {
   text-decoration: none;
   color: #333;
@@ -44,4 +48,18 @@
   min-width: 300px;
   border: 1px solid #888888;
   border-radius: 2px;
+}
+
+.pair-button {
+  background-color: #dddddd;
+  border: 0px;
+  padding: 10px;
+  width: calc(50% - 0px);
+  text-align: left;
+  cursor: pointer;
+}
+
+.pair-button-selected {
+  background-color: #34931b;
+  color: white;
 }
