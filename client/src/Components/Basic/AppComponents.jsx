@@ -38,3 +38,35 @@ export function Button (props) {
         </button>
     )
 }
+
+export function Table (props){
+    <table
+        style = {props.style}
+    >
+        {props.children}
+    </table>
+}
+
+export function Tr (props){
+    <tr
+        style = {props.style}
+    >
+        {props.children}
+    </tr>
+}
+
+export function Td (props){
+    <td
+        style = {props.style}
+    >
+        {props.children}
+    </td>
+}
+
+export function Th (props){
+    <th
+        style = {props.style}
+    >
+        {props.children}
+    </th>
+}

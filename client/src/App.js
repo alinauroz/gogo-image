@@ -9,6 +9,7 @@ import WhyUs from './Components/pages/WhyUs'
 import Login from './Components/pages/LogSign'
 import Terms from './Components/pages/Terms'
 import Home from './Components/pages/Home'
+import Cart from './Components/pages/Cart'
 
 function Signup () {
   return <Login selected={1} />
@@ -18,15 +19,16 @@ function App() {
   return (
     <>
       <TopBar />
-      <main style = {{marginTop: 50, minHeight: window.innerHeight - 200}}>
+      <main style = {{marginTop: 0, minHeight: window.innerHeight - 200}}>
         <Switch>
           <Route>
-            <Route path="/" component={Home} />
+            <Route path="/" component={Home} exact />
             <Route path="/about" component={About} />
             <Route path="/why-us" component={WhyUs} />
             <Route path="/terms" component={Terms} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/cart" component={Cart} />
           </Route>
         </Switch>
       </main>
