@@ -28,10 +28,11 @@ export default function (props) {
             <View className = 'notification-bar notification-bar-success'>
                 Please check your email to reset password
             </View>
-            :
+            : res === resSet.WRONG ?
             <View className = 'notification-bar notification-bar-fail'>
                 Please check your email address again
             </View>
+            : ""
         }
         <Box>
             <View>
