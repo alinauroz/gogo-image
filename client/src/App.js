@@ -10,6 +10,7 @@ import Login from './Components/pages/LogSign'
 import Terms from './Components/pages/Terms'
 import Home from './Components/pages/Home'
 import Cart from './Components/pages/Cart'
+import ResetPassword from './Components/pages/ResetPassword'
 
 function Signup () {
   return <Login selected={1} />
@@ -29,6 +30,7 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/cart" component={Cart} />
+            <Route path="/reset-password" component={ResetPassword} />
           </Route>
         </Switch>
       </main>

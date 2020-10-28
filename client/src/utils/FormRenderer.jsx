@@ -9,7 +9,7 @@ export default function (props) {
                     if (props.fields) {
                         props.fields.forEach(field => {
                             html.push(
-                                <div className = 'field-container'>
+                                <div className = 'field-container' style = {field.style.container}>
                                     <p className = 'field-title'>{field.title}</p>
                                     <input 
                                         className = 'field-input' 
@@ -17,6 +17,7 @@ export default function (props) {
                                         name = {field.name} 
                                         required = {field.required} 
                                         step = {field.step}
+                                        style = {field.style.input}
                                     />
                                 </div>
                             )
