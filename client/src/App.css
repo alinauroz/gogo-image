@@ -107,3 +107,20 @@ input:focus, button:focus {
   padding-top: 25px;
   color: white;
 }
+
+.notification-bar {
+  padding: 10px;
+  text-align: center;
+  font-size: 13px;
+  background-color: #33333322;
+  margin-bottom: 20px;
+}
+
+.notification-bar-fail {
+  background-color: #fddfdf;
+  color: #fe0100;
+}
+
+.notification-bar-success {
+  background-color: #edfbd7;
+}
