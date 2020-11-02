@@ -4,6 +4,7 @@ import {Text, View, Image, Table, Tr, Td} from '../Basic/AppComponents'
 import CartUnit from '../Unit/Cart'
 
 let initalCart = [
+    {productId: '1', quantity: '2', sup1: '1', sup2: '1'},
     {productId: '1', quantity: '2', sup1: '1', sup2: '1'}
 ]
 

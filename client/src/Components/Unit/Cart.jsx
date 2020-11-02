@@ -4,11 +4,11 @@ export default function (props) {
     return (
         <Tr className = 'cart-tr'>
             <Td className = 'cart-td' style = {{minWidth: '50px'}}></Td>
-            <Td className = 'cart-td'>
+            <Td className = 'cart-td' style = {{width: 220}}>
                     <Image
                         source = "https://www.viewbug.com/media/mediafiles/2016/05/28/66284132_medium.jpg"
                         className = 'cart-unit-image'
-                        style = {{maxWidth: '120px', maxHeight: '120px'}}
+                        style = {{ maxHeight: '120px'}}
                     />
             </Td>
             <Td className = 'cart-td' style = {{maxWidth: window.innerHeight * 0.13}}>
@@ -19,7 +19,7 @@ export default function (props) {
                     <Image 
                         source = "https://i.pinimg.com/236x/f8/89/b2/f889b2a22f25f7ddb1b90b39d0ad86c6.jpg"
                         className = 'cart-unit-image'
-                        style = {{maxWidth: '120px', maxHeight: '120px'}}
+                        style = {{height: '120px'}}
                     />
                 </View>
             </Td>
