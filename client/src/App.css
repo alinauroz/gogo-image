@@ -132,3 +132,17 @@ input:focus, button:focus {
   border-bottom: 1px solid lightgrey;
   vertical-align: top;
 }
+
+.cancel-button {
+  background-color: #cd6667;
+  padding: 10px;
+  color: white;
+  border: 0px;
+  border-radius: 1px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background-color: #cd6660;
+}

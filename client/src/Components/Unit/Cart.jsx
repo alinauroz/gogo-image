@@ -46,6 +46,7 @@ export default function (props) {
                     <input
                         type = 'button'
                         value = 'Remove'
+                        className = 'cancel-button'
                     />
                 </View>
             </Td>
