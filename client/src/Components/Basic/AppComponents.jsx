@@ -40,32 +40,36 @@ export function Button (props) {
 }
 
 export function Table (props){
-    <table
+    return <table
         style = {props.style}
+        className = {props.className}
     >
         {props.children}
     </table>
 }
 
 export function Tr (props){
-    <tr
+    return <tr
         style = {props.style}
+        className = {props.className}
     >
         {props.children}
     </tr>
 }
 
 export function Td (props){
-    <td
+    return <td
         style = {props.style}
+        className = {props.className}
     >
         {props.children}
     </td>
 }
 
 export function Th (props){
-    <th
+    return <th
         style = {props.style}
+        className = {props.className}
     >
         {props.children}
     </th>
