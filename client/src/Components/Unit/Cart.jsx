@@ -4,7 +4,7 @@ export default function (props) {
     return (
         <Tr className = 'cart-tr'>
             <Td className = 'cart-td' style = {{minWidth: '50px'}}></Td>
-            <Td className = 'cart-td' style = {{width: 220}}>
+            <Td className = 'cart-td' style = {{width: 220, textAlign: 'center'}}>
                     <Image
                         source = "https://www.viewbug.com/media/mediafiles/2016/05/28/66284132_medium.jpg"
                         className = 'cart-unit-image'
@@ -52,7 +52,7 @@ export default function (props) {
             </Td>
             <Td className = 'cart-td'>
                 <View>
-                    <Text>30</Text>
+                    <Text style = {{marginTop: 12.5, fontSize: 14}}>30</Text>
                 </View>
             </Td>
             <Td className = 'cart-td' style = {{minWidth: '50px'}}></Td>
