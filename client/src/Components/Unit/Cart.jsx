@@ -5,18 +5,14 @@ export default function (props) {
         <Tr className = 'cart-tr'>
             <Td className = 'cart-td' style = {{minWidth: '50px'}}></Td>
             <Td className = 'cart-td'>
-                <View >
                     <Image
                         source = "https://www.viewbug.com/media/mediafiles/2016/05/28/66284132_medium.jpg"
                         className = 'cart-unit-image'
                         style = {{maxWidth: '120px', maxHeight: '120px'}}
                     />
-                </View>
             </Td>
-            <Td className = 'cart-td'>
-                <View>
-                    <Text>Hello World</Text>
-                </View>
+            <Td className = 'cart-td' style = {{maxWidth: window.innerHeight * 0.13}}>
+                <p>My name is Ali</p>
             </Td>
             <Td className = 'cart-td'>
                 <View>
@@ -39,7 +35,7 @@ export default function (props) {
             <Td className = 'cart-td'>
                 <View>
                     <Image 
-                        source = "https://assets.stickpng.com/images/580b585b2edbce24c47b2913.png"
+                        source = "https://webstockreview.net/images/clipart-heart-flower-2.png"
                         className = 'cart-unit-image'
                         style = {{maxWidth: '120px', maxHeight: '120px'}}
                     />
