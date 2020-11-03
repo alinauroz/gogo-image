@@ -38,3 +38,7 @@ input:focus, textarea:focus, button:focus {
 .bar-button:hover {
   background-color: var(--bar-dark);
 }
+
+.bar-button-selected {
+  background-color: var(--bar-dark);
+}
