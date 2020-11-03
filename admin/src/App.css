@@ -1,6 +1,7 @@
 html {
   --bar-bg: #222d31;
   --bar-color: white;
+  --bar-dark: #1a2225;
 }
 
 .bar {
@@ -8,7 +9,28 @@ html {
   height: calc(100% - 0px);
   overflow: auto;
   width: 200px;
-  padding: 10px;
   background-color: var(--bar-bg);
   color: var(--bar-color);
+}
+
+.bar-button {
+  display: block;
+  background-color: transparent;
+  border: 0px;
+  height: 40px;
+  opacity: 0.7;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  font-size: 13px;
+  width: 100%;
+  text-align: left;
+}
+
+.bar-button-title {
+  margin-left: 5px;
+}
+
+.bar-button:hover {
+  background-color: var(--bar-dark);
 }
