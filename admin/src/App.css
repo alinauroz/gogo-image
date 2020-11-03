@@ -1,5 +1,6 @@
 html {
   --bar-bg: #222d31;
+  --bar-color: white;
 }
 
 .bar {
@@ -8,4 +9,6 @@ html {
   overflow: auto;
   width: 200px;
   padding: 10px;
+  background-color: var(--bar-bg);
+  color: var(--bar-color);
 }
