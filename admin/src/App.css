@@ -5,7 +5,7 @@ html {
 
 .bar {
   position: fixed;
-  height: calc(100% - 20px);
+  height: calc(100% - 0px);
   overflow: auto;
   width: 200px;
   padding: 10px;
