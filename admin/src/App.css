@@ -4,6 +4,10 @@ html {
   --bar-dark: #1a2225;
 }
 
+input:focus, textarea:focus, button:focus {
+  outline: none;
+}
+
 .bar {
   position: fixed;
   height: calc(100% - 0px);
