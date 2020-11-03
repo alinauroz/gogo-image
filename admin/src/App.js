@@ -1,6 +1,9 @@
 import LeftBar from './components/LeftBar'
 import './App.css'
 
+import Home from './components/pages/Home'
+import AddStaff from './components/pages/AddStaff'
+
 const BUTTONS = Object.freeze([
   {title: 'Home'},
   {title: 'Super Admin'},
@@ -24,6 +27,9 @@ export default function () {
       <LeftBar 
         buttonList = {BUTTONS}
       />
+      <div className = 'main-container'>
+        <AddStaff />
+      </div>
     </>
   )
 }
