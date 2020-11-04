@@ -2,6 +2,12 @@ import React from 'react'
 
 import Field from '../unit/Field'
 
+const PRIVILIGES = Object.freeze({
+    'cb-super-admin': 'cb-super-admin',
+    'cb-add-staff': 'cb-add-staff',
+    'cb-user': 'cb-user'
+});
+
 export default function () {
 
     const [formData, setFormData] = React.useState({});
