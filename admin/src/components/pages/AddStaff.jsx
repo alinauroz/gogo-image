@@ -89,11 +89,11 @@ export default function () {
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
                     <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
-                    <label for = 'cb-super-admin' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Super Admin</label>
+                    <label for = 'cb-add-staff' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Add Staff</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
                     <input type = 'checkbox' id = 'cb-user' onClick = {handleRoles} />
-                    <label for = 'cb-super-admin' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Super Admin</label>
+                    <label for = 'cb-user' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Users</label>
                 </div>
                 <div style = {{marginTop: 20}}>
                     <button
