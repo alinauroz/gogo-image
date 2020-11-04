@@ -3,6 +3,20 @@ import React from 'react'
 import Field from '../unit/Field'
 
 export default function () {
+
+    const [formData, setFormData] = React.useState({});
+    const [priviliges, setPriviliges] = React.useState({});
+
+    const handleRoles = (e) => {
+        let isChecked = e.target.checked;
+        let id_ = e.target.id;
+        if (isChecked) {
+            setPriviliges({... priviliges, [id_]: true});
+        }
+        else {
+            setPriviliges({... priviliges, [id_]: false })
+        }
+    }
     
     return (
         <div className = 'card'>
@@ -60,15 +74,15 @@ export default function () {
 
                 <h5 style = {{marginTop: 20}}>Access</h5>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-super-admin'/>
+                    <input type = 'checkbox' id = 'cb-super-admin' onClick = {handleRoles} />
                     <label for = 'cb-super-admin' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Super Admin</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-super-admin'/>
+                    <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
                     <label for = 'cb-super-admin' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Super Admin</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-super-admin'/>
+                    <input type = 'checkbox' id = 'cb-user' onClick = {handleRoles} />
                     <label for = 'cb-super-admin' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Super Admin</label>
                 </div>
                 <div style = {{marginTop: 20}}>
@@ -79,6 +93,15 @@ export default function () {
                     >
                         <i class="glyphicon glyphicon-ok" style = {{marginRight: 5}}></i>
                         Done
+                    </button>
+                    <button
+                        type = 'button' 
+                        value = 'Done'
+                        className = 'btn btn-warning'
+                        style = {{marginLeft: 10}}
+                    >
+                        <i class="glyphicon glyphicon-ban-circle" style = {{marginRight: 5}}></i>
+                        Cancel
                     </button>
                 </div>
             </div>
