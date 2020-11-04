@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Field from '../unit/Field'
 
@@ -11,17 +11,21 @@ const PRIVILIGES = Object.freeze({
 export default function () {
 
     const [formData, setFormData] = React.useState({});
-    const [priviliges, setPriviliges] = React.useState({});
+    const [priviliges, setPriviliges] = React.useState([]);
 
-    const handleRoles = (e) => {
+    const handleRoles = async (e) => {
         let isChecked = e.target.checked;
         let id_ = e.target.id;
-        if (isChecked) {
-            setPriviliges({... priviliges, [id_]: true});
+        let privilige = PRIVILIGES[id_];
+
+        if (isChecked && priviliges.indexOf(privilige) === -1) {
+            await setPriviliges(priviliges.concat(privilige));
         }
         else {
-            setPriviliges({... priviliges, [id_]: false })
+            await setPriviliges(priviliges.splice(priviliges.indexOf(privilige), 0));
         }
+
+        setFormData({ ... formData, priviliges});
     }
     
     return (
