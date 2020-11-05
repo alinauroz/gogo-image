@@ -33,6 +33,7 @@ export default function () {
                 title = 'URL'
                 name = 'url'
                 placeholder = 'URL'
+                addon = '/'
             />
             <div style = {{marginTop: 15}}>
                 <input 
