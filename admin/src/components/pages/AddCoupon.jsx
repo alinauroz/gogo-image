@@ -4,12 +4,17 @@ import Field from '../unit/Field'
 import Viewer from '../../utils/Viewer'
 
 let data = [
-    {'name': 'Ali'}
+    {'name': 'Ali', 'age': '22'},
+    {'name': 'Affan', 'age': '22'}
 ]
+
+function b1 (props) {
+    return <input type = 'button' value = {props.value} onClick = {props.onClick} />
+}
 
 export default function () {
 
-    return <Viewer data = {data} />
+    return <Viewer data = {data} actions = {[b1]} />
 
     return (
         <div className = 'card'>

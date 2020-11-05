@@ -10,6 +10,11 @@ function Unit (props) {
                     for (let x in props.data) {
                         html.push(<td>{props.data[x]}</td>);
                     }
+                    if(props.actions) {
+                        props.actions.map(Action => {
+                            html.push(<td><Action value = 'ABC' onClick = {(e) => {console.log(props.data)}} /></td>);
+                        })
+                    }
                     return html;
                 })()
             }
@@ -37,7 +42,7 @@ export default function (props) {
             <tbody>
                 {
                     props.data.map(entry => {
-                        return <Unit data = {entry} />
+                        return <Unit data = {entry} actions = {props.actions} />
                     })
                 }
             </tbody>
