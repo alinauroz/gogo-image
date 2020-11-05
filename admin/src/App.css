@@ -83,3 +83,14 @@ input:focus, textarea:focus, button:focus {
   margin: 0px;
   margin-bottom: 5px;
 }
+
+.viewer-table {
+  width: 100%
+}
+
+.viewer-table th {
+  border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

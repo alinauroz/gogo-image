@@ -28,7 +28,7 @@ export default function (props) {
                     (() => {
                         let heads = [];
                         for (let x in props.data[0]) {
-                            heads.push(<td>{x.toLocaleUpperCase()}</td>);
+                            heads.push(<th>{x.toLocaleUpperCase()}</th>);
                         }
                         return heads;
                     })()
