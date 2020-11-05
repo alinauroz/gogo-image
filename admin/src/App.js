@@ -4,6 +4,7 @@ import './App.css'
 import Home from './components/pages/Home'
 import AddStaff from './components/pages/AddStaff'
 import CreatePage from './components/pages/CreatePage'
+import AddCoupon from './components/pages/AddCoupon'
 
 const BUTTONS = Object.freeze([
   {title: 'Home'},
@@ -29,7 +30,7 @@ export default function () {
         buttonList = {BUTTONS}
       />
       <div className = 'main-container'>
-        <CreatePage />
+        <AddCoupon />
       </div>
     </>
   )
