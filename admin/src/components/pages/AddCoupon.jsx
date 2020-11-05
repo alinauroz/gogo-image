@@ -1,7 +1,15 @@
 import React from 'react'
 import Field from '../unit/Field'
 
+import Viewer from '../../utils/Viewer'
+
+let data = [
+    {'name': 'Ali'}
+]
+
 export default function () {
+
+    return <Viewer data = {data} />
 
     return (
         <div className = 'card'>
