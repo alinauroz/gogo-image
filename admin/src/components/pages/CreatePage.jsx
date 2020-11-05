@@ -1,10 +1,12 @@
 import React from 'react'
 import Field from '../unit/Field'
 import CKEditor from 'react-ckeditor-component'
+import ReactHtmlParser from "react-html-parser";
 
 export default function () {
 
-    
+    const [html, setHtml] = React.useState("");
+    const [toPreview, setToPreview] = React.useState();
 
     return (
         <div class = 'card'>
@@ -16,12 +18,14 @@ export default function () {
             />
             <br />
             <span style = {{marginBottom: 10}}>
-
+                {ReactHtmlParser(toPreview)}
             </span>
             <CKEditor 
                 activeClass="editor" 
-                content={""} 
-                onChange={() => {}}
+                content={html}
+                events = {{
+                    change: (e) => setHtml(e.editor.getData()) 
+                }}
                 style = {{marginTop: 10}}
             />
             <br />
@@ -35,6 +39,7 @@ export default function () {
                     type = 'button'
                     value = 'Preview'
                     className = 'btn btn-primary'
+                    onClick = {() => setToPreview(html)}
                 />
                 <input 
                     type = 'button'
