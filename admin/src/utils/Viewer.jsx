@@ -21,13 +21,28 @@ function Unit (props) {
 export default function (props) {
 
     return (
-        <tbody>
-            {
-                props.data.map(entry => {
-                    return <Unit data = {entry} />
-                })
-            }
-        </tbody>
+        <div className = 'card'>
+        <table className = 'viewer-table'>
+            <tr>
+                {
+                    (() => {
+                        let heads = [];
+                        for (let x in props.data[0]) {
+                            heads.push(<td>{x.toLocaleUpperCase()}</td>);
+                        }
+                        return heads;
+                    })()
+                }
+            </tr>
+            <tbody>
+                {
+                    props.data.map(entry => {
+                        return <Unit data = {entry} />
+                    })
+                }
+            </tbody>
+        </table>
+        </div>
     )
 
 }
