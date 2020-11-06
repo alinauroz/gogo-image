@@ -20,7 +20,7 @@ export default function (props) {
                             className = {'bar-button ' + class_} 
                             onClick = {(e) => {
                                 onClick(e, index)
-                                button.onClick(button.el)
+                                button.onClick()
                             }}
                         >
                             <span className = 'glyphicon glyphicon-link'></span>

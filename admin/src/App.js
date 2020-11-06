@@ -13,9 +13,9 @@ export default function () {
   const [screen, setScreen] = React.useState('Home');
 
   const BUTTONS = Object.freeze([
-    {title: 'Home', onClick : setScreen, el: Home},
+    {title: 'Home', onClick : () => setScreen('Home')},
     {title: 'Super Admin'},
-    {title: 'Add Staff', onClick : () => setScreen(AddStaff)},
+    {title: 'Add Staff', onClick : () => setScreen('AddStaff')},
     {title: 'Users'},
     {title: 'Manage Content'},
     {title: 'Add Pages'},
