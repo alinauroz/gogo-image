@@ -8,18 +8,14 @@ import CreatePage from './components/pages/CreatePage'
 import AddCoupon from './components/pages/AddCoupon'
 import AddFaq from './components/pages/AddFaq'
 
-const Renderer = (props) => {
-  return props.el;
-}
-
 export default function () {
 
-  const [Screen, setScreen] = React.useState(AddStaff);
+  const [screen, setScreen] = React.useState('Home');
 
   const BUTTONS = Object.freeze([
-    {title: 'Home'},
+    {title: 'Home', onClick : setScreen, el: Home},
     {title: 'Super Admin'},
-    {title: 'Add Staff'},
+    {title: 'Add Staff', onClick : () => setScreen(AddStaff)},
     {title: 'Users'},
     {title: 'Manage Content'},
     {title: 'Add Pages'},
@@ -39,8 +35,12 @@ export default function () {
         buttonList = {BUTTONS}
       />
       <div className = 'main-container'>
-        {console.log(Screen)}
-        <Renderer el = {Screen} />
+        <div style = {{display : screen == 'Home' ? 'block' : 'none'}}>
+          <Home />
+        </div>
+        <div style = {{display : screen == 'AddStaff' ? 'block' : 'none'}}>
+          <AddStaff />
+        </div>
       </div>
     </>
   )

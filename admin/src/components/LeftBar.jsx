@@ -16,7 +16,13 @@ export default function (props) {
                         var class_ = 'bar-button-selected'
 
                     return (
-                        <button className = {'bar-button ' + class_} onClick = {(e) => onClick(e, index)}>
+                        <button 
+                            className = {'bar-button ' + class_} 
+                            onClick = {(e) => {
+                                onClick(e, index)
+                                button.onClick(button.el)
+                            }}
+                        >
                             <span className = 'glyphicon glyphicon-link'></span>
                             <span className = 'bar-button-title'>{button.title}</span>
                         </button>
