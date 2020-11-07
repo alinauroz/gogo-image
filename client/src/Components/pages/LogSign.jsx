@@ -3,6 +3,7 @@ import Box from '../Container/Box'
 import {View, Text, Button} from '../Basic/AppComponents'
 import FormRenderer from '../../utils/FormRenderer'
 import { Link } from 'react-router-dom'
+import { api } from '../../data/api'
 
 const loginFields = [
     {title: 'Email', name: 'email', type: 'email', required: true},
@@ -10,8 +11,8 @@ const loginFields = [
 ]
 
 const signupFields = [
-    {title: "First Name", name: "fname", type: "text", required: true},
-    {title: "Last Name", name: "lname", type: "text", required: true},
+    {title: "First Name", name: "firstName", type: "text", required: true},
+    {title: "Last Name", name: "lastName", type: "text", required: true},
     {title: "Email Address", name: "email", type: "email", required: true},
     {title: "Retype Email", name: "retype-email", type: "email", required: true},
     {title: "Enter Password", name: "password", type: "password", required: true},
@@ -44,8 +45,17 @@ export default function (props) {
             return setMessage('Password did not match');
         }
 
-        //let res = await fetch();
+        let res = await fetch(api + 'users/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
 
+        let user = await res.json();
+
+        console.log(user);
     }
 
     return (
