@@ -94,4 +94,9 @@ input:focus, textarea:focus, button:focus {
   border-top: 1px solid lightgray;
   padding-top: 5px;
   padding-bottom: 5px;
+  padding-left: 10px;
+}
+
+.viewer-table td {
+  padding-left: 10px;
 }
