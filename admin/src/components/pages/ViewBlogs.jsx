@@ -7,9 +7,13 @@ export default function () {
     const [data, setData] = React.useState();
 
     (async () => {
+
+        if (data) return;
+
         let res = await fetch(api + 'blogs');
         let data_ = await res.json();
         setData(data_);
+        
     })()
 
     return (
