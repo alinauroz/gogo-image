@@ -19,6 +19,7 @@ export default function () {
     return (
         <div className = 'card'>
             <h3 style = {{margin: 0, marginBottom: 10}}>View Blogs</h3>
+            <br />
             {
                 data ?
                 <Viewer 

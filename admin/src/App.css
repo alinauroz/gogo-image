@@ -98,5 +98,10 @@ input:focus, textarea:focus, button:focus {
 }
 
 .viewer-table td {
-  padding-left: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.viewer-table tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
