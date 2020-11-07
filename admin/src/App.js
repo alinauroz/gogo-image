@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import LeftBar from './components/LeftBar'
 import './App.css'
 
+import Login from './components/pages/Login'
 import Home from './components/pages/Home'
 import AddStaff from './components/pages/AddStaff'
 import CreatePage from './components/pages/CreatePage'
@@ -39,6 +40,7 @@ export default function () {
     {title: 'Add Product'}
   ]);
 
+  if (localStorage.getItem('token'))
   return (
     <>
       <LeftBar 
@@ -57,4 +59,7 @@ export default function () {
       </div>
     </>
   )
+  else {
+    return <Login />
+  }
 }
