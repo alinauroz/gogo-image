@@ -31,6 +31,7 @@ export default function () {
             }
             else {
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('admin', JSON.stringify(data.data));
                 window.location.reload();
             }
 
