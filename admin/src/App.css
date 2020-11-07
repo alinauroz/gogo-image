@@ -16,9 +16,9 @@ input:focus, textarea:focus, button:focus {
 
 .bar {
   position: fixed;
-  top: 0px;
+  top: 50px;
   left: 0px;
-  height: calc(100% - 0px);
+  height: calc(100% - 50px);
   overflow: auto;
   width: 200px;
   background-color: var(--bar-bg);
@@ -104,4 +104,14 @@ input:focus, textarea:focus, button:focus {
 
 .viewer-table tr:nth-child(even) {
   background-color: #f2f2f2;
+}
+
+.topbar {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: var(--app-color-hl);
+  height: 50px;
+  width: 100%;
+  color: white;
 }

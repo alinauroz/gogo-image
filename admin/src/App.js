@@ -9,6 +9,7 @@ import CreatePage from './components/pages/CreatePage'
 import AddCoupon from './components/pages/AddCoupon'
 import AddFaq from './components/pages/AddFaq'
 import ViewBlogs from './components/pages/ViewBlogs'
+import Topbar from './components/Topbar'
 
 export default function () {
 
@@ -43,6 +44,7 @@ export default function () {
   if (localStorage.getItem('token'))
   return (
     <>
+      <Topbar />
       <LeftBar 
         buttonList = {BUTTONS}
       />
