@@ -2,6 +2,10 @@ import React from 'react'
 import {api} from '../../data/api'
 import Viewer from '../../utils/Viewer'
 
+const EditAction = (data) => {
+    console.log(data);
+}
+
 export default function () {
 
     const [data, setData] = React.useState();
@@ -25,6 +29,9 @@ export default function () {
                 <Viewer 
                     data = {data.data}
                     hidden = {['_id']}
+                    actions = {[
+                        {onClick: EditAction, value: 'Edit'}
+                    ]}
                 />
                 : "loading ..."
             }

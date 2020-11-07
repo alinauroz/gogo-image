@@ -15,7 +15,7 @@ function Unit (props) {
                     }
                     if(props.actions) {
                         props.actions.map(Action => {
-                            html.push(<td><Action value = 'ABC' onClick = {(e) => {console.log(props.data)}} /></td>);
+                            html.push(<td><input type = 'button' className = {Action.className} value = {Action.value} onClick = {(e) => {Action.onClick(props.data)}} /></td>);
                         })
                     }
                     return html;
