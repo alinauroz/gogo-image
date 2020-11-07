@@ -7,10 +7,11 @@ import AddStaff from './components/pages/AddStaff'
 import CreatePage from './components/pages/CreatePage'
 import AddCoupon from './components/pages/AddCoupon'
 import AddFaq from './components/pages/AddFaq'
+import ViewBlogs from './components/pages/ViewBlogs'
 
 export default function () {
 
-  const [screen, setScreen] = React.useState('Home');
+  const [screen, setScreen] = React.useState('ViewBlogs');
 
   const BUTTONS = Object.freeze([
     {title: 'Home', onClick : () => setScreen('Home')},
@@ -40,6 +41,9 @@ export default function () {
         </div>
         <div style = {{display : screen == 'AddStaff' ? 'block' : 'none'}}>
           <AddStaff />
+        </div>
+        <div style = {{display : screen == 'ViewBlogs' ? 'block' : 'none'}}>
+          <ViewBlogs />
         </div>
       </div>
     </>
