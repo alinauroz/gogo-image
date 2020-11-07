@@ -58,6 +58,32 @@ export default function (props) {
         console.log(user);
     }
 
+    const login = async (e) => {
+
+        e.preventDefault();
+
+        let form = new FormData(e.target);
+        let data = [... form];
+        let formData = {};
+
+        data.map(val => {
+            formData[val[0]] = val[1];
+        });
+
+        let res = await fetch(api + 'users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+
+        let user = await res.json();
+
+        console.log(user);
+
+    }
+
     return (
         <Box>
             <View>
@@ -94,7 +120,7 @@ export default function (props) {
                         <input type = 'submit' value = 'Sign Up' className = 'action-button' />
                     </form>
                     : 
-                    <form action = '' onSubmit = {() => {}}>
+                    <form action = '' onSubmit = {login}>
                         <FormRenderer 
                             fields = {loginFields}
                         />
