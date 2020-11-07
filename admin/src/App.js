@@ -12,6 +12,11 @@ import ViewBlogs from './components/pages/ViewBlogs'
 export default function () {
 
   const [screen, setScreen] = React.useState('ViewBlogs');
+  const [base, setBase] = React.useState({});
+
+  const setAppBase = (data) => {
+    setBase({... base, [screen]: data});
+  }
 
   const BUTTONS = Object.freeze([
     {title: 'Home', onClick : () => setScreen('Home')},
@@ -37,13 +42,13 @@ export default function () {
       />
       <div className = 'main-container'>
         <div style = {{display : screen == 'Home' ? 'block' : 'none'}}>
-          <Home />
+          <Home setBase = {setAppBase} />
         </div>
         <div style = {{display : screen == 'AddStaff' ? 'block' : 'none'}}>
-          <AddStaff />
+          <AddStaff setBase = {setAppBase} />
         </div>
         <div style = {{display : screen == 'ViewBlogs' ? 'block' : 'none'}}>
-          <ViewBlogs />
+          <ViewBlogs setBase = {setAppBase} />
         </div>
       </div>
     </>

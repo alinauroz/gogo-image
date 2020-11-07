@@ -13,6 +13,7 @@ function Unit (props) {
                         }
                         html.push(<td>{props.data[x]}</td>);
                     }
+                    
                     if(props.actions) {
                         var actions_ = [];
                         props.actions.map(Action => {
