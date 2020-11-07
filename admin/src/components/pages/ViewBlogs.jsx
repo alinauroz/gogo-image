@@ -13,7 +13,7 @@ export default function () {
         let res = await fetch(api + 'blogs');
         let data_ = await res.json();
         setData(data_);
-        
+
     })()
 
     return (
@@ -21,7 +21,10 @@ export default function () {
             <h3 style = {{margin: 0, marginBottom: 10}}>View Blogs</h3>
             {
                 data ?
-                <Viewer data = {data.data} />
+                <Viewer 
+                    data = {data.data}
+                    hidden = {['_id']}
+                />
                 : "loading ..."
             }
         </div>

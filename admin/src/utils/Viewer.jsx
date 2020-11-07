@@ -8,6 +8,9 @@ function Unit (props) {
                 (() => {
                     let html = []
                     for (let x in props.data) {
+                        if (props.hidden && props.hidden.indexOf(x) > -1) {
+                            continue;
+                        }
                         html.push(<td>{props.data[x]}</td>);
                     }
                     if(props.actions) {
@@ -33,6 +36,9 @@ export default function (props) {
                     (() => {
                         let heads = [];
                         for (let x in props.data[0]) {
+                            if (props.hidden && props.hidden.indexOf(x) > -1) {
+                                continue;
+                            }
                             heads.push(<th>{x.toLocaleUpperCase()}</th>);
                         }
                         return heads;
@@ -42,7 +48,7 @@ export default function (props) {
             <tbody>
                 {
                     props.data.map(entry => {
-                        return <Unit data = {entry} actions = {props.actions} />
+                        return <Unit data = {entry} actions = {props.actions} hidden = {props.hidden} />
                     })
                 }
             </tbody>
