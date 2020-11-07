@@ -24,10 +24,14 @@ export default function (props) {
 
     const [selected, setSelected] = React.useState(props.selected || 0);
     const [message, setMessage] = React.useState('');
+    const [agreed, setAgreed] = React.useState(false);
 
     const signup = async (e) => {
-        
         e.preventDefault();
+
+        if (! agreed)
+            return setMessage('You must agree with terms and conditions');
+
         let form = new FormData(e.target);
         let data = [... form];
         let formData = {};
@@ -64,7 +68,12 @@ export default function (props) {
                         />
                         <br /><br />
                         <label>
-                            <input type = 'checkbox' />
+                            <input 
+                                type = 'checkbox' 
+                                onClick = {(e) => {
+                                    setAgreed(e.target.checked);
+                                }}
+                            />
                             <Text style = {{display: 'inline', fontSize: 13}}>I agree domain.com <Link to = '/terms'>terms</Link></Text>
                         </label>
                         <p style = {{fontSize: 13, marginTop: 10}}>
@@ -77,7 +86,11 @@ export default function (props) {
                         <FormRenderer 
                             fields = {loginFields}
                         />
-                        <input type = 'submit' value = 'Login' className = 'action-button' />
+                        <input 
+                            type = 'submit'
+                            value = 'Login'
+                            className = 'action-button'
+                        />
                     </form>
                 }
             </View>
