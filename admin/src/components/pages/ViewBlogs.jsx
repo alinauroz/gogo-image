@@ -2,13 +2,14 @@ import React from 'react'
 import {api} from '../../data/api'
 import Viewer from '../../utils/Viewer'
 
-const EditAction = (data) => {
-    console.log(data);
-}
-
-export default function () {
+export default function (props) {
 
     const [data, setData] = React.useState();
+
+    const EditAction = (data) => {
+        props.setBase(data);
+        props.setScreen('Home');
+    }
 
     (async () => {
 

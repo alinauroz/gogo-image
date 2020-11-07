@@ -3,7 +3,7 @@ import Field from '../unit/Field'
 import CKEditor from 'react-ckeditor-component'
 import ReactHtmlParser from "react-html-parser";
 
-export default function () {
+export default function (props) {
 
     const [html, setHtml] = React.useState("");
     const [toPreview, setToPreview] = React.useState();

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import LeftBar from './components/LeftBar'
 import './App.css'
 
@@ -17,6 +17,10 @@ export default function () {
   const setAppBase = (data) => {
     setBase({... base, [screen]: data});
   }
+
+  useEffect(() => {
+    console.log(base);
+  })
 
   const BUTTONS = Object.freeze([
     {title: 'Home', onClick : () => setScreen('Home')},
@@ -42,13 +46,13 @@ export default function () {
       />
       <div className = 'main-container'>
         <div style = {{display : screen == 'Home' ? 'block' : 'none'}}>
-          <Home setBase = {setAppBase} />
+          <Home base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
         <div style = {{display : screen == 'AddStaff' ? 'block' : 'none'}}>
-          <AddStaff setBase = {setAppBase} />
+          <AddStaff base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
         <div style = {{display : screen == 'ViewBlogs' ? 'block' : 'none'}}>
-          <ViewBlogs setBase = {setAppBase} />
+          <ViewBlogs base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
       </div>
     </>
