@@ -30,7 +30,8 @@ export default function () {
                     data = {data.data}
                     hidden = {['_id']}
                     actions = {[
-                        {onClick: EditAction, value: 'Edit'}
+                        {onClick: EditAction, value: 'Edit', className : 'btn btn-primary'},
+                        {onClick: EditAction, value: 'Delete', className : 'btn btn-danger', break: true}
                     ]}
                 />
                 : "loading ..."

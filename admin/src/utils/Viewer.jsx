@@ -36,11 +36,17 @@ export default function (props) {
                     (() => {
                         let heads = [];
                         for (let x in props.data[0]) {
+                            
                             if (props.hidden && props.hidden.indexOf(x) > -1) {
                                 continue;
                             }
                             heads.push(<th>{x.toLocaleUpperCase()}</th>);
+
                         }
+
+                        if (props.actions && props.actions.length > 0)
+                            heads.push(<th>Actions</th>);
+
                         return heads;
                     })()
                 }
