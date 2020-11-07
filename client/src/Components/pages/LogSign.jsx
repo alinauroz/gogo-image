@@ -23,6 +23,24 @@ const signupFields = [
 export default function (props) {
 
     const [selected, setSelected] = React.useState(props.selected || 0);
+    const [message, setMessage] = React.useState('');
+
+    const signup = async (e) => {
+        
+        e.preventDefault();
+        let form = new FormData(e.target);
+        let data = [... form];
+        let formData = {};
+
+        data.map(val => {
+            formData[val[0]] = val[1];
+        });
+
+        if (formData['password'] !== formData['confirm-password']) {
+            return setMessage('Password did not match');
+        }
+
+    }
 
     return (
         <Box>
@@ -40,7 +58,7 @@ export default function (props) {
                 <br /><br />
                 {
                     selected ? 
-                    <form action = '' onSubmit = {() => {}}>
+                    <form action = '' onSubmit = {signup}>
                         <FormRenderer 
                             fields = {signupFields}
                         />
@@ -49,6 +67,9 @@ export default function (props) {
                             <input type = 'checkbox' />
                             <Text style = {{display: 'inline', fontSize: 13}}>I agree domain.com <Link to = '/terms'>terms</Link></Text>
                         </label>
+                        <p style = {{fontSize: 13, marginTop: 10}}>
+                            {message}
+                        </p>
                         <input type = 'submit' value = 'Sign Up' className = 'action-button' />
                     </form>
                     : 
