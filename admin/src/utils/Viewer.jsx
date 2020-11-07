@@ -14,10 +14,14 @@ function Unit (props) {
                         html.push(<td>{props.data[x]}</td>);
                     }
                     if(props.actions) {
+                        var actions_ = [];
                         props.actions.map(Action => {
-                            html.push(<td><input type = 'button' className = {Action.className} value = {Action.value} onClick = {(e) => {Action.onClick(props.data)}} /></td>);
+                            actions_.push(<input style = {{marginBottom: 3}} type = 'button' className = {Action.className} value = {Action.value} onClick = {(e) => {Action.onClick(props.data)}} />);
                         })
                     }
+
+                    html.push(<td>{actions_}</td>);
+
                     return html;
                 })()
             }
