@@ -25,7 +25,9 @@ let pages = [
 function App() {
   return (
     <>
-      <TopBar />
+      <TopBar 
+        pages = {pages}
+      />
       <main style = {{marginTop: 0, minHeight: window.innerHeight - 200}}>
         <Switch>
           <Route>

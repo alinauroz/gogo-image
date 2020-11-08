@@ -7,7 +7,7 @@ import cartIcon from '../data/icons/cart.png'
 
 import styles from '../styles/topbar'
 
-export default function () {
+export default function (props) {
     return (
         <div>
             <Image
@@ -18,12 +18,13 @@ export default function () {
                 style = {{marginRight: 20, float: 'right', display: 'inline-block', marginTop: 20}}
             >
                 <Link to = '/' className = 'topbar-links'>Home</Link>
-                <Link to = '/about' className = 'topbar-links'>About</Link>
-                <Link to = '/why-us' className = 'topbar-links'>Why Us</Link>
-                <Link to = '/blog' className = 'topbar-links'>Blog</Link>
-                <Link to = '/FAQ' className = 'topbar-links'>FAQ</Link>
-                <Link to = '/Editor' className = 'topbar-links'>Editor</Link>
-                <Link to = '/join-us' className = 'topbar-links'>Join Us</Link>
+                {
+                    props.pages ?
+                    props.pages.map(page => {
+                        return <Link to = {page.link} className = 'topbar-links'>{page.title}</Link>
+                    })
+                    : ""
+                }
                 <Link to = '/dashboard' className = 'topbar-links'>Dashboard</Link>
                 <Link to = '/cart' className = 'topbar-links'>
                     <View style = {{display: 'inline', overflow: 'hidden'}}>
