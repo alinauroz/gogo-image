@@ -19,6 +19,31 @@ let pages = [
   {title: 'About', content: '<i>About</i>: This is some content', link: '/about'}
 ]
 
+let posts = [
+  {tags: [], use: ['party', 'dance'], images: ['https://cdn.britannica.com/67/19367-050-885866B4/Valley-Taurus-Mountains-Turkey.jpg']},
+  {tags: [], use: {}, images: ['https://colorado-springs.s3.amazonaws.com/CMS/5104/almagre_mountain_credit_matt_payne_photography_small__large.jpg']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+  {tags: [], use: {}, images: ['https://picsum.photos/seed/picsum/200/300']},
+]
+
 function App() {
   return (
     <>
@@ -28,7 +53,7 @@ function App() {
       <main style = {{marginTop: 0, minHeight: window.innerHeight - 200}}>
         <Switch>
           <Route>
-            <Route path="/" component={Home} exact />
+            <Route path="/" component={() => <Home posts = {posts}></Home>} exact />
 
             {
               pages.map(page => {
