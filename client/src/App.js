@@ -4,10 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import TopBar from './Components/TopBar'
 import Footer from './Components/Footer'
-import About from './Components/pages/About'
-import WhyUs from './Components/pages/WhyUs'
 import Login from './Components/pages/LogSign'
-import Terms from './Components/pages/Terms'
 import Home from './Components/pages/Home'
 import Cart from './Components/pages/Cart'
 import ResetPassword from './Components/pages/ResetPassword'
