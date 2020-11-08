@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactHtmlParser from "react-html-parser";
 
 import NavBox from '../Container/NavBox'
 
@@ -7,7 +8,7 @@ export default function (props) {
         <NavBox
             title = {props.title}
         >
-            {props.content}
+            {ReactHtmlParser(props.content)}
         </NavBox>
     )
 }

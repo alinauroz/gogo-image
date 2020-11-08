@@ -11,7 +11,6 @@ import Terms from './Components/pages/Terms'
 import Home from './Components/pages/Home'
 import Cart from './Components/pages/Cart'
 import ResetPassword from './Components/pages/ResetPassword'
-import ReactHtmlParser from "react-html-parser";
 import PageTemplate from './Components/Templates/Page'
 
 function Signup () {
@@ -20,7 +19,7 @@ function Signup () {
 
 let pages = [
   {title: 'Terms', content: 'Terms: This is some content', link: '/terms'},
-  {title: 'About', content: 'About: This is some content', link: '/about'}
+  {title: 'About', content: '<i>About</i>: This is some content', link: '/about'}
 ]
 
 function App() {
