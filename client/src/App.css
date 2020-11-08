@@ -179,3 +179,12 @@ input:focus, button:focus {
   background-color: #33333366;
   height: 100px;
 }
+
+.itemview-container {
+  width: calc(50% - 10px);
+  padding: 5px;
+}
+
+.itemview-image-container {
+  width: 50%;
+}
