@@ -78,9 +78,18 @@ export default function (props) {
             body: JSON.stringify(formData)
         })
 
-        let user = await res.json();
+        let data_ = await res.json();
 
-        console.log(user);
+        console.log(data_)
+
+        if (data_.status === 'fail') {
+            setMessage(data_.message);
+        }
+        else {
+            localStorage.setItem('token', data_.token);
+            localStorage.setItem('user', JSON.stringify(data_.data));
+            window.location.reload();
+        }
 
     }
 
@@ -124,6 +133,9 @@ export default function (props) {
                         <FormRenderer 
                             fields = {loginFields}
                         />
+                        <p style = {{fontSize: 13, marginTop: 10, marginBottom: 5}}>
+                            {message}
+                        </p>
                         <input 
                             type = 'submit'
                             value = 'Login'
