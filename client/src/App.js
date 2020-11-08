@@ -12,6 +12,7 @@ import Home from './Components/pages/Home'
 import Cart from './Components/pages/Cart'
 import ResetPassword from './Components/pages/ResetPassword'
 import ReactHtmlParser from "react-html-parser";
+import PageTemplate from './Components/Templates/Page'
 
 function Signup () {
   return <Login selected={1} />
@@ -33,14 +34,9 @@ function App() {
           <Route>
             <Route path="/" component={Home} exact />
 
-            { /*`<Route path="/about" component={About} />
-            <Route path="/why-us" component={WhyUs} />
-            <Route path="/terms" component={Terms} />
-            <Route path="/login" component={Login} />` */}
-
             {
               pages.map(page => {
-                return <Route path = {page.link} component = {() => <p>{page.content}</p>} />
+                return <Route path = {page.link} component = {() => <PageTemplate title = {page.title} content = {page.content} />} />
               })
             }
 
