@@ -3,8 +3,12 @@ import {View, Image, Text} from '../Basic/AppComponents'
 
 import cover from '../../data/images/cover.jpg'
 
-export default function () {
+export default function (props) {
+
+    let posts = props.posts;
+
     return (
+        <>
         <View>
             <Image
                 source = {cover}
@@ -18,6 +22,18 @@ export default function () {
                     Perfect for Senior Photos, Weddings, Retical, Valentine, Holiday Greetings, Birthdays, Special Occasions & more. Spice up with your photos now.
                 </Text>
             </View>
+           
+            
         </View>
+         <div style = {{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', background: '#333333aa', marginTop: 20, minHeight: 20, paddingLeft: '5%', paddingRight: '5%'}}>
+         {
+             posts ?
+             posts.map(post => {
+                 return <img src = {post.images[0]} style = {{height: 200, marginTop: 5}} />
+             })
+             : ""
+         }
+         </div>
+    </>
     )
 }

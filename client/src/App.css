@@ -154,3 +154,18 @@ input:focus, button:focus {
   border-bottom: 2px solid lightgrey;
   border-top: 1px solid lightgrey;
 }
+
+.justified {
+  text-align: justify !important;
+}
+
+.justified:after {
+  content: "" !important;
+  display: inline-block !important;
+  width: 100% !important;
+}
+
+.justified img {
+  height: 200px !important;
+  display: inline-block !important;
+}
