@@ -169,3 +169,13 @@ input:focus, button:focus {
   height: 200px !important;
   display: inline-block !important;
 }
+
+.postview-container {
+  width: 100%;
+  min-width: 600px;
+  margin: 20px 0px;
+  padding-left: 10%;
+  padding-right: 10%;
+  background-color: #33333366;
+  height: 100px;
+}

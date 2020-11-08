@@ -9,6 +9,7 @@ import Home from './Components/pages/Home'
 import Cart from './Components/pages/Cart'
 import ResetPassword from './Components/pages/ResetPassword'
 import PageTemplate from './Components/Templates/Page'
+import PostView from './Components/PostView'
 
 function Signup () {
   return <Login selected={1} />
@@ -63,6 +64,7 @@ function App() {
 
             <Route path="/signup" component={Signup} />
             <Route path="/cart" component={Cart} />
+            <Route path="/post/:id" component={PostView} />
             <Route path="/reset-password" component={ResetPassword} />
           </Route>
         </Switch>
