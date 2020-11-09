@@ -1,5 +1,6 @@
 import React from 'react'
 import {View, Image, Text} from '../Components/Basic/AppComponents'
+import ItemView from '../Components/Unit/ItemView'
 
 export default function (props) {
 
@@ -17,7 +18,13 @@ export default function (props) {
 
     return (
         <View className = 'postview-container'>
-            {id}
+            {
+                post.images ? 
+                post.images.map(image => {
+                    return <ItemView url = {image.url} />
+                })
+                : ""
+            }
         </View>
     )
 }

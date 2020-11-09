@@ -62,6 +62,7 @@ function App() {
               })
             }
 
+            <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/cart" component={Cart} />
             <Route path="/post/:id" component={PostView} />
