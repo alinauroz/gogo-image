@@ -219,3 +219,9 @@ input:focus, button:focus {
   vertical-align: top;
   margin-top: 0px;
 }
+
+.itemview-container td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+

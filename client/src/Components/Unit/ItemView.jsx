@@ -22,14 +22,36 @@ export default function (props) {
                                     </span>
                                 </td>
                                 <td>
-                                    <span style = {{marginLeft: 20}}>
+                                    <span style = {{marginRight: 20}}>
                                         <input type = 'radio' id = {`item-retouch-single-${props.type}`} />
                                         <label for = {`item-retouch-single-${props.type}`} >1 Person</label>
                                     </span>
-                                    <span style = {{marginLeft: 20}}>
+                                    <span style = {{marginRight: 20}}>
                                         <input type = 'radio' id = {`item-retouch-single-${props.type}`} />
                                         <label for = {`item-retouch-single-${props.type}`} >1 Person</label>
                                     </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Text: 
+                                </td>
+                                <td>
+                                    <input 
+                                        className = 'itemviewer-input'
+                                        placeholder = 'Max. 25 Characters'
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Year:
+                                </td>
+                                <td>
+                                    <input 
+                                        className = 'itemviewer-input'
+                                        placeholder = 'Enter year photo taken'
+                                    />
                                 </td>
                             </tr>
                         </table>
