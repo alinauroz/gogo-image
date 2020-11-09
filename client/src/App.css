@@ -220,8 +220,19 @@ input:focus, button:focus {
   margin-top: 0px;
 }
 
+.itemview-container tr {
+  overflow: hidden;
+}
+
 .itemview-container td {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 7.5px;
+  padding-bottom: 7.5px;
+}
+
+.itemviewer-input {
+  height: 25px;
+  border: 1px solid grey;
+  padding: 3px 5px;
+  width: 100%;
 }
 

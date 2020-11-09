@@ -34,7 +34,7 @@ export default function (props) {
                             </tr>
                             <tr>
                                 <td>
-                                    Text: 
+                                <Text style = {{paddingTop: 5}}>Text:</Text>
                                 </td>
                                 <td>
                                     <input 
@@ -45,13 +45,37 @@ export default function (props) {
                             </tr>
                             <tr>
                                 <td>
-                                    Year:
+                                    <Text style = {{paddingTop: 5}}>Year:</Text>
                                 </td>
                                 <td>
                                     <input 
                                         className = 'itemviewer-input'
                                         placeholder = 'Enter year photo taken'
                                     />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <Text>Main Image</Text>
+                                </td>
+                                <td>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <Text>Superimpose 1</Text>
+                                </td>
+                                <td>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <Text>Superimpose 2</Text>
+                                </td>
+                                <td>
+
                                 </td>
                             </tr>
                         </table>
