@@ -2,6 +2,14 @@ import React from 'react'
 import {Text, View, Image} from '../Components/Basic/AppComponents'
 import imageCompression from 'browser-image-compression'
 
+const getBase64 = file => {
+    return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result)
+    });
+}
+
 const resize = async (file, options = {}) => {
     
     const options_ = {
@@ -11,19 +19,32 @@ const resize = async (file, options = {}) => {
 
     try {
         let compressedFile = await imageCompression(file, options_);
-        console.log(compressedFile)
+        let base64 = await getBase64(compressedFile);
+        console.log(base64)
     }
     catch (err) {
         throw err;
     }
 }
 
-export default function () {
+export default function (props) {
 
     const [images, setImages] = React.useState([]);
 
     const handleChange = (e) => {
-        console.log(e.target.value)
+
+        let file = e.target.files[0];
+
+        if (props.sizes) {
+            for (let x in props.sizes) {
+                if (typeof props.sizes[x] === 'object') {
+                    resize(file, props.sizes[x]);
+                }
+                else {
+
+                }
+            }
+        }
     }
 
     return (

@@ -60,7 +60,7 @@ export default function (props) {
                                     <Text>Main Image</Text>
                                 </td>
                                 <td>
-                                    <ImageLoader />
+                                    <ImageLoader sizes = {{'thumb': {height: 300}}} />
                                 </td>
                             </tr>
                             <tr>
