@@ -24,6 +24,7 @@ export function Image (props) {
         <img 
             src = {props.source}
             style = {props.style}
+            className = {props.className}
         />
     )
 }
