@@ -6,7 +6,10 @@ export default function (props) {
     return (
         <View className = 'itemview-container'>
             <View className = 'itemview-image-container'>
-                <Image source = {props.url} style = {{height: 350}}/>
+                <Image source = {props.url} className = 'itemview-image'/>
+                <View className = 'itemview-input-group'>
+                    {props.type}
+                </View>
             </View>
         </View>
     )

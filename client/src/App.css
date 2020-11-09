@@ -171,11 +171,10 @@ input:focus, button:focus {
 }
 
 .postview-container {
-  width: 100%;
+  width: 90%;
   min-width: 600px;
   margin: 20px 0px;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding: 5% 5%;
   background-color: #33333366;
   min-height: 100px;
 }
@@ -185,8 +184,21 @@ input:focus, button:focus {
   padding: 5px;
   display: inline-block;
   vertical-align: top;
+  overflow: hidden;
 }
 
 .itemview-image-container {
-  width: 50%;
+
+}
+
+.itemview-image {
+  max-width: 100%;
+  max-height: 400px;
+}
+
+.itemview-input-group {
+  vertical-align: top;
+  display: inline-block;
+  width: calc(50% - 100px);
+  padding: 10px;
 }
