@@ -2,19 +2,38 @@ import React from 'react'
 import {View, Image, Text} from '../Basic/AppComponents'
 import {capitalize} from '../../utils/string'
 
-const prices = {
-    portrait: 35,
-
-}
-
 export default function (props) {
     
     return (
         <View className = 'itemview-container'>
             <View className = 'itemview-image-container'>
-                <Image source = {props.url} className = 'itemview-image'/>
-                <View className = 'itemview-input-group' style = {{color: 'white'}}>
-                    {capitalize(props.type)}
+                <Image source = {props.url} className = 'itemview-image' />
+            </View>
+            <View className = 'itemview-input-group' style = {{color: 'white'}}>
+                <Text>{capitalize(props.type)}</Text>
+                <View>
+                    <Text style = {{marginTop: 10, fontSize: 13}} className = 'itemviewer-sub-container'>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span>
+                                        <label for = {`item-retouch-${props.type}`} >Retouch</label>
+                                        <input type = 'checkbox' id = {`item-retouch-${props.type}`} />
+                                    </span>
+                                </td>
+                                <td>
+                                    <span style = {{marginLeft: 20}}>
+                                        <input type = 'radio' id = {`item-retouch-single-${props.type}`} />
+                                        <label for = {`item-retouch-single-${props.type}`} >1 Person</label>
+                                    </span>
+                                    <span style = {{marginLeft: 20}}>
+                                        <input type = 'radio' id = {`item-retouch-single-${props.type}`} />
+                                        <label for = {`item-retouch-single-${props.type}`} >1 Person</label>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </Text>
                 </View>
             </View>
         </View>

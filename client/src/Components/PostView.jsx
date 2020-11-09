@@ -16,6 +16,17 @@ export default function (props) {
         ]
     }
 
+    const prices = {
+        portrait: 35,
+        landscape: 40,
+        retouch: 5,
+        retouchGroup: 10,
+        text: 3,
+        year: 2,
+        superImpose1: 10,
+        superImpose2: 10
+    }
+
     return (
         <View className = 'postview-container'>
             {

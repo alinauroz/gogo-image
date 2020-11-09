@@ -171,10 +171,10 @@ input:focus, button:focus {
 }
 
 .postview-container {
-  width: 90%;
+  width: 94%;
   min-width: 600px;
   margin: 20px 0px;
-  padding: 5% 5%;
+  padding: 3% 3%;
   background-color: #33333388;
   min-height: 100px;
 }
@@ -188,7 +188,9 @@ input:focus, button:focus {
 }
 
 .itemview-image-container {
-
+  max-width: 35%;
+  display: inline-block;
+  overflow: hidden;
 }
 
 .itemview-image {
@@ -200,5 +202,19 @@ input:focus, button:focus {
   vertical-align: top;
   display: inline-block;
   width: calc(50% - 100px);
-  padding: 10px;
+  padding: 5px;
+}
+
+.itemviewer-sub-container {
+  overflow: hidden;
+}
+
+.itemviewer-sub-container label {
+  vertical-align: top;
+  margin-top: 5px;
+}
+
+.itemviewer-sub-container input {
+  vertical-align: top;
+  margin-top: 0px;
 }
