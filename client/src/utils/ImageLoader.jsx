@@ -1,5 +1,22 @@
 import React from 'react'
 import {Text, View, Image} from '../Components/Basic/AppComponents'
+import imageCompression from 'browser-image-compression'
+
+const resize = async (file, options = {}) => {
+    
+    const options_ = {
+        ... options,
+        useWebWorker: true
+    }
+
+    try {
+        let compressedFile = await imageCompression(file, options_);
+        console.log(compressedFile)
+    }
+    catch (err) {
+        throw err;
+    }
+}
 
 export default function () {
 
