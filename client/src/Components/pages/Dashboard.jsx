@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import FormRenderrer from '../../utils/FormRenderer'
 import {View, Text} from '../Basic/AppComponents'
+import { Link } from 'react-router-dom'
 
 let user = JSON.parse(localStorage.getItem('user') || '{}');
 let domainDetails = localStorage.getItem('siteinfo');
@@ -38,10 +39,10 @@ export default function (props) {
                 <FormRenderrer 
                    fields = {fields}
                 />
-                <div>
-                    <input type = 'checkbox' id = 'dashboard-accept-terms'/>
-                    <label for = 'dashboard-accept-terms'>
-                        I agree with 
+                <div style = {{fontSize: 13, marginTop: 10, overflow: 'hidden'}}>
+                    <input type = 'checkbox' id = 'dashboard-accept-terms' style = {{margin: 0}} />
+                    <label for = 'dashboard-accept-terms' style = {{marginLeft: 5, verticalAlign: 'top', paddingTop: 5}}>
+                        I agree with <Link to = '/terms'>Terms</Link>
                     </label>
                 </div>
             </View>
