@@ -7,7 +7,12 @@ import cartIcon from '../data/icons/cart.png'
 
 import styles from '../styles/topbar'
 
+let isLoggedIn = localStorage.getItem('token');
+let user = JSON.parse(localStorage.getItem('user') || '{}');
+console.log("USER", user)
+
 export default function (props) {
+
     return (
         <div>
             <Image
@@ -35,7 +40,11 @@ export default function (props) {
                     />
                     </View>
                 </Link>
-                <Link to = '/login' className = 'topbar-links'>Login/Sign Up</Link>
+                {
+                    isLoggedIn ?
+                        <a className = 'topbar-links'>{user.firstName + ' ' + user.lastName}</a>
+                    : <Link to = '/login' className = 'topbar-links'>Login/Sign Up</Link>
+                }
             </div>
         </div>
     )
