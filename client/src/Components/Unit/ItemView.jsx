@@ -5,6 +5,10 @@ import {capitalize} from '../../utils/string'
 
 export default function (props) {
     
+    const setImages = images => {
+        console.log('Images', images)
+    }
+
     return (
         <View className = 'itemview-container'>
             <View className = 'itemview-image-container'>
@@ -60,7 +64,7 @@ export default function (props) {
                                     <Text>Main Image</Text>
                                 </td>
                                 <td>
-                                    <ImageLoader sizes = {{original: 'original'}} />
+                                    <ImageLoader sizes = {{original: 'original'}} setImages = {setImages} />
                                 </td>
                             </tr>
                             <tr>
