@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Text, View, Image} from '../Components/Basic/AppComponents'
 import imageCompression from 'browser-image-compression'
 
@@ -32,27 +32,39 @@ export default function (props) {
     const [images, setImages] = React.useState({});
     const [toView, setToView] = React.useState();
 
+    useEffect(() => {
+        if (Object.keys(images).length !== 0 && props.setImages) {
+            props.setImages(images)
+        }
+    });
+
     const handleChange = async (e) => {
 
         let file = e.target.files[0];
 
-        if (props.sizes) {
-            for (let x in props.sizes) {
-                if (typeof props.sizes[x] === 'object') {
-                    let base64 = await resize(file, props.sizes[x]);
-                    setImages({
-                        ... images,
-                        [x]: base64
-                    })
-                }
-                else {
-
-                }
+        
+        for (let x in props.sizes) {
+            if (typeof props.sizes[x] === 'object') {
+                let base64 = await resize(file, props.sizes[x]);
+                setImages({
+                    ... images,
+                    [x]: base64
+                })
+            }
+            else {
+                let base64 = await getBase64(file);
+                setImages({
+                    ... images,
+                    [x]: base64
+                })
             }
         }
+        
 
         let thumb = await resize(file, {maxWidthOrHeight: 120});
         setToView(thumb);
+
+        console.log(images)
 
     }
 
