@@ -23,7 +23,10 @@ export default function (props) {
             {type: 'text', title: 'Website', name: 'website'},
             {type: 'text', title: 'Paypal ID', name: 'paypalId'},
             {type: 'text', title: 'Phone', name: 'phone'},
-            {type: 'text', title: 'Billing Address', name: 'billingAddress'}
+            {type: 'text', title: 'Billing Address', name: 'billingAddress'},
+            {type: 'text', title: 'Address 2', name: 'address2'},
+            {type: 'text', title: 'City', name: 'city'},
+            {type: 'text', title: 'ZIP', name: 'zip'},
         ]
 
         return (
