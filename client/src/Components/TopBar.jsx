@@ -15,10 +15,6 @@ export default function (props) {
 
     const [DDView, setDDView] = React.useState('block');
 
-    document.addEventListener('mousedown', () => {
-        setDDView('none')
-    });
-
     return (
         <div>
             <Image
@@ -52,7 +48,7 @@ export default function (props) {
                 </Link>
                 {
                     isLoggedIn ?
-                    <a style = {{cursor: 'pointer'}} className = 'topbar-links'>{user.firstName + ' ' + user.lastName}</a>
+                    <a style = {{cursor: 'pointer'}} onClick = {() => setDDView('none')}className = 'topbar-links'>{user.firstName + ' ' + user.lastName}</a>
                     : <Link to = '/login' className = 'topbar-links'>Login/Sign Up</Link>
                 }
             </div>
@@ -75,6 +71,14 @@ export default function (props) {
                         localStorage.setItem('user', '');
                         localStorage.setItem('token', '');
                         window.location.reload();
+                    }}
+                />
+                <input 
+                    type = 'button'
+                    value = 'Cancel'
+                    className = 'dropdown-button'
+                    onClick = {() => {
+                        setDDView('none')
                     }}
                 />
             </View>
