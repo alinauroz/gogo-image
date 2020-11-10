@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Text, View, Image} from './Basic/AppComponents'
 import { Link } from 'react-router-dom'
 
@@ -12,6 +12,12 @@ let user = JSON.parse(localStorage.getItem('user') || '{}');
 console.log("USER", user)
 
 export default function (props) {
+
+    const [DDView, setDDView] = React.useState('block');
+
+    document.addEventListener('mousedown', () => {
+        setDDView('none')
+    });
 
     return (
         <div>
@@ -50,7 +56,7 @@ export default function (props) {
                     : <Link to = '/login' className = 'topbar-links'>Login/Sign Up</Link>
                 }
             </div>
-            <View style = {{display: 'inline-block', position: 'absolute', top: 60, right: 10, padding: 5, boxShadow: '0px 0px 3px grey', width: 250, background: '#fff'}}>
+            <View style = {{display: DDView, position: 'absolute', top: 60, right: 10, padding: 5, boxShadow: '0px 0px 3px grey', width: 250, background: '#fff'}}>
                 <Text><b>{user.firstName + ' ' + user.lastName}</b></Text>
                 <Text>{user.email}</Text>
                 <Link to = '/dashboard'>
