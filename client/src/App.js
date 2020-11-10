@@ -7,6 +7,7 @@ import Footer from './Components/Footer'
 import Login from './Components/pages/LogSign'
 import Home from './Components/pages/Home'
 import Cart from './Components/pages/Cart'
+import Dashboard from './Components/pages/Dashboard'
 import ResetPassword from './Components/pages/ResetPassword'
 import PageTemplate from './Components/Templates/Page'
 import PostView from './Components/PostView'
@@ -63,6 +64,7 @@ function App() {
             }
 
             <Route path="/login" component={Login} />
+            <Route path="/dashboard" component={Dashboard} />
             <Route path="/signup" component={Signup} />
             <Route path="/cart" component={Cart} />
             <Route path="/post/:id" component={PostView} />
