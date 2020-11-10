@@ -39,12 +39,30 @@ export default function (props) {
                 <FormRenderrer 
                    fields = {fields}
                 />
+
                 <div style = {{fontSize: 13, marginTop: 10, overflow: 'hidden'}}>
                     <input type = 'checkbox' id = 'dashboard-accept-terms' style = {{margin: 0}} />
                     <label for = 'dashboard-accept-terms' style = {{marginLeft: 5, verticalAlign: 'top', paddingTop: 5}}>
                         I agree with <Link to = '/terms'>Terms</Link>
                     </label>
                 </div>
+
+                <div>
+                    <input
+                        type = 'button'
+                        className = 'action-button'
+                        value = 'Submit'
+                        style = {{width: 130}}
+                    />
+                    <input
+                        type = 'button'
+                        className = 'action-button'
+                        value = 'Reset'
+                        style = {{width: 130, marginLeft: 10}}
+                        onClick = {() => window.location.reload()}
+                    />
+                </div>
+
             </View>
         )
 
