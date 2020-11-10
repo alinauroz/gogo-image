@@ -21,6 +21,7 @@ export default function (props) {
                                             step = {field.step}
                                             style = {field.style ? field.style.input: {}}
                                             value = {field.value}
+                                            onChange = {field.onChange ? field.onChange : () => {}}
                                         />
                                         : <input 
                                             className = 'field-input'
@@ -29,6 +30,7 @@ export default function (props) {
                                             required = {field.required} 
                                             step = {field.step}
                                             style = {field.style ? field.style.input: {}}
+                                            onChange = {props.onChange ? props.onChange : () => {}}
                                         />
                                     }
                                 </div>

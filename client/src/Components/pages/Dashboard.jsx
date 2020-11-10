@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import FormRenderrer from '../../utils/FormRenderer'
 
 let user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -14,12 +14,16 @@ export default function (props) {
 
         const fields = [
             {type: 'text', title: 'First Name', name: 'firstName', value: firstName, onChange : (e) => setFirstName(e.target.value)},
+            {type: 'text', title: 'Lasr Name', name: 'lastName', value: lastName, onChange : (e) => setLastName(e.target.value)},
+            {type: 'email', title: 'Email', name: 'email', value: email, onChange : (e) => setEmail(e.target.value)},
         ]
 
         return (
-            <FormRenderrer 
-                fields = {fields}
-            />
+            <View className = ''>
+                <FormRenderrer 
+                   fields = {fields}
+                />
+            </View>
         )
 
     }
