@@ -30,7 +30,11 @@ export default function (props) {
                     })
                     : ""
                 }
-                <Link to = '/dashboard' className = 'topbar-links'>Dashboard</Link>
+                {
+                    isLoggedIn ?
+                    <Link to = '/dashboard' className = 'topbar-links'>Dashboard</Link>
+                    : ""
+                }
                 <Link to = '/cart' className = 'topbar-links'>
                     <View style = {{display: 'inline', overflow: 'hidden'}}>
                     <Text style = {styles.cartItemCount}>99</Text>
@@ -42,10 +46,32 @@ export default function (props) {
                 </Link>
                 {
                     isLoggedIn ?
-                        <a className = 'topbar-links'>{user.firstName + ' ' + user.lastName}</a>
+                    <a style = {{cursor: 'pointer'}} className = 'topbar-links'>{user.firstName + ' ' + user.lastName}</a>
                     : <Link to = '/login' className = 'topbar-links'>Login/Sign Up</Link>
                 }
             </div>
+            <View style = {{display: 'inline-block', position: 'absolute', top: 60, right: 10, padding: 5, boxShadow: '0px 0px 3px grey', width: 250, background: '#fff'}}>
+                <Text><b>{user.firstName + ' ' + user.lastName}</b></Text>
+                <Text>{user.email}</Text>
+                <Link to = '/dashboard'>
+                    <input 
+                        type = 'button'
+                        value = 'Profile'
+                        className = 'dropdown-button'
+                        style = {{marginTop: 5}}
+                    />
+                </Link>
+                <input 
+                    type = 'button'
+                    value = 'Logout'
+                    className = 'dropdown-button'
+                    onClick = {() => {
+                        localStorage.setItem('user', '');
+                        localStorage.setItem('token', '');
+                        window.location.reload();
+                    }}
+                />
+            </View>
         </div>
     )
 }
