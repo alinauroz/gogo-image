@@ -60,7 +60,7 @@ export default function (props) {
                                     <Text>Main Image</Text>
                                 </td>
                                 <td>
-                                    <ImageLoader sizes = {{'thumb': {height: 300}}} />
+                                    <ImageLoader />
                                 </td>
                             </tr>
                             <tr>
@@ -68,7 +68,7 @@ export default function (props) {
                                     <Text>Superimpose 1</Text>
                                 </td>
                                 <td>
-
+                                    <ImageLoader />
                                 </td>
                             </tr>
                             <tr>
@@ -76,7 +76,7 @@ export default function (props) {
                                 <Text>Superimpose 2</Text>
                                 </td>
                                 <td>
-
+                                    <ImageLoader />
                                 </td>
                             </tr>
                         </table>
