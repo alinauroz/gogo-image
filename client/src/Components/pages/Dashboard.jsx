@@ -1,7 +1,7 @@
 import React from 'react'
 import FormRenderrer from '../../utils/FormRenderer'
 
-let user = localStorage.getItem('user');
+let user = JSON.parse(localStorage.getItem('user') || '{}');
 
 
 export default function (props) {
@@ -13,7 +13,7 @@ export default function (props) {
         const [email, setEmail] = React.useState(user.email);
 
         const fields = [
-            {type: 'text', title: 'First Name', name: 'firstName', value: firstName},
+            {type: 'text', title: 'First Name', name: 'firstName', value: firstName, onChange : (e) => setFirstName(e.target.value)},
         ]
 
         return (

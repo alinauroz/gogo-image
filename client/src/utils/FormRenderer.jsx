@@ -11,14 +11,26 @@ export default function (props) {
                             html.push(
                                 <div className = 'field-container' style = {field.style ? field.style.container: {}}>
                                     <p className = 'field-title'>{field.title}</p>
-                                    <input 
-                                        className = 'field-input' 
-                                        type = {field.type} 
-                                        name = {field.name} 
-                                        required = {field.required} 
-                                        step = {field.step}
-                                        style = {field.style ? field.style.input: {}}
-                                    />
+                                    {
+                                        field.value ?
+                                        <input 
+                                            className = 'field-input' 
+                                            type = {field.type} 
+                                            name = {field.name} 
+                                            required = {field.required} 
+                                            step = {field.step}
+                                            style = {field.style ? field.style.input: {}}
+                                            value = {field.value}
+                                        />
+                                        : <input 
+                                            className = 'field-input'
+                                            type = {field.type} 
+                                            name = {field.name} 
+                                            required = {field.required} 
+                                            step = {field.step}
+                                            style = {field.style ? field.style.input: {}}
+                                        />
+                                    }
                                 </div>
                             )
                         })
