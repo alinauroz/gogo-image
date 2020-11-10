@@ -1,5 +1,6 @@
 import React from 'react'
 import {View, Image, Text} from '../Basic/AppComponents'
+import ImageLoader from '../../utils/ImageLoader'
 import {capitalize} from '../../utils/string'
 
 export default function (props) {
@@ -59,7 +60,7 @@ export default function (props) {
                                     <Text>Main Image</Text>
                                 </td>
                                 <td>
-
+                                    <ImageLoader sizes = {{original: 'original'}} />
                                 </td>
                             </tr>
                             <tr>
@@ -67,7 +68,7 @@ export default function (props) {
                                     <Text>Superimpose 1</Text>
                                 </td>
                                 <td>
-
+                                    <ImageLoader />
                                 </td>
                             </tr>
                             <tr>
@@ -75,7 +76,7 @@ export default function (props) {
                                 <Text>Superimpose 2</Text>
                                 </td>
                                 <td>
-
+                                    <ImageLoader />
                                 </td>
                             </tr>
                         </table>
