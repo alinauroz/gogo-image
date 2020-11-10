@@ -13,7 +13,7 @@ console.log("USER", user)
 
 export default function (props) {
 
-    const [DDView, setDDView] = React.useState('block');
+    const [DDView, setDDView] = React.useState('none');
 
     return (
         <div>
@@ -48,7 +48,7 @@ export default function (props) {
                 </Link>
                 {
                     isLoggedIn ?
-                    <a style = {{cursor: 'pointer'}} onClick = {() => setDDView('none')}className = 'topbar-links'>{user.firstName + ' ' + user.lastName}</a>
+                    <a style = {{cursor: 'pointer'}} onClick = {() => setDDView('block')} className = 'topbar-links'>{user.firstName + ' ' + user.lastName}</a>
                     : <Link to = '/login' className = 'topbar-links'>Login/Sign Up</Link>
                 }
             </div>
