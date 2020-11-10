@@ -9,7 +9,6 @@ import styles from '../styles/topbar'
 
 let isLoggedIn = localStorage.getItem('token');
 let user = JSON.parse(localStorage.getItem('user') || '{}');
-console.log("USER", user)
 
 export default function (props) {
 
