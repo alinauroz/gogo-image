@@ -30,7 +30,7 @@ export default function (props) {
                                             required = {field.required} 
                                             step = {field.step}
                                             style = {field.style ? field.style.input: {}}
-                                            onChange = {props.onChange ? props.onChange : () => {}}
+                                            onChange = {props.onChange ? props.onChange : () => ""}
                                         />
                                     }
                                 </div>
