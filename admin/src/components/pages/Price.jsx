@@ -1,18 +1,23 @@
 import React, { useEffect } from 'react'
 import Field from '../unit/Field'
 import { request } from '../../utils/request'
+import _ from 'lodash'
 
-export default function () {
+export default function (props) {
 
     const [shouldLoad, setShouldLoad] = React.useState(true);
+    const [price, setPrice] = React.useState({})
 
     useEffect(() => {
         if (shouldLoad) {
             request({
                 route: 'price',
                 method: 'GET'
-            }).then(d => {
-                console.log("Price", d)
+            }).then(data => {
+                if (data.total > 0) {
+                    setPrice(data.data[0]);
+                }
+                setShouldLoad(false);
             })
         }
     })
@@ -21,7 +26,62 @@ export default function () {
         <div className = 'card'>
             <h3 style = {{margin: 0, marginBottom: 10}}>Set Price</h3>
             <div style = {{minWidth: 300, width: '60%'}}>
-                
+                <Field 
+                    title = 'Template'
+                    placeholder = 'Template Price'
+                    inputType = 'number'
+                    style = {{marginTop: 10}}
+                    addon = '$'
+                />
+                <Field 
+                    title = 'Retouch Single'
+                    placeholder = 'Retouch Single Price'
+                    inputType = 'number'
+                    style = {{marginTop: 10}}
+                    addon = '$'
+                />
+                <Field 
+                    title = 'Retouch Group'
+                    placeholder = 'Retouch Group Price'
+                    inputType = 'number'
+                    style = {{marginTop: 10}}
+                    addon = '$'
+                />
+                <Field 
+                    title = 'Text'
+                    placeholder = 'Text Price'
+                    inputType = 'number'
+                    style = {{marginTop: 10}}
+                    addon = '$'
+                />
+                <Field 
+                    title = 'Year'
+                    placeholder = 'Year Price'
+                    inputType = 'number'
+                    style = {{marginTop: 10}}
+                    addon = '$'
+                />
+                <Field 
+                    title = 'Superimpose 1'
+                    placeholder = 'Superimpose 1 Price'
+                    inputType = 'number'
+                    style = {{marginTop: 10}}
+                    addon = '$'
+                />
+                <Field 
+                    title = 'Superimpose 1'
+                    placeholder = 'Superimpose 2 Price'
+                    inputType = 'number'
+                    style = {{marginTop: 10}}
+                    addon = '$'
+                />
+                <Field 
+                    title = 'Next Day Service'
+                    placeholder = 'Price of Next Day Service'
+                    inputType = 'number'
+                    style = {{marginTop: 10}}
+                    addon = '$'
+                />
                 <div style = {{marginTop: 20}}>
                     <button
                         type = 'button' 
