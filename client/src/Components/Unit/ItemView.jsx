@@ -12,14 +12,6 @@ export default function (props) {
     }
 
     React.useEffect(() => {
-        console.log(
-            retouch,
-            text,
-            year,
-            main,
-            superImpose1,
-            superImpose2
-        )
 
     })
 
@@ -43,6 +35,43 @@ export default function (props) {
 
                 cartItem.superImpose1 = data.fileName;
 
+            }
+
+            if (superImpose2 && superImpose2.original) {
+
+                let data = await request({
+                    route: 'images',
+                    method: 'post',
+                    body: {
+                        base64: superImpose2.original,
+                        nameType: 'superimpose'
+                    }
+                });
+
+                cartItem.superImpose2 = data.fileName;
+
+            }
+
+            if (main && main.original) {
+
+                let data = await request({
+                    route: 'images',
+                    method: 'post',
+                    body: {
+                        base64: main.original,
+                        nameType: 'main'
+                    }
+                });
+
+                cartItem.main = data.fileName;
+
+            }
+
+            cartItem = {
+                ... cartItem,
+                text,
+                year,
+                retouch: (retouch && retouchValue) ? retouchValue: 'none'
             }
 
             console.log(cartItem)
