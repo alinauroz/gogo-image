@@ -2,6 +2,8 @@ import React from 'react'
 import {View, Image, Text} from '../Basic/AppComponents'
 import ImageLoader from '../../utils/ImageLoader'
 import {capitalize} from '../../utils/string'
+import { request } from '../../utils/AppRequest'
+import { v4 as uuidv4 } from 'uuid';
 
 export default function (props) {
     
@@ -18,7 +20,39 @@ export default function (props) {
             superImpose1,
             superImpose2
         )
+
     })
+
+    const addToCart = async () => {
+
+        try {
+            const id = uuidv4();
+            let cartItem = {};
+            let price = 0;
+
+            if (superImpose1 && superImpose1.original) {
+
+                let data = await request({
+                    route: 'images',
+                    method: 'post',
+                    body: {
+                        base64: superImpose1.original,
+                        nameType: 'superimpose'
+                    }
+                });
+
+                cartItem.superImpose1 = data.fileName;
+
+            }
+
+            console.log(cartItem)
+
+        }
+        catch (err) {
+            alert('error')
+        }
+
+    }
 
     const [retouch, setRetouch] = React.useState();
     const [retouchValue, setRetouchValue] = React.useState();
@@ -143,6 +177,13 @@ export default function (props) {
                                 </td>
                             </tr>
                         </table>
+                        <input 
+                            type = 'button'
+                            value = 'Add to Cart'
+                            className = 'action-button'
+                            style = {{width: 120}}
+                            onClick = {addToCart}
+                        />
                     </Text>
                 </View>
             </View>
