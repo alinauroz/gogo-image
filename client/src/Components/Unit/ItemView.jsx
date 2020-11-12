@@ -91,6 +91,7 @@ export default function (props) {
                                         <input 
                                             name = {`item-retouch-${props.type}`}
                                             type = 'radio' 
+                                            disabled = {! retouch}
                                             id = {`item-retouch-single-${props.type}`}
                                             onClick = {() => {
                                                 setRetouch(true);
@@ -104,6 +105,7 @@ export default function (props) {
                                             name = {`item-retouch-${props.type}`}
                                             type = 'radio'
                                             id = {`item-retouch-group-${props.type}`}
+                                            disabled = {! retouch}
                                             onClick = {() => {
                                                 setRetouch(true);
                                                 setRetouchValue('group')
