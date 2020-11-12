@@ -8,26 +8,26 @@ export default function (props) {
     const [shouldLoad, setShouldLoad] = React.useState(true);
     const [price, setPrice] = React.useState({})
 
-    const [textPrice, setTextPrice] = React.useState();
-    const [yearPrice, setYearPrice] = React.useState();
-    const [templatePrice, setTemplatePrice] = React.useState();
-    const [superImpose1Price, setSuperimpose1Price] = React.useState();
-    const [superImpose2Price, setSuperimpose2Price] = React.useState();
-    const [retouchSinglePrice, setRetouchSinglePrice] = React.useState();
-    const [retouchGroupPrice, setRetouchGroupPrice] = React.useState();
-    const [nextDayPrice, setNextDayPrice] = React.useState();
+    const [text, setTextPrice] = React.useState();
+    const [year, setYearPrice] = React.useState();
+    const [template, setTemplatePrice] = React.useState();
+    const [superimpose1, setSuperimpose1Price] = React.useState();
+    const [superimpose2, setSuperimpose2Price] = React.useState();
+    const [retouchSingle, setRetouchSinglePrice] = React.useState();
+    const [retouchGroup, setRetouchGroupPrice] = React.useState();
+    const [nextDayService, setNextDayServicePrice] = React.useState();
 
     useEffect(() => {
 
         console.log(
-            textPrice,
-            yearPrice,
-            templatePrice,
-            superImpose1Price,
-            superImpose2Price,
-            retouchSinglePrice,
-            retouchGroupPrice,
-            nextDayPrice
+            text,
+            year,
+            template,
+            superimpose1,
+            superimpose2,
+            retouchSingle,
+            retouchGroup,
+            nextDayService
         )
 
         if (shouldLoad) {
@@ -37,6 +37,18 @@ export default function (props) {
             }).then(data => {
                 if (data.total > 0) {
                     setPrice(data.data[0]);
+
+                    let prices = data.data[0];
+
+                    setTextPrice(prices.text)
+                    setYearPrice(prices.year)
+                    setTemplatePrice(prices.template)
+                    setSuperimpose1Price(prices.superimpose1)
+                    setSuperimpose2Price(prices.superimpose2)
+                    setRetouchSinglePrice(prices.retouchSingle)
+                    setRetouchGroupPrice(prices.retouchGroup)
+                    setNextDayServicePrice(prices.nextDayService)
+
                 }
                 setShouldLoad(false);
             })
@@ -53,7 +65,7 @@ export default function (props) {
                     inputType = 'number'
                     style = {{marginTop: 10}}
                     addon = '$'
-                    value = {templatePrice}
+                    value = {template}
                     onChange = {(e) => setTemplatePrice(e.target.value)}
                 />
                 <Field 
@@ -62,7 +74,7 @@ export default function (props) {
                     inputType = 'number'
                     style = {{marginTop: 10}}
                     addon = '$'
-                    value = {retouchSinglePrice}
+                    value = {retouchSingle}
                     onChange = {(e) => setRetouchSinglePrice(e.target.value)}
                 />
                 <Field 
@@ -71,7 +83,7 @@ export default function (props) {
                     inputType = 'number'
                     style = {{marginTop: 10}}
                     addon = '$'
-                    value = {retouchGroupPrice}
+                    value = {retouchGroup}
                     onChange = {(e) => setRetouchGroupPrice(e.target.value)}
                 />
                 <Field 
@@ -80,7 +92,7 @@ export default function (props) {
                     inputType = 'number'
                     style = {{marginTop: 10}}
                     addon = '$'
-                    value = {textPrice}
+                    value = {text}
                     onChange = {(e) =>  setTextPrice(e.target.value)}
                 />
                 <Field 
@@ -89,25 +101,25 @@ export default function (props) {
                     inputType = 'number'
                     style = {{marginTop: 10}}
                     addon = '$'
-                    value = {yearPrice}
+                    value = {year}
                     onChange = {(e) => setYearPrice(e.target.value)}
                 />
                 <Field 
-                    title = 'Superimpose 1'
-                    placeholder = 'Superimpose 1 Price'
+                    title = 'superimpose 1'
+                    placeholder = 'superimpose 1 Price'
                     inputType = 'number'
                     style = {{marginTop: 10}}
                     addon = '$'
-                    value = {superImpose1Price}
+                    value = {superimpose1}
                     onChange = {(e) => setSuperimpose1Price(e.target.value)}
                 />
                 <Field 
-                    title = 'Superimpose 1'
-                    placeholder = 'Superimpose 2 Price'
+                    title = 'superimpose 1'
+                    placeholder = 'superimpose 2 Price'
                     inputType = 'number'
                     style = {{marginTop: 10}}
                     addon = '$'
-                    value = {superImpose2Price}
+                    value = {superimpose2}
                     onChange = {(e) => setSuperimpose2Price(e.target.value)}
                 />
                 <Field 
@@ -116,8 +128,8 @@ export default function (props) {
                     inputType = 'number'
                     style = {{marginTop: 10}}
                     addon = '$'
-                    value = {nextDayPrice}
-                    onChange = {(e) => setNextDayPrice(e.target.value)}
+                    value = {nextDayService}
+                    onChange = {(e) => setNextDayServicePrice(e.target.value)}
                 />
                 <div style = {{marginTop: 20}}>
                     <button
