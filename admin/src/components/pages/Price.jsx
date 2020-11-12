@@ -1,7 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Field from '../unit/Field'
+import { request } from '../../utils/request'
 
 export default function () {
+
+    const [shouldLoad, setShouldLoad] = React.useState(true);
+
+    useEffect(() => {
+        if (shouldLoad) {
+            request({
+                route: 'price',
+                method: 'GET'
+            }).then(d => {
+                console.log("Price", d)
+            })
+        }
+    })
+
     return (
         <div className = 'card'>
             <h3 style = {{margin: 0, marginBottom: 10}}>Set Price</h3>
