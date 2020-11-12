@@ -76,6 +76,8 @@ export default function (props) {
 
             console.log(cartItem)
 
+            if (props.addToCart) props.addToCart({cartItem})
+
         }
         catch (err) {
             alert('error')
