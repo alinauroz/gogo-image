@@ -44,7 +44,8 @@ export default function (props) {
                                         <label for = {`item-retouch-${props.type}`} >Retouch</label>
                                         <input 
                                             type = 'checkbox' 
-                                            id = {`item-retouch-${props.type}`} 
+                                            id = {`item-retouch-${props.type}`}
+                                            checked = {retouch}
                                             onClick = {(e) => {
                                                 setRetouch(e.target.checked)
                                             }}
@@ -53,11 +54,27 @@ export default function (props) {
                                 </td>
                                 <td>
                                     <span style = {{marginRight: 20}}>
-                                        <input name = {`item-retouch-${props.type}`} type = 'radio' id = {`item-retouch-single-${props.type}`} />
+                                        <input 
+                                            name = {`item-retouch-${props.type}`}
+                                            type = 'radio' 
+                                            id = {`item-retouch-single-${props.type}`}
+                                            onClick = {() => {
+                                                setRetouch(true);
+                                                setRetouchValue('single')
+                                            }}
+                                        />
                                         <label for = {`item-retouch-single-${props.type}`} >1 Person</label>
                                     </span>
                                     <span style = {{marginRight: 20}}>
-                                        <input name = {`item-retouch-${props.type}`} type = 'radio' id = {`item-retouch-group-${props.type}`} />
+                                        <input 
+                                            name = {`item-retouch-${props.type}`}
+                                            type = 'radio'
+                                            id = {`item-retouch-group-${props.type}`}
+                                            onClick = {() => {
+                                                setRetouch(true);
+                                                setRetouchValue('group')
+                                            }}
+                                        />
                                         <label for = {`item-retouch-group-${props.type}`} >Group</label>
                                     </span>
                                 </td>
