@@ -117,7 +117,7 @@ export default function (props) {
                                     <Text>Main Image</Text>
                                 </td>
                                 <td>
-                                    <ImageLoader sizes = {{original: 'original'}} setImages = {setImages} />
+                                    <ImageLoader sizes = {{original: 'original'}} setImages = {setMain} />
                                 </td>
                             </tr>
                             <tr>
@@ -125,7 +125,10 @@ export default function (props) {
                                     <Text>Superimpose 1</Text>
                                 </td>
                                 <td>
-                                    <ImageLoader />
+                                    <ImageLoader 
+                                        sizes = {{original: 'original'}}
+                                        setImages = {setSuperImpose1}
+                                    />
                                 </td>
                             </tr>
                             <tr>
@@ -133,7 +136,10 @@ export default function (props) {
                                 <Text>Superimpose 2</Text>
                                 </td>
                                 <td>
-                                    <ImageLoader />
+                                    <ImageLoader 
+                                        sizes = {{original: 'original'}}
+                                        setImages = {setSuperImpose2}
+                                    />
                                 </td>
                             </tr>
                         </table>
