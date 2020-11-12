@@ -52,6 +52,7 @@ input:focus, button:focus {
   min-width: 300px;
   border: 1px solid #888888;
   border-radius: 2px;
+  margin-bottom: 50px;
 }
 
 .pair-button {

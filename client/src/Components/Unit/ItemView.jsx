@@ -9,6 +9,25 @@ export default function (props) {
         console.log('Images', images)
     }
 
+    React.useEffect(() => {
+        console.log(
+            retouch,
+            text,
+            year,
+            main,
+            superImpose1,
+            superImpose2
+        )
+    })
+
+    const [retouch, setRetouch] = React.useState();
+    const [retouchValue, setRetouchValue] = React.useState();
+    const [text, setText] = React.useState();
+    const [year, setYear] = React.useState();
+    const [main, setMain] = React.useState();
+    const [superImpose1, setSuperImpose1] = React.useState();
+    const [superImpose2, setSuperImpose2] = React.useState();
+
     return (
         <View className = 'itemview-container'>
             <View className = 'itemview-image-container'>
@@ -23,17 +42,40 @@ export default function (props) {
                                 <td>
                                     <span>
                                         <label for = {`item-retouch-${props.type}`} >Retouch</label>
-                                        <input type = 'checkbox' id = {`item-retouch-${props.type}`} />
+                                        <input 
+                                            type = 'checkbox' 
+                                            id = {`item-retouch-${props.type}`}
+                                            checked = {retouch}
+                                            onClick = {(e) => {
+                                                setRetouch(e.target.checked)
+                                            }}
+                                        />
                                     </span>
                                 </td>
                                 <td>
                                     <span style = {{marginRight: 20}}>
-                                        <input type = 'radio' id = {`item-retouch-single-${props.type}`} />
+                                        <input 
+                                            name = {`item-retouch-${props.type}`}
+                                            type = 'radio' 
+                                            id = {`item-retouch-single-${props.type}`}
+                                            onClick = {() => {
+                                                setRetouch(true);
+                                                setRetouchValue('single')
+                                            }}
+                                        />
                                         <label for = {`item-retouch-single-${props.type}`} >1 Person</label>
                                     </span>
                                     <span style = {{marginRight: 20}}>
-                                        <input type = 'radio' id = {`item-retouch-single-${props.type}`} />
-                                        <label for = {`item-retouch-single-${props.type}`} >1 Person</label>
+                                        <input 
+                                            name = {`item-retouch-${props.type}`}
+                                            type = 'radio'
+                                            id = {`item-retouch-group-${props.type}`}
+                                            onClick = {() => {
+                                                setRetouch(true);
+                                                setRetouchValue('group')
+                                            }}
+                                        />
+                                        <label for = {`item-retouch-group-${props.type}`} >Group</label>
                                     </span>
                                 </td>
                             </tr>
