@@ -53,12 +53,12 @@ export default function (props) {
                                 </td>
                                 <td>
                                     <span style = {{marginRight: 20}}>
-                                        <input type = 'radio' id = {`item-retouch-single-${props.type}`} />
+                                        <input name = {`item-retouch-${props.type}`} type = 'radio' id = {`item-retouch-single-${props.type}`} />
                                         <label for = {`item-retouch-single-${props.type}`} >1 Person</label>
                                     </span>
                                     <span style = {{marginRight: 20}}>
-                                        <input type = 'radio' id = {`item-retouch-single-${props.type}`} />
-                                        <label for = {`item-retouch-single-${props.type}`} >1 Person</label>
+                                        <input name = {`item-retouch-${props.type}`} type = 'radio' id = {`item-retouch-group-${props.type}`} />
+                                        <label for = {`item-retouch-group-${props.type}`} >Group</label>
                                     </span>
                                 </td>
                             </tr>
