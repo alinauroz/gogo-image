@@ -2,11 +2,15 @@ import {api} from '../data/api'
 
 const getToken = localStorage.getItem('token')
 
-const toQuery = () => {
-
+const toQuery = (query) => {
+    let queryStr = '';
+    for (let x in query) {
+        queryStr += `${x}=${query[x]}&`
+    }
+    return queryStr.slice(0, -1);
 }
 
-export const request = ({route, params, body, query, method}) => {
+export const request = ({route, params, body = {}, query, method}) => {
 
     try {
         
