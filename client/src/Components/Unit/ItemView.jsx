@@ -87,6 +87,14 @@ export default function (props) {
                                     <input 
                                         className = 'itemviewer-input'
                                         placeholder = 'Max. 25 Characters'
+                                        value = {text}
+                                        onChange = {
+                                            (e) => {
+                                                e.target.value.length <= 25 ?
+                                                setText(e.target.value)
+                                                : alert('Max Length is 25')
+                                            }
+                                        }
                                     />
                                 </td>
                             </tr>
@@ -98,6 +106,9 @@ export default function (props) {
                                     <input 
                                         className = 'itemviewer-input'
                                         placeholder = 'Enter year photo taken'
+                                        onChange = {(e) => {
+                                            setYear(e.target.value)
+                                        }}
                                     />
                                 </td>
                             </tr>
