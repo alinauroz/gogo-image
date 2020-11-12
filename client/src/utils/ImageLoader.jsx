@@ -84,7 +84,11 @@ export default function (props) {
                         <img src = {toView} />
                         <span 
                             style = {{padding: 3, verticalAlign: 'top', cursor: 'pointer'}}
-                            onClick = {() => {setToView(''); setImages([]);}}
+                            onClick = {() => {
+                                setToView('');
+                                setImages({});
+                                if (props.setImages) props.setImages({})
+                            }}
                         >✖</span>
                     </>
                 }
