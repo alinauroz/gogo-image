@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import {Text, View, Image} from '../Components/Basic/AppComponents'
 import imageCompression from 'browser-image-compression'
 
 const getBase64 = file => {
@@ -42,43 +41,43 @@ export default function (props) {
 
         let file = e.target.files[0];
 
+        let images_ = {};
         
         for (let x in props.sizes) {
             if (typeof props.sizes[x] === 'object') {
                 let base64 = await resize(file, props.sizes[x]);
-                setImages({
-                    ... images,
+                images_ = ({
+                    ... images_,
                     [x]: base64
                 })
             }
             else {
                 let base64 = await getBase64(file);
-                setImages({
-                    ... images,
+                images_ = ({
+                    ... images_,
                     [x]: base64
                 })
             }
         }
         
+        setImages(images_);
 
         let thumb = await resize(file, {maxWidthOrHeight: 120});
         setToView(thumb);
 
-        console.log(images)
-
     }
 
     return (
-        <View style = {{}}>
-            <View style = {{flexDirection: 'row', justifyContent: 'center', textAlign: 'center', width: '100%'}}>
+        <div style = {{}}>
+            <div style = {{flexDirection: 'row', justifyContent: 'center', pAlign: 'center', width: '100%'}}>
                 {
                     Object.keys(images).length === 0 ?
-                    <View style = {{display: 'inline-block', verticalAlign: 'top', height: 25, width: 'calc(100% - 20px)'}}>
+                    <div style = {{display: 'inline-block', verticalAlign: 'top', height: 25, width: 'calc(100% - 20px)'}}>
                         <input onChange = {handleChange} type = 'file' style = {{width: 'calc(100% - 0px)', height: '100%', margin: 0, opacity: 0}} />
-                        <View style = {{overflow: 'hidden', width: 'calc(100% - 0px)', height: '100%', marginTop: '-25px', zIndex: 2, textAlign: 'center'}}>
-                            <Text style = {{marginTop: 5}}>Upload</Text>
-                        </View>
-                    </View>
+                        <div style = {{overflow: 'hidden', width: 'calc(100% - 0px)', height: '100%', marginTop: '-25px', zIndex: 2, textAlign: 'center'}}>
+                            <p style = {{marginTop: 5}}>Upload</p>
+                        </div>
+                    </div>
                     :
                     <>
                         <img src = {toView} />
@@ -92,8 +91,8 @@ export default function (props) {
                         >✖</span>
                     </>
                 }
-            </View>
-        </View>
+            </div>
+        </div>
     )
 
 }

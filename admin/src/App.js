@@ -5,6 +5,7 @@ import './App.css'
 import Login from './components/pages/Login'
 import Home from './components/pages/Home'
 import AddStaff from './components/pages/AddStaff'
+import AddPost from './components/pages/AddPost'
 import CreatePage from './components/pages/CreatePage'
 import AddCoupon from './components/pages/AddCoupon'
 import AddFaq from './components/pages/AddFaq'
@@ -51,7 +52,9 @@ export default function () {
         buttonList = {BUTTONS}
       />
       <div className = 'main-container'>
-        <SetPrice />
+
+        <AddPost />
+
         <div style = {{display : screen == 'Home' ? 'block' : 'none'}}>
           <Home base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
