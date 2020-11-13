@@ -1,11 +1,17 @@
 import React from 'react'
 import Field from '../unit/Field'
+import ImageLoader from '../../utils/ImageLoader'
 
 function PostInput (props) {
 
+    const setImage = (data) => console.log(data)
+
     return (
         <div>
-            
+            <ImageLoader 
+                sizes = {{original: 'original', maxWidthOrHeight: 300}}
+                setImages = {setImage}
+            />
         </div>
     )
 
@@ -40,6 +46,7 @@ export default function () {
             <p style = {{margin: 5, marginBottom: 10}}>
                 {tagsView}
             </p>
+            <PostInput />
         </div>
     )
 
