@@ -13,6 +13,7 @@ export default function (props) {
                     name = {props.name}
                     onChange = {props.onChange}
                     className = 'form-control'
+                    value = {props.value}
                 />
             </div>
             :
@@ -22,6 +23,7 @@ export default function (props) {
                 name = {props.name}
                 onChange = {props.onChange}
                 className = 'form-control'
+                value = {props.value}
             />
             }
         </div>

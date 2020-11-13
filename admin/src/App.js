@@ -12,6 +12,7 @@ import AddFaq from './components/pages/AddFaq'
 import ViewBlogs from './components/pages/ViewBlogs'
 import Topbar from './components/Topbar'
 import CompanyProfile from './components/pages/CompanyProfile'
+import SetPrice from './components/pages/Price'
 
 export default function () {
 
@@ -51,7 +52,9 @@ export default function () {
         buttonList = {BUTTONS}
       />
       <div className = 'main-container'>
+
         <AddPost />
+
         <div style = {{display : screen == 'Home' ? 'block' : 'none'}}>
           <Home base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
