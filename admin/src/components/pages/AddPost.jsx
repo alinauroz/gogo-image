@@ -9,7 +9,7 @@ function PostInput (props) {
     return (
         <div>
             <ImageLoader 
-                sizes = {{original: 'original', maxWidthOrHeight: 300}}
+                sizes = {{original: 'original', thumb: {maxWidthOrHeight: 300}}}
                 setImages = {setImage}
             />
         </div>
