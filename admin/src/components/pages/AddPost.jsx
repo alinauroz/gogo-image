@@ -1,6 +1,7 @@
 import React from 'react'
 import Field from '../unit/Field'
 import ImageLoader from '../../utils/ImageLoader'
+import { request } from '../../utils/request'
 
 function PostInput (props) {
 
@@ -64,6 +65,7 @@ export default function () {
     const [thumbs, setThumbs] = React.useState([]);
     const [types, setTypes] = React.useState([]);
     const [sizes, setSizes] = React.useState([]); 
+    const [message, setMessage] = React.useState('')
     const [ImageInputs, setImageInputs] = React.useState([<PostInput index = {0} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />])
 
     React.useEffect(() => {
@@ -85,6 +87,72 @@ export default function () {
         setTagsView(tagsHtml)
     }
 
+    const submitPost = async (e) => {
+        try {
+            e.target.disabled = true;
+            let toSkip = []
+
+            for (let i = 0; i < ImageInputs.length; i++) {
+                if (! thumbs[i]) {
+                    if(window.confirm('Thumb for post # ' + i + ' is missing. Press ok to Skip Post ' + i + '. Press Cancel to go back')) {
+                        toSkip.push(i);
+                        continue;
+                    }
+                    else return e.target.disabled = false;;
+                }
+                if (! sizes[i]) {
+                    if(window.confirm('Size for post # ' + i + ' is missing. Press ok to Skip Post ' + i + '. Press Cancel to go back')) {
+                        toSkip.push(i);
+                        continue;
+                    }
+                    else return e.target.disabled = false;;
+                }
+                if (! types[i]) {
+                    if(window.confirm('Type for post # ' + i + ' is missing. Press ok to Skip Post ' + i + '. Press Cancel to go back')) {
+                        toSkip.push(i);
+                        continue;
+                    }
+                    else return e.target.disabled = false;;
+                }
+            }
+
+            setMessage('Saving Images ....')
+
+            for (let i = 0; i < ImageInputs.length; i++) {
+
+                if (toSkip.indexOf(i) !== -1) continue
+
+                let thumbInfo = await request({
+                    route: 'images',
+                    method: 'POST',
+                    body: {
+                        base64: thumbs[i],
+                        ref: i
+                    }
+                })
+
+                setMessage('Saved Thumb # ' + i)
+
+                let imageInfo = await request({
+                    route: 'images',
+                    method: 'POST',
+                    body: {
+                        base64: images[i],
+                        ref: i
+                    }
+                })
+
+                setMessage('Saved Image # ' + i)
+
+            }
+
+            e.target.disabled = false;
+        }
+        catch (err) {
+            e.target.disabled = false;
+        }
+    }
+
     return (
         <div className = 'card'>
             <h3 style = {{margin: 0, marginBottom: 15}}>Add a Post</h3>
@@ -98,11 +166,15 @@ export default function () {
                 {tagsView}
             </p>
             {ImageInputs}
+            <p style = {{marginTop: 10}}>
+                {message}
+            </p>
             <div style = {{marginTop: 20}}>
                 <input
                     type = 'button'
                     value = 'Post'
                     className = 'btn btn-success'
+                    onClick = {submitPost}
                 />
                 <input
                     type = 'button'
