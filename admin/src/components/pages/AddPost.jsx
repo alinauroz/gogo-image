@@ -12,12 +12,14 @@ function PostInput (props) {
                 <Field 
                     title = 'Size'
                     placeholder = 'Size of the Image'
+                    onChange = {(e) => props.setSize(e.target.value, props.index)}
                 />
                 <div style = {{marginTop: 10}}>
                     <p>Select Image Type</p>
-                    <select class = 'form-control'>
-                        <option selected>Portrait</option>
-                        <option>Landscape</option>
+                    <select class = 'form-control' onChange = {(e) => props.setType(e.target.value, props.index)}>
+                        <option></option>
+                        <option value = 'portrait' >Portrait</option>
+                        <option value = 'landscape' >Landscape</option>
                     </select>
                 </div>
             </div>
@@ -46,15 +48,28 @@ export default function () {
         setImages(images_);
     }
 
+    const handleSize = (value, index) => {
+        sizes[index] = value;
+        setSizes(sizes)
+    }
+
+    const handleType = (value, index) => {
+        types[index] = value;
+        setTypes(types)
+    }
+
     const [tags, setTags] = React.useState([]);
     const [tagsView, setTagsView] = React.useState([]);
     const [images, setImages] = React.useState([])
     const [thumbs, setThumbs] = React.useState([]);
-    const [ImageInputs, setImageInputs] = React.useState([<PostInput index = {0} onChange = {handleImagesAndThumbs} />])
+    const [types, setTypes] = React.useState([]);
+    const [sizes, setSizes] = React.useState([]); 
+    const [ImageInputs, setImageInputs] = React.useState([<PostInput index = {0} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />])
 
     React.useEffect(() => {
         console.log(
-            thumbs
+            sizes,
+            types
         )
     })
 
@@ -96,7 +111,7 @@ export default function () {
                     style = {{marginLeft: 10}}
                     onClick = {() => {
                         let a = [ ... ImageInputs];
-                        a.push(<PostInput index = {ImageInputs.length} onChange = {handleImagesAndThumbs} />)
+                        a.push(<PostInput index = {ImageInputs.length} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />)
                         setImageInputs(a)
                     }}
                 />
