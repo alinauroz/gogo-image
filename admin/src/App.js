@@ -43,7 +43,7 @@ export default function () {
     {title: 'Add Product'}
   ]);
 
-  if (localStorage.getItem('token'))
+  if (localStorage.getItem('admin_token'))
   return (
     <>
       <Topbar />

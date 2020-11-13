@@ -30,8 +30,9 @@ export default function () {
                 setMessage(data.message);
             }
             else {
-                localStorage.setItem('token', data.token);
+                localStorage.setItem('admin_token', data.token);
                 localStorage.setItem('admin', JSON.stringify(data.data));
+                document.cookie = 'jwt=' + data.token;
                 window.location.reload();
             }
 

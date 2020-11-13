@@ -17,18 +17,38 @@ export default function (props) {
     const [retouchGroup, setRetouchGroupPrice] = React.useState();
     const [nextDayService, setNextDayServicePrice] = React.useState();
 
-    useEffect(() => {
+    const update = async (e) => {
+        try {
+            e.target.disabled = false;
 
-        console.log(
-            text,
-            year,
-            template,
-            superimpose1,
-            superimpose2,
-            retouchSingle,
-            retouchGroup,
-            nextDayService
-        )
+            let response = await request({
+                route: 'price',
+                params: '/price',
+                method: 'PUT',
+                credentials: 'include',
+                body: {
+                    text,
+                    year,
+                    template,
+                    superimpose1,
+                    superimpose2,
+                    retouchSingle,
+                    retouchGroup,
+                    nextDayService
+                }
+            })
+
+            console.log(response)
+
+            e.target.disabled = false;
+        }
+        catch (err) {
+            console.error(err);
+            e.target.disabled = false;
+        }
+    }
+
+    useEffect(() => {
 
         if (shouldLoad) {
             request({
@@ -137,6 +157,7 @@ export default function (props) {
                         value = 'Done'
                         className = 'btn btn-success'
                         disabled = {shouldLoad}
+                        onClick = {update}
                     >
                         <i class="glyphicon glyphicon-ok" style = {{marginRight: 5}}></i>
                         Done
