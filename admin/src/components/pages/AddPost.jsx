@@ -18,7 +18,7 @@ export default function () {
 
     const handleTags = (e) => {
 
-        let tags_ = e.target.value.split(',').filter((tag) => tag !== ' ' && tag !== '');
+        let tags_ = e.target.value.split(' ').filter((tag) => tag !== ' ' && tag !== '');
         let tagsHtml = []
         tags_.map(tag => {
             tagsHtml.push(<span style = {{margin: 3, marginLeft: 0, borderRadius: 3, padding: 4, background: 'grey', color: 'white', fontSize: 12}}>{tag}</span>)
@@ -34,10 +34,10 @@ export default function () {
             <Field 
                 name = 'tags'
                 title = 'Add Tags'
-                placeholder = 'Separate Tags using Commas'
+                placeholder = 'Separate Tags using Space'
                 onChange = {handleTags}
             />
-            <p style = {{marginTop: 5}}>
+            <p style = {{margin: 5, marginBottom: 10}}>
                 {tagsView}
             </p>
         </div>
