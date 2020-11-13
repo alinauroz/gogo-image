@@ -8,10 +8,26 @@ function PostInput (props) {
 
     return (
         <div>
-            <ImageLoader 
-                sizes = {{original: 'original', thumb: {maxWidthOrHeight: 300}}}
-                setImages = {setImage}
-            />
+            <div style = {{display: 'inline-block', verticalAlign: 'top', width: 'calc(50% - 10px)', padding: 10, paddingLeft: 0}}>
+                <Field 
+                    title = 'Size'
+                    placeholder = 'Size of the Image'
+                />
+                <div style = {{marginTop: 10}}>
+                    <p>Select Image Type</p>
+                    <select class = 'form-control'>
+                        <option selected>Portrait</option>
+                        <option>Landscape</option>
+                    </select>
+                </div>
+            </div>
+            <div style = {{display: 'inline-block', verticalAlign: 'top', width: 'calc(50% - 20px)', padding: 10, height: '100%'}}>
+                <p>Upload an Image</p>
+                <ImageLoader 
+                    sizes = {{original: 'original', thumb: {maxWidthOrHeight: 300}}}
+                    setImages = {setImage}
+                />
+            </div>
         </div>
     )
 

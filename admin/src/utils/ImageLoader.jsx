@@ -74,7 +74,7 @@ export default function (props) {
                     Object.keys(images).length === 0 ?
                     <div style = {{display: 'inline-block', verticalAlign: 'top', height: 25, width: 'calc(100% - 20px)'}}>
                         <input onChange = {handleChange} type = 'file' style = {{width: 'calc(100% - 0px)', height: '100%', margin: 0, opacity: 0}} />
-                        <div style = {{overflow: 'hidden', width: 'calc(100% - 0px)', height: '100%', marginTop: '-25px', zIndex: 2, pAlign: 'center'}}>
+                        <div style = {{overflow: 'hidden', width: 'calc(100% - 0px)', height: '100%', marginTop: '-25px', zIndex: 2, textAlign: 'center'}}>
                             <p style = {{marginTop: 5}}>Upload</p>
                         </div>
                     </div>
