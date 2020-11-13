@@ -47,6 +47,23 @@ let posts = [
 ]
 
 function App() {
+
+  let cartContent = JSON.parse(localStorage.getItem('cart') || '[]')
+  const [cart, setCart] = React.useState(cartContent)
+
+  const addToCart = ({cartItem}) => {
+
+    console.log(cartItem)
+
+    setCart([
+      ... cart,
+      cartItem
+    ])
+
+    localStorage.setItem('cart', JSON.stringify([... cart, cartItem]));
+
+  }
+
   return (
     <>
       <TopBar 
@@ -67,7 +84,7 @@ function App() {
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/signup" component={Signup} />
             <Route path="/cart" component={Cart} />
-            <Route path="/post/:id" component={PostView} />
+            <Route path="/post/:id" component={(props) => <PostView {... props} addToCart = {addToCart} ></PostView>} />
             <Route path="/reset-password" component={ResetPassword} />
           </Route>
         </Switch>

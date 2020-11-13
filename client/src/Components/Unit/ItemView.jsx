@@ -2,6 +2,8 @@ import React from 'react'
 import {View, Image, Text} from '../Basic/AppComponents'
 import ImageLoader from '../../utils/ImageLoader'
 import {capitalize} from '../../utils/string'
+import { request } from '../../utils/AppRequest'
+import { v4 as uuidv4 } from 'uuid';
 
 export default function (props) {
     
@@ -10,15 +12,78 @@ export default function (props) {
     }
 
     React.useEffect(() => {
-        console.log(
-            retouch,
-            text,
-            year,
-            main,
-            superImpose1,
-            superImpose2
-        )
+
     })
+
+    const addToCart = async () => {
+
+        try {
+            const id = uuidv4();
+            let cartItem = {};
+            let price = 0;
+
+            if (superImpose1 && superImpose1.original) {
+
+                let data = await request({
+                    route: 'images',
+                    method: 'post',
+                    body: {
+                        base64: superImpose1.original,
+                        nameType: 'superimpose'
+                    }
+                });
+
+                cartItem.superImpose1 = data.fileName;
+
+            }
+
+            if (superImpose2 && superImpose2.original) {
+
+                let data = await request({
+                    route: 'images',
+                    method: 'post',
+                    body: {
+                        base64: superImpose2.original,
+                        nameType: 'superimpose'
+                    }
+                });
+
+                cartItem.superImpose2 = data.fileName;
+
+            }
+
+            if (main && main.original) {
+
+                let data = await request({
+                    route: 'images',
+                    method: 'post',
+                    body: {
+                        base64: main.original,
+                        nameType: 'main'
+                    }
+                });
+
+                cartItem.main = data.fileName;
+
+            }
+
+            cartItem = {
+                ... cartItem,
+                text,
+                year,
+                retouch: (retouch && retouchValue) ? retouchValue: 'none'
+            }
+
+            console.log(cartItem)
+
+            if (props.addToCart) props.addToCart({cartItem})
+
+        }
+        catch (err) {
+            alert('error')
+        }
+
+    }
 
     const [retouch, setRetouch] = React.useState();
     const [retouchValue, setRetouchValue] = React.useState();
@@ -57,6 +122,7 @@ export default function (props) {
                                         <input 
                                             name = {`item-retouch-${props.type}`}
                                             type = 'radio' 
+                                            disabled = {! retouch}
                                             id = {`item-retouch-single-${props.type}`}
                                             onClick = {() => {
                                                 setRetouch(true);
@@ -70,6 +136,7 @@ export default function (props) {
                                             name = {`item-retouch-${props.type}`}
                                             type = 'radio'
                                             id = {`item-retouch-group-${props.type}`}
+                                            disabled = {! retouch}
                                             onClick = {() => {
                                                 setRetouch(true);
                                                 setRetouchValue('group')
@@ -87,6 +154,14 @@ export default function (props) {
                                     <input 
                                         className = 'itemviewer-input'
                                         placeholder = 'Max. 25 Characters'
+                                        value = {text}
+                                        onChange = {
+                                            (e) => {
+                                                e.target.value.length <= 25 ?
+                                                setText(e.target.value)
+                                                : alert('Max Length is 25')
+                                            }
+                                        }
                                     />
                                 </td>
                             </tr>
@@ -98,6 +173,9 @@ export default function (props) {
                                     <input 
                                         className = 'itemviewer-input'
                                         placeholder = 'Enter year photo taken'
+                                        onChange = {(e) => {
+                                            setYear(e.target.value)
+                                        }}
                                     />
                                 </td>
                             </tr>
@@ -106,7 +184,7 @@ export default function (props) {
                                     <Text>Main Image</Text>
                                 </td>
                                 <td>
-                                    <ImageLoader sizes = {{original: 'original'}} setImages = {setImages} />
+                                    <ImageLoader sizes = {{original: 'original'}} setImages = {setMain} />
                                 </td>
                             </tr>
                             <tr>
@@ -114,7 +192,10 @@ export default function (props) {
                                     <Text>Superimpose 1</Text>
                                 </td>
                                 <td>
-                                    <ImageLoader />
+                                    <ImageLoader 
+                                        sizes = {{original: 'original'}}
+                                        setImages = {setSuperImpose1}
+                                    />
                                 </td>
                             </tr>
                             <tr>
@@ -122,10 +203,20 @@ export default function (props) {
                                 <Text>Superimpose 2</Text>
                                 </td>
                                 <td>
-                                    <ImageLoader />
+                                    <ImageLoader 
+                                        sizes = {{original: 'original'}}
+                                        setImages = {setSuperImpose2}
+                                    />
                                 </td>
                             </tr>
                         </table>
+                        <input 
+                            type = 'button'
+                            value = 'Add to Cart'
+                            className = 'action-button'
+                            style = {{width: 120}}
+                            onClick = {addToCart}
+                        />
                     </Text>
                 </View>
             </View>

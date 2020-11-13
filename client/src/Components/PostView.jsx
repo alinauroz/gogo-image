@@ -32,7 +32,7 @@ export default function (props) {
             {
                 post.images ? 
                 post.images.map(image => {
-                    return <ItemView url = {image.url} type = {image.type} />
+                    return <ItemView url = {image.url} type = {image.type} addToCart = {props.addToCart} />
                 })
                 : ""
             }
