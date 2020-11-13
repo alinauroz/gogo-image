@@ -4,7 +4,7 @@ import ImageLoader from '../../utils/ImageLoader'
 
 function PostInput (props) {
 
-    const setImage = (data) => console.log(data)
+    const setImage = (data) => props.onChange({... data, index: props.index});
 
     return (
         <div>
@@ -19,8 +19,28 @@ function PostInput (props) {
 
 export default function () {
 
+    const handleImagesAndThumbs = ({original, thumb, index}) => {
+
+        let thumbs_ = thumbs;
+        thumbs_[index] = thumb;
+        setThumbs(thumbs_);
+
+        let images_ = images;
+        images_[index] = original;
+        setImages(images_);
+    }
+
     const [tags, setTags] = React.useState([]);
     const [tagsView, setTagsView] = React.useState([]);
+    const [images, setImages] = React.useState([])
+    const [thumbs, setThumbs] = React.useState([]);
+    const [ImageInputs, setImageInputs] = React.useState([<PostInput index = {0} onChange = {handleImagesAndThumbs} />])
+
+    React.useEffect(() => {
+        console.log(
+            thumbs
+        )
+    })
 
     const handleTags = (e) => {
 
@@ -46,7 +66,25 @@ export default function () {
             <p style = {{margin: 5, marginBottom: 10}}>
                 {tagsView}
             </p>
-            <PostInput />
+            {ImageInputs}
+            <div style = {{marginTop: 20}}>
+                <input
+                    type = 'button'
+                    value = 'Post'
+                    className = 'btn btn-success'
+                />
+                <input
+                    type = 'button'
+                    value = 'Add More Images'
+                    className = 'btn btn-primary'
+                    style = {{marginLeft: 10}}
+                    onClick = {() => {
+                        let a = [ ... ImageInputs];
+                        a.push(<PostInput index = {ImageInputs.length} onChange = {handleImagesAndThumbs} />)
+                        setImageInputs(a)
+                    }}
+                />
+            </div>
         </div>
     )
 
