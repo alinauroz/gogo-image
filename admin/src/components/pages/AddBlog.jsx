@@ -3,6 +3,7 @@ import Field from '../unit/Field'
 import CKEditor from 'react-ckeditor-component'
 import ImageLoader from '../../utils/ImageLoader'
 import getUnique from '../../utils/getUnique'
+import { request } from '../../utils/request'
 
 
 export default function (props) {
@@ -14,19 +15,42 @@ export default function (props) {
     const [sortOrder, setSortOrder] = React.useState()
     const [content, setContent] = React.useState('')
     const [image, setImage] = React.useState('')
+    const [message, setMessage] = React.useState('')
 
-    React.useEffect(() => {
-        console.log(
-            category,
-            status,
-            title,
-            sortOrder,
-            content,
-            image
-        )
-    })
+    const submitBlog = async (e) => {
+
+        e.target.disbaled = true;
+
+        let res = await request({
+            route: 'blogs',
+            method: 'POST',
+            credentials: 'include',
+            body: {
+                category,
+                status,
+                title,
+                sortOrder,
+                content,
+                image
+            }
+        });
+
+        if (res.status == 'success') {
+            setMessage('Blog added successfully')
+        }
+        else {
+            setMessage(res.message)
+        }
+
+        e.target.disbaled = false;
+
+    }
 
     const handleCategory = (e) => {
+
+        if (e.target.value === '0') {
+
+        }
 
         setCategory(e.target.value)
 
@@ -82,6 +106,7 @@ export default function (props) {
                 <p>Answer</p>
                 <CKEditor 
                     activeClass="editor" 
+                    content = {content}
                     events = {{
                         change: (e) => {
                             setContent(e.editor.getData())
@@ -90,11 +115,13 @@ export default function (props) {
                     style = {{marginTop: 10}}
                 />
             </div>
+            <p>{message}</p>
             <div style = {{marginTop: 15}}>
             <button
                         type = 'button' 
                         value = 'Done'
                         className = 'btn btn-success'
+                        onClick = {submitBlog}
                     >
                         <i class="glyphicon glyphicon-ok" style = {{marginRight: 5}}></i>
                         Done
