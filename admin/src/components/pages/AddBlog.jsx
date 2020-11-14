@@ -16,6 +16,7 @@ export default function (props) {
     const [content, setContent] = React.useState('')
     const [image, setImage] = React.useState('')
     const [message, setMessage] = React.useState('')
+    const [newCategoryDisplay, setNewCategoryDisplay] = React.useState('none')
 
     const submitBlog = async (e) => {
 
@@ -49,7 +50,10 @@ export default function (props) {
     const handleCategory = (e) => {
 
         if (e.target.value === '0') {
-
+            setNewCategoryDisplay('inline-block')
+        }
+        else {
+            setNewCategoryDisplay('none')
         }
 
         setCategory(e.target.value)
@@ -72,6 +76,13 @@ export default function (props) {
                     }
                     <option value = '0'>Other</option>
                 </select>
+            </div>
+            <div style = {{display: newCategoryDisplay, width: 'calc(50% - 20px)', marginRight: 20}}>
+                <Field 
+                    title = 'New Category'
+                    placeholder = 'Type New Category'
+                    onChange = {(e) => setCategory(e.target.value)}
+                />
             </div>
 
             <div style = {{display: 'inline-block', width: 'calc(50% - 20px)', marginRight: 20}}>
