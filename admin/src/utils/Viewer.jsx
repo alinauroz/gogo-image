@@ -11,7 +11,7 @@ function Unit (props) {
                         if (props.hidden && props.hidden.indexOf(x) > -1) {
                             continue;
                         }
-                        html.push(<td>{props.data[x]}</td>);
+                        html.push(<td>{String(props.data[x])}</td>);
                     }
                     
                     if(props.actions) {

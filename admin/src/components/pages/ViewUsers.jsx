@@ -30,7 +30,7 @@ export default function (props) {
                 data ?
                 <Viewer 
                     data = {data.data}
-                    hidden = {['_id']}
+                    hidden = {['_id', 'emailConfirmToken']}
                     //actions = {[
                     //    {onClick: EditAction, value: 'Edit', className : 'btn btn-primary'},
                     //    {onClick: EditAction, value: 'Delete', className : 'btn btn-danger', break: true}
