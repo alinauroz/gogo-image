@@ -8,6 +8,7 @@ import AddStaff from './components/pages/AddStaff'
 import AddPost from './components/pages/AddPost'
 import CreatePage from './components/pages/CreatePage'
 import ViewPages from './components/pages/ViewPages'
+import ViewUsers from './components/pages/ViewUsers'
 import AddCoupon from './components/pages/AddCoupon'
 import AddFaq from './components/pages/AddFaq'
 import ViewFAQ from './components/pages/ViewFAQ'
@@ -19,7 +20,7 @@ import AddBlog from './components/pages/AddBlog'
 
 export default function () {
 
-  const [screen, setScreen] = React.useState('ViewFAQ');
+  const [screen, setScreen] = React.useState('ViewUsers');
   const [base, setBase] = React.useState({});
 
   const setAppBase = (data, key = screen) => {
@@ -34,7 +35,7 @@ export default function () {
     {title: 'Home', onClick : () => setScreen('Home')},
     {title: 'Super Admin'},
     {title: 'Add Staff', onClick : () => setScreen('AddStaff')},
-    {title: 'Users'},
+    {title: 'Users', onClick : () => setScreen('ViewUsers')},
     {title: 'Manage Content'},
     {title: 'Add Pages', onClick: () => setScreen('AddPage')},
     {title: 'FAQs', onClick: () => setScreen('ViewFAQ')},
@@ -94,6 +95,9 @@ export default function () {
         </div>
         <div style = {{display : screen == 'ViewPages' ? 'block' : 'none'}}>
           <ViewPages base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'ViewUsers' ? 'block' : 'none'}}>
+          <ViewUsers base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
       </div>
     </>
