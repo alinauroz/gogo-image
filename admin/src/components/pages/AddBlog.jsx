@@ -15,6 +15,23 @@ export default function (props) {
     const [content, setContent] = React.useState('')
     const [image, setImage] = React.useState('')
 
+    React.useEffect(() => {
+        console.log(
+            category,
+            status,
+            title,
+            sortOrder,
+            content,
+            image
+        )
+    })
+
+    const handleCategory = (e) => {
+
+        setCategory(e.target.value)
+
+    }
+
     if (props.base.blogs && props.base.blogs.data && ! categories)
         setCategories(getUnique(props.base.blogs.data, 'category'))
 
@@ -24,8 +41,8 @@ export default function (props) {
 
             <div style = {{display: 'inline-block', width: 'calc(50% - 20px)', marginRight: 20}}>
                 <p>Blog Category</p>
-                <select className = 'form-control'>
-                    <option>Select Category</option>
+                <select className = 'form-control' onChange = {handleCategory}>
+                    <option >Select Category</option>
                     {
                         categories ? categories.map(cat => <option>{cat}</option>): ""
                     }
@@ -43,20 +60,21 @@ export default function (props) {
 
             <div style = {{verticalAlign: 'top', marginTop: 15, display: 'inline-block', width: 'calc(50% - 20px)', marginRight: 20}}>
                 <p>Title</p>
-                <textarea className = 'form-control' placeholder = 'Enter Question Here'></textarea>
+                <textarea onChange = {(e) => setTitle(e.target.value)} className = 'form-control' placeholder = 'Enter Title Here'></textarea>
             </div>
 
             <div style = {{verticalAlign: 'top', marginTop: 15, display: 'inline-block', width: 'calc(50% - 20px)', marginRight: 20}}>
                 <Field 
                     title = 'Sort Order'
                     placeholder = 'Sort Order'
+                    onChange = {(e) => setSortOrder(e.target.value)}
                 />
             </div>
             <div style = {{verticalAlign: 'top', marginTop: 15, display: 'inline-block', width: 'calc(50% - 20px)', marginRight: 20}}>
                 <p>Blog Cover</p>
                 <ImageLoader
                     sizes = {{cover: {maxWidthOrHeight: 400}}}
-                    setImages = {(d) => console.log(d)}
+                    setImages = {(imageData) => setImage(imageData.cover)}
                 />
             </div>
 
@@ -64,9 +82,10 @@ export default function (props) {
                 <p>Answer</p>
                 <CKEditor 
                     activeClass="editor" 
-
                     events = {{
-                    //    change: (e) => setHtml(e.editor.getData()) 
+                        change: (e) => {
+                            setContent(e.editor.getData())
+                        }
                     }}
                     style = {{marginTop: 10}}
                 />
