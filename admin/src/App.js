@@ -7,6 +7,7 @@ import Home from './components/pages/Home'
 import AddStaff from './components/pages/AddStaff'
 import AddPost from './components/pages/AddPost'
 import CreatePage from './components/pages/CreatePage'
+import ViewPages from './components/pages/ViewPages'
 import AddCoupon from './components/pages/AddCoupon'
 import AddFaq from './components/pages/AddFaq'
 import ViewFAQ from './components/pages/ViewFAQ'
@@ -90,6 +91,9 @@ export default function () {
         </div>
         <div style = {{display : screen == 'ViewFAQ' ? 'block' : 'none'}}>
           <ViewFAQ base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'ViewPages' ? 'block' : 'none'}}>
+          <ViewPages base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
       </div>
     </>
