@@ -91,6 +91,7 @@ export default function () {
         try {
             e.target.disabled = true;
             let toSkip = []
+            let postData = [];
 
             for (let i = 0; i < ImageInputs.length; i++) {
                 if (! thumbs[i]) {
@@ -144,6 +145,30 @@ export default function () {
 
                 setMessage('Saved Image # ' + i)
 
+                postData.push({
+                    image: imageInfo.fileName,
+                    thumb: thumbInfo.fileName,
+                    size: sizes[i],
+                    type: types[i]
+                })
+                setImageInputs([])
+                setImageInputs([<PostInput index = {0} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />]);
+                setTagsView([]);
+
+            }
+
+            let data = await request({
+                route: 'posts',
+                method: 'POST',
+                credentials: 'include',
+                body: {
+                    items: postData,
+                    tags
+                }
+            });
+
+            if (data.status === 'success') {
+                setMessage('Post added successfully');
             }
 
             e.target.disabled = false;
