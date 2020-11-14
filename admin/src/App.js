@@ -20,8 +20,8 @@ export default function () {
   const [screen, setScreen] = React.useState('AddBlog');
   const [base, setBase] = React.useState({});
 
-  const setAppBase = (data) => {
-    setBase({... base, [screen]: data});
+  const setAppBase = (data, key = screen) => {
+    setBase({... base, [key]: data});
   }
 
   useEffect(() => {

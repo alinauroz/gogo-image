@@ -18,6 +18,7 @@ export default function (props) {
         let res = await fetch(api + 'blogs');
         let data_ = await res.json();
         setData(data_);
+        props.setBase(data_, 'blogs');
 
     })()
 

@@ -2,16 +2,21 @@ import React from 'react'
 import Field from '../unit/Field'
 import CKEditor from 'react-ckeditor-component'
 import ImageLoader from '../../utils/ImageLoader'
+import getUnique from '../../utils/getUnique'
 
 
-export default function () {
+export default function (props) {
 
+    const [categories, setCategories] = React.useState()
     const [category, setCategory] = React.useState()
     const [status, setStatus] = React.useState()
     const [title, setTitle] = React.useState('')
     const [sortOrder, setSortOrder] = React.useState()
     const [content, setContent] = React.useState('')
     const [image, setImage] = React.useState('')
+
+    if (props.base.blogs && props.base.blogs.data && ! categories)
+        setCategories(getUnique(props.base.blogs.data, 'category'))
 
     return (
         <div className = 'card'>
@@ -21,6 +26,9 @@ export default function () {
                 <p>Blog Category</p>
                 <select className = 'form-control'>
                     <option>Select Category</option>
+                    {
+                        categories ? categories.map(cat => <option>{cat}</option>): ""
+                    }
                     <option value = '0'>Other</option>
                 </select>
             </div>
