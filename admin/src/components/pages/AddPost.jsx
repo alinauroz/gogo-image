@@ -3,6 +3,10 @@ import Field from '../unit/Field'
 import ImageLoader from '../../utils/ImageLoader'
 import { request } from '../../utils/request'
 
+function duplicateExists(w){
+    return new Set(w).size !== w.length 
+}
+
 function PostInput (props) {
 
     const setImage = (data) => props.onChange({... data, index: props.index});
@@ -151,10 +155,12 @@ export default function () {
                     size: sizes[i],
                     type: types[i]
                 })
-                setImageInputs([])
-                setImageInputs([<PostInput index = {0} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />]);
-                setTagsView([]);
 
+            }
+
+            if (duplicateExists(sizes)) {
+                setMessage('All sizes should be unique');
+                return e.target.disabled = false;
             }
 
             let data = await request({
@@ -170,6 +176,10 @@ export default function () {
             if (data.status === 'success') {
                 setMessage('Post added successfully');
             }
+
+            setImageInputs([])
+            setImageInputs([<PostInput index = {0} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />]);
+            setTagsView([]);
 
             e.target.disabled = false;
         }

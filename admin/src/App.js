@@ -28,20 +28,24 @@ export default function () {
   })
 
   const BUTTONS = Object.freeze([
-    {title: 'Home', onClick : () => setScreen('Home1')},
+    {title: 'Home', onClick : () => setScreen('Home')},
     {title: 'Super Admin'},
     {title: 'Add Staff', onClick : () => setScreen('AddStaff')},
     {title: 'Users'},
     {title: 'Manage Content'},
-    {title: 'Add Pages'},
-    {title: 'FAQs'},
-    {title: 'Add FAQs'},
-    {title: 'Price & Fee'},
+    {title: 'Add Pages', onClick: () => setScreen('AddPage')},
+    {title: 'FAQs', onClick: () => setScreen('ViewFAQ')},
+    {title: 'Add FAQs', onClick: () => setScreen('AddFAQ')},
+    {title: 'Price & Fee', onClick: () => setScreen('SetPrice')},
     {title: 'Manage Posting'},
     {title: 'Sales Data'},
     {title: 'Order History'},
-    {title: 'Products'},
-    {title: 'Add Product'}
+    {title: 'Products', onClick: () => setScreen('ViewProducts')},
+    {title: 'Add Product', onClick: () => setScreen('AddProduct')},
+    {title: 'Blogs', onClick: () => setScreen('ViewBlogs')},
+    {title: 'Add Blog', onClick: () => setScreen('AddBlog')},
+    {title: 'Add Coupon', onClick: () => setScreen('AddCoupon')},
+    {title: 'Company Profile', onClick: () => setScreen('CompanyProfile')},
   ]);
 
   if (localStorage.getItem('admin_token'))
@@ -52,14 +56,29 @@ export default function () {
         buttonList = {BUTTONS}
       />
       <div className = 'main-container'>
-
-        <AddPost />
-
         <div style = {{display : screen == 'Home' ? 'block' : 'none'}}>
           <Home base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
         <div style = {{display : screen == 'AddStaff' ? 'block' : 'none'}}>
           <AddStaff base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'AddPage' ? 'block' : 'none'}}>
+          <CreatePage base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'AddFAQ' ? 'block' : 'none'}}>
+          <AddFaq base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'SetPrice' ? 'block' : 'none'}}>
+          <SetPrice base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'AddProduct' ? 'block' : 'none'}}>
+          <AddPost base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'AddCoupon' ? 'block' : 'none'}}>
+          <AddCoupon base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'CompanyProfile' ? 'block' : 'none'}}>
+          <CompanyProfile base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
         <div style = {{display : screen == 'ViewBlogs' ? 'block' : 'none'}}>
           <ViewBlogs base = {base} setBase = {setAppBase} setScreen = {setScreen} />
