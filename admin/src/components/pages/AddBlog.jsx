@@ -1,9 +1,17 @@
 import React from 'react'
 import Field from '../unit/Field'
 import CKEditor from 'react-ckeditor-component'
+import ImageLoader from '../../utils/ImageLoader'
 
 
 export default function () {
+
+    const [category, setCategory] = React.useState()
+    const [status, setStatus] = React.useState()
+    const [title, setTitle] = React.useState('')
+    const [sortOrder, setSortOrder] = React.useState()
+    const [content, setContent] = React.useState('')
+    const [image, setImage] = React.useState('')
 
     return (
         <div className = 'card'>
@@ -26,8 +34,22 @@ export default function () {
             </div>
 
             <div style = {{verticalAlign: 'top', marginTop: 15, display: 'inline-block', width: 'calc(50% - 20px)', marginRight: 20}}>
-                <p>Question</p>
+                <p>Title</p>
                 <textarea className = 'form-control' placeholder = 'Enter Question Here'></textarea>
+            </div>
+
+            <div style = {{verticalAlign: 'top', marginTop: 15, display: 'inline-block', width: 'calc(50% - 20px)', marginRight: 20}}>
+                <Field 
+                    title = 'Sort Order'
+                    placeholder = 'Sort Order'
+                />
+            </div>
+            <div style = {{verticalAlign: 'top', marginTop: 15, display: 'inline-block', width: 'calc(50% - 20px)', marginRight: 20}}>
+                <p>Blog Cover</p>
+                <ImageLoader
+                    sizes = {{cover: {maxWidthOrHeight: 400}}}
+                    setImages = {(d) => console.log(d)}
+                />
             </div>
 
             <div style = {{marginTop: 15, display: 'inline-block', width: 'calc(50% - 20px)', marginRight: 20}}>
