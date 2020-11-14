@@ -9,6 +9,7 @@ import AddPost from './components/pages/AddPost'
 import CreatePage from './components/pages/CreatePage'
 import AddCoupon from './components/pages/AddCoupon'
 import AddFaq from './components/pages/AddFaq'
+import ViewFAQ from './components/pages/ViewFAQ'
 import ViewBlogs from './components/pages/ViewBlogs'
 import Topbar from './components/Topbar'
 import CompanyProfile from './components/pages/CompanyProfile'
@@ -17,7 +18,7 @@ import AddBlog from './components/pages/AddBlog'
 
 export default function () {
 
-  const [screen, setScreen] = React.useState('AddBlog');
+  const [screen, setScreen] = React.useState('ViewFAQ');
   const [base, setBase] = React.useState({});
 
   const setAppBase = (data, key = screen) => {
@@ -86,6 +87,9 @@ export default function () {
         </div>
         <div style = {{display : screen == 'AddBlog' ? 'block' : 'none'}}>
           <AddBlog base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'ViewFAQ' ? 'block' : 'none'}}>
+          <ViewFAQ base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
       </div>
     </>
