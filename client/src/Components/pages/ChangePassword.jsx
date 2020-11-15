@@ -2,6 +2,8 @@ import React from 'react'
 import Box from '../Container/Box'
 import {View, Text, Button} from '../Basic/AppComponents'
 import FormRenderer from '../../utils/FormRenderer'
+import getFormData from '../../utils/getFormData'
+import {request} from '../../utils/AppRequest'
 
 const fields = [
     {title: 'Enter Current Password', name: 'oldPassword', type: 'password', required: true, style : {
@@ -26,6 +28,21 @@ export default function (props) {
 
     const [res, setRes] = React.useState(resSet.INITIAL);
 
+    const handleForm = async (e) => {
+        e.preventDefault();
+        let formData = getFormData(e.target);
+
+        let res = await request({
+            route: 'users/updateMyPassword',
+            method: 'PUT',
+            credentials: 'include',
+            body: formData
+        })
+
+        console.log(res);
+
+    }
+
     return (
         <View>
         {
@@ -41,7 +58,7 @@ export default function (props) {
         }
         <Box>
             <View>
-                <form action = '' onSubmit = {() => {}}>
+                <form action = '' onSubmit = {handleForm}>
                     <FormRenderer 
                         fields = {fields}
                     />

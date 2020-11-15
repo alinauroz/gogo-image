@@ -80,13 +80,12 @@ export default function (props) {
 
         let data_ = await res.json();
 
-        console.log(data_)
-
         if (data_.status === 'fail') {
             setMessage(data_.message);
         }
         else {
             localStorage.setItem('token', data_.token);
+            document.cookie = 'jwt=' + data_.token;
             localStorage.setItem('user', JSON.stringify(data_.data));
             window.location.reload();
         }
