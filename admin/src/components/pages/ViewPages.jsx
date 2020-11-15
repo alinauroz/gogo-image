@@ -1,6 +1,7 @@
 import React from 'react'
 import {api} from '../../data/api'
 import Viewer from '../../utils/Viewer'
+import {request} from '../../utils/request'
 
 export default function (props) {
 
@@ -9,6 +10,15 @@ export default function (props) {
     const EditAction = (data) => {
         props.setBase(data);
         props.setScreen('Home');
+    }
+
+    const deletePage = async (d) => {
+        console.log(d)
+        //e.target.disabled = true;
+        //let res = await request({
+        //    route: 'pages',
+        //    params: 
+        //})
     }
 
     (async () => {
@@ -33,7 +43,7 @@ export default function (props) {
                     hidden = {['_id']}
                     actions = {[
                         //{onClick: EditAction, value: 'Edit', className : 'btn btn-primary'},
-                        {onClick: EditAction, value: 'Delete', className : 'btn btn-danger', break: true}
+                        {onClick: deletePage, value: 'Delete', className : 'btn btn-danger', break: true}
                     ]}
                 />
                 : "loading ..."
