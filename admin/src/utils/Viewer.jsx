@@ -23,7 +23,7 @@ function Unit (props) {
                     if(props.actions) {
                         var actions_ = [];
                         props.actions.map(Action => {
-                            actions_.push(<input style = {{marginBottom: 3}} type = 'button' className = {Action.className} value = {Action.value} onClick = {(e) => {Action.onClick(props.data)}} />);
+                            actions_.push(<input style = {{marginBottom: 3}} type = 'button' className = {Action.className} value = {Action.value} onClick = {(e) => {Action.onClick(e, props.data)}} />);
                         })
                     }
 
