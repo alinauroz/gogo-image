@@ -1,11 +1,11 @@
 import React from 'react'
 import {request} from '../../utils/AppRequest'
+import { Link } from 'react-router-dom'
+import {api} from '../../data/api'
 
 export default function (props) {
 
     const [posts, setPosts] = React.useState(props.posts);
-
-    console.log("POSTS", posts)
 
     return (
         <>
@@ -13,9 +13,13 @@ export default function (props) {
             {
                 posts ?
                 posts.map(post => {
-                    return <img src = {'http://localhost:5000/images/' +post.items[0].thumb} style = {{height: 200, marginTop: 5}} />
+                    return (
+                        <Link to = {'/post/' + post._id}>
+                            <img src = {api + 'images/' +post.items[0].thumb} style = {{height: 200, marginTop: 5}} />
+                        </Link>
+                    )
                 })
-                : 'abc'
+                : ''
             }
             </div>
         </>
