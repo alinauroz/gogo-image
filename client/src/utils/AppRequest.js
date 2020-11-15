@@ -10,7 +10,7 @@ const toQuery = (query) => {
     return '?' + queryStr.slice(0, -1);
 }
 
-export const request = async ({route, params = '', body = {}, query = {}, method}) => {
+export const request = async ({route, params = '', body = {}, query = {}, method = 'GET'}) => {
 
     try {
         
@@ -20,7 +20,7 @@ export const request = async ({route, params = '', body = {}, query = {}, method
                 'Content-Type': 'application/json',
                 'Cookie': `jwt=${getToken()}`
             },
-            body: JSON.stringify(body)
+            body: method !== 'GET' ? JSON.stringify(body): null
         });
 
         return res.json();

@@ -27,7 +27,7 @@ export default function (props) {
                 {
                     props.pages ?
                     props.pages.map(page => {
-                        return <Link to = {page.link} className = 'topbar-links'>{page.title}</Link>
+                        return <Link to = {page.url} className = 'topbar-links'>{page.title}</Link>
                     })
                     : ""
                 }
