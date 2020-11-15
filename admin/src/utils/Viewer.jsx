@@ -7,12 +7,18 @@ function Unit (props) {
             {
                 (() => {
                     let html = []
-                    for (let x in props.data) {
-                        if (props.hidden && props.hidden.indexOf(x) > -1) {
-                            continue;
-                        }
-                        html.push(<td>{String(props.data[x])}</td>);
-                    }
+
+                    //for (let x in props.data) {
+                    //    if (props.hidden && props.hidden.indexOf(x) > -1) {
+                    //        continue;
+                    //    }
+                    //    html.push(<td>{String(props.data[x])}</td>);
+                    //    if (props.data)
+                    //}
+
+                    props.heads.map(head => {
+                        html.push(<td>{String(props.data[head])}</td>);
+                    })
                     
                     if(props.actions) {
                         var actions_ = [];
@@ -33,6 +39,8 @@ function Unit (props) {
 
 export default function (props) {
 
+    const rawHeads = [];
+
     return (
         <div className = 'card'>
         <table className = 'viewer-table'>
@@ -46,8 +54,11 @@ export default function (props) {
                                 continue;
                             }
                             heads.push(<th>{x.toLocaleUpperCase()}</th>);
+                            rawHeads.push(x);
 
                         }
+
+                        //setRawHeads(rawHeads)
 
                         if (props.actions && props.actions.length > 0)
                             heads.push(<th>Actions</th>);
@@ -59,7 +70,7 @@ export default function (props) {
             <tbody>
                 {
                     props.data.map(entry => {
-                        return <Unit data = {entry} actions = {props.actions} hidden = {props.hidden} />
+                        return <Unit data = {entry} actions = {props.actions} hidden = {props.hidden} heads = {rawHeads} />
                     })
                 }
             </tbody>
