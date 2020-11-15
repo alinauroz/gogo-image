@@ -12,12 +12,13 @@ import Dashboard from './Components/pages/Dashboard'
 import ResetPassword from './Components/pages/ResetPassword'
 import PageTemplate from './Components/Templates/Page'
 import PostView from './Components/PostView'
+import Gallery from './Components/pages/Gallery'
 
 function Signup () {
   return <Login selected={1} />
 }
 
-let posts = [
+let posts_ = [
   {tags: [], use: ['party', 'dance'], images: ['https://cdn.britannica.com/67/19367-050-885866B4/Valley-Taurus-Mountains-Turkey.jpg']},
   {tags: [], use: {}, images: ['https://colorado-springs.s3.amazonaws.com/CMS/5104/almagre_mountain_credit_matt_payne_photography_small__large.jpg']},
   {tags: [], use: {}, images: ['https://source.unsplash.com/random/'+(100 + Math.floor(Math.random() * 150)) +'x200?sig=' + Math.floor(Math.random() * 9e9)]},
@@ -47,14 +48,22 @@ function App() {
   let cartContent = JSON.parse(localStorage.getItem('cart') || '[]')
   const [cart, setCart] = React.useState(cartContent)
   const [pages, setPages] = React.useState();
+  const [posts, setPosts] = React.useState();
 
   React.useState(() => {
+    
     if (! pages) {
       request({route: 'pages'}).then(d => {
-        console.log(d)
         setPages(d.data || [])
       })
     }
+
+    if (! posts) {
+      request({route: 'posts'}).then(d => {
+        setPosts(d.data || [])
+      })
+    }
+
   })
 
   const addToCart = ({cartItem}) => {
@@ -85,6 +94,7 @@ function App() {
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/signup" component={Signup} />
             <Route path="/cart" component={Cart} />
+            <Route path='/gallery' component={() => <Gallery posts = {posts} />}/>
             <Route path="/post/:id" component={(props) => <PostView {... props} addToCart = {addToCart} ></PostView>} />
             <Route path="/reset-password" component={ResetPassword} />
           </Route>

@@ -24,6 +24,7 @@ export default function (props) {
                 style = {{marginRight: 20, float: 'right', display: 'inline-block', marginTop: 20}}
             >
                 <Link to = '/' className = 'topbar-links'>Home</Link>
+                <Link to = '/gallery' className = 'topbar-links'>Gallery</Link>
                 {
                     props.pages ?
                     props.pages.map(page => {
@@ -33,7 +34,12 @@ export default function (props) {
                 }
                 {
                     isLoggedIn ?
-                    <Link to = '/dashboard' className = 'topbar-links'>Dashboard</Link>
+                    (
+                        <>
+                            <Link to = '/dashboard' className = 'topbar-links'>Dashboard</Link>
+                            <Link to = '/orders' className = 'topbar-links'>Orders</Link>
+                        </>
+                    )
                     : ""
                 }
                 <Link to = '/cart' className = 'topbar-links'>

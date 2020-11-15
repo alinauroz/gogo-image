@@ -29,7 +29,7 @@ export default function (props) {
                 })
                 : ""
             }
-         </div>
+            </div>
         </View>
     )
 }
