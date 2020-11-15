@@ -13,6 +13,7 @@ import ResetPassword from './Components/pages/ResetPassword'
 import PageTemplate from './Components/Templates/Page'
 import PostView from './Components/PostView'
 import Gallery from './Components/pages/Gallery'
+import ChangePassword from './Components/pages/ChangePassword'
 
 function Signup () {
   return <Login selected={1} />
@@ -97,6 +98,7 @@ function App() {
             <Route path='/gallery' component={() => <Gallery posts = {posts} />}/>
             <Route path="/post/:id" component={(props) => <PostView {... props} addToCart = {addToCart} ></PostView>} />
             <Route path="/reset-password" component={ResetPassword} />
+            <Route path="/change-password" component={ChangePassword} />
           </Route>
         </Switch>
       </main>
