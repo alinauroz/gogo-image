@@ -12,13 +12,17 @@ export default function (props) {
         props.setScreen('Home');
     }
 
-    const deletePage = async (d) => {
-        console.log(d)
-        //e.target.disabled = true;
-        //let res = await request({
-        //    route: 'pages',
-        //    params: 
-        //})
+    const deletePage = async (e, data) => {
+        e.target.disabled = true;
+        let res = await request({
+            route: 'pages/',
+            params: data._id,
+            method: 'DELETE',
+            credentials: 'include'
+        })
+        
+        if (res.status == 'success') setData('')
+
     }
 
     (async () => {
