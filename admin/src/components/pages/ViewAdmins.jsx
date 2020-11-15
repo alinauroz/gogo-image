@@ -7,15 +7,13 @@ export default function (props) {
 
     const [data, setData] = React.useState();
 
-    const EditAction = (data) => {
-        props.setBase(data);
-        props.setScreen('Home');
-    }
+    const deleteAction = async (e, data) => {
 
-    const deletePage = async (e, data) => {
+        if (! window.confirm('Are you sure you want to delete ' + data.name)) return;
+
         e.target.disabled = true;
         let res = await request({
-            route: 'pages/',
+            route: 'admins/',
             params: data._id,
             method: 'DELETE',
             credentials: 'include'
@@ -29,16 +27,15 @@ export default function (props) {
 
         if (data) return;
 
-        let res = await fetch(api + 'pages');
+        let res = await fetch(api + 'admins');
         let data_ = await res.json();
         setData(data_);
-        props.setBase(data_, 'pages');
 
     })()
 
     return (
         <div className = 'card'>
-            <h3 style = {{margin: 0, marginBottom: 10}}>View Pages</h3>
+            <h3 style = {{margin: 0, marginBottom: 10}}>View Admins</h3>
             <br />
             {
                 data ?
@@ -47,7 +44,7 @@ export default function (props) {
                     hidden = {['_id']}
                     actions = {[
                         //{onClick: EditAction, value: 'Edit', className : 'btn btn-primary'},
-                        {onClick: deletePage, value: 'Delete', className : 'btn btn-danger', break: true}
+                        {onClick: deleteAction, value: 'Delete', className : 'btn btn-danger', break: true}
                     ]}
                 />
                 : "loading ..."

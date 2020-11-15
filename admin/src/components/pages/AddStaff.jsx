@@ -13,6 +13,12 @@ export default function () {
     const [formData, setFormData] = React.useState({});
     const [priviliges, setPriviliges] = React.useState([]);
 
+    const [role, setRole] = React.useState('')
+    const [name, setName] = React.useState('')
+    const [email, setEmail] = React.useState('')
+    const [password, setPassword] = React.useState('')
+    
+
     const handleRoles = async (e) => {
         let isChecked = e.target.checked;
         let id_ = e.target.id;
@@ -74,13 +80,6 @@ export default function () {
                     title = 'Password'
                     style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}
                 />
-                <Field 
-                    name = 'confirmed-pass'
-                    type = 'password'
-                    placeholder = 'Password'
-                    title = 'Password'
-                    style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}
-                />
 
                 <h5 style = {{marginTop: 20}}>Access</h5>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
@@ -92,8 +91,36 @@ export default function () {
                     <label for = 'cb-add-staff' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Add Staff</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-user' onClick = {handleRoles} />
-                    <label for = 'cb-user' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Users</label>
+                    <input type = 'checkbox' id = 'cb-super-admin' onClick = {handleRoles} />
+                    <label for = 'cb-super-admin' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>User</label>
+                </div>
+                <div style = {{minWidth: 140, display: 'inline-block'}}>
+                    <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
+                    <label for = 'cb-add-staff' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Pages</label>
+                </div>
+                <div style = {{minWidth: 140, display: 'inline-block'}}>
+                    <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
+                    <label for = 'cb-add-staff' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Blogs</label>
+                </div>
+                <div style = {{minWidth: 140, display: 'inline-block'}}>
+                    <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
+                    <label for = 'cb-add-staff' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>FAQs</label>
+                </div>
+                <div style = {{minWidth: 140, display: 'inline-block'}}>
+                    <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
+                    <label for = 'cb-add-staff' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Orders</label>
+                </div>
+                <div style = {{minWidth: 140, display: 'inline-block'}}>
+                    <input type = 'checkbox' id = 'cb-price' onClick = {handleRoles} />
+                    <label for = 'cb-price' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Price & Fee</label>
+                </div>
+                <div style = {{minWidth: 140, display: 'inline-block'}}>
+                    <input type = 'checkbox' id = 'cb-paypal' onClick = {handleRoles} />
+                    <label for = 'cb-paypal' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Paypal</label>
+                </div>
+                <div style = {{minWidth: 140, display: 'inline-block'}}>
+                    <input type = 'checkbox' id = 'cb-company-profile' onClick = {handleRoles} />
+                    <label for = 'cb-company-profile' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Company Profile</label>
                 </div>
                 <div style = {{marginTop: 20}}>
                     <button
