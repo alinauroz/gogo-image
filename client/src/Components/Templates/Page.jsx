@@ -8,7 +8,7 @@ export default function (props) {
         <NavBox
             title = {props.title}
         >
-            {ReactHtmlParser(props.content)}
+            {ReactHtmlParser(ReactHtmlParser(props.content))}
         </NavBox>
     )
 }
