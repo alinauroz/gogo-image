@@ -13,6 +13,7 @@ import AddCoupon from './components/pages/AddCoupon'
 import AddFaq from './components/pages/AddFaq'
 import ViewFAQ from './components/pages/ViewFAQ'
 import ViewBlogs from './components/pages/ViewBlogs'
+import ViewAdmins from './components/pages/ViewAdmins'
 import Topbar from './components/Topbar'
 import CompanyProfile from './components/pages/CompanyProfile'
 import SetPrice from './components/pages/Price'
@@ -33,7 +34,7 @@ export default function () {
 
   const BUTTONS = Object.freeze([
     {title: 'Home', onClick : () => setScreen('Home')},
-    {title: 'Super Admin'},
+    {title: 'Super Admin', onClick: () => setScreen('ViewAdmins')},
     {title: 'Add Staff', onClick : () => setScreen('AddStaff')},
     {title: 'Users', onClick : () => setScreen('ViewUsers')},
     {title: 'Manage Content', onClick : () => setScreen('ViewPages')},
@@ -98,6 +99,9 @@ export default function () {
         </div>
         <div style = {{display : screen == 'ViewUsers' ? 'block' : 'none'}}>
           <ViewUsers base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'ViewAdmins' ? 'block' : 'none'}}>
+          <ViewAdmins base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
       </div>
     </>

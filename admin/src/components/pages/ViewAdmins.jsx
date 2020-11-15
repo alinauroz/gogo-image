@@ -6,6 +6,7 @@ import {request} from '../../utils/request'
 export default function (props) {
 
     const [data, setData] = React.useState();
+    const [error, setError] = React.useState('');
 
     const deleteAction = async (e, data) => {
 
@@ -27,8 +28,17 @@ export default function (props) {
 
         if (data) return;
 
-        let res = await fetch(api + 'admins');
-        let data_ = await res.json();
+        let data_ = await request({
+            method: 'GET',
+            route: 'admins',
+            credentials: 'include'
+        })
+        
+        if (data_.error) {
+            setError(data_.message);
+            return setData([])
+        }
+
         setData(data_);
 
     })()
@@ -38,7 +48,9 @@ export default function (props) {
             <h3 style = {{margin: 0, marginBottom: 10}}>View Admins</h3>
             <br />
             {
-                data ?
+                error ?
+                <p>{error}</p>
+                : data ? data.length <= 0 ? 'No Admins Found' :
                 <Viewer 
                     data = {data.data}
                     hidden = {['_id']}
