@@ -13,11 +13,9 @@ export default function (props) {
             {
                 posts ?
                 posts.map(post => {
-                    post.items.map(item => {
-                        return <img src = {item.thumb} style = {{height: 200, marginTop: 5}} />
-                    })
+                    return <img src = {'http://localhost:5000/images/' +post.items[0].thumb} style = {{height: 200, marginTop: 5}} />
                 })
-                : ''
+                : 'abc'
             }
             </div>
         </>
