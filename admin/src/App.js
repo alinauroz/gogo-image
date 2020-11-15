@@ -36,7 +36,7 @@ export default function () {
     {title: 'Super Admin'},
     {title: 'Add Staff', onClick : () => setScreen('AddStaff')},
     {title: 'Users', onClick : () => setScreen('ViewUsers')},
-    {title: 'Manage Content'},
+    {title: 'Manage Content', onClick : () => setScreen('ViewPages')},
     {title: 'Add Pages', onClick: () => setScreen('AddPage')},
     {title: 'FAQs', onClick: () => setScreen('ViewFAQ')},
     {title: 'Add FAQs', onClick: () => setScreen('AddFAQ')},
