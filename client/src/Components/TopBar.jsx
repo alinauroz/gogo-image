@@ -70,6 +70,13 @@ export default function (props) {
                         style = {{marginTop: 5}}
                     />
                 </Link>
+                <Link to = '/change-password'>
+                    <input 
+                        type = 'button'
+                        value = 'Security'
+                        className = 'dropdown-button'
+                    />
+                </Link>
                 <input 
                     type = 'button'
                     value = 'Logout'

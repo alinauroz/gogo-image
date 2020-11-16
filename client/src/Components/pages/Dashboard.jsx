@@ -27,7 +27,16 @@ export default function (props) {
                 body: formData
             })
 
-            console.log(res)
+            if (res.error) {
+                if (res.error.code === 11000)
+                    setMessage('This email is already taken');
+                else
+                    setMessage('Some error occurred');
+            }
+            else {
+                setMessage('User updated successfully')
+                localStorage.setItem('user', JSON.stringify(res.data))
+            }
 
         }
         catch (err) {
@@ -51,7 +60,6 @@ export default function (props) {
         const [city, setCity] = React.useState(user.city)
         const [zip, setZip] = React.useState(user.zip)
 
-
         const fields = [
             {type: 'text', title: 'First Name', name: 'firstName', value: firstName, onChange : (e) => setFirstName(e.target.value), styleX : {container: {width: '100%'}}},
             {type: 'text', title: 'Lasr Name', name: 'lastName', value: lastName, onChange : (e) => setLastName(e.target.value), styleX : {container: {width: '100%'}}},
@@ -60,7 +68,7 @@ export default function (props) {
             {type: 'text', title: 'Website', name: 'website', value: website, onChange : (e) => setWebsite(e.target.value),},
             {type: 'text', title: 'Paypal ID', name: 'paypalId', value: paypalId, onChange : (e) => setPaypalId(e.target.value),},
             {type: 'text', title: 'Phone', name: 'phone', value: phone, onChange: (e) => setPhone(e.target.value)},
-            {type: 'text', title: 'Billing Address', name: 'billingAddress', value: address1, onChange: (e) => setAddress1(e.target.value)},
+            {type: 'text', title: 'Billing Address', name: 'address1', value: address1, onChange: (e) => setAddress1(e.target.value)},
             {type: 'text', title: 'Address 2', name: 'address2', value: address2, onChange: (e) => setAddress2(e.target.value)},
             {type: 'text', title: 'City', name: 'city', value: city, onChange: (e) => setCity(e.target.value)},
             {type: 'text', title: 'ZIP', name: 'zip', value: zip, onChange: (e) => setZip(e.target.value)},
@@ -88,7 +96,7 @@ export default function (props) {
                         I agree with <Link to = '/terms'>Terms</Link>
                     </label>
                 </div>
-                <p style = {{margin: '10px 0px'}}>
+                <p style = {{margin: '10px 0px', fontSize: 13}}>
                     {message}
                 </p>
                 <div>
