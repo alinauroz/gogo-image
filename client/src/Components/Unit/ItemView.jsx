@@ -9,12 +9,17 @@ export default function (props) {
 
     const prices = props.prices || {}
     const [price, setPrice] = React.useState(0)
+    const [message, setMessage] = React.useState('')
 
     const addToCart = async () => {
 
         try {
             const id = uuidv4();
             let cartItem = {};
+
+            if (! main) {
+                return setMessage('You must provide a main image');
+            }
 
             if (superimpose1 && superimpose1.original) {
 
@@ -65,7 +70,9 @@ export default function (props) {
                 ... cartItem,
                 text,
                 year,
-                retouch: (retouch && retouchValue) ? retouchValue: 'none'
+                id,
+                retouch: (retouch && retouchValue) ? retouchValue: 'none',
+                price
             }
 
             console.log(cartItem)
@@ -241,6 +248,9 @@ export default function (props) {
                                 <td>{'\t$' + price}</td>
                             </tr>
                         </table>
+                        <div style = {{margin: '5px 0px'}}>
+                            {message}
+                        </div>
                         <input 
                             type = 'button'
                             value = 'Add to Cart'
