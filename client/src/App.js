@@ -107,7 +107,7 @@ function App() {
             <Route path="/post/:id" component={(props) => <PostView {... props} addToCart = {addToCart} ></PostView>} />
             <Route path="/reset-password" component={ResetPassword} />
             <Route path="/change-password" component={ChangePassword} />
-            <Route path="/checkout" component={() => <Checkout />} />
+            <Route path="/checkout" component={() => <Checkout cart = {cart} />} />
           </Route>
         </Switch>
       </main>

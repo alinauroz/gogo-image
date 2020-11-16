@@ -53,12 +53,15 @@ input:focus, button:focus {
   border: 1px solid #888888;
   border-radius: 2px;
   margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .inline-box {
   display: inline-block;
   margin: 0px;
-  margin: 0px 10px
+  margin: 0px 10px;
+  vertical-align: top;
+  margin-bottom: 20px;
 }
 
 .pair-button {
