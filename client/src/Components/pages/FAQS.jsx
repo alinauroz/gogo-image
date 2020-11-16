@@ -37,14 +37,16 @@ export default function () {
 
                     FAQS.map(faq => {
                         if (faq.category === cat)
-                            content.push(
-                                <Collapsible trigger = {faq.question} transitionTime = {200} triggerStyle = {{background: 'grey', cursor: 'pointer', display: 'block', padding: 5}}>
-                                    <View style = {{background: 'lightgrey'}}>
+                            innerContent.push(
+                                <Collapsible trigger = {faq.question} transitionTime = {200} triggerStyle = {{background: 'white', padding: 15, cursor: 'pointer', display: 'block', borderBottom: '1px solid lightgrey'}}>
+                                    <View style = {{background: '#33333308', borderBottom: '1px solid lightgrey', padding: 15}}>
                                         {ReactHtmlParser(ReactHtmlParser( faq.answer))}
                                     </View>
                                 </Collapsible>
                             )
                     })
+
+                    content.push(<View style = {{boxShadow: '0px 0px 2px lightgrey'}}>{innerContent}</View>);
 
                     return content;
                 })
