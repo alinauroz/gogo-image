@@ -14,6 +14,7 @@ import PageTemplate from './Components/Templates/Page'
 import PostView from './Components/PostView'
 import Gallery from './Components/pages/Gallery'
 import ChangePassword from './Components/pages/ChangePassword'
+import Checkout from './Components/pages/Checkout'
 
 let cartContent = JSON.parse(localStorage.getItem('cart') || '[]')
 
@@ -106,6 +107,7 @@ function App() {
             <Route path="/post/:id" component={(props) => <PostView {... props} addToCart = {addToCart} ></PostView>} />
             <Route path="/reset-password" component={ResetPassword} />
             <Route path="/change-password" component={ChangePassword} />
+            <Route path="/checkout" component={() => <Checkout />} />
           </Route>
         </Switch>
       </main>

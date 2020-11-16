@@ -12,10 +12,14 @@ let domainDetails = localStorage.getItem('siteinfo');
 export default function (props) {
 
     const [message, setMessage] = React.useState()
+    const [agreed, setAgreed] = React.useState(false)
 
     const updateUser = async (e) => {
 
         e.preventDefault();
+
+        if (! agreed) 
+            return setMessage('You must agree with Terms')
 
         try {
             let formData = getFormData(e.target)
@@ -91,7 +95,7 @@ export default function (props) {
                     />
 
                 <div style = {{fontSize: 13, marginTop: 10, overflow: 'hidden'}}>
-                    <input type = 'checkbox' id = 'dashboard-accept-terms' style = {{margin: 0}} />
+                    <input type = 'checkbox' id = 'dashboard-accept-terms' style = {{margin: 0}} onClick = { (e) => setAgreed(e.target.checked) }/>
                     <label for = 'dashboard-accept-terms' style = {{marginLeft: 5, verticalAlign: 'top', paddingTop: 5}}>
                         I agree with <Link to = '/terms'>Terms</Link>
                     </label>
