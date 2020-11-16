@@ -1,17 +1,53 @@
 import React from 'react'
 import {request} from '../../utils/AppRequest'
+import getUnique from '../../utils/getUnique'
+import Collapsible from 'react-collapsible';
+import {capitalize} from '../../utils/string'
+import {View, Text} from '../Basic/AppComponents'
 
 export default function () {
 
     const [FAQS, setFAQS] = React.useState();
+    const [cats, setCats] = React.useState()
 
     if (! FAQS) {
-        let faqs = await request({
-            route: '/faqs',
+        request({
+            route: 'faqs',
+        }).then(res => {
+            if (res.data) {
+                setFAQS(res.data)
+            }
         })
-        setFAQS(faqs.data);
+    }
+    
+    if (! cats && FAQS) {
+        setCats(getUnique(FAQS, 'category'));
     }
 
-    return JSON.stringify(FAQS)
+    return (
+        <View className = 'box' style = {{width: 600, border: 0}}>
+            {
+                cats ?
+                cats.map(cat => {
+                    let content = [];
+                    content.push(<Text style = {{fontSize: 22, marginTop: 22}}>{capitalize(cat)}</Text>)
+                    
+                    let innerContent = [];
+
+                    FAQS.map(faq => {
+                        if (faq.category === cat)
+                            content.push(
+                                <Collapsible trigger = {faq.question} transitionTime = {200}>
+                                    {faq.answer}
+                                </Collapsible>
+                            )
+                    })
+
+                    return content;
+                })
+                : ''
+            }
+        </View>
+    )
 
 }
