@@ -8,45 +8,45 @@ import { v4 as uuidv4 } from 'uuid';
 export default function (props) {
 
     const prices = props.prices || {}
+    const [price, setPrice] = React.useState(0)
 
     React.useEffect(() => {
 
-    })
+    }, [price])
 
     const addToCart = async () => {
 
         try {
             const id = uuidv4();
             let cartItem = {};
-            let price = 0;
 
-            if (superImpose1 && superImpose1.original) {
+            if (superimpose1 && superimpose1.original) {
 
                 let data = await request({
                     route: 'images',
                     method: 'post',
                     body: {
-                        base64: superImpose1.original,
+                        base64: superimpose1.original,
                         nameType: 'superimpose'
                     }
                 });
 
-                cartItem.superImpose1 = data.fileName;
+                cartItem.superimpose1 = data.fileName;
 
             }
 
-            if (superImpose2 && superImpose2.original) {
+            if (superimpose2 && superimpose2.original) {
 
                 let data = await request({
                     route: 'images',
                     method: 'post',
                     body: {
-                        base64: superImpose2.original,
+                        base64: superimpose2.original,
                         nameType: 'superimpose'
                     }
                 });
 
-                cartItem.superImpose2 = data.fileName;
+                cartItem.superimpose2 = data.fileName;
 
             }
 
@@ -88,8 +88,8 @@ export default function (props) {
     const [text, setText] = React.useState();
     const [year, setYear] = React.useState();
     const [main, setMain] = React.useState();
-    const [superImpose1, setSuperImpose1] = React.useState();
-    const [superImpose2, setSuperImpose2] = React.useState();
+    const [superimpose1, setSuperimpose1] = React.useState();
+    const [superimpose2, setSuperimpose2] = React.useState();
 
     return (
         <View className = 'itemview-container'>
@@ -192,7 +192,7 @@ export default function (props) {
                                 <td>
                                     <ImageLoader 
                                         sizes = {{original: 'original'}}
-                                        setImages = {setSuperImpose1}
+                                        setImages = {setSuperimpose1}
                                     />
                                 </td>
                             </tr>
@@ -203,7 +203,7 @@ export default function (props) {
                                 <td>
                                     <ImageLoader 
                                         sizes = {{original: 'original'}}
-                                        setImages = {setSuperImpose2}
+                                        setImages = {setSuperimpose2}
                                     />
                                 </td>
                             </tr>
