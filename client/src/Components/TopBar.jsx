@@ -46,7 +46,7 @@ export default function (props) {
                 }
                 <Link to = '/cart' className = 'topbar-links'>
                     <View style = {{display: 'inline', overflow: 'hidden'}}>
-                    <Text style = {styles.cartItemCount}>99</Text>
+                        <Text style = {styles.cartItemCount}>{props.cartLength}</Text>
                     <Image 
                         source = {cartIcon}
                         style = {{height: 20, position: 'absolute', zIndex: -1, marginLeft: -35, marginTop: 10}}

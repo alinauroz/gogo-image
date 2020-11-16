@@ -15,6 +15,8 @@ import PostView from './Components/PostView'
 import Gallery from './Components/pages/Gallery'
 import ChangePassword from './Components/pages/ChangePassword'
 
+let cartContent = JSON.parse(localStorage.getItem('cart') || '[]')
+
 function Signup () {
   return <Login selected={1} />
 }
@@ -45,8 +47,6 @@ let posts_ = [
 ]
 
 function App() {
-
-  let cartContent = JSON.parse(localStorage.getItem('cart') || '[]')
   const [cart, setCart] = React.useState(cartContent)
   const [pages, setPages] = React.useState();
   const [posts, setPosts] = React.useState();
@@ -77,14 +77,15 @@ function App() {
 
   const removeFromCart = (index) => {
     cart.splice(index, 1);
-    setCart(cart);
-    localStorage.setItem('cart', cart);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    setCart([ ... cart]);
   }
 
   return (
     <>
       <TopBar 
         pages = {pages ? pages: []}
+        cartLength = {cart ? cart.length : 0}
       />
       <main style = {{marginTop: 0, minHeight: window.innerHeight - 200}}>
         <Switch>

@@ -3,16 +3,9 @@ import {Text, View, Image, Table, Tr, Td} from '../Basic/AppComponents'
 
 import CartUnit from '../Unit/Cart'
 
-let initalCart = [
-    {productId: '1', quantity: '2', sup1: '1', sup2: '1'},
-    {productId: '1', quantity: '2', sup1: '1', sup2: '1'}
-]
-
 export default function (props) {
-    if (localStorage.getItem('cart'))
-        var cart = JSON.parse(localStorage.getItem('cart')) || [];
-    else
-        cart = []
+
+    const cart = props.cart || [];
 
     return (
         <View style = {{display: 'block', marginTop: 50, width: '100%', marginLeft: 'calc(0% - 0px)'}}>
@@ -53,6 +46,7 @@ export default function (props) {
                             item = {item}
                             index = {index}
                             removeFromCart = {props.removeFromCart}
+                            cart = {cart}
                         />
                     )
                 })
