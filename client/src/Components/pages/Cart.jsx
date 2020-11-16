@@ -1,5 +1,6 @@
 import React from 'react'
 import {Text, View, Image, Table, Tr, Td} from '../Basic/AppComponents'
+import { Link } from 'react-router-dom'
 
 import CartUnit from '../Unit/Cart'
 
@@ -62,6 +63,16 @@ export default function (props) {
                         return <b>Total: {totalPrice}</b>
                     })()
                 }
+            </View>
+            <View style = {{display: 'flex', justifyContent: 'flex-end', paddingRight: '10%', paddingTop: 20}}>
+                <Link to = '/checkout'>
+                    <input 
+                        type = 'button'
+                        value = 'Next'
+                        className = 'action-button'
+                        style = {{width: 100}}
+                    />
+                </Link>
             </View>
         </View>
     )
