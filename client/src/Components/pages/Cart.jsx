@@ -52,6 +52,17 @@ export default function (props) {
                 })
             }
             </Table>
+            <View style = {{display: 'flex', justifyContent: 'flex-end', paddingRight: '10%', paddingTop: 20}}>
+                {
+                    (() => {
+                        let totalPrice = 0;
+                        cart.map(item => {
+                            totalPrice += item.price;
+                        })
+                        return <b>Total: {totalPrice}</b>
+                    })()
+                }
+            </View>
         </View>
     )
 
