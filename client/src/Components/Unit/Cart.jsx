@@ -74,7 +74,7 @@ export default function (props) {
                         type = 'button'
                         value = 'Remove'
                         className = 'cancel-button'
-                        onClick = {() => props.removeFromCart(props.index)}
+                        onClick = {() => window.confirm('Are you sure you want to remove this item from cart') ? props.removeFromCart(props.index): ''}
                     />
                 </View>
             </Td>
