@@ -12,9 +12,6 @@ export default function () {
     if (localStorage.getItem('cart'))
         var cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    
-    cart = initalCart
-
     return (
         <View style = {{display: 'block', marginTop: 50, width: '100%', marginLeft: 'calc(0% - 0px)'}}>
             <Table style = {{width: '100%'}}>
@@ -51,7 +48,8 @@ export default function () {
                 cart.map((item, index) => {
                     return (
                         <CartUnit 
-                        
+                            item = {item}
+                            index = {index}
                         />
                     )
                 })

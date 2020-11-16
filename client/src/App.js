@@ -94,7 +94,7 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/signup" component={Signup} />
-            <Route path="/cart" component={Cart} />
+            <Route path="/cart" component={() => <Cart cart = {cart} ></Cart>} />
             <Route path='/gallery' component={() => <Gallery posts = {posts} />}/>
             <Route path="/post/:id" component={(props) => <PostView {... props} addToCart = {addToCart} ></PostView>} />
             <Route path="/reset-password" component={ResetPassword} />

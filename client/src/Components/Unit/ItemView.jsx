@@ -75,8 +75,6 @@ export default function (props) {
                 price
             }
 
-            console.log(cartItem)
-
             if (props.addToCart) props.addToCart({cartItem})
 
         }

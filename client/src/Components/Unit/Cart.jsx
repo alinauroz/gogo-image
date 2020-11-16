@@ -1,4 +1,5 @@
 import {View, Text, Image, Button, Tr, Td, Th, Table} from '../Basic/AppComponents'
+import {capitalize} from '../../utils/string'
 
 export default function (props) {
     return (
@@ -12,7 +13,22 @@ export default function (props) {
                     />
             </Td>
             <Td className = 'cart-td' style = {{maxWidth: window.innerHeight * 0.13}}>
-                <p>My name is Ali</p>
+                <p>
+                    {
+                        props.item ? 
+                        (
+                            <>
+                                <p style = {{margin: 0}}>Retouch: {capitalize(props.item.retouch)}</p>
+                                <p>Text: {props.item.text}</p>
+                                <p>Year: {props.item.year}</p>
+                                <br />
+                                {props.item.superimpose1 ? <p>Superimpose One</p>: ""}
+                                {props.item.superimpose2 ? <p>Superimpose Two</p>: ""}
+                            </>
+                        )
+                        : ""
+                    }
+                </p>
             </Td>
             <Td className = 'cart-td'>
                 <View>
