@@ -18,7 +18,6 @@ export const request = async ({route, params = '', body = {}, query = {}, method
             method,
             headers: {
                 'Content-Type': 'application/json',
-                'Cookie': `jwt=${getToken()}`
             },
             credentials,
             body: method !== 'GET' ? JSON.stringify(body): null
