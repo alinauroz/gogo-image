@@ -8,7 +8,7 @@ export default function (props) {
             <Td className = 'cart-td' style = {{minWidth: '50px'}}></Td>
             <Td className = 'cart-td' style = {{width: 220, textAlign: 'center'}}>
                     <Image
-                        source = "https://www.viewbug.com/media/mediafiles/2016/05/28/66284132_medium.jpg"
+                        source = {api + 'images/' + props.item.templateThumb}
                         className = 'cart-unit-image'
                         style = {{ maxHeight: '120px'}}
                     />

@@ -67,18 +67,23 @@ export default function (props) {
             }
 
             cartItem = {
+                id,
                 ... cartItem,
                 text,
                 year,
-                id,
                 retouch: (retouch && retouchValue) ? retouchValue: 'none',
-                price
+                price,
+                template: props.item.image,
+                size: props.item ? props.item.size : '',
+                templateId: props.item ? props.item._id: '',
+                templateThumb: props.item ? props.item.thumb: '',
             }
 
             if (props.addToCart) props.addToCart({cartItem})
 
         }
         catch (err) {
+            console.error(err)
             alert('error')
         }
 
