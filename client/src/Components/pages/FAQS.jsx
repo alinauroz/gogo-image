@@ -4,6 +4,7 @@ import getUnique from '../../utils/getUnique'
 import Collapsible from 'react-collapsible';
 import {capitalize} from '../../utils/string'
 import {View, Text} from '../Basic/AppComponents'
+import ReactHtmlParser from "react-html-parser";
 
 export default function () {
 
@@ -30,15 +31,17 @@ export default function () {
                 cats ?
                 cats.map(cat => {
                     let content = [];
-                    content.push(<Text style = {{fontSize: 22, marginTop: 22}}>{capitalize(cat)}</Text>)
+                    content.push(<Text style = {{fontSize: 22, marginTop: 22, marginBottom: 10}}>{capitalize(cat)}</Text>)
                     
                     let innerContent = [];
 
                     FAQS.map(faq => {
                         if (faq.category === cat)
                             content.push(
-                                <Collapsible trigger = {faq.question} transitionTime = {200}>
-                                    {faq.answer}
+                                <Collapsible trigger = {faq.question} transitionTime = {200} triggerStyle = {{background: 'grey', cursor: 'pointer', display: 'block', padding: 5}}>
+                                    <View style = {{background: 'lightgrey'}}>
+                                        {ReactHtmlParser(ReactHtmlParser( faq.answer))}
+                                    </View>
                                 </Collapsible>
                             )
                     })
