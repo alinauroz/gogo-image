@@ -63,6 +63,7 @@ export default function (props) {
                         type = 'button'
                         value = 'Remove'
                         className = 'cancel-button'
+                        onClick = {() => props.removeFromCart(props.index)}
                     />
                 </View>
             </Td>
