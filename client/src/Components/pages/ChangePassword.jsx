@@ -39,7 +39,10 @@ export default function (props) {
             body: formData
         })
 
-        console.log(res);
+        if (res.status === 'fail') {
+            setRes(0)
+        }
+        else setRes(1)
 
     }
 

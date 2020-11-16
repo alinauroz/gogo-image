@@ -83,7 +83,7 @@ function App() {
       <main style = {{marginTop: 0, minHeight: window.innerHeight - 200}}>
         <Switch>
           <Route>
-            <Route path="/" component={() => <Home posts = {posts}></Home>} exact />
+            <Route path="/" component={() => <Home posts = {posts_}></Home>} exact />
 
             {
               pages ? pages.map(page => {

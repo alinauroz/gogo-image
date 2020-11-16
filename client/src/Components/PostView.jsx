@@ -8,18 +8,8 @@ import { Link } from 'react-router-dom'
 export default function (props) {
 
     let id = props.match.params.id;
-    const [loaded, setLoaded] = React.useState(false);
     const [post, setPost] = React.useState()
     const [message, setMessage] = React.useState('')
-
-    //let post = {
-    //    tags: [],
-    //    use: [],
-    //    images: [
-    //        {url: 'https://source.unsplash.com/random/300x300', type: 'landscape'},
-    //        {url: 'https://source.unsplash.com/random/200x300', type: 'portrait'}
-    //    ]
-    //}
 
     if (! post) {
         (async () => {
@@ -39,12 +29,12 @@ export default function (props) {
     const prices = {
         portrait: 35,
         landscape: 40,
-        retouch: 5,
+        retouchSingle: 5,
         retouchGroup: 10,
         text: 3,
         year: 2,
-        superImpose1: 10,
-        superImpose2: 10
+        superimpose1: 10,
+        superimpose2: 10
     }
 
     return (
@@ -52,7 +42,7 @@ export default function (props) {
             {
                 post ? 
                 post.items.map(image => {
-                    return <ItemView url = {api + 'images/' +image.thumb} type = {image.type} addToCart = {props.addToCart} />
+                    return <ItemView prices = {prices} url = {api + 'images/' +image.thumb} type = {image.type} addToCart = {props.addToCart} />
                 })
                 : <>{message}</>
             }

@@ -6,10 +6,8 @@ import { request } from '../../utils/AppRequest'
 import { v4 as uuidv4 } from 'uuid';
 
 export default function (props) {
-    
-    const setImages = images => {
-        console.log('Images', images)
-    }
+
+    const prices = props.prices || {}
 
     React.useEffect(() => {
 
@@ -118,7 +116,7 @@ export default function (props) {
                                     </span>
                                 </td>
                                 <td>
-                                    <span style = {{marginRight: 20}}>
+                                    <span style = {{marginRight: 10}}>
                                         <input 
                                             name = {`item-retouch-${props.type}`}
                                             type = 'radio' 
@@ -129,9 +127,9 @@ export default function (props) {
                                                 setRetouchValue('single')
                                             }}
                                         />
-                                        <label for = {`item-retouch-single-${props.type}`} >1 Person</label>
+                                        <label for = {`item-retouch-single-${props.type}`} >${prices.retouchSingle} - 1 Person</label>
                                     </span>
-                                    <span style = {{marginRight: 20}}>
+                                    <span style = {{marginRight: 10}}>
                                         <input 
                                             name = {`item-retouch-${props.type}`}
                                             type = 'radio'
@@ -142,13 +140,13 @@ export default function (props) {
                                                 setRetouchValue('group')
                                             }}
                                         />
-                                        <label for = {`item-retouch-group-${props.type}`} >Group</label>
+                                        <label for = {`item-retouch-group-${props.type}`} >${prices.retouchGroup} - Group</label>
                                     </span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                <Text style = {{paddingTop: 5}}>Text:</Text>
+                                    <Text style = {{paddingTop: 5}}>Text: ${prices.text}</Text>
                                 </td>
                                 <td>
                                     <input 
@@ -167,7 +165,7 @@ export default function (props) {
                             </tr>
                             <tr>
                                 <td>
-                                    <Text style = {{paddingTop: 5}}>Year:</Text>
+                                    <Text style = {{paddingTop: 5}}>Year: ${prices.year}</Text>
                                 </td>
                                 <td>
                                     <input 
@@ -189,7 +187,7 @@ export default function (props) {
                             </tr>
                             <tr>
                                 <td>
-                                    <Text>Superimpose 1</Text>
+                                    <Text>Superimpose 1: ${prices.superimpose1}</Text>
                                 </td>
                                 <td>
                                     <ImageLoader 
@@ -200,7 +198,7 @@ export default function (props) {
                             </tr>
                             <tr>
                                 <td>
-                                <Text>Superimpose 2</Text>
+                                <Text>Superimpose 2: ${prices.superimpose1}</Text>
                                 </td>
                                 <td>
                                     <ImageLoader 

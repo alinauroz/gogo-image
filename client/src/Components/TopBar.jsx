@@ -25,6 +25,8 @@ export default function (props) {
             >
                 <Link to = '/' className = 'topbar-links'>Home</Link>
                 <Link to = '/gallery' className = 'topbar-links'>Gallery</Link>
+                <Link to = '/gallery' className = 'topbar-links'>Blogs</Link>
+                <Link to = '/gallery' className = 'topbar-links'>FAQs</Link>
                 {
                     props.pages ?
                     props.pages.map(page => {

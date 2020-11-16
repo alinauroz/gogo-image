@@ -87,7 +87,7 @@ export default function (props) {
             localStorage.setItem('token', data_.token);
             document.cookie = 'jwt=' + data_.token;
             localStorage.setItem('user', JSON.stringify(data_.data));
-            window.location.reload();
+            window.location = './'
         }
 
     }
