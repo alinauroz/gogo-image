@@ -10,10 +10,6 @@ export default function (props) {
     const prices = props.prices || {}
     const [price, setPrice] = React.useState(0)
 
-    React.useEffect(() => {
-
-    }, [price])
-
     const addToCart = async () => {
 
         try {
@@ -90,6 +86,39 @@ export default function (props) {
     const [main, setMain] = React.useState();
     const [superimpose1, setSuperimpose1] = React.useState();
     const [superimpose2, setSuperimpose2] = React.useState();
+
+    const calculatePrice = () => {
+        
+        let price_ = 0;
+
+        if (retouch) {
+            if (retouchValue === 'single')
+                price_ += prices.retouchSingle
+            else if (retouchValue === 'group')
+                price_ += prices.retouchGroup
+        }
+
+        if (text)
+            price_ += prices.text
+
+        if (year)
+            price_ += prices.year
+
+        if (superimpose1)
+            price_ += prices.superimpose1
+
+        if (superimpose2)
+            price_ += prices.superimpose2
+
+        return main ? price_ + prices.template : price_
+
+    }
+
+    React.useEffect(() => {
+
+        setPrice(calculatePrice())
+
+    }, [text, retouch, retouchValue, year, main, superimpose1, superimpose2])
 
     return (
         <View className = 'itemview-container'>
@@ -206,6 +235,10 @@ export default function (props) {
                                         setImages = {setSuperimpose2}
                                     />
                                 </td>
+                            </tr>
+                            <tr>
+                                <td>Total for this</td>
+                                <td>{'\t$' + price}</td>
                             </tr>
                         </table>
                         <input 

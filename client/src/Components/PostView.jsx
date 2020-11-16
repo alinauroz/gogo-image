@@ -27,8 +27,7 @@ export default function (props) {
     }
 
     const prices = {
-        portrait: 35,
-        landscape: 40,
+        template: 35,
         retouchSingle: 5,
         retouchGroup: 10,
         text: 3,
@@ -41,8 +40,8 @@ export default function (props) {
         <View className = 'postview-container'>
             {
                 post ? 
-                post.items.map(image => {
-                    return <ItemView prices = {prices} url = {api + 'images/' +image.thumb} type = {image.type} addToCart = {props.addToCart} />
+                post.items.map(item => {
+                    return <ItemView item = {item} prices = {prices} url = {api + 'images/' +item.thumb} type = {item.type} addToCart = {props.addToCart} />
                 })
                 : <>{message}</>
             }
