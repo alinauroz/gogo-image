@@ -17,6 +17,7 @@ import ChangePassword from './Components/pages/ChangePassword'
 import Checkout from './Components/pages/Checkout'
 import FAQS from './Components/pages/FAQS'
 import Blogs from './Components/pages/Blogs'
+import BlogPost from './Components/pages/BlogPost'
 
 let cartContent = JSON.parse(localStorage.getItem('cart') || '[]')
 
@@ -107,6 +108,7 @@ function App() {
             <Route path="/cart" component={() => <Cart removeFromCart = {removeFromCart} cart = {cart} ></Cart>} />
             <Route path='/gallery' component={() => <Gallery posts = {posts} />}/>
             <Route path="/post/:id" component={(props) => <PostView {... props} addToCart = {addToCart} ></PostView>} />
+            <Route path="/blogpost/:id" component={(props) => <BlogPost {... props} ></BlogPost>} />
             <Route path="/reset-password" component={ResetPassword} />
             <Route path="/change-password" component={ChangePassword} />
             <Route path="/checkout" component={() => <Checkout cart = {cart} />} />
