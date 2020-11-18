@@ -1,5 +1,6 @@
 import React from 'react'
 import {View, Text} from '../Basic/AppComponents'
+import {request} from '../../utils/AppRequest'
 
 const CheckoutField = (props) => {
     return (
@@ -36,6 +37,19 @@ export default function (props) {
 
     const [price, setPrice] = React.useState(calulatePrice());
     const [totalPrice, setTotalPrice] = React.useState(calulatePrice(1))
+
+    const placeOrder = async () => {
+
+        let res = await ({
+            route: 'orders',
+            method: 'POST',
+            credentials: 'include',
+            body: {
+
+            }
+        })
+
+    }
 
     if (localStorage.getItem('user'))
         var user = JSON.parse(localStorage.getItem('user') || '{}');
