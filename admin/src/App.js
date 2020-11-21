@@ -21,7 +21,7 @@ import AddBlog from './components/pages/AddBlog'
 
 export default function () {
 
-  const [screen, setScreen] = React.useState('ViewUsers');
+  const [screen, setScreen] = React.useState('AddCoupon');
   const [base, setBase] = React.useState({});
 
   const setAppBase = (data, key = screen) => {
