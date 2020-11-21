@@ -14,6 +14,7 @@ export default function (props) {
                     onChange = {props.onChange}
                     className = 'form-control'
                     value = {props.value}
+                    disabled = {props.disabled}
                 />
             </div>
             :
@@ -24,6 +25,7 @@ export default function (props) {
                 onChange = {props.onChange}
                 className = 'form-control'
                 value = {props.value}
+                disabled = {props.disabled}
             />
             }
         </div>
