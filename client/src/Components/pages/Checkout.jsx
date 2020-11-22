@@ -14,6 +14,8 @@ const CheckoutField = (props) => {
 export default function (props) {
 
     const [nextDayService, setNextDayService] = React.useState(false)
+    const [couponCode, setCouponCode] = React.useState('')
+    const [couponMessage, setCouponMessage] = React.useState('getting coupon')
 
     const calulatePrice = (type = 0) => {
         let price_ = 0;
@@ -26,6 +28,42 @@ export default function (props) {
             price_ += 10;
 
         return price_;
+    }
+
+    const getCoupon = async () => {
+
+        if (couponCode) {
+
+            let coupon = await request({
+                route: 'coupons',
+                method: 'GET',
+                params: '/c/' + couponCode
+            });
+
+            let status = ''
+
+            if (coupon.status == 'fail') {
+                status = 'Coupon does not exist'
+            }
+
+            if (coupon.couponStatus === 'active') {
+
+            }
+            else if (coupon.couponStatus === 'expired') {
+                status = 'This coupon is expired'
+            }
+            else if (coupon.couponStatus === 'iscoming') {
+                status = 'This coupon is coming soon'
+            }
+            else if (coupon.couponStatus === 'disabled') {
+                status = 'This coupon is not available at this moment'
+            }
+
+            if (status)
+                alert(status)
+
+        }
+
     }
 
     React.useEffect(() => {
@@ -84,8 +122,8 @@ export default function (props) {
                                     Less Coupon
                                 </td>
                                 <td>
-                                    <input placeholder = 'Enter Code' type = 'text' style = {{}} style = {{width: 100, marginRight: 2, marginLeft: 2}} />
-                                    <input type = 'button' value ='Apply' style = {{border: 0, background: 'transparent', cursor: 'pointer'}}/>
+                                    <input value = {couponCode} onChange = {(e) => setCouponCode(e.target.value)} placeholder = 'Enter Code' type = 'text' style = {{}} style = {{width: 100, marginRight: 2, marginLeft: 2}} />
+                                    <input type = 'button' value ='Apply' onClick = {getCoupon} style = {{border: 0, background: 'transparent', cursor: 'pointer'}}/>
                                 </td>
                                 <td style = {{textAlign: 'right'}}>
                                     $0.00
