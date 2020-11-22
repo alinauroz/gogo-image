@@ -25,6 +25,19 @@ export default function (props) {
 
     }
 
+    const deleteAction = async (e, data) => {
+        e.target.disabled = true;
+        let res = await request({
+            route: 'coupons/',
+            params: data._id,
+            method: 'DELETE',
+            credentials: 'include'
+        })
+        
+        if (res.status == 'success') setData('')
+
+    }
+
     if (! data) {
         request({
             route: 'coupons',
@@ -55,7 +68,9 @@ export default function (props) {
                 hidden = {['_id', 'validFor', 'forAll', 'updatedAt', 'startDate', 'endDate', 'active']}
                 actions = {[
                     //{onClick: EditAction, value: 'Edit', className : 'btn btn-primary'},
-                    {onClick: toggleActive, value: 'Toggle Active', className : 'btn btn-primary', break: true}
+                    {onClick: toggleActive, value: 'Toggle Active', className : 'btn btn-primary'},
+                    {onClick: deleteAction, value: 'Delete', className : 'btn btn-danger'},
+                    //	✎
                 ]}
             />
             </div>
