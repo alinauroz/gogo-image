@@ -11,11 +11,24 @@ const CheckoutField = (props) => {
     )
 }
 
+const getDiscount = (coupon, totalPrice) => {
+
+    if (totalPrice < Number(coupon.minOrder))
+        return {message: 'Minimum order of $' + coupon.minOrder + ' is required for this coupon'}
+
+    if (totalPrice <= Number(coupon.discount))
+        return {applicable: true, discount: totalPrice}
+    else
+        return {applicable: true, discount: Number(coupon.discount)}
+
+}
+
 export default function (props) {
 
     const [nextDayService, setNextDayService] = React.useState(false)
     const [couponCode, setCouponCode] = React.useState('')
     const [couponMessage, setCouponMessage] = React.useState('getting coupon')
+    const [discount, setDiscount] = React.useState(0);
 
     const calulatePrice = (type = 0) => {
         let price_ = 0;
@@ -47,7 +60,9 @@ export default function (props) {
             }
 
             if (coupon.couponStatus === 'active') {
-
+                let discount_ = getDiscount(coupon.data, totalPrice)
+                if (discount_.applicable)
+                    setDiscount(discount_.discount);
             }
             else if (coupon.couponStatus === 'expired') {
                 status = 'This coupon is expired'
@@ -70,11 +85,13 @@ export default function (props) {
 
         setPrice(calulatePrice())
         setTotalPrice(calulatePrice(1))
+        setFinalPrice(calulatePrice(1) - discount)
 
-    }, [nextDayService]);
+    }, [nextDayService, discount]);
 
     const [price, setPrice] = React.useState(calulatePrice());
     const [totalPrice, setTotalPrice] = React.useState(calulatePrice(1))
+    const [finalPrice, setFinalPrice] = React.useState(calulatePrice(1) - discount)
 
     const placeOrder = async () => {
 
@@ -133,7 +150,7 @@ export default function (props) {
                     </View>
                     <View style = {{background: 'lightgrey', marginTop: 20, width: 'calc(100% + 0px)', padding: 10, marginLeft: -10}}>
                         <Text style = {{fontWeight: 'bold', fontSize: 13}}>
-                            Grand Total <span style = {{float: 'right'}}>${totalPrice}</span>
+                            Grand Total <span style = {{float: 'right'}}>${finalPrice}</span>
                         </Text>
                     </View>
                 </View>
