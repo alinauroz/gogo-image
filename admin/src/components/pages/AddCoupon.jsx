@@ -31,13 +31,15 @@ export default function () {
             if (res.status == 'success')
                 setMessage('Coupon added successfully');
             else {
-                setMessage('Problem adding Coupon');
+                if (res.error.code === 11000)
+                    setMessage('Coupon code should be unique. This code already exists')
+                else
+                    setMessage('Problem adding Coupon');
             }
 
         }
         catch (err) {
-            setMessage('Error')
-            console.log(err)
+            setMessage('Problem while adding Coupon')
         }
 
     }
