@@ -48,6 +48,8 @@ export default function (props) {
 
     if (data) {
         return (
+            <div class = 'card'>
+            <h2 style = {{marginTop: 2, marginBottom: 10}}>View Coupons</h2>
             <Viewer 
                 data = {data}
                 hidden = {['_id', 'validFor', 'forAll', 'updatedAt', 'startDate', 'endDate', 'active']}
@@ -56,6 +58,7 @@ export default function (props) {
                     {onClick: toggleActive, value: 'Toggle Active', className : 'btn btn-primary', break: true}
                 ]}
             />
+            </div>
         )
     }
     else {
