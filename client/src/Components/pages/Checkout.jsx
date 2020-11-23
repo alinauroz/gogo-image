@@ -27,7 +27,7 @@ export default function (props) {
 
     const [nextDayService, setNextDayService] = React.useState(false)
     const [couponCode, setCouponCode] = React.useState('')
-    const [couponMessage, setCouponMessage] = React.useState('getting coupon')
+    const [couponMessage, setCouponMessage] = React.useState('')
     const [discount, setDiscount] = React.useState(0);
 
     const calulatePrice = (type = 0) => {
@@ -95,14 +95,19 @@ export default function (props) {
 
     const placeOrder = async () => {
 
-        let res = await ({
+        let res = await request({
             route: 'orders',
             method: 'POST',
             credentials: 'include',
             body: {
-
+                items: props.cart,
+                price: finalPrice,
+                coupon: couponCode,
+                nextDayService,
             }
         })
+
+        console.log(res)
 
     }
 
@@ -143,7 +148,7 @@ export default function (props) {
                                     <input type = 'button' value ='Apply' onClick = {getCoupon} style = {{border: 0, background: 'transparent', cursor: 'pointer'}}/>
                                 </td>
                                 <td style = {{textAlign: 'right'}}>
-                                    $0.00
+                                    - ${discount}
                                 </td>
                             </tr>
                         </table>
@@ -168,6 +173,7 @@ export default function (props) {
                             type = 'button'
                             value = 'Pay Now'
                             className = 'action-button'
+                            onClick = {placeOrder}
                             style = {{width: 120}}
                         />
                         <input 
