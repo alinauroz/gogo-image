@@ -1,6 +1,6 @@
 import React from 'react'
 import {request} from '../../utils/request'
-import {Viewer} from '../../utils/Viewer'
+import Viewer from '../../utils/Viewer'
 
 export default function (props) {
 
@@ -32,6 +32,7 @@ export default function (props) {
                 orders ?
                 <Viewer 
                     data = {orders}
+                    hidden = {['submission', 'items', '_id', 'updatedAt']}
                 />
                 : error ? <>{error}</> : 'loading ...'
             }

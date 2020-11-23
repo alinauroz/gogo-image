@@ -8,6 +8,7 @@ import AddStaff from './components/pages/AddStaff'
 import AddPost from './components/pages/AddPost'
 import CreatePage from './components/pages/CreatePage'
 import ViewPages from './components/pages/ViewPages'
+import ViewOrders from './components/pages/ViewOrders'
 import ViewUsers from './components/pages/ViewUsers'
 import AddCoupon from './components/pages/AddCoupon'
 import ViewCoupons from './components/pages/ViewCoupons'
@@ -22,7 +23,7 @@ import AddBlog from './components/pages/AddBlog'
 
 export default function () {
 
-  const [screen, setScreen] = React.useState('ViewCoupons');
+  const [screen, setScreen] = React.useState('ViewOrders');
   const [base, setBase] = React.useState({});
 
   const setAppBase = (data, key = screen) => {
@@ -45,7 +46,7 @@ export default function () {
     {title: 'Price & Fee', onClick: () => setScreen('SetPrice')},
     {title: 'Manage Posting'},
     {title: 'Sales Data'},
-    {title: 'Order History'},
+    {title: 'Orders', onClick: () => setScreen('ViewOrders')},
     {title: 'Products', onClick: () => setScreen('ViewProducts')},
     {title: 'Add Product', onClick: () => setScreen('AddProduct')},
     {title: 'Blogs', onClick: () => setScreen('ViewBlogs')},
@@ -107,6 +108,9 @@ export default function () {
         </div>
         <div style = {{display : screen == 'ViewCoupons' ? 'block' : 'none'}}>
           <ViewCoupons base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'ViewOrders' ? 'block' : 'none'}}>
+          <ViewOrders base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
       </div>
     </>
