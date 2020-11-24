@@ -38,7 +38,17 @@ export default function () {
             return alert('Cannot find any order with given invoice no ('+name+')')
         }
 
-        
+        res = await request({
+            route: 'orders/',
+            params: data._id + '/complete',
+            method: 'PUT',
+            credentials: 'include'
+        })
+
+        if (res.status == 'success')
+            alert('Order submitted and marked as complete')
+        else
+            alert('Error occurred while marking it complete')
 
     }
 
