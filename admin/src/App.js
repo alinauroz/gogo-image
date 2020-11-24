@@ -20,10 +20,11 @@ import Topbar from './components/Topbar'
 import CompanyProfile from './components/pages/CompanyProfile'
 import SetPrice from './components/pages/Price'
 import AddBlog from './components/pages/AddBlog'
+import SubmitOrder from './components/pages/SubmitOrder'
 
 export default function () {
 
-  const [screen, setScreen] = React.useState('ViewOrders');
+  const [screen, setScreen] = React.useState('SubmitOrder');
   const [base, setBase] = React.useState({});
 
   const setAppBase = (data, key = screen) => {
@@ -111,6 +112,9 @@ export default function () {
         </div>
         <div style = {{display : screen == 'ViewOrders' ? 'block' : 'none'}}>
           <ViewOrders base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'SubmitOrder' ? 'block' : 'none'}}>
+          <SubmitOrder base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
       </div>
     </>
