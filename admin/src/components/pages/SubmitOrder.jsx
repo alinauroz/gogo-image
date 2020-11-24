@@ -38,10 +38,12 @@ export default function () {
 
     return (
         <div className = 'card'>
-
+            
+            <h2 style = {{margin: '5px 0px 10px 0px'}}>Submit Order</h2>
+            <p>Put all submissions in a zip file and submit the zip file and name it according to the Invoice No. </p>
             <form action = '' onSubmit = {handleSubmission}>
-                <input type = 'file' name = 'submission' onChange = {handleChange} />
-                <input type = 'submit' value = 'Submit' disabled = {loading}/>
+                <input type = 'file' name = 'submission' onChange = {handleChange} className = 'form-control' />
+                <input type = 'submit' value = 'Submit' disabled = {loading} className = 'btn btn-primary' style = {{marginTop: 5}} />
             </form>
 
         </div>
