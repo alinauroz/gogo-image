@@ -2,8 +2,8 @@ import React from 'react'
 import Field from '../unit/Field'
 import getFormData from '../../utils/getFormData'
 import ImageLoader from '../../utils/ImageLoader'
+import {request} from '../../utils/request'
 
-import Viewer from '../../utils/Viewer'
 export default function () {
 
     const [logo, setLogo] = React.useState('')
@@ -11,6 +11,28 @@ export default function () {
     const handleForm = async (e) => {
         e.preventDefault();
         let formData = getFormData(e.target)
+
+        if (logo) {
+
+            let res = await request({
+                route: 'images',
+                method: 'POST',
+                body: {
+                    base64: logo
+                }
+            })
+
+            if (res.fileName) {
+                formData.logo = res.fileName;
+            }
+
+        }
+
+        for (let x in formData) {
+            if (formData[x] == '')
+                delete formData[x]
+        }
+
         console.log(formData);
     }
 
