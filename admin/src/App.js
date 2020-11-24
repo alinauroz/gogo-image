@@ -24,7 +24,7 @@ import SubmitOrder from './components/pages/SubmitOrder'
 
 export default function () {
 
-  const [screen, setScreen] = React.useState('SubmitOrder');
+  const [screen, setScreen] = React.useState('CompanyProfile');
   const [base, setBase] = React.useState({});
 
   const setAppBase = (data, key = screen) => {

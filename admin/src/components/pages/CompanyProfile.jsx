@@ -1,12 +1,26 @@
 import React from 'react'
 import Field from '../unit/Field'
+import getFormData from '../../utils/getFormData'
+import ImageLoader from '../../utils/ImageLoader'
 
 import Viewer from '../../utils/Viewer'
 export default function () {
+
+    const [logo, setLogo] = React.useState('')
+
+    const handleForm = async (e) => {
+        e.preventDefault();
+        let formData = getFormData(e.target)
+        console.log(formData);
+    }
+
+    const handleImage = (images) => setLogo(images.logo)
+
     return (
         <div className = 'card'>
             <h3 style = {{margin: 0, marginBottom: 10}}>Company Profile</h3>
             <div style = {{minWidth: 300, width: '60%'}}>
+                <form action ='/' onSubmit = {handleForm}>
                 <Field 
                     name = 'name'
                     title = 'Company Name'
@@ -53,14 +67,16 @@ export default function () {
                     inputType = 'email'
                     style = {{marginTop: 10}}
                 />
-                <Field 
-                    name = 'image'
-                    inputType = 'file'
-                    title = 'Logo'
-                />
+                <div style = {{marginTop: 5}}>
+                    <p>Upload Logo</p>
+                    <ImageLoader 
+                        sizes = {{logo: {minWidthOrHeight: 400}}}
+                        setImages = {handleImage}
+                    />
+                </div>
                 <div style = {{marginTop: 20}}>
                     <button
-                        type = 'button' 
+                        type = 'submit' 
                         value = 'Done'
                         className = 'btn btn-success'
                     >
@@ -77,6 +93,7 @@ export default function () {
                         Cancel
                     </button>
                 </div>
+                </form>
             </div>
         </div>
     )
