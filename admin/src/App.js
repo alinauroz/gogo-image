@@ -32,7 +32,7 @@ export default function () {
   }
 
   useEffect(() => {
-    console.log(base);
+    //console.log(base);
   })
 
   const BUTTONS = Object.freeze([
@@ -48,6 +48,7 @@ export default function () {
     {title: 'Manage Posting'},
     {title: 'Sales Data'},
     {title: 'Orders', onClick: () => setScreen('ViewOrders')},
+    {title: 'Submit Order', onClick: () => setScreen('SubmitOrder')},
     {title: 'Products', onClick: () => setScreen('ViewProducts')},
     {title: 'Add Product', onClick: () => setScreen('AddProduct')},
     {title: 'Blogs', onClick: () => setScreen('ViewBlogs')},
@@ -57,7 +58,7 @@ export default function () {
     {title: 'Company Profile', onClick: () => setScreen('CompanyProfile')},
   ]);
 
-  if (localStorage.getItem('admin_token'))
+  if (document.cookie)
   return (
     <>
       <Topbar />
