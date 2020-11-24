@@ -14,7 +14,7 @@ export default function () {
 
         let formData = new FormData(e.target)
 
-        let res = await fetch(api + '/zip', {
+        let res = await fetch(api + 'zips', {
             method: 'POST',
             credentials: 'include',
             body: formData
@@ -24,14 +24,25 @@ export default function () {
 
     }
 
+    const handleChange = (e) => {
+        let name = e.target.files[0].name;
+
+        if (name.split('.')[1] !== 'zip') {
+            alert(1)
+            return setError('Only zip submissions allowed')
+        }
+
+        setError('')
+
+    } 
+
     return (
         <div className = 'card'>
 
             <form action = '' onSubmit = {handleSubmission}>
-                <input type = 'file' name = 'submission' />
+                <input type = 'file' name = 'submission' onChange = {handleChange} />
+                <input type = 'submit' value = 'Submit' disabled = {loading}/>
             </form>
-
-            <input type = 'submit' value = 'Submit' disabled = {loading}/>
 
         </div>
     )
