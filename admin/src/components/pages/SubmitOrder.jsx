@@ -1,9 +1,11 @@
 import React from 'react'
 import {api} from '../../data/api'
+import {request} from '../../utils/request'
 
 export default function () {
 
     const [loading, setLoading] = React.useState(false);
+    const [name, setName] = React.useState('')
     const [error, setError] = React.useState('No file chosen');
 
     const handleSubmission = async (e) => {
@@ -20,7 +22,23 @@ export default function () {
             body: formData
         })
 
-        console.log(res);
+        let {status} = await res.json();
+
+        if (status !== 'success')
+            return alert('Error occurred while uploading zip')
+        
+        let {data} = await request({
+            method: 'GET',
+            params: 'invoice/' + name,
+            route: 'orders/',
+            credentials: 'include',
+        })
+
+        if (! data) {
+            return alert('Cannot find any order with given invoice no ('+name+')')
+        }
+
+        
 
     }
 
@@ -28,9 +46,10 @@ export default function () {
         let name = e.target.files[0].name;
 
         if (name.split('.')[1] !== 'zip') {
-            alert(1)
             return setError('Only zip submissions allowed')
         }
+
+        setName(name.split('.')[0])
 
         setError('')
 
@@ -38,7 +57,7 @@ export default function () {
 
     return (
         <div className = 'card'>
-            
+
             <h2 style = {{margin: '5px 0px 10px 0px'}}>Submit Order</h2>
             <p>Put all submissions in a zip file and submit the zip file and name it according to the Invoice No. </p>
             <form action = '' onSubmit = {handleSubmission}>
