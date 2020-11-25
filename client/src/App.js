@@ -19,6 +19,7 @@ import FAQS from './Components/pages/FAQS'
 import Blogs from './Components/pages/Blogs'
 import BlogPost from './Components/pages/BlogPost'
 import Orders from './Components/pages/Orders'
+import ContactUs from './Components/pages/ContactUs'
 
 let cartContent = JSON.parse(localStorage.getItem('cart') || '[]')
 
@@ -124,6 +125,7 @@ function App() {
             <Route path = "/faqs" component = {FAQS} />
             <Route path = "/blogs" component = {Blogs} />
             <Route path = '/orders' component = {Orders} />
+            <Route path = '/contactus' component = {ContactUs} />
           </Route>
         </Switch>
       </main>

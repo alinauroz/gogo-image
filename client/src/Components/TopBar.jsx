@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import {Text, View, Image} from './Basic/AppComponents'
 import { Link } from 'react-router-dom'
+import {api} from '../data/api'
 
 import logo from '../data/images/logo.png'
 import cartIcon from '../data/icons/cart.png'
@@ -11,14 +12,14 @@ let isLoggedIn = localStorage.getItem('token');
 let user = JSON.parse(localStorage.getItem('user') || '{}');
 
 export default function (props) {
-
+    const info = props.info || {}
     const [DDView, setDDView] = React.useState('none');
 
     return (
         <div>
             <Image
-                source = {logo}
-                style = {{maxHeight: 60}}
+                source = {api + 'images/' + info.logo}
+                style = {{maxHeight: 60, marginLeft: 20}}
             />
             <div
                 style = {{marginRight: 20, float: 'right', display: 'inline-block', marginTop: 20}}
