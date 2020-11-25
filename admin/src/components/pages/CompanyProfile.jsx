@@ -7,6 +7,26 @@ import {request} from '../../utils/request'
 export default function () {
 
     const [logo, setLogo] = React.useState('')
+    const [info, setInfo] = React.useState()
+    const [message, setMessage] = React.useState('')
+
+    if (! info) {
+        request({
+            route: 'info',
+            method: 'GET'
+        }).then(d => {
+            setInfo(d.data ? d.data[0] || {} : {})
+        })
+    }
+
+    const handleOnchange = (e) => {
+
+        setInfo({
+            ... info,
+            [e.target.name]: e.target.value
+        })
+
+    }
 
     const handleForm = async (e) => {
         e.preventDefault();
@@ -28,17 +48,29 @@ export default function () {
 
         }
 
-        for (let x in formData) {
-            if (formData[x] == '')
-                delete formData[x]
-        }
+        //for (let x in formData) {
+        //    if (formData[x] == '')
+        //        delete formData[x]
+        //}
 
-        console.log(formData);
+        let res = await request({
+            route: 'info',
+            params: '/info',
+            method: 'PUT',
+            credentials: 'include',
+            body: formData
+        })
+
+        if (res.status == 'success')
+            setMessage('Updated Successfully')
+        else
+            setMessage('Some error occurred')
     }
 
     const handleImage = (images) => setLogo(images.logo)
 
-    return (
+    return info ?
+    (
         <div className = 'card'>
             <h3 style = {{margin: 0, marginBottom: 10}}>Company Profile</h3>
             <div style = {{minWidth: 300, width: '60%'}}>
@@ -48,18 +80,24 @@ export default function () {
                     title = 'Company Name'
                     placeholder = 'Company Name'
                     style = {{marginTop: 10}}
+                    value = {info.name}
+                    onChange = {handleOnchange}
                 />
                 <Field 
                     name = 'address'
                     title = 'Address'
                     placeholder = 'Address'
                     style = {{marginTop: 10}}
+                    value = {info.address}
+                    onChange = {handleOnchange}
                 />
                 <Field 
                     name = 'city'
                     title = 'City'
                     placeholder = 'City'
                     style = {{marginTop: 10}}
+                    value = {info.city}
+                    onChange = {handleOnchange}
                 />
                 <Field 
                     name = 'state'
@@ -67,6 +105,8 @@ export default function () {
                     placeholder = 'State'
                     inputType = 'text'
                     style = {{marginTop: 10}}
+                    value = {info.state}
+                    onChange = {handleOnchange}
                 />
                 <Field 
                     name = 'zip'
@@ -74,6 +114,8 @@ export default function () {
                     placeholder = 'ZIP'
                     inputType = 'text'
                     style = {{marginTop: 10}}
+                    value = {info.zip}
+                    onChange = {handleOnchange}
                 />
                 <Field 
                     name = 'telephone'
@@ -81,6 +123,8 @@ export default function () {
                     placeholder = 'Telephone'
                     inputType = 'text'
                     style = {{marginTop: 10}}
+                    value = {info.telephone}
+                    onChange = {handleOnchange}
                 />
                 <Field 
                     name = 'email'
@@ -88,6 +132,44 @@ export default function () {
                     placeholder = 'Email'
                     inputType = 'email'
                     style = {{marginTop: 10}}
+                    value = {info.email}
+                    onChange = {handleOnchange}
+                />
+                <Field 
+                    name = 'google'
+                    title = 'G PLUS'
+                    placeholder = 'Google Plus URL'
+                    inputType = 'text'
+                    style = {{marginTop: 10}}
+                    value = {info.google}
+                    onChange = {handleOnchange}
+                />
+                <Field 
+                    name = 'fb'
+                    title = 'Facebook Page'
+                    placeholder = 'Facebook Page URL here'
+                    inputType = 'text'
+                    style = {{marginTop: 10}}
+                    value = {info.fb}
+                    onChange = {handleOnchange}
+                />
+                <Field 
+                    name = 'twitter'
+                    title = 'Twitter'
+                    placeholder = 'Twitter URL here'
+                    inputType = 'text'
+                    style = {{marginTop: 10}}
+                    value = {info.twitter}
+                    onChange = {handleOnchange}
+                />
+                <Field 
+                    name = 'insta'
+                    title = 'Instagram Page'
+                    placeholder = 'Instagram Page URL here'
+                    inputType = 'text'
+                    style = {{marginTop: 10}}
+                    value = {info.insta}
+                    onChange = {handleOnchange}
                 />
                 <div style = {{marginTop: 5}}>
                     <p>Upload Logo</p>
@@ -96,6 +178,9 @@ export default function () {
                         setImages = {handleImage}
                     />
                 </div>
+                <p style = {{margin: '5px 0px'}}>
+                    {message}
+                </p>
                 <div style = {{marginTop: 20}}>
                     <button
                         type = 'submit' 
@@ -119,5 +204,6 @@ export default function () {
             </div>
         </div>
     )
+    : 'loading ...'
 
 }
