@@ -18,6 +18,7 @@ import Checkout from './Components/pages/Checkout'
 import FAQS from './Components/pages/FAQS'
 import Blogs from './Components/pages/Blogs'
 import BlogPost from './Components/pages/BlogPost'
+import Orders from './Components/pages/Orders'
 
 let cartContent = JSON.parse(localStorage.getItem('cart') || '[]')
 
@@ -54,6 +55,7 @@ function App() {
   const [cart, setCart] = React.useState(cartContent)
   const [pages, setPages] = React.useState();
   const [posts, setPosts] = React.useState();
+  const [info, setInfo] = React.useState()
 
   React.useState(() => {
     
@@ -66,6 +68,12 @@ function App() {
     if (! posts) {
       request({route: 'posts'}).then(d => {
         setPosts(d.data || [])
+      })
+    }
+
+    if (! info) {
+      request({route: 'info'}).then(d => {
+        setInfo(d.data ? d.data[0] || {}: {})
       })
     }
 
@@ -90,6 +98,7 @@ function App() {
       <TopBar 
         pages = {pages ? pages: []}
         cartLength = {cart ? cart.length : 0}
+        info = {info}
       />
       <main style = {{marginTop: 0, minHeight: window.innerHeight - 200}}>
         <Switch>
@@ -114,10 +123,13 @@ function App() {
             <Route path="/checkout" component={() => <Checkout cart = {cart} />} />
             <Route path = "/faqs" component = {FAQS} />
             <Route path = "/blogs" component = {Blogs} />
+            <Route path = '/orders' component = {Orders} />
           </Route>
         </Switch>
       </main>
-      <Footer />
+      <Footer 
+        info = {info}
+      />
     </>
   );
 }

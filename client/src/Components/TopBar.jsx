@@ -84,7 +84,8 @@ export default function (props) {
                     onClick = {() => {
                         localStorage.setItem('user', '');
                         localStorage.setItem('token', '');
-                        window.location.reload();
+                        document.cookie = '';
+                        window.location = '/';
                     }}
                 />
                 <input 

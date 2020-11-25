@@ -263,3 +263,26 @@ input:focus, button:focus {
 .dropdown-button:hover {
   background-color: #33333311;
 }
+
+.viewer-table {
+  margin-left: 10%;
+  width: 80%;
+  overflow-x: auto;
+}
+
+.viewer-table th {
+  border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+
+.viewer-table td {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.viewer-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
