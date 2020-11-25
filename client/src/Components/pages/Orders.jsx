@@ -16,7 +16,7 @@ export default function (props) {
     const getOrderFile = async (e, data) => {
 
         let res = await request({
-            route: 'orders/',
+            route: 'orders/files/',
             method: 'GET',
             credentials: 'include',
             params: data._id
