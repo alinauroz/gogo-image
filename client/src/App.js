@@ -131,6 +131,7 @@ function App() {
       </main>
       <Footer 
         info = {info}
+        pages = {pages}
       />
     </>
   );

@@ -61,12 +61,15 @@ export default function (props) {
                 : ''}
             </View>
             <View style = {{display: 'inline-block', marginTop: 20, marginLeft: 20}}>
-                <Link to = '/about' className = 'topbar-links' style = {{color: 'white'}}>About</Link>
-                <Link to = '/why-us' className = 'topbar-links' style = {{color: 'white'}}>Why Us</Link>
-                <Link to = '/faq' className = 'topbar-links' style = {{color: 'white'}}>FAQ</Link>
-                <Link to = '/contact' className = 'topbar-links' style = {{color: 'white'}}>Contact</Link>
-                <Link to = '/terms' className = 'topbar-links' style = {{color: 'white'}}>Terms</Link>
-                <Link to = '/privacy' className = 'topbar-links' style = {{color: 'white'}}>Privacy</Link>
+                <Link to = '/faqs' className = 'topbar-links' style = {{color: 'white'}}>FAQ</Link>
+                <Link to = '/contactus' className = 'topbar-links' style = {{color: 'white'}}>Contact</Link>
+                {
+                    props.pages ?
+                    props.pages.map(page => {
+                        return <Link to = {page.url} style = {{color: 'white'}} className = 'topbar-links'>{page.title}</Link>
+                    })
+                    : ""
+                }
             </View>
             <View style = {{float: 'right', marginRight: 20}}>
                 <p className = 'topbar-links' style = {{color: 'white', display: 'inline-block'}}>COPYRIGHT 2019</p>
