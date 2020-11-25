@@ -14,6 +14,10 @@ export default function (props) {
     const [message, setMessage] = React.useState()
     const [agreed, setAgreed] = React.useState(false)
 
+    React.useEffect(() => {
+        document.title = 'My Profile - ' + (props.info ? props.info.name: '');
+    })
+
     const updateUser = async (e) => {
 
         e.preventDefault();

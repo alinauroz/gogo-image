@@ -4,9 +4,13 @@ import {api} from '../../data/api'
 import ReactHtmlParser from "react-html-parser";
 import { Link } from 'react-router-dom'
 
-export default function () {
+export default function (props) {
 
     const [blogs, setBlogs] = React.useState();
+
+    React.useEffect(() => {
+        document.title = 'Blogs - ' + (props.info ? props.info.name: '');
+    })
 
     if (! blogs) {
 

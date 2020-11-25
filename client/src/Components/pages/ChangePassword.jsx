@@ -28,6 +28,10 @@ export default function (props) {
 
     const [res, setRes] = React.useState(resSet.INITIAL);
 
+    React.useEffect(() => {
+        document.title = 'Change Password - ' + (props.info ? props.info.name: '');
+    })
+
     const handleForm = async (e) => {
         e.preventDefault();
         let formData = getFormData(e.target);

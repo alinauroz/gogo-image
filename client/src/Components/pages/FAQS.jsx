@@ -6,10 +6,14 @@ import {capitalize} from '../../utils/string'
 import {View, Text} from '../Basic/AppComponents'
 import ReactHtmlParser from "react-html-parser";
 
-export default function () {
+export default function (props) {
 
     const [FAQS, setFAQS] = React.useState();
     const [cats, setCats] = React.useState()
+
+    React.useEffect(() => {
+        document.title = 'FAQs - ' + (props.info ? props.info.name: '');
+    })
 
     if (! FAQS) {
         request({

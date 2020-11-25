@@ -27,6 +27,12 @@ export default function (props) {
     const [message, setMessage] = React.useState('');
     const [agreed, setAgreed] = React.useState(false);
 
+    React.useEffect(() => {
+        selected?
+        document.title = 'Sign Up - ' + (props.info ? props.info.name: '')
+        : document.title = 'Log In - ' + (props.info ? props.info.name: '')
+    })
+
     const signup = async (e) => {
         e.preventDefault();
 

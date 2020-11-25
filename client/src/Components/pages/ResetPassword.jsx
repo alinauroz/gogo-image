@@ -21,6 +21,10 @@ export default function (props) {
 
     const [res, setRes] = React.useState(resSet.INITIAL);
 
+    React.useEffect(() => {
+        document.title = 'Reset Password - ' + (props.info ? props.info.name: '');
+    })
+
     return (
         <View>
         {

@@ -4,10 +4,14 @@ import Viewer from '../../utils/Viewer'
 import {request} from '../../utils/AppRequest'
 import {api} from '../../data/api'
 
-export default function () {
+export default function (props) {
 
     const [data, setData] = React.useState();
     const [error, setError] = React.useState('');
+
+    React.useEffect(() => {
+        document.title = 'My Orders - ' + (props.info ? props.info.name: '');
+    })
 
     const getOrderFile = async (e, data) => {
 

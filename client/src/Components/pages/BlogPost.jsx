@@ -8,6 +8,10 @@ export default function (props) {
     const [blog, setBlog] = React.useState();
     const [error, setError] = React.useState(false);
 
+    React.useEffect(() => {
+        document.title = (blog ? blog.title : '') + ' - ' + (props.info ? props.info.name: '');
+    })
+
     if (! blog && ! error) {
 
         request({

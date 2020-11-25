@@ -8,6 +8,10 @@ export default function (props) {
 
     const cart = props.cart || [];
 
+    React.useEffect(() => {
+        document.title = 'My Cart - ' + (props.info ? props.info.name: '');
+    })
+
     return (
         <View style = {{display: 'block', marginTop: 50, width: '100%', marginLeft: 'calc(0% - 0px)'}}>
             <Table style = {{width: '100%'}}>

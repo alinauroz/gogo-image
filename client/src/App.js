@@ -75,6 +75,7 @@ function App() {
     if (! info) {
       request({route: 'info'}).then(d => {
         setInfo(d.data ? d.data[0] || {}: {})
+        document.title = d.data ? d.data[0].name : '...'
       })
     }
 
@@ -104,28 +105,27 @@ function App() {
       <main style = {{marginTop: 0, minHeight: window.innerHeight - 200}}>
         <Switch>
           <Route>
-            <Route path="/" component={() => <Home posts = {posts_} />} exact />
+            <Route path="/" info = {info} component={() => <Home posts = {posts_} />} exact />
 
             {
               pages ? pages.map(page => {
-                return <Route path = {page.url} component = {() => <PageTemplate title = {page.title} content = {page.content} />} />
+                return <Route info = {info} path = {page.url} component = {() => <PageTemplate info = {info} title = {page.title} content = {page.content} />} />
               }): ""
             }
-
-            <Route path="/login" component={Login} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/cart" component={() => <Cart removeFromCart = {removeFromCart} cart = {cart} ></Cart>} />
-            <Route path='/gallery' component={() => <Gallery posts = {posts} />}/>
-            <Route path="/post/:id" component={(props) => <PostView {... props} addToCart = {addToCart} ></PostView>} />
-            <Route path="/blogpost/:id" component={(props) => <BlogPost {... props} ></BlogPost>} />
-            <Route path="/reset-password" component={ResetPassword} />
-            <Route path="/change-password" component={ChangePassword} />
-            <Route path="/checkout" component={() => <Checkout cart = {cart} />} />
-            <Route path = "/faqs" component = {FAQS} />
-            <Route path = "/blogs" component = {Blogs} />
-            <Route path = '/orders' component = {Orders} />
-            <Route path = '/contactus' component = {ContactUs} />
+            <Route path="/login" component={(props) => <Login {... props} info = {info}></Login>} />
+            <Route path="/dashboard" component={(props) => <Dashboard {... props} info = {info} />} />
+            <Route path="/signup" component={(props) => <Signup {...props} info = {info} />} />
+            <Route path="/cart" component={() => <Cart removeFromCart = {removeFromCart} info = {info} cart = {cart} ></Cart>} />
+            <Route path='/gallery' component={() => <Gallery posts = {posts} info = {info} />}/>
+            <Route path="/post/:id" component={(props) => <PostView {... props} info = {info} addToCart = {addToCart} ></PostView>} />
+            <Route path="/blogpost/:id" component={(props) => <BlogPost {... props} info = {info} ></BlogPost>} />
+            <Route path="/reset-password" component={() => <ResetPassword info = {info} />} />
+            <Route path="/change-password" component={() => <ChangePassword info = {info} />} />
+            <Route path="/checkout" component={() => <Checkout cart = {cart} info = {info} />} />
+            <Route path = "/faqs" component = {() => <FAQS info = {info}/>} />
+            <Route path = "/blogs" component = {() => <Blogs info = {info}/>} />
+            <Route path = '/orders' component = {() => <Orders info = {info}/>} />
+            <Route path = '/contactus' component = {() => <ContactUs info = {info} />} />
           </Route>
         </Switch>
       </main>

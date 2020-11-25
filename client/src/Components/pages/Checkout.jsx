@@ -30,6 +30,10 @@ export default function (props) {
     const [couponMessage, setCouponMessage] = React.useState('')
     const [discount, setDiscount] = React.useState(0);
 
+    React.useEffect(() => {
+        document.title = 'Checkout - ' + (props.info ? props.info.name: '');
+    })
+
     const calulatePrice = (type = 0) => {
         let price_ = 0;
 
