@@ -23,8 +23,9 @@ function Unit (props) {
                     if(props.actions) {
                         var actions_ = [];
                         props.actions.map(Action => {
-                            if (Action.condition !== false)
+                            if (props.data[Action.condition] !== false) {
                                 actions_.push(<input style = {{marginBottom: 3}} type = 'button' className = {Action.className} value = {Action.value} onClick = {(e) => {Action.onClick(e, props.data)}} />);
+                            }
                         })
                     }
 

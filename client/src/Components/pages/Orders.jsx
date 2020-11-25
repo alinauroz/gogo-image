@@ -57,7 +57,8 @@ export default function () {
                     data = {data}
                     hidden = {['submission', 'items', '_id', 'updatedAt', 'user', 'complete']}
                     actions = {[
-                        {onClick: getOrderFile, value: '⬇', className : 'btn btn-primary'}
+                        {onClick: getOrderFile, value: '⬇', className : 'btn btn-primary'},
+                        {onClick: getOrderFile, value: '⬇', className : 'btn btn-primary', condition: 'complete'}
                     ]}
                 />
                 : error ? <Text>{error}</Text> : <Text>loading ...</Text>
