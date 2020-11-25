@@ -8,6 +8,10 @@ export default function (props) {
 
     let posts = props.posts;
 
+    React.useEffect(() => {
+        document.title = 'Home - ' + (props.info ? props.info.name || '' : '')
+    })
+
     return (
         <View>
             <Image
