@@ -14,6 +14,7 @@ let user = JSON.parse(localStorage.getItem('user') || '{}');
 export default function (props) {
     const info = props.info || {}
     const [DDView, setDDView] = React.useState('none');
+    const [leftbarView, setLeftbarView] = React.useState('none')
 
     return (
         <div>
@@ -21,6 +22,14 @@ export default function (props) {
                 source = {api + 'images/' + info.logo}
                 style = {{maxHeight: 60, marginLeft: 20}}
             />
+            <View 
+                className = 'mobile-menu'
+            >
+                <p 
+                onClick = {() => setLeftbarView('inline-block')}>
+                ☰
+                </p>
+            </View>
             <div
                 style = {{marginRight: 20, float: 'right', display: 'inline-block', marginTop: 20}}
                 className = 'topbar-desktop-links'
@@ -99,7 +108,7 @@ export default function (props) {
                     }}
                 />
             </View>
-            <View className = 'topbar-mobile-links'>
+            <View className = 'topbar-mobile-links' style = {{display: leftbarView}}>
                 <View className = 'topbar-links-container'>
                     <View className = 'topbar-button'>
                     <Image

@@ -307,12 +307,22 @@ input:focus, button:focus {
   margin-right: 20
 }
 
+.mobile-menu {
+  display: none;
+}
+
 @media only screen and (max-width: 600px) {
   .topbar-desktop-links {
     display: none !important;
   }
+  .mobile-menu {
+    display: inline-block;
+    float: right;
+    font-size: 34px;
+    margin-top: 7.5px;
+    margin-right: 20px;
+  }
   .topbar-mobile-links {
-    display: none;
     position:fixed;
     top: 0px;
     left: 0px;
