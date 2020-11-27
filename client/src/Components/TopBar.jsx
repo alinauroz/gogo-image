@@ -23,6 +23,7 @@ export default function (props) {
             />
             <div
                 style = {{marginRight: 20, float: 'right', display: 'inline-block', marginTop: 20}}
+                className = 'topbar-desktop-links'
             >
                 <Link to = '/' className = 'topbar-links'>Home</Link>
                 <Link to = '/gallery' className = 'topbar-links'>Gallery</Link>
@@ -97,6 +98,48 @@ export default function (props) {
                         setDDView('none')
                     }}
                 />
+            </View>
+            <View className = 'topbar-mobile-links'>
+                <View className = 'topbar-links-container'>
+                    <View className = 'topbar-button'>
+                    <Image
+                        source = {api + 'images/' + info.logo}
+                        style = {{maxHeight: 60, marginLeft: 0}}
+                    />
+                    </View>
+                    <Link to = '/' className = 'topbar-button' style = {{marginTop: 30}}>Home</Link>
+                    <Link to = '/gallery' className = 'topbar-button'>Gallery</Link>
+                    <Link to = '/blogs' className = 'topbar-button'>Blogs</Link>
+                    <Link to = '/faqs' className = 'topbar-button'>FAQs</Link>
+                    {
+                        props.pages ?
+                        props.pages.map(page => {
+                            return <Link to = {page.url} className = 'topbar-button'>{page.title}</Link>
+                        })
+                        : ""
+                    }
+                    {
+                        isLoggedIn ?
+                        (
+                            <>
+                                <Link to = '/dashboard' className = 'topbar-button'>Dashboard</Link>
+                                <Link to = '/orders' className = 'topbar-button'>Orders</Link>
+                            </>
+                        )
+                        : ""
+                    }
+                    <Link to = '/cart' className = 'topbar-button'>
+                        <View style = {{display: 'inline', overflow: 'hidden'}}>
+                            <Text>Cart</Text>
+                            <Text style = {{... styles.cartItemCount, float: 'right', marginRight: 20}}>{props.cartLength}</Text>
+                        </View>
+                    </Link>
+                    {
+                        isLoggedIn ?
+                        <a style = {{cursor: 'pointer'}} onClick = {() => setDDView('block')} className = 'topbar-button'>{user.firstName + ' ' + user.lastName}</a>
+                        : <Link to = '/login' className = 'topbar-button'>Login/Sign Up</Link>
+                    }
+                </View>
             </View>
         </div>
     )
