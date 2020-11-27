@@ -149,6 +149,14 @@ export default function (props) {
                         : <Link to = '/login' className = 'topbar-button'>Login/Sign Up</Link>
                     }
                 </View>
+                <View className = 'topbar-link-action-container'>
+                    <p 
+                        style = {{fontSize: 18, padding: 7.5}}
+                        onClick = {() => setLeftbarView('none')}
+                    >
+                        ✖
+                    </p>
+                </View>
             </View>
         </div>
     )
