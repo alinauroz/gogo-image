@@ -14,9 +14,10 @@ export default function (props) {
 
     return (
         <View style = {{display: 'block', marginTop: 50, width: '100%', marginLeft: 'calc(0% - 0px)'}}>
+            <View style = {{maxWidth: '100%', overflowX: 'auto'}}>
             <Table style = {{width: '100%'}}>
                 <Tr className = 'cart-tr'>
-                    <Td className = 'cart-td cart-th'>
+                    <Td className = 'cart-td cart-th empty-th-td'>
                         <Text style = {{fontWeight: 'bold', fontSize: 13}}></Text>
                     </Td>
                     <Td className = 'cart-td cart-th'>
@@ -40,7 +41,7 @@ export default function (props) {
                     <Td className = 'cart-td cart-th'>
                         <Text style = {{fontWeight: 'bold', fontSize: 13}}>Total</Text>
                     </Td>
-                    <Td className = 'cart-td cart-th'>
+                    <Td className = 'cart-td cart-th empty-th-td'>
                         <Text style = {{fontWeight: 'bold', fontSize: 13}}></Text>
                     </Td>
                 </Tr>
@@ -57,6 +58,10 @@ export default function (props) {
                 })
             }
             </Table>
+            </View>
+            <View className = 'only-mobile' style = {{marginTop: 10, marginLeft: 20, fontSize: 13, fontStyle: 'italic'}}>
+                <Text>Scroll the table to view more</Text>
+            </View>
             <View style = {{display: 'flex', justifyContent: 'flex-end', paddingRight: '10%', paddingTop: 20}}>
                 {
                     (() => {

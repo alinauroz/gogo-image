@@ -5,7 +5,7 @@ import {api} from '../../data/api'
 export default function (props) {
     return (
         <Tr className = 'cart-tr'>
-            <Td className = 'cart-td' style = {{minWidth: '50px'}}></Td>
+            <Td className = 'cart-td empty-th-td' style = {{minWidth: '50px'}}></Td>
             <Td className = 'cart-td' style = {{width: 220, textAlign: 'center'}}>
                     <Image
                         source = {api + 'images/' + props.item.templateThumb}
@@ -83,7 +83,7 @@ export default function (props) {
                     <Text style = {{marginTop: 12.5, fontSize: 14}}>{props.item.price}</Text>
                 </View>
             </Td>
-            <Td className = 'cart-td' style = {{minWidth: '50px'}}></Td>
+            <Td className = 'cart-td empty-th-td' style = {{minWidth: '50px'}}></Td>
         </Tr>
     )
 }
