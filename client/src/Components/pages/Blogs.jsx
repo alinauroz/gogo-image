@@ -42,8 +42,8 @@ export default function (props) {
             if (index !== 0) {
                 blogList.push(
                     <Link to = {'blogpost/' + blog._id} style = {{color: '#333', textDecoration: 'none'}}>
-                    <div style = {{marginTop: 15, verticalAlign: 'top', display: 'inline-block', width: 'calc(33.3333333333% - 10px)', marginRight: index % 3 !== 0 ? 15: 0}}>
-                        <div style = {{width: '100%', height: 350, backgroundImage: blog.image? `url(${blog.image})`: 'url(https://icsb.org/wp-content/uploads/membership-profile-uploads/profile_image_placeholder.png)', backgroundSize: 'cover'}}>
+                    <div className = 'blog-list-item-container' style = {{marginTop: 15, verticalAlign: 'top', display: 'inline-block', width: 'calc(33.3333333333% - 10px)', marginRight: index % 3 !== 0 ? 15: 0}}>
+                        <div className = 'blog-list-image' style = {{width: '100%', height: 350, backgroundImage: blog.image? `url(${blog.image})`: 'url(https://icsb.org/wp-content/uploads/membership-profile-uploads/profile_image_placeholder.png)', backgroundPosition: '50%', backgroundSize: 'cover'}}>
 
                         </div>
                         <p style = {{fontWeight: 'bold', marginTop: 10}}>{blog.title}</p>

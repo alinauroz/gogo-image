@@ -355,6 +355,16 @@ input:focus, button:focus {
     margin-left: 0px;
   }
 
+  .blog-list-item-container {
+    width: calc(50vw - 10px) !important;
+    margin-right: 5px !important;
+    margin: 5px;
+  }
+
+  .blog-list-image {
+    height: 50vw !important;
+  }
+
   .main-blog-info-container {
     padding: 10px;
     width: calc(100% - 20px);
