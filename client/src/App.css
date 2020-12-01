@@ -343,7 +343,22 @@ input:focus, button:focus {
   margin-top: 20px;
 }
 
+.blog-container {
+  width: 80%;
+  margin-left: 10%;
+}
+
 @media only screen and (max-width: 600px) {
+
+  .blog-container {
+    width: 100%;
+    margin-left: 0px;
+  }
+
+  .main-blog-info-container {
+    padding: 10px;
+    width: calc(100% - 20px);
+  }
 
   .home-tagline {
     max-width: 90%;
