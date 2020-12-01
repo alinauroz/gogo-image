@@ -303,7 +303,7 @@ input:focus, button:focus {
 }
 
 .footer-right-container {
-  float: 'right';
+  float: right;
   margin-right: 20
 }
 
@@ -314,6 +314,10 @@ input:focus, button:focus {
 .gallery-item {
   height: 200px;
   margin-top: 5;
+}
+
+.gallery-item-container {
+  margin-top: 5px;
 }
 
 @media only screen and (max-width: 600px) {
