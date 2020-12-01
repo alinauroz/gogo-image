@@ -324,6 +324,17 @@ input:focus, button:focus {
   display: none;
 }
 
+.order-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.note {
+  font-size: 13px;
+  font-style: italic;
+  margin: 10px 20px;
+}
+
 @media only screen and (max-width: 600px) {
 
   .home-gallery-container {
@@ -443,5 +454,10 @@ input:focus, button:focus {
   }
   .only-mobile {
     display: inherit;
+  }
+  .viewer-table {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
   }
 }

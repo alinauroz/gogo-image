@@ -56,17 +56,22 @@ export default function (props) {
             <Text style = {{textAlign: 'center', fontWeight: 'bold', fontSize: 22}}>My Orders</Text>
             <br />
             {
-                data ? 
-                <Viewer 
-                    data = {data}
-                    hidden = {['submission', 'items', '_id', 'updatedAt', 'user', 'complete']}
-                    actions = {[
-                        {onClick: getOrderFile, value: '⬇ Files', className : 'btn btn-primary'},
-                        {onClick: getOrderFile, value: '⬇ Submission', className : 'btn btn-primary', condition: 'complete'}
-                    ]}
-                />
+                data ?
+                (
+                <View className = 'order-container'>
+                    <Viewer 
+                        data = {data}
+                        hidden = {['submission', 'items', '_id', 'updatedAt', 'user', 'complete']}
+                        actions = {[
+                            {onClick: getOrderFile, value: '⬇ Files', className : 'btn btn-primary'},
+                            {onClick: getOrderFile, value: '⬇ Submission', className : 'btn btn-primary', condition: 'complete'}
+                        ]}
+                    />
+                </View>
+                )
                 : error ? <Text>{error}</Text> : <Text>loading ...</Text>
             }
+            <Text className = 'note mobile-only'>Scroll Table to View More</Text>
         </View>
     )
 
