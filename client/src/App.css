@@ -311,7 +311,36 @@ input:focus, button:focus {
   display: none;
 }
 
+.gallery-item {
+  height: 200px;
+  margin-top: 5;
+}
+
 @media only screen and (max-width: 600px) {
+
+  .home-gallery-container {
+    padding: 3px !important;
+  }
+
+  .gallery-item {
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  .gallery-item-container {
+    width: calc(33vw - 5px);
+    height: calc(33vw - 5px);
+    margin: 1px;
+    overflow: hidden;
+  }
+
+  #root {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    overflow-x: hidden;
+  }
+
   .topbar-desktop-links {
     display: none !important;
   }
@@ -381,5 +410,12 @@ input:focus, button:focus {
   .box {
     border: 0px;
     margin-top: 20px;
+  }
+  .page-container {
+    overflow: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
   }
 }

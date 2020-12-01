@@ -116,14 +116,14 @@ export default function (props) {
                         style = {{maxHeight: 60, marginLeft: 0}}
                     />
                     </View>
-                    <Link to = '/' className = 'topbar-button' style = {{marginTop: 30}}>Home</Link>
-                    <Link to = '/gallery' className = 'topbar-button'>Gallery</Link>
-                    <Link to = '/blogs' className = 'topbar-button'>Blogs</Link>
-                    <Link to = '/faqs' className = 'topbar-button'>FAQs</Link>
+                    <Link to = '/' onClick = {() => setLeftbarView('none')}  className = 'topbar-button' style = {{marginTop: 30}}>Home</Link>
+                    <Link to = '/gallery' onClick = {() => setLeftbarView('none')}  className = 'topbar-button'>Gallery</Link>
+                    <Link to = '/blogs' onClick = {() => setLeftbarView('none')}  className = 'topbar-button'>Blogs</Link>
+                    <Link to = '/faqs' onClick = {() => setLeftbarView('none')}  className = 'topbar-button'>FAQs</Link>
                     {
                         props.pages ?
                         props.pages.map(page => {
-                            return <Link to = {page.url} className = 'topbar-button'>{page.title}</Link>
+                            return <Link onClick = {() => setLeftbarView('none')}  to = {page.url} className = 'topbar-button'>{page.title}</Link>
                         })
                         : ""
                     }
@@ -131,13 +131,13 @@ export default function (props) {
                         isLoggedIn ?
                         (
                             <>
-                                <Link to = '/dashboard' className = 'topbar-button'>Dashboard</Link>
-                                <Link to = '/orders' className = 'topbar-button'>Orders</Link>
+                                <Link to = '/dashboard' onClick = {() => setLeftbarView('none')} className = 'topbar-button'>Dashboard</Link>
+                                <Link to = '/orders' onClick = {() => setLeftbarView('none')} className = 'topbar-button'>Orders</Link>
                             </>
                         )
                         : ""
                     }
-                    <Link to = '/cart' className = 'topbar-button'>
+                    <Link to = '/cart' onClick = {() => setLeftbarView('none')}  className = 'topbar-button'>
                         <View style = {{display: 'inline', overflow: 'hidden'}}>
                             <Text>Cart</Text>
                             <Text style = {{... styles.cartItemCount, float: 'right', marginRight: 20}}>{props.cartLength}</Text>
@@ -146,7 +146,7 @@ export default function (props) {
                     {
                         isLoggedIn ?
                         <a style = {{cursor: 'pointer'}} onClick = {() => setDDView('block')} className = 'topbar-button'>{user.firstName + ' ' + user.lastName}</a>
-                        : <Link to = '/login' className = 'topbar-button'>Login/Sign Up</Link>
+                        : <Link onClick = {() => setLeftbarView('none')}  to = '/login' className = 'topbar-button'>Login/Sign Up</Link>
                     }
                 </View>
                 <View className = 'topbar-link-action-container'>
