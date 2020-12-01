@@ -345,6 +345,11 @@ input:focus, button:focus {
 
 @media only screen and (max-width: 600px) {
 
+  .home-tagline {
+    max-width: 90%;
+    height: auto;
+  }
+
   .home-gallery-container {
     padding: 3px !important;
   }

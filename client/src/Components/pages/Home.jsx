@@ -19,7 +19,7 @@ export default function (props) {
                 style = {{width: "100%"}}
             />
             <View style = {{textAlign: 'center'}}>
-                <Image source = {Tagline} style = {{height: 40, margin: '20px 0px'}} />
+                <Image source = {Tagline} className = 'home-tagline' style = {{height: 40, margin: '20px 0px'}} />
                 <Text style = {{maxWidth: '80%', marginLeft: '10%'}}>
                     Perfect for Senior Photos, Weddings, Retical, Valentine, Holiday Greetings, Birthdays, Special Occasions & more. Spice up with your photos now.
                 </Text>
