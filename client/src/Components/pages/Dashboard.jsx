@@ -83,7 +83,7 @@ export default function (props) {
         ]
 
         return (
-            <View className = 'box' style = {{width: 800, marginLeft: 'calc(50% - 410px)', border: 0}}>
+            <View className = 'box' className = 'dashboard-container'>
                 <div style = {{marginBottom: 10}}>
                 <h1 style = {{display: 'inline-block', marginRight: 5, fontSize: 28}}>
                     My Account / Profile

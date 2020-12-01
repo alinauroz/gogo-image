@@ -335,10 +335,24 @@ input:focus, button:focus {
   margin: 10px 20px;
 }
 
+.dashboard-container {
+  width: 800px;
+  margin-left: calc(50% - 410px);
+  border: 0;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
 @media only screen and (max-width: 600px) {
 
   .home-gallery-container {
     padding: 3px !important;
+  }
+
+  .dashboard-container {
+    width: calc(100% - 20px);
+    margin-left: 0px;
+    padding: 10px;
   }
 
   .gallery-container {
