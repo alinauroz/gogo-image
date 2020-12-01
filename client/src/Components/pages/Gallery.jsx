@@ -13,13 +13,13 @@ export default function (props) {
 
     return (
         <>
-            <div style = {{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', background: '#333333aa', marginTop: 20, minHeight: 20, paddingLeft: '5%', paddingRight: '5%', paddingBottom: 10}}>
+            <div className = 'gallery-container' style = {{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', background: '#333333aa', marginTop: 20, minHeight: 20, paddingLeft: '5%', paddingRight: '5%', paddingBottom: 10}}>
             {
                 posts ?
                 posts.map(post => {
                     return (
                         <Link to = {'/post/' + post._id}>
-                            <img src = {api + 'images/' +post.items[0].thumb} style = {{height: 200, marginTop: 5}} />
+                            <div className = 'gallery-item-container'><img src = {api + 'images/' +post.items[0].thumb} className = 'gallery-item' /></div>
                         </Link>
                     )
                 })

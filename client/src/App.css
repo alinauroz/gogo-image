@@ -326,6 +326,10 @@ input:focus, button:focus {
     padding: 3px !important;
   }
 
+  .gallery-container {
+    padding: 3px !important;
+  }
+
   .gallery-item {
     min-width: 100%;
     min-height: 100%;
