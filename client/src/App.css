@@ -426,4 +426,12 @@ input:focus, button:focus {
   body {
     overflow-x: hidden;
   }
+
+  .navbox {
+    border: 0px;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0px;
+    box-shadow: 0px 0px 0px;
+  }
 }
