@@ -61,20 +61,20 @@ export default function (props) {
                 : ''}
             </View>
             <View style = {{display: 'inline-block', marginTop: 20, marginLeft: 20}}>
-                <Link to = '/faqs' className = 'topbar-links' style = {{color: 'white'}}>FAQ</Link>
-                <Link to = '/contactus' className = 'topbar-links' style = {{color: 'white'}}>Contact</Link>
+                <Link to = '/faqs' className = 'topbar-links topbar-button' style = {{color: 'white'}}>FAQ</Link>
+                <Link to = '/contactus' className = 'topbar-links topbar-button' style = {{color: 'white'}}>Contact</Link>
                 {
                     props.pages ?
                     props.pages.map(page => {
-                        return <Link to = {page.url} style = {{color: 'white'}} className = 'topbar-links'>{page.title}</Link>
+                        return <Link to = {page.url} style = {{color: 'white'}} className = 'topbar-links topbar-button'>{page.title}</Link>
                     })
                     : ""
                 }
             </View>
-            <View style = {{float: 'right', marginRight: 20}}>
-                <p className = 'topbar-links' style = {{color: 'white', display: 'inline-block'}}>COPYRIGHT 2019</p>
-                <p className = 'topbar-links' style = {{color: 'white', marginLeft: 10, display: 'inline-block'}}>{info.domain}</p>
-                <p className = 'topbar-links' style = {{color: 'white', marginLeft: 10, display: 'inline-block'}}>ALL RIGHTS RESERVED</p>
+            <View style = {{}} className = 'footer-right-container'>
+                <p className = 'topbar-links topbar-button' style = {{color: 'white',marginLeft: 20, display: 'inline-block'}}>COPYRIGHT 2019</p>
+                <p className = 'topbar-links topbar-button' style = {{color: 'white', marginLeft: 20, display: 'inline-block'}}>{info.domain}</p>
+                <p className = 'topbar-links topbar-button' style = {{color: 'white', marginLeft: 20, display: 'inline-block'}}>ALL RIGHTS RESERVED</p>
             </View>
         </footer>
     )

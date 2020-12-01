@@ -14,6 +14,7 @@ let user = JSON.parse(localStorage.getItem('user') || '{}');
 export default function (props) {
     const info = props.info || {}
     const [DDView, setDDView] = React.useState('none');
+    const [leftbarView, setLeftbarView] = React.useState('none')
 
     return (
         <div>
@@ -21,8 +22,17 @@ export default function (props) {
                 source = {api + 'images/' + info.logo}
                 style = {{maxHeight: 60, marginLeft: 20}}
             />
+            <View 
+                className = 'mobile-menu'
+            >
+                <p 
+                onClick = {() => setLeftbarView('inline-block')}>
+                ☰
+                </p>
+            </View>
             <div
                 style = {{marginRight: 20, float: 'right', display: 'inline-block', marginTop: 20}}
+                className = 'topbar-desktop-links'
             >
                 <Link to = '/' className = 'topbar-links'>Home</Link>
                 <Link to = '/gallery' className = 'topbar-links'>Gallery</Link>
@@ -97,6 +107,56 @@ export default function (props) {
                         setDDView('none')
                     }}
                 />
+            </View>
+            <View className = 'topbar-mobile-links' style = {{display: leftbarView}}>
+                <View className = 'topbar-links-container'>
+                    <View className = 'topbar-button'>
+                    <Image
+                        source = {api + 'images/' + info.logo}
+                        style = {{maxHeight: 60, marginLeft: 0}}
+                    />
+                    </View>
+                    <Link to = '/' onClick = {() => setLeftbarView('none')}  className = 'topbar-button' style = {{marginTop: 30}}>Home</Link>
+                    <Link to = '/gallery' onClick = {() => setLeftbarView('none')}  className = 'topbar-button'>Gallery</Link>
+                    <Link to = '/blogs' onClick = {() => setLeftbarView('none')}  className = 'topbar-button'>Blogs</Link>
+                    <Link to = '/faqs' onClick = {() => setLeftbarView('none')}  className = 'topbar-button'>FAQs</Link>
+                    {
+                        props.pages ?
+                        props.pages.map(page => {
+                            return <Link onClick = {() => setLeftbarView('none')}  to = {page.url} className = 'topbar-button'>{page.title}</Link>
+                        })
+                        : ""
+                    }
+                    {
+                        isLoggedIn ?
+                        (
+                            <>
+                                <Link to = '/dashboard' onClick = {() => setLeftbarView('none')} className = 'topbar-button'>Dashboard</Link>
+                                <Link to = '/orders' onClick = {() => setLeftbarView('none')} className = 'topbar-button'>Orders</Link>
+                            </>
+                        )
+                        : ""
+                    }
+                    <Link to = '/cart' onClick = {() => setLeftbarView('none')}  className = 'topbar-button'>
+                        <View style = {{display: 'inline', overflow: 'hidden'}}>
+                            <Text>Cart</Text>
+                            <Text style = {{... styles.cartItemCount, float: 'right', marginRight: 20}}>{props.cartLength}</Text>
+                        </View>
+                    </Link>
+                    {
+                        isLoggedIn ?
+                        <a style = {{cursor: 'pointer'}} onClick = {() => setDDView('block')} className = 'topbar-button'>{user.firstName + ' ' + user.lastName}</a>
+                        : <Link onClick = {() => setLeftbarView('none')}  to = '/login' className = 'topbar-button'>Login/Sign Up</Link>
+                    }
+                </View>
+                <View className = 'topbar-link-action-container'>
+                    <p 
+                        style = {{fontSize: 18, padding: 7.5}}
+                        onClick = {() => setLeftbarView('none')}
+                    >
+                        ✖
+                    </p>
+                </View>
             </View>
         </div>
     )
