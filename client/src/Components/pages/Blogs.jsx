@@ -27,11 +27,13 @@ export default function (props) {
         html.push(
             <Link to = {'blogpost/' + blogs[0]._id} style = {{color: '#333', textDecoration: 'none'}}>
             <div style = {{color: '#333', textDecoration: 'none'}}>
-                <div style = {{width: '100%', height: 350, backgroundImage: blogs[0].image? `url(${blogs[0].image})`: 'url(https://icsb.org/wp-content/uploads/membership-profile-uploads/profile_image_placeholder.png)', backgroundSize: 'cover'}}>
+                <div style = {{width: '100%', height: 350, backgroundImage: blogs[0].image? `url(${blogs[0].image})`: 'url(https://icsb.org/wp-content/uploads/membership-profile-uploads/profile_image_placeholder.png)', backgroundSize: 'cover', backgroundPosition: '50%'}}>
 
                 </div>
-                <p style = {{fontWeight: 'bold', marginTop: 10}}>{blogs[0].title}</p>
-                <p>{ReactHtmlParser(ReactHtmlParser( blogs[0].content.substr(0, 500)))}</p>
+                <div className = 'main-blog-info-container'>
+                    <p style = {{fontWeight: 'bold', marginTop: 10}}>{blogs[0].title}</p>
+                    <p>{ReactHtmlParser(ReactHtmlParser( blogs[0].content.substr(0, 500)))}</p>
+                </div>
             </div>
             </Link>
         )
@@ -40,8 +42,8 @@ export default function (props) {
             if (index !== 0) {
                 blogList.push(
                     <Link to = {'blogpost/' + blog._id} style = {{color: '#333', textDecoration: 'none'}}>
-                    <div style = {{marginTop: 15, verticalAlign: 'top', display: 'inline-block', width: 'calc(33.3333333333% - 10px)', marginRight: index % 3 !== 0 ? 15: 0}}>
-                        <div style = {{width: '100%', height: 350, backgroundImage: blog.image? `url(${blog.image})`: 'url(https://icsb.org/wp-content/uploads/membership-profile-uploads/profile_image_placeholder.png)', backgroundSize: 'cover'}}>
+                    <div className = 'blog-list-item-container' style = {{marginTop: 15, verticalAlign: 'top', display: 'inline-block', width: 'calc(33.3333333333% - 10px)', marginRight: index % 3 !== 0 ? 15: 0}}>
+                        <div className = 'blog-list-image' style = {{width: '100%', height: 350, backgroundImage: blog.image? `url(${blog.image})`: 'url(https://icsb.org/wp-content/uploads/membership-profile-uploads/profile_image_placeholder.png)', backgroundPosition: '50%', backgroundSize: 'cover'}}>
 
                         </div>
                         <p style = {{fontWeight: 'bold', marginTop: 10}}>{blog.title}</p>
@@ -57,6 +59,6 @@ export default function (props) {
         return <>No Blog</>
     }
 
-    return <div style = {{width: '80%', marginLeft: '10%', minWidth: 450}}>{html}<div style = {{margin:'20px 0px'}}>{blogList}</div></div>
+    return <div className = 'blog-container' style = {{}}>{html}<div style = {{margin:'20px 0px'}}>{blogList}</div></div>
 
 }

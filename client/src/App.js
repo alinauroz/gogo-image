@@ -122,10 +122,10 @@ function App() {
             <Route path="/reset-password" component={() => <ResetPassword info = {info} />} />
             <Route path="/change-password" component={() => <ChangePassword info = {info} />} />
             <Route path="/checkout" component={() => <Checkout cart = {cart} info = {info} />} />
-            <Route path = "/faqs" component = {() => <FAQS info = {info}/>} />
-            <Route path = "/blogs" component = {() => <Blogs info = {info}/>} />
-            <Route path = '/orders' component = {() => <Orders info = {info}/>} />
-            <Route path = '/contactus' component = {() => <ContactUs info = {info} />} />
+            <Route path="/faqs" component = {() => <FAQS info = {info}/>} />
+            <Route path="/blogs" component = {() => <Blogs info = {info}/>} />
+            <Route path='/orders' component = {() => <Orders info = {info}/>} />
+            <Route path='/contactus' component = {() => <ContactUs info = {info} />} />
           </Route>
         </Switch>
       </main>
