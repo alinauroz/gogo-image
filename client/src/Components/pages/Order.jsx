@@ -32,6 +32,7 @@ export default function (props) {
                 <>
                     <OrderViewer 
                         items = {data.items}
+                        price = {data.price}
                     />
                 </>
                 : error ? <Text style = {{textAlign: 'center', marginTop: 20}}>{error}</Text> : <Text style = {{textAlign: 'center', marginTop: 20}}>Loading ...</Text>

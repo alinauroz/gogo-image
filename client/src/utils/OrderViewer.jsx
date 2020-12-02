@@ -69,19 +69,9 @@ export default function (props) {
                         items.map(item => {
                             totalPrice += item.price;
                         })
-                        return <b>Total: {totalPrice}</b>
+                        return <b>Total: <sup>$</sup>{props.price}</b>
                     })()
                 }
-            </View>
-            <View style = {{display: 'flex', justifyContent: 'flex-end', paddingRight: '10%', paddingTop: 20}}>
-                <Link to = '/checkout'>
-                    <input 
-                        type = 'button'
-                        value = 'Next'
-                        className = 'action-button'
-                        style = {{width: 100}}
-                    />
-                </Link>
             </View>
         </View>
     )
