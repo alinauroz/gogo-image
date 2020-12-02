@@ -8,8 +8,8 @@ export default function (props) {
     const [data, setData] = React.useState();
 
     const EditAction = (data, e) => {
-        props.setBase(data);
-        props.setScreen('Home');
+        props.setBase(data, 'iscData');
+        props.setScreen('EditPage');
     }
 
     const deletePage = async (e, data) => {
