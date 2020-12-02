@@ -10,6 +10,7 @@ export default function (props) {
     const [title, setTitle] = React.useState("");
     const [url, setURL] = React.useState("");
     const [toPreview, setToPreview] = React.useState();
+    const [message, setMessage] = React.useState('')
 
     React.useEffect(() => {
 
@@ -23,7 +24,7 @@ export default function (props) {
             title, props.base.isc.page.title,
             html, props.base.isc.page.content)
 
-        if (props.base.isc.page)
+        if (props.base.isc.page) {
             res = await request({
                 route: 'pages/',
                 params: props.base.isc.page._id,
@@ -36,7 +37,15 @@ export default function (props) {
                 }
             })
         
-        console.log(res)
+            if (res.status == 'success') {
+                setMessage('Updated Successfully')
+            }
+            else if (res.error.statusCode == 401)
+                setMessage('Login as admin to conitnue')
+            else
+                setMessage('Some error occurred')
+        }
+        else setMessage('Unable to get required information. Go to the MANGE Content page and edit again')
 
     }
 
@@ -85,6 +94,9 @@ export default function (props) {
                 }}
                 addon = '/'
             />
+            <div style = {{margin: '10px 0px'}}>
+                {message}
+            </div>
             <div style = {{marginTop: 15}}>
                 <input 
                     type = 'button'
