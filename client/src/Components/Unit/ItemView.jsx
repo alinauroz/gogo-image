@@ -136,10 +136,17 @@ export default function (props) {
                 <Image source = {props.url} className = 'itemview-image' />
             </View>
             <View className = 'itemview-input-group' style = {{color: 'white'}}>
-                <Text>{capitalize(props.type)}</Text>
                 <View>
                     <Text style = {{marginTop: 10, fontSize: 13}} className = 'itemviewer-sub-container'>
                         <table>
+                            <tr>
+                                <td>Size</td>
+                                <td>{props.item ? props.item.size : ''}</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>{capitalize(props.type)}</td>
+                            </tr>
                             <tr>
                                 <td>
                                     <span>
