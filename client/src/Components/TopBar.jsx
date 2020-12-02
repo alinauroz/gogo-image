@@ -148,12 +148,23 @@ export default function (props) {
                         (
                         <>
                             <a style = {{cursor: 'pointer'}} className = 'topbar-button'>{user.firstName + ' ' + user.lastName}</a>
+                            
+                            <Link to = '/change-password'>
+                                <input
+                                    style = {{textDecoration: 'none', background: 'white'}}
+                                    type = 'button'
+                                    value = 'Security'
+                                    className = 'topbar-button'
+                                />
+                            </Link>
+
                             <input 
                                 type = 'button'
                                 value = 'Logout'
                                 className = 'topbar-button'
                                 style = {{background: 'white'}}
                                 onClick = {() => {
+                                    setLeftbarView('none');
                                     localStorage.setItem('user', '');
                                     localStorage.setItem('token', '');
                                     document.cookie = '';
