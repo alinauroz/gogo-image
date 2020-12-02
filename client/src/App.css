@@ -378,6 +378,11 @@ input:focus, button:focus {
   width: 25px;
   height: 30px;
   border-right: 0px;
+  cursor: pointer;
+}
+
+.pager-button:hover {
+  background-color: #33333311;
 }
 
 .pager-prev-button {
