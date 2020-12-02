@@ -381,8 +381,18 @@ input:focus, button:focus {
   cursor: pointer;
 }
 
+.pager-selected {
+  background-color: black;
+  color: white;
+}
+
 .pager-button:hover {
   background-color: #33333311;
+}
+
+.pager-selected:hover {
+  background-color: black;
+  color: white;
 }
 
 .pager-prev-button {
