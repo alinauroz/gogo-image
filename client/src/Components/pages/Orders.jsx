@@ -10,7 +10,7 @@ export default function (props) {
 
     const [data, setData] = React.useState();
     const [error, setError] = React.useState('');
-    const [pageSize, setPageSize] = React.useState(2);
+    const [pageSize, setPageSize] = React.useState(1);
     const [startIndex, setStartIndex] = React.useState(0);
 
     const setPage = (i_) => {
@@ -21,6 +21,7 @@ export default function (props) {
 
     React.useEffect(() => {
         document.title = 'My Orders - ' + (props.info ? props.info.name: '');
+        console.log("Order", pageSize, startIndex)
     })
 
     const getOrderFile = async (e, data) => {
@@ -71,6 +72,9 @@ export default function (props) {
                 data ?
                 (
                 <View className = 'order-container'>
+                    <View className = 'order-pager-container' style = {{textAlign: 'left', marginBottom: 20}}>
+                        Show <input type = 'number' onChange = {(e) => setPageSize(Number(e.target.value))} value = {pageSize} className = 'field-input' style = {{width: 40, textAlign: 'center'}}/> entries
+                    </View>
                     <Viewer 
                         data = {data.slice(startIndex, pageSize + startIndex)}
                         hidden = {['submission', 'createdAt', 'items', '_id', 'updatedAt', 'user', 'complete', 'nextDayService']}
@@ -81,7 +85,7 @@ export default function (props) {
                     />
                     <View className = 'order-pager-container'>
                         <Pager 
-                            count = {2}
+                            count = {Math.ceil(data.length / pageSize)}
                             setPage = {setPage}
                         />
                     </View>
