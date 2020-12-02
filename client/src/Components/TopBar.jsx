@@ -145,8 +145,8 @@ export default function (props) {
                     </Link>
                     {
                         isLoggedIn ?
-                        <a style = {{cursor: 'pointer'}} onClick = {() => setDDView('block')} className = 'topbar-button'>{user.firstName + ' ' + user.lastName}</a>
-                        : <Link onClick = {() => setLeftbarView('none')}  to = '/login' className = 'topbar-button'>Login/Sign Up</Link>
+                        <a style = {{cursor: 'pointer'}} className = 'topbar-button'>{user.firstName + ' ' + user.lastName}</a>
+                        : <><Link onClick = {() => setLeftbarView('none')}  to = '/login' className = 'topbar-button'>Login</Link><Link onClick = {() => setLeftbarView('none')}  to = '/signup' className = 'topbar-button'>Sign Up</Link></>
                     }
                 </View>
                 <View className = 'topbar-link-action-container'>
