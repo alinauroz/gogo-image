@@ -518,4 +518,8 @@ input:focus, button:focus {
     max-height: 70%;
     max-width: 100%;
   }
+  .itemview-input-group {
+    width: calc(94% - 20px);
+    margin-left: 0px;
+  }
 }
