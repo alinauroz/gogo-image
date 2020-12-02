@@ -17,7 +17,16 @@ function Unit (props) {
                     //}
 
                     props.heads.map(head => {
-                        html.push(<td>{String(props.data[head])}</td>);
+                        //html.push(<td>{String(props.data[head])}</td>);
+                        if (typeof props.data[head] === 'string' || typeof props.data[head] === 'number')
+                            html.push(<td>{(props.data[head])}</td>);
+                        else {
+                            let val = typeof props.data[head];
+                            if (val.type == 'link') {
+                                html.push(<td><a href = '#abc'>{(props.data[head])}</a></td>);
+                            }
+                        }
+
                     })
                     
                     if(props.actions) {
