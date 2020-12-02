@@ -4,13 +4,20 @@ import Viewer from '../../utils/Viewer'
 import {request} from '../../utils/AppRequest'
 import {api} from '../../data/api'
 import { conciseDate, addDays } from '../../utils/Date'
+import Pager from '../Pager'
 
 export default function (props) {
 
     const [data, setData] = React.useState();
     const [error, setError] = React.useState('');
-    const [pageSize, setPageSize] = React.useState(1);
+    const [pageSize, setPageSize] = React.useState(2);
     const [startIndex, setStartIndex] = React.useState(0);
+
+    const setPage = (i_) => {
+        setStartIndex(--i_ * pageSize)
+        console.log(i_ * pageSize, pageSize)
+        //alert(i_ * pageSize)
+    }
 
     React.useEffect(() => {
         document.title = 'My Orders - ' + (props.info ? props.info.name: '');
@@ -65,13 +72,19 @@ export default function (props) {
                 (
                 <View className = 'order-container'>
                     <Viewer 
-                        data = {data.splice(startIndex, pageSize)}
+                        data = {data.slice(startIndex, pageSize + startIndex)}
                         hidden = {['submission', 'createdAt', 'items', '_id', 'updatedAt', 'user', 'complete', 'nextDayService']}
                         actions = {[
                             {onClick: getOrderFile, value: '⬇ Files', className : 'btn btn-primary'},
                             {onClick: getOrderFile, value: '⬇ Submission', className : 'btn btn-primary', condition: 'complete'}
                         ]}
                     />
+                    <View className = 'order-pager-container'>
+                        <Pager 
+                            count = {2}
+                            setPage = {setPage}
+                        />
+                    </View>
                 </View>
                 )
                 : error ? <Text>{error}</Text> : <Text>loading ...</Text>
