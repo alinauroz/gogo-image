@@ -73,7 +73,7 @@ export default function (props) {
                 (
                 <View className = 'order-container'>
                     <View className = 'order-pager-container' style = {{textAlign: 'left', marginBottom: 20}}>
-                        Show <input type = 'number' onChange = {(e) => setPageSize(Number(e.target.value))} value = {pageSize} className = 'field-input' style = {{width: 40, textAlign: 'center'}}/> entries
+                        Show <input type = 'number' min={1} onChange = {(e) => setPageSize(Number(e.target.value))} value = {pageSize} className = 'field-input' style = {{width: 40, textAlign: 'center'}}/> entries
                     </View>
                     <Viewer 
                         data = {data.slice(startIndex, pageSize + startIndex)}
@@ -84,6 +84,9 @@ export default function (props) {
                         ]}
                     />
                     <View className = 'order-pager-container'>
+                        <span style = {{float: 'left'}}>
+                            Showing {startIndex + 1} to {(startIndex + 1) * pageSize < data.length ? (startIndex + 1) * pageSize: data.length} of {data.length} entries
+                        </span>
                         <Pager 
                             count = {Math.ceil(data.length / pageSize)}
                             setPage = {setPage}
