@@ -7,9 +7,24 @@ export default function (props) {
     const setPage = props.setPage || null;
     const [selected, setSelected] = React.useState(1);
 
+    const setContagiousPage = (toAdd) => {
+        if (toAdd > 0) {
+            setSelected(selected + 1);
+            setPage(selected + 1);
+        }
+        else {
+            setSelected(selected - 1);
+            setPage(selected - 1);
+        }
+    }
+
     return (
         <>
-            <button className = 'pager-button pager-prev-button'>
+            <button 
+                className = 'pager-button pager-prev-button'
+                disabled = {selected == 1}
+                onClick = {() => setContagiousPage(-1)}
+            >
                 Previous
             </button>
             {
@@ -29,7 +44,11 @@ export default function (props) {
                     return html;
                 })()
             }
-            <button className = 'pager-button pager-next-button'>
+            <button 
+                className = 'pager-button pager-next-button'
+                disabled = {selected == count}
+                onClick = {() => setContagiousPage(1)}
+            >
                 Next
             </button>
         </>
