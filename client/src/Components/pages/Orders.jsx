@@ -73,7 +73,7 @@ export default function (props) {
                 (
                 <View className = 'order-container'>
                     <View className = 'order-pager-container' style = {{textAlign: 'left', marginBottom: 20}}>
-                        Show <input type = 'number' min={1} onChange = {(e) => setPageSize(Number(e.target.value))} value = {pageSize} className = 'field-input' style = {{width: 40, textAlign: 'center'}}/> entries
+                        Show <input type = 'number' min={1} onChange = {(e) => e.target.value ? setPageSize(Number(e.target.value)): setPageSize(1)} value = {pageSize} className = 'field-input' style = {{width: 40, textAlign: 'center'}}/> entries
                     </View>
                     <Viewer 
                         data = {data.slice(startIndex, pageSize + startIndex)}
