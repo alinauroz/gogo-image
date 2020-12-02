@@ -9,6 +9,9 @@ export default function (props) {
 
     return (
         <>
+            <button className = 'pager-button pager-prev-button'>
+                Previous
+            </button>
             {
                 (() => {
                     let html = []
@@ -22,6 +25,9 @@ export default function (props) {
                     return html;
                 })()
             }
+            <button className = 'pager-button pager-next-button'>
+                Next
+            </button>
         </>
     )
 

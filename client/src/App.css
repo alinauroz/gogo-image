@@ -380,6 +380,16 @@ input:focus, button:focus {
   border-right: 0px;
 }
 
+.pager-prev-button {
+  width: 70px;
+  border-radius: 3px 0px 0px 3px;
+}
+.pager-next-button {
+  width: 50px;
+  border-radius: 0px 3px 3px 0px;
+  border-right: 1px solid lightgrey;
+}
+
 @media only screen and (max-width: 600px) {
 
   .blog-container {
