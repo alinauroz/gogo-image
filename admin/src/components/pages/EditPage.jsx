@@ -9,11 +9,14 @@ export default function (props) {
     const [toPreview, setToPreview] = React.useState();
 
     React.useEffect(() => {
-        alert("ABC")
+
     })
 
     return (
         <div class = 'card'>
+            {
+                console.log(">>", props.base.iscData)
+            }
             <Field 
                 name = 'title'
                 placeholder = 'Title'
