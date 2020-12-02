@@ -7,7 +7,7 @@ export default function (props) {
 
     const [data, setData] = React.useState();
 
-    const EditAction = (data) => {
+    const EditAction = (data, e) => {
         props.setBase(data);
         props.setScreen('Home');
     }
@@ -46,7 +46,7 @@ export default function (props) {
                     data = {data.data}
                     hidden = {['_id']}
                     actions = {[
-                        //{onClick: EditAction, value: 'Edit', className : 'btn btn-primary'},
+                        {onClick: EditAction, value: 'Edit', className : 'btn btn-primary'},
                         {onClick: deletePage, value: 'Delete', className : 'btn btn-danger', break: true}
                     ]}
                 />
