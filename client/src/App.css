@@ -265,8 +265,8 @@ input:focus, button:focus {
 }
 
 .viewer-table {
-  margin-left: 10%;
-  width: 80%;
+  margin-left: 7.5%;
+  width: 85%;
   overflow-x: auto;
 }
 
@@ -276,11 +276,13 @@ input:focus, button:focus {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 10px;
+  padding-right: 10px;
 }
 
 .viewer-table td {
   padding-left: 5px;
   padding-right: 5px;
+  text-align: center;
 }
 
 .viewer-table tr:nth-child(even) {

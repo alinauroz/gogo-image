@@ -64,7 +64,7 @@ export default function (props) {
                 <View className = 'order-container'>
                     <Viewer 
                         data = {data}
-                        hidden = {['submission', 'items', '_id', 'updatedAt', 'user', 'complete', 'nextDayService']}
+                        hidden = {['submission', 'createdAt', 'items', '_id', 'updatedAt', 'user', 'complete', 'nextDayService']}
                         actions = {[
                             {onClick: getOrderFile, value: '⬇ Files', className : 'btn btn-primary'},
                             {onClick: getOrderFile, value: '⬇ Submission', className : 'btn btn-primary', condition: 'complete'}
