@@ -53,7 +53,7 @@ export default function (props) {
                     order.date = conciseDate(order.createdAt)
                     order.fullfillment = conciseDate(addDays(order.createdAt, order.nextDayService ? 1: 7))
                     order.Coupon = order.coupon;
-                    order.Price = '$' + order.price;
+                    order.Price = '$' + (order.price || 0);
                 })
 
                 setData(res.data)
