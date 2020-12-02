@@ -26,10 +26,16 @@ import SubmitOrder from './components/pages/SubmitOrder'
 export default function () {
 
   const [screen, setScreen] = React.useState('EditPage');
-  const [base, setBase] = React.useState({});
+  const [base, setBase] = React.useState({isc: {}});
 
-  const setAppBase = (data, key = screen) => {
-    setBase({... base, [key]: data});
+  const setAppBase = (data, key, isc) => {
+    if (isc) {
+      base.isc[key] = data;
+    }
+    else {
+      key = key ? key: screen;
+      setBase({... base, [key]: data});
+    }
   }
 
   useEffect(() => {

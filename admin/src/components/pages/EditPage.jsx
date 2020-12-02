@@ -14,13 +14,11 @@ export default function (props) {
 
     return (
         <div class = 'card'>
-            {
-                console.log(">>", props.base.iscData)
-            }
             <Field 
                 name = 'title'
                 placeholder = 'Title'
                 title = 'Title'
+                value = {props.base.isc.page ? props.base.isc.page.title : ''}
 
             />
             <br />
@@ -29,9 +27,14 @@ export default function (props) {
             </span>
             <CKEditor 
                 activeClass="editor" 
-                content={html}
+                content={props.base.isc.page ? props.base.isc.page.content : html}
                 events = {{
-                    change: (e) => setHtml(e.editor.getData()) 
+                    change: (e) => {
+                        if (props.base.isc.page) {
+                            props.base.isc.page.content = e.editor.getData()
+                        }
+                        setHtml(e.editor.getData())
+                    }
                 }}
                 style = {{marginTop: 10}}
             />
@@ -40,6 +43,7 @@ export default function (props) {
                 title = 'URL'
                 name = 'url'
                 placeholder = 'URL'
+                value = {props.base.isc.page ? props.base.isc.page.url : ''}
                 addon = '/'
             />
             <div style = {{marginTop: 15}}>
@@ -51,7 +55,7 @@ export default function (props) {
                 />
                 <input 
                     type = 'button'
-                    value = 'Save'
+                    value = 'Update'
                     className = 'btn btn-primary'
                     style = {{marginLeft: 10}}
                 />

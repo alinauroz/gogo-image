@@ -8,7 +8,7 @@ export default function (props) {
     const [data, setData] = React.useState();
 
     const EditAction = (e, data) => {
-        props.setBase(data, 'iscData');
+        props.setBase(data, 'page', true);
         props.setScreen('EditPage');
     }
 
