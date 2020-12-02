@@ -35,12 +35,12 @@ export default function (props) {
                     <Td className = 'cart-td cart-th'>
                         <Text style = {{fontWeight: 'bold', fontSize: 13}}>Superimpose # 2</Text>
                     </Td>
-                    <Td className = 'cart-td cart-th'>
+                    {/*<Td className = 'cart-td cart-th'>
                         <Text style = {{fontWeight: 'bold', fontSize: 13}}>Remove</Text>
                     </Td>
                     <Td className = 'cart-td cart-th'>
                         <Text style = {{fontWeight: 'bold', fontSize: 13}}>Total</Text>
-                    </Td>
+                    </Td>*/}
                     <Td className = 'cart-td cart-th empty-th-td'>
                         <Text style = {{fontWeight: 'bold', fontSize: 13}}></Text>
                     </Td>

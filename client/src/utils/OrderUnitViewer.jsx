@@ -68,7 +68,7 @@ export default function (props) {
                 </View>
                 </View>
             </Td>
-            <Td className = 'cart-td'>
+            {/*`<Td className = 'cart-td'>
                 <View>
                     <input
                         type = 'button'
@@ -82,7 +82,7 @@ export default function (props) {
                 <View>
                     <Text style = {{marginTop: 12.5, fontSize: 14}}>{props.item.price}</Text>
                 </View>
-            </Td>
+                </Td>`*/}
             <Td className = 'cart-td empty-th-td' style = {{minWidth: '50px'}}></Td>
         </Tr>
     )
