@@ -40,6 +40,7 @@ export default function (props) {
 
                 res.data.map(order => {
                     order.status = order.complete ? 'Completed' : 'In Progress'
+                    order.date = new Date();
                 })
 
                 setData(res.data)
@@ -61,7 +62,7 @@ export default function (props) {
                 <View className = 'order-container'>
                     <Viewer 
                         data = {data}
-                        hidden = {['submission', 'items', '_id', 'updatedAt', 'user', 'complete']}
+                        hidden = {['submission', 'items', '_id', 'updatedAt', 'user', 'complete', 'nextDayService']}
                         actions = {[
                             {onClick: getOrderFile, value: '⬇ Files', className : 'btn btn-primary'},
                             {onClick: getOrderFile, value: '⬇ Submission', className : 'btn btn-primary', condition: 'complete'}
