@@ -9,6 +9,8 @@ export default function (props) {
 
     const [data, setData] = React.useState();
     const [error, setError] = React.useState('');
+    const [pageSize, setPageSize] = React.useState(1);
+    const [startIndex, setStartIndex] = React.useState(0);
 
     React.useEffect(() => {
         document.title = 'My Orders - ' + (props.info ? props.info.name: '');
@@ -63,7 +65,7 @@ export default function (props) {
                 (
                 <View className = 'order-container'>
                     <Viewer 
-                        data = {data}
+                        data = {data.splice(startIndex, pageSize)}
                         hidden = {['submission', 'createdAt', 'items', '_id', 'updatedAt', 'user', 'complete', 'nextDayService']}
                         actions = {[
                             {onClick: getOrderFile, value: '⬇ Files', className : 'btn btn-primary'},
