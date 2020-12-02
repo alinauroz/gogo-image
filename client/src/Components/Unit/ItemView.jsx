@@ -144,6 +144,10 @@ export default function (props) {
                                 <td>{props.item ? props.item.size : ''}</td>
                             </tr>
                             <tr>
+                                <td>Type</td>
+                                <td>{capitalize(props.type)}</td>
+                            </tr>
+                            <tr>
                                 <td>
                                     <span>
                                         <label for = {`item-retouch-${props.type}`} >Retouch</label>
