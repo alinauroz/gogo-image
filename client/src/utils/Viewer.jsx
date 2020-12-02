@@ -21,10 +21,11 @@ function Unit (props) {
                         if (typeof props.data[head] === 'string' || typeof props.data[head] === 'number')
                             html.push(<td>{(props.data[head])}</td>);
                         else {
-                            let val = typeof props.data[head];
-                            if (val.type == 'link') {
-                                html.push(<td><a href = '#abc'>{(props.data[head])}</a></td>);
+                            let val = props.data[head];
+                            if (val && val.type == 'link') {
+                                html.push(<td><a href = {val.link}>{(props.data[head].value)}</a></td>);
                             }
+                            else html.push(<td></td>)
                         }
 
                     })

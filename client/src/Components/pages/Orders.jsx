@@ -16,12 +16,10 @@ export default function (props) {
     const setPage = (i_) => {
         setStartIndex(--i_ * pageSize)
         console.log(i_ * pageSize, pageSize)
-        //alert(i_ * pageSize)
     }
 
     React.useEffect(() => {
         document.title = 'My Orders - ' + (props.info ? props.info.name: '');
-        console.log("Order", pageSize, startIndex)
     })
 
     const getOrderFile = async (e, data) => {
@@ -53,6 +51,7 @@ export default function (props) {
                     order.status = order.complete ? 'Completed' : 'In Progress'
                     order.date = conciseDate(order.createdAt)
                     order.fullfillment = conciseDate(addDays(order.createdAt, order.nextDayService ? 1: 7))
+                    order.invoice = {type: 'link', value : order.invoiceNo, link: 'order/' + order.invoiceNo}
                 })
 
                 setData(res.data)
