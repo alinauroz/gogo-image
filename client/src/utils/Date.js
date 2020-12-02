@@ -5,3 +5,7 @@ exports.conciseDate = date => {
     let year = dateObj.getUTCFullYear();
     return year + `-${month}-${day}`;
 }
+
+exports.addDays = (date, days) => {
+    return new Date(new Date(date).getTime() + days * 24 * 60 * 60 * 1000)
+}

@@ -3,7 +3,7 @@ import {View, Text} from '../Basic/AppComponents'
 import Viewer from '../../utils/Viewer'
 import {request} from '../../utils/AppRequest'
 import {api} from '../../data/api'
-import { conciseDate } from '../../utils/Date'
+import { conciseDate, addDays } from '../../utils/Date'
 
 export default function (props) {
 
@@ -42,6 +42,7 @@ export default function (props) {
                 res.data.map(order => {
                     order.status = order.complete ? 'Completed' : 'In Progress'
                     order.date = conciseDate(order.createdAt)
+                    order.fullfillment = conciseDate(addDays(order.createdAt, order.nextDayService ? 1: 7))
                 })
 
                 setData(res.data)

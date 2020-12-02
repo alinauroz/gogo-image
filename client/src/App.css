@@ -348,6 +348,18 @@ input:focus, button:focus {
   margin-left: 10%;
 }
 
+.order-container {
+  font-size: 13px;
+}
+
+.order-container table td, .order-container table th {
+  border: 1px solid lightgray;
+}
+
+.order-container table th {
+  border-bottom: 2px solid lightgray;
+}
+
 @media only screen and (max-width: 600px) {
 
   .blog-container {
