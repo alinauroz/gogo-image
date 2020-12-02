@@ -5,6 +5,7 @@ export default function (props) {
 
     const count = props.count;
     const setPage = props.setPage || null;
+    const [selected, setSelected] = React.useState(0);
 
     return (
         <>
@@ -12,7 +13,11 @@ export default function (props) {
                 (() => {
                     let html = []
                     for (let i = 0; i < count; ) {
-                        html.push( <button onClick = {() => setPage(i)} >{++i}</button> )
+                        html.push( <button
+                            className = 'pager-button'
+                            onClick = {() => {
+                                setPage(i);
+                            }} >{++i}</button> )
                     }
                     return html;
                 })()
