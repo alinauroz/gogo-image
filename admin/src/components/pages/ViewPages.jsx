@@ -7,9 +7,9 @@ export default function (props) {
 
     const [data, setData] = React.useState();
 
-    const EditAction = (data) => {
-        props.setBase(data);
-        props.setScreen('Home');
+    const EditAction = (e, data) => {
+        props.setBase(data, 'page', true);
+        props.setScreen('EditPage');
     }
 
     const deletePage = async (e, data) => {
@@ -46,7 +46,7 @@ export default function (props) {
                     data = {data.data}
                     hidden = {['_id']}
                     actions = {[
-                        //{onClick: EditAction, value: 'Edit', className : 'btn btn-primary'},
+                        {onClick: EditAction, value: 'Edit', className : 'btn btn-primary'},
                         {onClick: deletePage, value: 'Delete', className : 'btn btn-danger', break: true}
                     ]}
                 />

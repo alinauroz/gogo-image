@@ -8,6 +8,7 @@ import AddStaff from './components/pages/AddStaff'
 import AddPost from './components/pages/AddPost'
 import CreatePage from './components/pages/CreatePage'
 import ViewPages from './components/pages/ViewPages'
+import EditPage from './components/pages/EditPage'
 import ViewOrders from './components/pages/ViewOrders'
 import ViewUsers from './components/pages/ViewUsers'
 import AddCoupon from './components/pages/AddCoupon'
@@ -24,11 +25,17 @@ import SubmitOrder from './components/pages/SubmitOrder'
 
 export default function () {
 
-  const [screen, setScreen] = React.useState('CompanyProfile');
-  const [base, setBase] = React.useState({});
+  const [screen, setScreen] = React.useState('EditPage');
+  const [base, setBase] = React.useState({isc: {}});
 
-  const setAppBase = (data, key = screen) => {
-    setBase({... base, [key]: data});
+  const setAppBase = (data, key, isc) => {
+    if (isc) {
+      base.isc[key] = data;
+    }
+    else {
+      key = key ? key: screen;
+      setBase({... base, [key]: data});
+    }
   }
 
   useEffect(() => {
@@ -116,6 +123,9 @@ export default function () {
         </div>
         <div style = {{display : screen == 'SubmitOrder' ? 'block' : 'none'}}>
           <SubmitOrder base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'EditPage' ? 'block' : 'none'}}>
+          <EditPage base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
       </div>
     </>
