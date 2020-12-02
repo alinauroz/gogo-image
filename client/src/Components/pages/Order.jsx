@@ -2,6 +2,7 @@ import React from 'react'
 import {request} from '../../utils/AppRequest'
 import {api} from '../../data/api'
 import {View, Text} from '../Basic/AppComponents'
+import OrderViewer from '../../utils/OrderViewer'
 
 export default function (props) {
 
@@ -19,7 +20,7 @@ export default function (props) {
                 setData(res.data);
             }
             else {
-                setError(res.message ? res.message : 'Some error occurred');
+                setError('Order not found');
             }
         })
     }
@@ -28,8 +29,12 @@ export default function (props) {
         <View>
             {
                 data ?
-                <>DATA</>
-                : error ? <Text>Loading ...</Text> : <Text>{error}</Text>
+                <>
+                    <OrderViewer 
+                        items = {data.items}
+                    />
+                </>
+                : error ? <Text style = {{textAlign: 'center', marginTop: 20}}>{error}</Text> : <Text style = {{textAlign: 'center', marginTop: 20}}>Loading ...</Text>
             }
         </View>
     )
