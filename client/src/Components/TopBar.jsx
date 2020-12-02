@@ -149,7 +149,7 @@ export default function (props) {
                         <>
                             <a style = {{cursor: 'pointer'}} className = 'topbar-button'>{user.firstName + ' ' + user.lastName}</a>
                             
-                            <Link to = '/change-password'>
+                            <Link to = '/change-password' style = {{textDecoration: 'none'}}>
                                 <input
                                     style = {{textDecoration: 'none', background: 'white'}}
                                     type = 'button'
