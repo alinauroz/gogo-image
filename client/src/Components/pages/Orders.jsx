@@ -71,7 +71,7 @@ export default function (props) {
                 )
                 : error ? <Text>{error}</Text> : <Text>loading ...</Text>
             }
-            <Text className = 'note mobile-only'>Scroll Table to View More</Text>
+            <Text className = 'note only-mobile'>Scroll Table to View More</Text>
         </View>
     )
 
