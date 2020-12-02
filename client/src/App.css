@@ -265,8 +265,8 @@ input:focus, button:focus {
 }
 
 .viewer-table {
-  margin-left: 10%;
-  width: 80%;
+  margin-left: 7.5%;
+  width: 85%;
   overflow-x: auto;
 }
 
@@ -276,11 +276,13 @@ input:focus, button:focus {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 10px;
+  padding-right: 10px;
 }
 
 .viewer-table td {
   padding-left: 5px;
   padding-right: 5px;
+  text-align: center;
 }
 
 .viewer-table tr:nth-child(even) {
@@ -346,6 +348,61 @@ input:focus, button:focus {
 .blog-container {
   width: 80%;
   margin-left: 10%;
+}
+
+.order-container {
+  font-size: 13px;
+}
+
+.order-container table td, .order-container table th {
+  border: 1px solid lightgray;
+}
+
+.order-container table th {
+  border-bottom: 2px solid lightgray;
+}
+
+.order-pager-container {
+  width: 85%;
+  text-align: right;
+  margin-top: 20px;
+  margin-left: 7.5%;
+}
+
+.pager-button {
+  border: 1px solid lightgrey;
+  color: #333;
+  padding: 5px;
+  margin: 0px;
+  background-color: white;
+  width: 25px;
+  height: 30px;
+  border-right: 0px;
+  cursor: pointer;
+}
+
+.pager-selected {
+  background-color: black;
+  color: white;
+}
+
+.pager-button:hover {
+  background-color: #33333311;
+}
+
+.pager-selected:hover {
+  background-color: black;
+  color: white;
+}
+
+.pager-prev-button {
+  width: 70px;
+  border-radius: 3px 0px 0px 3px;
+}
+.pager-next-button {
+  width: 50px;
+  border-radius: 0px 3px 3px 0px;
+  border-right: 1px solid lightgrey;
 }
 
 @media only screen and (max-width: 600px) {

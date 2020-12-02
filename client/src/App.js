@@ -19,6 +19,7 @@ import FAQS from './Components/pages/FAQS'
 import Blogs from './Components/pages/Blogs'
 import BlogPost from './Components/pages/BlogPost'
 import Orders from './Components/pages/Orders'
+import Order from './Components/pages/Order'
 import ContactUs from './Components/pages/ContactUs'
 
 let cartContent = JSON.parse(localStorage.getItem('cart') || '[]')
@@ -125,6 +126,7 @@ function App() {
             <Route path="/faqs" component = {() => <FAQS info = {info}/>} />
             <Route path="/blogs" component = {() => <Blogs info = {info}/>} />
             <Route path='/orders' component = {() => <Orders info = {info}/>} />
+            <Route path="/order/:invoice" component={(props) => <Order {... props} info = {info} />} />
             <Route path='/contactus' component = {() => <ContactUs info = {info} />} />
           </Route>
         </Switch>
