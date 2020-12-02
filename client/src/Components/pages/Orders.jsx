@@ -16,12 +16,10 @@ export default function (props) {
     const setPage = (i_) => {
         setStartIndex(--i_ * pageSize)
         console.log(i_ * pageSize, pageSize)
-        //alert(i_ * pageSize)
     }
 
     React.useEffect(() => {
         document.title = 'My Orders - ' + (props.info ? props.info.name: '');
-        console.log("Order", pageSize, startIndex)
     })
 
     const getOrderFile = async (e, data) => {
@@ -49,10 +47,13 @@ export default function (props) {
         }).then(res => {
             if (res.data) {
 
-                res.data.map(order => {
+                res.data.map(order => {    
+                    order.invoice = {type: 'link', value : order.invoiceNo, link: 'order/' + order.invoiceNo}
                     order.status = order.complete ? 'Completed' : 'In Progress'
                     order.date = conciseDate(order.createdAt)
                     order.fullfillment = conciseDate(addDays(order.createdAt, order.nextDayService ? 1: 7))
+                    order.Coupon = order.coupon;
+                    order.Price = '$' + order.price;
                 })
 
                 setData(res.data)
@@ -73,11 +74,11 @@ export default function (props) {
                 (
                 <View className = 'order-container'>
                     <View className = 'order-pager-container' style = {{textAlign: 'left', marginBottom: 20}}>
-                        Show <input type = 'number' min={1} onChange = {(e) => setPageSize(Number(e.target.value))} value = {pageSize} className = 'field-input' style = {{width: 40, textAlign: 'center'}}/> entries
+                        Show <input type = 'number' min={1} onChange = {(e) => e.target.value ? setPageSize(Number(e.target.value)): setPageSize(1)} value = {pageSize} className = 'field-input' style = {{width: 40, textAlign: 'center'}}/> entries
                     </View>
                     <Viewer 
                         data = {data.slice(startIndex, pageSize + startIndex)}
-                        hidden = {['submission', 'createdAt', 'items', '_id', 'updatedAt', 'user', 'complete', 'nextDayService']}
+                        hidden = {['price', 'coupon', 'invoiceNo', 'submission', 'createdAt', 'items', '_id', 'updatedAt', 'user', 'complete', 'nextDayService']}
                         actions = {[
                             {onClick: getOrderFile, value: '⬇ Files', className : 'btn btn-primary'},
                             {onClick: getOrderFile, value: '⬇ Submission', className : 'btn btn-primary', condition: 'complete'}
