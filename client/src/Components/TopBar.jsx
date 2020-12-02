@@ -145,7 +145,23 @@ export default function (props) {
                     </Link>
                     {
                         isLoggedIn ?
-                        <a style = {{cursor: 'pointer'}} className = 'topbar-button'>{user.firstName + ' ' + user.lastName}</a>
+                        (
+                        <>
+                            <a style = {{cursor: 'pointer'}} className = 'topbar-button'>{user.firstName + ' ' + user.lastName}</a>
+                            <input 
+                                type = 'button'
+                                value = 'Logout'
+                                className = 'topbar-button'
+                                style = {{background: 'white'}}
+                                onClick = {() => {
+                                    localStorage.setItem('user', '');
+                                    localStorage.setItem('token', '');
+                                    document.cookie = '';
+                                    window.location = '/';
+                                }}
+                            />
+                        </>
+                        )
                         : <><Link onClick = {() => setLeftbarView('none')}  to = '/login' className = 'topbar-button'>Login</Link><Link onClick = {() => setLeftbarView('none')}  to = '/signup' className = 'topbar-button'>Sign Up</Link></>
                     }
                 </View>
