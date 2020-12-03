@@ -3,6 +3,7 @@ import Field from '../unit/Field'
 import CKEditor from 'react-ckeditor-component'
 import getUnique from '../../utils/getUnique'
 import { request } from '../../utils/request'
+import ReactHtmlParser from "react-html-parser";
 
 
 export default function (props) {
@@ -44,6 +45,13 @@ export default function (props) {
 
         e.target.disbaled = false;
 
+    }
+
+    const parse = (data) => {
+        if (content) {
+            return data
+        }
+        else return ReactHtmlParser(data).join('')
     }
 
     const handleCategory = (e) => {
@@ -122,7 +130,7 @@ export default function (props) {
                 <p>Answer</p>
                 <CKEditor 
                     activeClass="editor" 
-                    content = {isc.answer}
+                    content = {parse(props.base.isc.faq ? props.base.isc.faq.answer: isc.answer )}
                     events = {{
                         change: (e) => {
                             props.base.isc.faq.answer = e.editor.getData()
