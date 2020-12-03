@@ -1,11 +1,19 @@
 import React, { useEffect } from 'react'
+import {request} from '../../utils/request'
 
 import Field from '../unit/Field'
 
 const PRIVILIGES = Object.freeze({
-    'cb-super-admin': 'cb-super-admin',
-    'cb-add-staff': 'cb-add-staff',
-    'cb-user': 'cb-user'
+    'cb-super-admin': 'superadmin',
+    'cb-add-staff': 'user',
+    'cb-page': 'page',
+    'cb-faq': 'faq',
+    'cb-blog': 'blog',
+    'cb-post': 'post',
+    'cb-order': 'order',
+    'cb-coupon': 'coupon',
+    'cb-info': 'info',
+    'cb-price': 'price'
 });
 
 export default function () {
@@ -17,6 +25,10 @@ export default function () {
     const [name, setName] = React.useState('')
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
+
+    const addUser = async (e) => {
+        
+    }
     
 
     const handleRoles = async (e) => {
@@ -88,39 +100,35 @@ export default function () {
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
                     <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
-                    <label for = 'cb-add-staff' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Add Staff</label>
-                </div>
-                <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-super-admin' onClick = {handleRoles} />
-                    <label for = 'cb-super-admin' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>User</label>
+                    <label for = 'cb-user' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Staff</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
                     <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
-                    <label for = 'cb-add-staff' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Pages</label>
+                    <label for = 'cb-page' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Pages</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
                     <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
-                    <label for = 'cb-add-staff' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Blogs</label>
+                    <label for = 'cb-blog' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Blogs</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
                     <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
-                    <label for = 'cb-add-staff' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>FAQs</label>
+                    <label for = 'cb-faq' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>FAQs</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
                     <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
-                    <label for = 'cb-add-staff' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Orders</label>
+                    <label for = 'cb-order' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Orders</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
                     <input type = 'checkbox' id = 'cb-price' onClick = {handleRoles} />
                     <label for = 'cb-price' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Price & Fee</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-paypal' onClick = {handleRoles} />
-                    <label for = 'cb-paypal' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Paypal</label>
+                    <input type = 'checkbox' id = 'cb-company-profile' onClick = {handleRoles} />
+                    <label for = 'cb-info' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Company Profile</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
                     <input type = 'checkbox' id = 'cb-company-profile' onClick = {handleRoles} />
-                    <label for = 'cb-company-profile' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Company Profile</label>
+                    <label for = 'cb-coupon' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Coupons</label>
                 </div>
                 <div style = {{marginTop: 20}}>
                     <button
