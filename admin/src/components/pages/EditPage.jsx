@@ -49,6 +49,13 @@ export default function (props) {
 
     }
 
+    const parse = (data) => {
+        if (html) {
+            return data
+        }
+        else return ReactHtmlParser(data).join('')
+    }
+
     return (
         <div class = 'card'>
             <Field 
@@ -69,7 +76,7 @@ export default function (props) {
             </span>
             <CKEditor 
                 activeClass="editor" 
-                content={props.base.isc.page ? props.base.isc.page.content : html}
+                content={parse(props.base.isc.page ? props.base.isc.page.content : html)}
                 events = {{
                     change: (e) => {
                         if (props.base.isc.page) {
