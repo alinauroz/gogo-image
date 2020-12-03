@@ -23,6 +23,10 @@ export default function (props) {
     const [formData, setFormData] = React.useState({});
     const [priviliges, setPriviliges] = React.useState([]);
 
+    React.useEffect(() => {
+        setPriviliges(isc.privileges || [])
+    }, [isc.privileges])
+
     const [role, setRole] = React.useState('admin')
     const [name, setName] = React.useState('')
     const [username, setUsername] = React.useState('')
@@ -67,6 +71,9 @@ export default function (props) {
 
     }
     
+    const getChecked = property => {
+        return isc.privileges ? (isc.privileges.indexOf(property) > -1 ? true : false) : false
+    }
 
     const handleRoles = async (e) => {
         let isChecked = e.target.checked;
@@ -143,35 +150,35 @@ export default function (props) {
                     <label for = 'cb-super-admin' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Super Admin</label>
                 </div>*/}
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-user' onClick = {handleRoles} />
+                    <input type = 'checkbox' checked = {getChecked('user')} id = 'cb-user' onClick = {handleRoles} />
                     <label for = 'cb-user' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Staff</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-page' onClick = {handleRoles} />
+                    <input type = 'checkbox' checked = {getChecked('page')} id = 'cb-page' onClick = {handleRoles} />
                     <label for = 'cb-page' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Pages</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-blog' onClick = {handleRoles} />
+                    <input type = 'checkbox' checked = {getChecked('blog')} id = 'cb-blog' onClick = {handleRoles} />
                     <label for = 'cb-blog' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Blogs</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-faq' onClick = {handleRoles} />
+                    <input type = 'checkbox' checked = {getChecked('faq')} id = 'cb-faq' onClick = {handleRoles} />
                     <label for = 'cb-faq' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>FAQs</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-order' onClick = {handleRoles} />
+                    <input type = 'checkbox' checked = {getChecked('order')} id = 'cb-order' onClick = {handleRoles} />
                     <label for = 'cb-order' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Orders</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-price' onClick = {handleRoles} />
+                    <input type = 'checkbox' checked = {getChecked('price')} id = 'cb-price' onClick = {handleRoles} />
                     <label for = 'cb-price' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Price & Fee</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-info' onClick = {handleRoles} />
+                    <input type = 'checkbox' checked = {getChecked('info')} id = 'cb-info' onClick = {handleRoles} />
                     <label for = 'cb-info' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Company Profile</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-coupon' onClick = {handleRoles} />
+                    <input type = 'checkbox' checked = {getChecked('coupon')} id = 'cb-coupon' onClick = {handleRoles} />
                     <label for = 'cb-coupon' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Coupons</label>
                 </div>
                 <div style = {{marginTop: 10}}>
