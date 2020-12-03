@@ -145,10 +145,10 @@ export default function () {
                 />
 
                 <h5 style = {{marginTop: 20}}>Access</h5>
-                <div style = {{minWidth: 140, display: 'inline-block'}}>
+                {/*<div style = {{minWidth: 140, display: 'inline-block'}}>
                     <input type = 'checkbox' id = 'cb-super-admin' onClick = {handleRoles} />
                     <label for = 'cb-super-admin' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Super Admin</label>
-                </div>
+                </div>*/}
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
                     <input type = 'checkbox' id = 'cb-user' onClick = {handleRoles} />
                     <label for = 'cb-user' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Staff</label>
