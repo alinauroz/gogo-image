@@ -12,6 +12,7 @@ export default function (props) {
     const [error, setError] = React.useState('');
     const [pageSize, setPageSize] = React.useState(1);
     const [startIndex, setStartIndex] = React.useState(0);
+    const [invoiceLink, setInvoiceLink] = React.useState('')
 
     const setPage = (i_) => {
         setStartIndex(--i_ * pageSize)
@@ -75,6 +76,10 @@ export default function (props) {
                 <View className = 'order-container'>
                     <View className = 'order-pager-container' style = {{textAlign: 'left', marginBottom: 20}}>
                         Show <input type = 'number' min={1} onChange = {(e) => e.target.value ? setPageSize(Number(e.target.value)): setPageSize(1)} value = {pageSize} className = 'field-input' style = {{width: 40, textAlign: 'center'}}/> entries
+                        <span style = {{float: 'right'}}>
+                            <input type = 'text' placeholder = 'Invoice No' onChange = {(e) => setInvoiceLink(e.target.value)} value = {invoiceLink} className = 'field-input' style = {{width: 140}}/>
+                            <a className = 'pager-button' style = {{margin: 0, marginLeft: 2, border: 0, backgroundColor: '#fff'}} href = {'/order/' + invoiceLink}>Find</a>
+                        </span>
                     </View>
                     <Viewer 
                         data = {data.slice(startIndex, pageSize + startIndex)}

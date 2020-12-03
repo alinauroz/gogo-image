@@ -69,7 +69,7 @@ export default function (props) {
                         cart.map(item => {
                             totalPrice += item.price;
                         })
-                        return <b>Total: {totalPrice}</b>
+                        return <b>Total: ${totalPrice}</b>
                     })()
                 }
             </View>
