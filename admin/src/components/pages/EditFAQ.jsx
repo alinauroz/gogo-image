@@ -66,10 +66,10 @@ export default function (props) {
 
     return (
         <div className = 'card'>
-            <h3 style = {{margin: 0, marginBottom: 10}}>Add Blog</h3>
+            <h3 style = {{margin: 0, marginBottom: 10}}>Edit FAQ</h3>
 
             <div style = {{display: 'inline-block', width: 'calc(50% - 20px)', marginRight: 20}}>
-                <p>Blog Category</p>
+                <p>FAQ Category</p>
                 <select className = 'form-control' onChange = {handleCategory}>
                     <option >Select Category</option>
                     <option selected>{isc.category || 0}</option>
@@ -87,24 +87,36 @@ export default function (props) {
                 />
             </div>
 
-            <div style = {{display: 'inline-block', width: 'calc(50% - 20px)', marginRight: 20}}>
+            {/*<div style = {{display: 'inline-block', width: 'calc(50% - 20px)', marginRight: 20}}>
                 <p>Status</p>
                 <select className = 'form-control'>
                     <option>Active</option>
                     <option>Inactive</option>
                 </select>
-            </div>
+                </div>*/}
 
             <div style = {{verticalAlign: 'top', marginTop: 15, display: 'inline-block', width: 'calc(50% - 20px)', marginRight: 20}}>
                 <p>Question</p>
-                <textarea onChange = {(e) => setQuestion(e.target.value)} className = 'form-control' placeholder = 'Enter Question Here'></textarea>
+                <textarea 
+                    value = {isc.question}
+                    onChange = {(e) => {
+                        isc.question = e.target.value
+                        setQuestion(e.target.value)
+                    }}
+                    className = 'form-control' 
+                    placeholder = 'Enter Question Here'
+                ></textarea>
             </div>
 
             <div style = {{verticalAlign: 'top', marginTop: 15, display: 'inline-block', width: 'calc(50% - 20px)', marginRight: 20}}>
                 <Field 
                     title = 'Sort Order'
                     placeholder = 'Sort Order'
-                    onChange = {(e) => setSortOrder(e.target.value)}
+                    onChange = {(e) => {
+                        setSortOrder(e.target.value)
+                        isc.sortOrder = e.target.value
+                    }}
+                    value = {isc.sortOrder}
                 />
             </div>
 
@@ -112,9 +124,10 @@ export default function (props) {
                 <p>Answer</p>
                 <CKEditor 
                     activeClass="editor" 
-                    content = {content}
+                    content = {isc.answer}
                     events = {{
                         change: (e) => {
+                            props.base.isc.faq.answer = e.editor.getData()
                             setContent(e.editor.getData())
                         }
                     }}
