@@ -8,8 +8,8 @@ export default function (props) {
     const [data, setData] = React.useState();
 
     const EditAction = (data) => {
-        props.setBase(data);
-        props.setScreen('Home');
+        props.setBase(data, 'faq', true);
+        props.setScreen('EditFAQ');
     }
 
     const deleteAction = async (e, data) => {
@@ -46,7 +46,7 @@ export default function (props) {
                     data = {data.data}
                     hidden = {['_id']}
                     actions = {[
-                        //{onClick: EditAction, value: 'Edit', className : 'btn btn-primary'},
+                        {onClick: EditAction, value: 'Edit', className : 'btn btn-primary'},
                         {onClick: deleteAction, value: 'Delete', className : 'btn btn-danger', break: true}
                     ]}
                 />
