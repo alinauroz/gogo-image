@@ -42,7 +42,7 @@ export default function () {
             credentials: 'include',
             method: 'POST',
             body: {
-                priviliges,
+                privileges: priviliges,
                 role,
                 name,
                 email,
