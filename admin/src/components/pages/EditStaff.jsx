@@ -16,7 +16,9 @@ const PRIVILIGES = Object.freeze({
     'cb-price': 'price'
 });
 
-export default function () {
+export default function (props) {
+
+    const isc = props.base.isc.admin || {}
 
     const [formData, setFormData] = React.useState({});
     const [priviliges, setPriviliges] = React.useState([]);
@@ -92,6 +94,7 @@ export default function () {
                 <div style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}>
                     <p className = 'field-title'>Role</p>
                     <select class="form-control" onChange = {(e) => setRole(e.target.value)}>
+                        <option selected>{isc.role}</option>
                         <option value = 'admin'>Admin</option>
                         <option value = 'superadmin'>Super Admin</option>
                     </select>
@@ -100,8 +103,12 @@ export default function () {
                 <Field 
                     name = 'name'
                     type = 'text'
+                    value = {isc.name}
                     placeholder = 'Name'
-                    onChange = {(e) => setName(e.target.value)}
+                    onChange = {(e) => {
+                        isc.name = e.target.value
+                        setName(e.target.value)
+                    }}
                     title = 'Name'
                     style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}
                 />
@@ -109,7 +116,11 @@ export default function () {
                     name = 'username'
                     type = 'text'
                     placeholder = 'Username'
-                    onChange = {(e) => setUsername(e.target.value)}
+                    value = {isc.username}
+                    onChange = {(e) => {
+                        isc.username = e.target.value;
+                        setUsername(e.target.value)
+                    }}
                     title = 'Username'
                     style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}
                 />
@@ -118,7 +129,11 @@ export default function () {
                     type = 'email'
                     placeholder = 'Email'
                     title = 'Email'
-                    onChange = {(e) => setEmail(e.target.value)}
+                    value = {isc.email}
+                    onChange = {(e) => {
+                        isc.email = e.target.value
+                        setEmail(e.target.value)
+                    }}
                     style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}
                 />
 

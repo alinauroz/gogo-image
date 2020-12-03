@@ -8,6 +8,11 @@ export default function (props) {
     const [data, setData] = React.useState();
     const [error, setError] = React.useState('');
 
+    const EditAction = (e, data) => {
+        props.setBase(data, 'admin', true);
+        props.setScreen('EditStaff');
+    }
+
     const deleteAction = async (e, data) => {
 
         if (! window.confirm('Are you sure you want to delete ' + data.name)) return;
@@ -55,7 +60,7 @@ export default function (props) {
                     data = {data.data}
                     hidden = {['_id']}
                     actions = {[
-                        //{onClick: EditAction, value: 'Edit', className : 'btn btn-primary'},
+                        {onClick: EditAction, value: 'Edit', className : 'btn btn-primary'},
                         {onClick: deleteAction, value: 'Delete', className : 'btn btn-danger', break: true}
                     ]}
                 />
