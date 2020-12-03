@@ -5,6 +5,7 @@ export default function (props) {
 
     const [orders, setOrders] = React.useState({})
     const [users, setUsers] = React.useState({})
+    const [admins, setAdmins] = React.useState({})
 
     if (Object.keys(orders).length <= 0) {
 
@@ -29,6 +30,18 @@ export default function (props) {
 
     }
 
+    if (Object.keys(admins).length <= 0) {
+
+        request({
+            route: 'admins/c/count',
+            method: 'GET',
+            credentials: 'include'
+        }).then(d => {
+            setAdmins(d)
+        })
+
+    }
+
     const STATS = [
         {title: 'Orders', value: orders.total, desc: 'Total Orders'},
         {title: 'Completed', value: orders.completed, desc: 'Orders completed so far'},
@@ -43,8 +56,10 @@ export default function (props) {
         {title: 'Last 24 hrs', value: users.last24, desc: 'Buyers in last 24 hours'},
         {title: 'Last Week', value: users.lastWeek, desc: 'Buyers in last Week'},
         {title: 'Last Month', value: users.lastMonth, desc: 'Buyers in last Month'},
-        {title: '', value: orders.uncompleted, desc: ''},
-        {title: '', value: orders.uncompleted, desc: ''},
+        {title: 'Admins', value: admins.total, desc: 'Total Admins'},
+        {title: 'Admins', value: admins.admins, desc: 'Admins have been addigned roles'},
+        {title: 'Super Admins', value: admins.superAdmins, desc: (admins.superAdmins || '-') + ' admins are superadmins'},
+        //{title: '', value: orders.uncompleted, desc: ''},
     ]
 
     return (
