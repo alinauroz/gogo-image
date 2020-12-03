@@ -18,6 +18,7 @@ import ViewFAQ from './components/pages/ViewFAQ'
 import EditFAQ from './components/pages/EditFAQ'
 import ViewBlogs from './components/pages/ViewBlogs'
 import ViewAdmins from './components/pages/ViewAdmins'
+import EditStaff from './components/pages/EditStaff'
 import Topbar from './components/Topbar'
 import CompanyProfile from './components/pages/CompanyProfile'
 import SetPrice from './components/pages/Price'
@@ -26,7 +27,7 @@ import SubmitOrder from './components/pages/SubmitOrder'
 
 export default function () {
 
-  const [screen, setScreen] = React.useState('Home');
+  const [screen, setScreen] = React.useState('ViewAdmins');
   const [base, setBase] = React.useState({isc: {}});
 
   const setAppBase = (data, key, isc) => {
@@ -130,6 +131,9 @@ export default function () {
         </div>
         <div style = {{display : screen == 'EditFAQ' ? 'block' : 'none'}}>
           <EditFAQ base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'EditStaff' ? 'block' : 'none'}}>
+          <EditStaff base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
       </div>
     </>
