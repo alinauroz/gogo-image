@@ -7,6 +7,8 @@ import { request } from '../../utils/request'
 
 export default function (props) {
 
+    const isc = props.base.isc.faq || {};
+
     const [categories, setCategories] = React.useState()
     const [category, setCategory] = React.useState()
     const [status, setStatus] = React.useState()
@@ -17,6 +19,8 @@ export default function (props) {
     const [newCategoryDisplay, setNewCategoryDisplay] = React.useState('none')
 
     const submitFAQ = async (e) => {
+
+        console.log(isc, props.base.isc); return;
 
         e.target.disbaled = true;
 
@@ -68,7 +72,7 @@ export default function (props) {
                 <p>Blog Category</p>
                 <select className = 'form-control' onChange = {handleCategory}>
                     <option >Select Category</option>
-                    <option selected>Hello</option>
+                    <option selected>{isc.category || 0}</option>
                     {
                         categories ? categories.map(cat => <option>{cat}</option>): ""
                     }

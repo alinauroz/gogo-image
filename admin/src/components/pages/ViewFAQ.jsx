@@ -7,7 +7,7 @@ export default function (props) {
 
     const [data, setData] = React.useState();
 
-    const EditAction = (data) => {
+    const EditAction = (e, data) => {
         props.setBase(data, 'faq', true);
         props.setScreen('EditFAQ');
     }
