@@ -29,6 +29,13 @@ export default function () {
     const [confirmedPassword, setConfirmedPassword] = React.useState('')
 
     const addUser = async (e) => {
+
+        return console.log(priviliges,
+            role,
+            name,
+            email,
+            password,
+            username)
         
         let res = await request({
             route: 'admins',
@@ -86,7 +93,7 @@ export default function () {
                     name = 'name'
                     type = 'text'
                     placeholder = 'Name'
-                    onChange = {setName}
+                    onChange = {(e) => setName(e.target.value)}
                     title = 'Name'
                     style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}
                 />
@@ -94,7 +101,7 @@ export default function () {
                     name = 'username'
                     type = 'text'
                     placeholder = 'Username'
-                    onChange = {setUsername}
+                    onChange = {(e) => setUsername(e.target.value)}
                     title = 'Username'
                     style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}
                 />
@@ -103,7 +110,7 @@ export default function () {
                     type = 'email'
                     placeholder = 'Email'
                     title = 'Email'
-                    onChange = {setEmail}
+                    onChange = {(e) => setEmail(e.target.value)}
                     style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}
                 />
                 <Field 
@@ -111,7 +118,7 @@ export default function () {
                     type = 'password'
                     placeholder = 'Password'
                     title = 'Password'
-                    onChange = {setPassword}
+                    onChange = {(e) => setPassword(e.target.value)}
                     style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}
                 />
                 <Field 
@@ -119,7 +126,7 @@ export default function () {
                     type = 'password'
                     placeholder = 'Confirm Password'
                     title = 'Confirm Password'
-                    onChange = {setConfirmedPassword}
+                    onChange = {(e) => setConfirmedPassword(e.target.value)}
                     style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}
                 />
 
