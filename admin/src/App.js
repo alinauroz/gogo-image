@@ -15,6 +15,7 @@ import AddCoupon from './components/pages/AddCoupon'
 import ViewCoupons from './components/pages/ViewCoupons'
 import AddFaq from './components/pages/AddFaq'
 import ViewFAQ from './components/pages/ViewFAQ'
+import EditFAQ from './components/pages/EditFAQ'
 import ViewBlogs from './components/pages/ViewBlogs'
 import ViewAdmins from './components/pages/ViewAdmins'
 import Topbar from './components/Topbar'
@@ -25,7 +26,7 @@ import SubmitOrder from './components/pages/SubmitOrder'
 
 export default function () {
 
-  const [screen, setScreen] = React.useState('EditPage');
+  const [screen, setScreen] = React.useState('EditFAQ');
   const [base, setBase] = React.useState({isc: {}});
 
   const setAppBase = (data, key, isc) => {
@@ -126,6 +127,9 @@ export default function () {
         </div>
         <div style = {{display : screen == 'EditPage' ? 'block' : 'none'}}>
           <EditPage base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'EditFAQ' ? 'block' : 'none'}}>
+          <EditFAQ base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
       </div>
     </>
