@@ -21,13 +21,31 @@ export default function () {
     const [formData, setFormData] = React.useState({});
     const [priviliges, setPriviliges] = React.useState([]);
 
-    const [role, setRole] = React.useState('')
+    const [role, setRole] = React.useState('admin')
     const [name, setName] = React.useState('')
+    const [username, setUsername] = React.useState('')
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
+    const [confirmedPassword, setConfirmedPassword] = React.useState('')
 
     const addUser = async (e) => {
         
+        let res = await request({
+            route: 'admins',
+            credentials: 'include',
+            method: 'POST',
+            body: {
+                priviliges,
+                role,
+                name,
+                email,
+                password,
+                username
+            }
+        })
+
+        console.log(res)
+
     }
     
 
@@ -52,9 +70,9 @@ export default function () {
                 <h4>Add Staff</h4>
                 <div style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}>
                     <p className = 'field-title'>Role</p>
-                    <select class="form-control">
-                        <option>Super Admin</option>
-                        <option>Admin</option>
+                    <select class="form-control" onChange = {(e) => setRole(e.target.value)}>
+                        <option value = 'admin'>Admin</option>
+                        <option value = 'superadmin'>Super Admin</option>
                     </select>
                 </div>
                 <div style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}>
@@ -68,7 +86,16 @@ export default function () {
                     name = 'name'
                     type = 'text'
                     placeholder = 'Name'
+                    onChange = {setName}
                     title = 'Name'
+                    style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}
+                />
+                <Field 
+                    name = 'username'
+                    type = 'text'
+                    placeholder = 'Username'
+                    onChange = {setUsername}
+                    title = 'Username'
                     style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}
                 />
                 <Field 
@@ -76,20 +103,23 @@ export default function () {
                     type = 'email'
                     placeholder = 'Email'
                     title = 'Email'
+                    onChange = {setEmail}
                     style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}
                 />
                 <Field 
-                    name = 'password-not-verified'
+                    name = 'password'
                     type = 'password'
                     placeholder = 'Password'
                     title = 'Password'
+                    onChange = {setPassword}
                     style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}
                 />
                 <Field 
                     name = 'old-password'
                     type = 'password'
-                    placeholder = 'Password'
-                    title = 'Password'
+                    placeholder = 'Confirm Password'
+                    title = 'Confirm Password'
+                    onChange = {setConfirmedPassword}
                     style = {{marginTop: 15, width: 'calc(50% - 20px)', marginRight: 20, display: 'inline-block'}}
                 />
 
@@ -135,6 +165,7 @@ export default function () {
                         type = 'button' 
                         value = 'Done'
                         className = 'btn btn-success'
+                        onClick = {addUser}
                     >
                         <i class="glyphicon glyphicon-ok" style = {{marginRight: 5}}></i>
                         Done
