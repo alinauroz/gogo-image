@@ -13,23 +13,21 @@ export default function (props) {
     const [category, setCategory] = React.useState()
     const [status, setStatus] = React.useState()
     const [sortOrder, setSortOrder] = React.useState()
-    const [content, setContent] = React.useState('')
-    const [message, setMessage] = React.useState('')
-    const [question, setQuestion] = React.useState('')
+    const [content, setContent] = React.useState()
+    const [message, setMessage] = React.useState()
+    const [question, setQuestion] = React.useState()
     const [newCategoryDisplay, setNewCategoryDisplay] = React.useState('none')
 
     const submitFAQ = async (e) => {
 
-        console.log(isc, props.base.isc); return;
-
         e.target.disbaled = true;
 
         let res = await request({
-            route: 'faqs',
+            route: 'faqs/',
             method: 'PUT',
+            params: isc._id,
             credentials: 'include',
             body: {
-                status,
                 sortOrder,
                 answer: content,
                 question,
@@ -38,7 +36,7 @@ export default function (props) {
         });
 
         if (res.status == 'success') {
-            setMessage('FAQ added successfully')
+            setMessage('FAQ updated successfully')
         }
         else {
             setMessage(res.message)
