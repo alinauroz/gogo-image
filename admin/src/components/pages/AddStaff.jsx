@@ -5,7 +5,7 @@ import Field from '../unit/Field'
 
 const PRIVILIGES = Object.freeze({
     'cb-super-admin': 'superadmin',
-    'cb-add-staff': 'user',
+    'cb-user': 'user',
     'cb-page': 'page',
     'cb-faq': 'faq',
     'cb-blog': 'blog',
@@ -150,23 +150,23 @@ export default function () {
                     <label for = 'cb-super-admin' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Super Admin</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
+                    <input type = 'checkbox' id = 'cb-user' onClick = {handleRoles} />
                     <label for = 'cb-user' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Staff</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
+                    <input type = 'checkbox' id = 'cb-page' onClick = {handleRoles} />
                     <label for = 'cb-page' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Pages</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
+                    <input type = 'checkbox' id = 'cb-blog' onClick = {handleRoles} />
                     <label for = 'cb-blog' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Blogs</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
+                    <input type = 'checkbox' id = 'cb-faq' onClick = {handleRoles} />
                     <label for = 'cb-faq' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>FAQs</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-add-staff' onClick = {handleRoles} />
+                    <input type = 'checkbox' id = 'cb-order' onClick = {handleRoles} />
                     <label for = 'cb-order' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Orders</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
@@ -174,7 +174,7 @@ export default function () {
                     <label for = 'cb-price' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Price & Fee</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-company-profile' onClick = {handleRoles} />
+                    <input type = 'checkbox' id = 'cb-info' onClick = {handleRoles} />
                     <label for = 'cb-info' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Company Profile</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
