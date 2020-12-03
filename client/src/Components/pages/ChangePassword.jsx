@@ -65,6 +65,7 @@ export default function (props) {
         }
         <Box>
             <View>
+                <h1 style = {{marginTop: 0}}>Change Password</h1>
                 <form action = '' onSubmit = {handleForm}>
                     <FormRenderer 
                         fields = {fields}
