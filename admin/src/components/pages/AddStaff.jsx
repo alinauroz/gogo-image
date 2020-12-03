@@ -27,8 +27,15 @@ export default function () {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [confirmedPassword, setConfirmedPassword] = React.useState('')
+    const [message, setMessage] = React.useState('');
 
     const addUser = async (e) => {
+
+        setMessage('Adding ...')
+
+        if (confirmedPassword !== password) {
+            return setMessage("Password does not match")
+        }
         
         let res = await request({
             route: 'admins',
@@ -44,7 +51,17 @@ export default function () {
             }
         })
 
-        console.log(res)
+        if (res.status == 'success')
+            setMessage('Admin added successfully')
+        
+        else {
+            if (res.error.code === 11000) {
+                setMessage('Username is already taken')
+            }
+            else {
+                setMessage(res.error.message)
+            }
+        }
 
     }
     
@@ -163,6 +180,9 @@ export default function () {
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
                     <input type = 'checkbox' id = 'cb-coupon' onClick = {handleRoles} />
                     <label for = 'cb-coupon' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Coupons</label>
+                </div>
+                <div style = {{marginTop: 10}}>
+                    {message}
                 </div>
                 <div style = {{marginTop: 20}}>
                     <button
