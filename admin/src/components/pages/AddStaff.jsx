@@ -29,13 +29,6 @@ export default function () {
     const [confirmedPassword, setConfirmedPassword] = React.useState('')
 
     const addUser = async (e) => {
-
-        return console.log(priviliges,
-            role,
-            name,
-            email,
-            password,
-            username)
         
         let res = await request({
             route: 'admins',
@@ -60,12 +53,16 @@ export default function () {
         let isChecked = e.target.checked;
         let id_ = e.target.id;
         let privilige = PRIVILIGES[id_];
+        console.log(priviliges)
+        alert(privilige)
 
         if (isChecked && priviliges.indexOf(privilige) === -1) {
-            await setPriviliges(priviliges.concat(privilige));
+            priviliges.push(privilige)
+            await setPriviliges(priviliges);
         }
         else {
-            await setPriviliges(priviliges.splice(priviliges.indexOf(privilige), 0));
+            priviliges.splice(priviliges.indexOf(privilige), 1);
+            await setPriviliges(priviliges);
         }
 
         setFormData({ ... formData, priviliges});
@@ -164,7 +161,7 @@ export default function () {
                     <label for = 'cb-info' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Company Profile</label>
                 </div>
                 <div style = {{minWidth: 140, display: 'inline-block'}}>
-                    <input type = 'checkbox' id = 'cb-company-profile' onClick = {handleRoles} />
+                    <input type = 'checkbox' id = 'cb-coupon' onClick = {handleRoles} />
                     <label for = 'cb-coupon' style = {{fontWeight: 'normal', verticalAlign: 'top', marginLeft: 5}}>Coupons</label>
                 </div>
                 <div style = {{marginTop: 20}}>
