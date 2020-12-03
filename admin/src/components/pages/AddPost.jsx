@@ -73,10 +73,6 @@ export default function () {
     const [ImageInputs, setImageInputs] = React.useState([<PostInput index = {0} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />])
 
     React.useEffect(() => {
-        console.log(
-            sizes,
-            types
-        )
     })
 
     const handleTags = (e) => {
