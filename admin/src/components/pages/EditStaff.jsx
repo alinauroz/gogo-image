@@ -37,28 +37,24 @@ export default function (props) {
 
     const addUser = async (e) => {
 
-        setMessage('Adding ...')
-
-        if (confirmedPassword !== password) {
-            return setMessage("Password does not match")
-        }
+        setMessage('Updating ...')
         
         let res = await request({
-            route: 'admins',
+            route: 'admins/',
             credentials: 'include',
-            method: 'POST',
+            method: 'PUT',
+            params: isc._id,
             body: {
                 privileges: priviliges,
-                role,
-                name,
-                email,
-                password,
-                username
+                role: (role || isc.role),
+                name: (name || isc.name),
+                email: (email || isc.email),
+                username: (email || isc.username),
             }
         })
 
         if (res.status == 'success')
-            setMessage('Admin added successfully')
+            setMessage('Admin updated successfully')
         
         else {
             if (res.error.code === 11000) {
