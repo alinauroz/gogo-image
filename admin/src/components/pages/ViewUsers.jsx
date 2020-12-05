@@ -6,7 +6,7 @@ import Pager from '../../utils/Pager'
 export default function (props) {
 
     const [data, setData] = React.useState();
-    const [pageSize, setPageSize] = React.useState(3);
+    const [pageSize, setPageSize] = React.useState(10);
     const [startIndex, setStartIndex] = React.useState(0);
 
     const setPage = (i_) => {

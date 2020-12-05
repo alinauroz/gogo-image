@@ -2,11 +2,18 @@ import React from 'react'
 import {api} from '../../data/api'
 import Viewer from '../../utils/Viewer'
 import {request} from '../../utils/request'
+import Pager from '../../utils/Pager'
 
 export default function (props) {
 
     const [data, setData] = React.useState();
     const [error, setError] = React.useState('');
+    const [pageSize, setPageSize] = React.useState(3);
+    const [startIndex, setStartIndex] = React.useState(0);
+
+    const setPage = (i_) => {
+        setStartIndex(--i_ * pageSize)
+    }
 
     const EditAction = (e, data) => {
         props.setBase(data, 'admin', true);
@@ -56,14 +63,25 @@ export default function (props) {
                 error ?
                 <p>{error}</p>
                 : data ? data.length <= 0 ? 'No Admins Found' :
+                <>
                 <Viewer 
-                    data = {data.data}
+                    data = {data.data.slice(startIndex, pageSize + startIndex)}
                     hidden = {['_id']}
                     actions = {[
                         {onClick: EditAction, value: 'Edit', className : 'btn btn-primary'},
                         {onClick: deleteAction, value: 'Delete', className : 'btn btn-danger', break: true}
                     ]}
                 />
+                <div className = 'order-pager-container'>
+                    <span style = {{float: 'left'}}>
+                        Showing {startIndex + 1} to {(startIndex + 1) * pageSize < data.data.length ? (startIndex + 1) * pageSize: data.data.length} of {data.data.length} entries
+                    </span>
+                    <Pager 
+                        count = {Math.ceil(data.data.length / pageSize)}
+                        setPage = {setPage}
+                    />
+                </div>
+                </>
                 : "loading ..."
             }
         </div>
