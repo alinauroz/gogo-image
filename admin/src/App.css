@@ -135,10 +135,10 @@ input:focus, textarea:focus, button:focus {
 
 
 .order-pager-container {
-  width: 85%;
+  width: 100%;
   text-align: right;
   margin-top: 20px;
-  margin-left: 7.5%;
+  margin-left: 0;
 }
 
 .pager-button {
