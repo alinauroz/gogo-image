@@ -132,3 +132,47 @@ input:focus, textarea:focus, button:focus {
 .topbar-user:hover {
   background-color: #33333333;
 }
+
+
+.order-pager-container {
+  width: 85%;
+  text-align: right;
+  margin-top: 20px;
+  margin-left: 7.5%;
+}
+
+.pager-button {
+  border: 1px solid lightgrey;
+  color: #333;
+  padding: 5px;
+  margin: 0px;
+  background-color: white;
+  width: 25px;
+  height: 30px;
+  border-right: 0px;
+  cursor: pointer;
+}
+
+.pager-selected {
+  background-color: black;
+  color: white;
+}
+
+.pager-button:hover {
+  background-color: #33333311;
+}
+
+.pager-selected:hover {
+  background-color: black;
+  color: white;
+}
+
+.pager-prev-button {
+  width: 70px;
+  border-radius: 3px 0px 0px 3px;
+}
+.pager-next-button {
+  width: 50px;
+  border-radius: 0px 3px 3px 0px;
+  border-right: 1px solid lightgrey;
+}
