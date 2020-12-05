@@ -6,7 +6,7 @@ export default function (props) {
         <View className = 'navbox'>
             <Text className = 'navbox-title-shadow'>{props.title}</Text>
             <Text className = 'navbox-title'>{props.title}</Text>
-            <Text style = {{marginTop: 10}}>{props.children}</Text>
+            <Text style = {{marginTop: 20, marginBottom: 20, color: '#333333dd'}}>{props.children}</Text>
         </View>
     )
 }

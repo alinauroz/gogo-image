@@ -30,7 +30,9 @@ export default function (props) {
     }
 
     return (
-        <View className = 'box' style = {{width: 600, border: 0}}>
+        <View className = 'navbox' style = {{width: 600, marginBottom: 30}}>
+            <Text className = 'navbox-title-shadow'>FAQs</Text>
+            <Text className = 'navbox-title'>FAQs</Text>
             {
                 cats ?
                 cats.map(cat => {

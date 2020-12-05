@@ -57,9 +57,10 @@ function App() {
   const [cart, setCart] = React.useState(cartContent)
   const [pages, setPages] = React.useState();
   const [posts, setPosts] = React.useState();
-  const [info, setInfo] = React.useState()
+  const [info, setInfo] = React.useState();
+  const [innerHeight, setInnerHeight] = React.useState(window.innerHeight)
 
-  React.useState(() => {
+  React.useEffect(() => {
     
     if (! pages) {
       request({route: 'pages'}).then(d => {
@@ -79,6 +80,8 @@ function App() {
         document.title = d.data ? d.data[0].name : '...'
       })
     }
+
+    window.addEventListener('resize', () => setInnerHeight(window.innerHeight))
 
   })
 
@@ -103,7 +106,7 @@ function App() {
         cartLength = {cart ? cart.length : 0}
         info = {info}
       />
-      <main style = {{marginTop: 0, minHeight: window.innerHeight - 200}}>
+      <main style = {{marginTop: 0, minHeight: innerHeight - 200}}>
         <Switch>
           <Route>
             <Route path="/" info = {info} component={() => <Home posts = {posts_} info = {info} />} exact />
