@@ -1,5 +1,4 @@
 import React from 'react'
-import {View, Text} from './Basic/AppComponents'
 
 export default function (props) {
 
