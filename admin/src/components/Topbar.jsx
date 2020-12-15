@@ -1,6 +1,5 @@
 import React from 'react'
-const admin = JSON.parse(localStorage.getItem('admin'));
-console.log("admin", admin)
+const admin = JSON.parse(localStorage.getItem('admin') || '{}');
 
 function deleteAllCookies() {
     var cookies = document.cookie.split(";");

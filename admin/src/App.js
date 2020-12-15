@@ -25,6 +25,8 @@ import SetPrice from './components/pages/Price'
 import AddBlog from './components/pages/AddBlog'
 import SubmitOrder from './components/pages/SubmitOrder'
 
+const admin = JSON.parse(localStorage.getItem('admin') || '{}');
+
 export default function () {
 
   const [screen, setScreen] = React.useState('ViewAdmins');
@@ -67,7 +69,7 @@ export default function () {
     {title: 'Company Profile', onClick: () => setScreen('CompanyProfile')},
   ]);
 
-  if (document.cookie)
+  if (admin.role) {
   return (
     <>
       <Topbar />
@@ -138,7 +140,9 @@ export default function () {
       </div>
     </>
   )
+  }
   else {
+    console.log("LOGIN")
     return <Login />
   }
 }
