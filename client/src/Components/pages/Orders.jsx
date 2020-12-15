@@ -10,7 +10,7 @@ export default function (props) {
 
     const [data, setData] = React.useState();
     const [error, setError] = React.useState('');
-    const [pageSize, setPageSize] = React.useState(1);
+    const [pageSize, setPageSize] = React.useState(10);
     const [startIndex, setStartIndex] = React.useState(0);
     const [invoiceLink, setInvoiceLink] = React.useState('')
 
