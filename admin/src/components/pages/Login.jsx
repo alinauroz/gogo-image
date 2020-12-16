@@ -33,6 +33,7 @@ export default function () {
                 localStorage.setItem('admin_token', data.token);
                 localStorage.setItem('admin', JSON.stringify(data.data));
                 document.cookie = 'jwt=' + data.token;
+                document.cookie = 'type=admin';
                 window.location.reload();
             }
 

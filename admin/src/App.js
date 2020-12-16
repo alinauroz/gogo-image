@@ -24,8 +24,10 @@ import CompanyProfile from './components/pages/CompanyProfile'
 import SetPrice from './components/pages/Price'
 import AddBlog from './components/pages/AddBlog'
 import SubmitOrder from './components/pages/SubmitOrder'
+import cookieParser from './utils/cookieParser'
 
 const admin = JSON.parse(localStorage.getItem('admin') || '{}');
+const isLoggedIn = cookieParser(document.cookie).type === 'admin';
 
 export default function () {
 
@@ -69,7 +71,7 @@ export default function () {
     {title: 'Company Profile', onClick: () => setScreen('CompanyProfile')},
   ]);
 
-  if (admin.role) {
+  if (isLoggedIn) {
   return (
     <>
       <Topbar />
