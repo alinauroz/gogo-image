@@ -91,7 +91,9 @@ export default function (props) {
         }
         else {
             localStorage.setItem('token', data_.token);
+            localStorage.setItem('admin', '');
             document.cookie = 'jwt=' + data_.token;
+            document.cookie = 'type=user';
             localStorage.setItem('user', JSON.stringify(data_.data));
             window.location = './'
         }

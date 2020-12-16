@@ -2,20 +2,23 @@ import React, { useEffect } from 'react'
 import {Text, View, Image} from './Basic/AppComponents'
 import { Link } from 'react-router-dom'
 import {api} from '../data/api'
+import cookieParser from '../utils/cookieParser'
 
 import logo from '../data/images/logo.png'
 import cartIcon from '../data/icons/cart.png'
 
 import styles from '../styles/topbar'
 
-//let isLoggedIn = localStorage.getItem('token');
 let user = JSON.parse(localStorage.getItem('user') || '{}');
+const cookies = (cookieParser(document.cookie));
+
+if (cookies.type === 'user')
+    var isLoggedIn = true;
 
 export default function (props) {
     const info = props.info || {}
     const [DDView, setDDView] = React.useState('none');
     const [leftbarView, setLeftbarView] = React.useState('none')
-    let isLoggedIn = info.idAdmin;
 
     return (
         <div>
