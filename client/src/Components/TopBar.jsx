@@ -8,13 +8,14 @@ import cartIcon from '../data/icons/cart.png'
 
 import styles from '../styles/topbar'
 
-let isLoggedIn = localStorage.getItem('token');
+//let isLoggedIn = localStorage.getItem('token');
 let user = JSON.parse(localStorage.getItem('user') || '{}');
 
 export default function (props) {
     const info = props.info || {}
     const [DDView, setDDView] = React.useState('none');
     const [leftbarView, setLeftbarView] = React.useState('none')
+    let isLoggedIn = info.idAdmin;
 
     return (
         <div>
@@ -97,6 +98,7 @@ export default function (props) {
                         localStorage.setItem('token', '');
                         document.cookie = '';
                         window.location = '/';
+                        
                     }}
                 />
                 <input 

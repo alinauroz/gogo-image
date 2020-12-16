@@ -22,6 +22,8 @@ import Orders from './Components/pages/Orders'
 import Order from './Components/pages/Order'
 import ContactUs from './Components/pages/ContactUs'
 
+const admin = JSON.parse(localStorage.getItem('admin') || '{}');
+
 let cartContent = JSON.parse(localStorage.getItem('cart') || '[]')
 
 function Signup () {
@@ -76,7 +78,8 @@ function App() {
 
     if (! info) {
       request({route: 'info'}).then(d => {
-        setInfo(d.data ? d.data[0] || {}: {})
+        let _info = (d.data ? d.data[0] || {}: {})
+        setInfo({... _info, isAdmin: admin.role && true});
         document.title = d.data ? d.data[0].name : '...'
       })
     }
