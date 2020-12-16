@@ -21,6 +21,7 @@ import BlogPost from './Components/pages/BlogPost'
 import Orders from './Components/pages/Orders'
 import Order from './Components/pages/Order'
 import ContactUs from './Components/pages/ContactUs'
+import ForgotPass from './Components/pages/ForgotPass'
 
 const admin = JSON.parse(localStorage.getItem('admin') || '{}');
 
@@ -134,6 +135,7 @@ function App() {
             <Route path='/orders' component = {() => <Orders info = {info}/>} />
             <Route path="/order/:invoice" component={(props) => <Order {... props} info = {info} />} />
             <Route path='/contactus' component = {() => <ContactUs info = {info} />} />
+            <Route path='/forgot_password' component = {() => <ForgotPass info={info}/>} />
           </Route>
         </Switch>
       </main>
