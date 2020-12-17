@@ -143,9 +143,9 @@ export default function (props) {
                         <p style = {{fontSize: 13, marginTop: 10, marginBottom: 5}}>
                             {message}
                         </p>
-                        <a href = '#forgot' style = {{fontSize: 13}}>
+                        <Link to = '/reset-password' style = {{fontSize: 13}}>
                             Forgot Password
-                        </a>
+                        </Link>
                         <input 
                             type = 'submit'
                             value = 'Login'

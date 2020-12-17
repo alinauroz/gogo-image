@@ -135,7 +135,6 @@ function App() {
             <Route path='/orders' component = {() => <Orders info = {info}/>} />
             <Route path="/order/:invoice" component={(props) => <Order {... props} info = {info} />} />
             <Route path='/contactus' component = {() => <ContactUs info = {info} />} />
-            <Route path='/forgot_password' component = {() => <ForgotPass info={info}/>} />
           </Route>
         </Switch>
       </main>

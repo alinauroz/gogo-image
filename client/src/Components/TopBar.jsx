@@ -24,7 +24,7 @@ export default function (props) {
         <div>
             <Image
                 source = {api + 'images/' + info.logo}
-                style = {{maxHeight: 60, marginLeft: 20}}
+                style = {{maxHeight: 60, marginLeft: 20, maxWidth: 200}}
             />
             <View 
                 className = 'mobile-menu'
@@ -35,7 +35,7 @@ export default function (props) {
                 </p>
             </View>
             <div
-                style = {{marginRight: 20, float: 'right', display: 'inline-block', marginTop: 20}}
+                style = {{marginRight: 20, float: 'right', display: 'inline-block', marginTop: 20, width: 'calc(100% - 250px)'}}
                 className = 'topbar-desktop-links'
             >
                 <Link to = '/' className = 'topbar-links'>Home</Link>
@@ -59,6 +59,7 @@ export default function (props) {
                     )
                     : ""
                 }
+                <span style = {{float: 'right'}}>
                 <Link to = '/cart' className = 'topbar-links'>
                     <View style = {{display: 'inline', overflow: 'hidden'}}>
                         <Text style = {styles.cartItemCount}>{props.cartLength}</Text>
@@ -73,6 +74,7 @@ export default function (props) {
                     <a style = {{cursor: 'pointer'}} onClick = {() => setDDView('block')} className = 'topbar-links'>{user.firstName + ' ' + user.lastName}</a>
                     : <Link to = '/login' className = 'topbar-links'>Login/Sign Up</Link>
                 }
+                </span>
             </div>
             <View style = {{display: DDView, position: 'absolute', top: 60, right: 10, padding: 5, boxShadow: '0px 0px 3px grey', width: 250, background: '#fff'}}>
                 <Text><b>{user.firstName + ' ' + user.lastName}</b></Text>
