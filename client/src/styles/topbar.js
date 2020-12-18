@@ -4,7 +4,8 @@ export default {
     container: {
         width: '100%',
         height: '60px',
-        padding: 5,
+        padding: '0px 5px',
+        borderBottom: '2px solid #333'
     },
     linkContainer: {
         marginLeft: 20

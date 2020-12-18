@@ -98,7 +98,6 @@ export default function (props) {
     const [finalPrice, setFinalPrice] = React.useState(calulatePrice(1) - discount)
 
     const placeOrder = async () => {
-
         let res = await request({
             route: 'orders',
             method: 'POST',
@@ -106,6 +105,7 @@ export default function (props) {
             body: {
                 items: props.cart,
                 price: finalPrice,
+                subtotal: totalPrice,
                 coupon: couponCode,
                 nextDayService,
             }

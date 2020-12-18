@@ -21,7 +21,7 @@ export default function (props) {
     const [leftbarView, setLeftbarView] = React.useState('none')
 
     return (
-        <div>
+        <div style = {styles.container}>
             <Image
                 source = {api + 'images/' + info.logo}
                 style = {{maxHeight: 60, marginLeft: 20, maxWidth: 200}}
@@ -102,6 +102,8 @@ export default function (props) {
                         localStorage.setItem('user', '');
                         localStorage.setItem('token', '');
                         document.cookie = '';
+                        document.cookie = 'jwt=';
+                        document.cookie = 'type=';
                         window.location = '/';
                         
                     }}
