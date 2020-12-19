@@ -1,6 +1,6 @@
-export default function () {
+export default function (props) {
     return (
-        <select id="country" name="country">
+        <select id="country" name="country" className = {"field-input " + props.className}>
    <option value="Afganistan">Afghanistan</option>
    <option value="Albania">Albania</option>
    <option value="Algeria">Algeria</option>

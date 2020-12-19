@@ -4,6 +4,7 @@ import {View, Text, Button} from '../Basic/AppComponents'
 import FormRenderer from '../../utils/FormRenderer'
 import { Link } from 'react-router-dom'
 import { api } from '../../data/api'
+import Countries from '../../utils/Countries'
 
 const loginFields = [
     {title: 'Email', name: 'email', type: 'email', required: true},
@@ -14,11 +15,11 @@ const signupFields = [
     {title: "First Name", name: "firstName", type: "text", required: true},
     {title: "Last Name", name: "lastName", type: "text", required: true},
     {title: "Email Address", name: "email", type: "email", required: true},
-    {title: "Retype Email", name: "retype-email", type: "email", required: true},
+    {title: "Retype Email", name: "retypeEmail", type: "email", required: true},
     {title: "Enter Password", name: "password", type: "password", required: true},
     {title: "Confirm Password", name: "confirm-password", type: "password", required: true},
-    {title: "Country", name: "country", type: "text", required: true},
-    {title: "State", name: "state", type: "text", required: true},
+    //{title: "Country", name: "country", type: "text", required: true},
+    //{title: "State", name: "state", type: "text", required: true},
 ]
 
 export default function (props) {
@@ -35,7 +36,7 @@ export default function (props) {
 
     const signup = async (e) => {
         e.preventDefault();
-
+        setMessage('');
         if (! agreed)
             return setMessage('You must agree with terms and conditions');
 
@@ -48,7 +49,11 @@ export default function (props) {
         });
 
         if (formData['password'] !== formData['confirm-password']) {
-            return setMessage('Password did not match');
+            return setMessage('Password does not match');
+        }
+
+        if (formData['email'] !== formData['retypeEmail']) {
+            return setMessage('Email does not match');
         }
 
         let res = await fetch(api + 'users/signup', {
@@ -59,9 +64,23 @@ export default function (props) {
             body: JSON.stringify(formData)
         });
 
-        let user = await res.json();
+        res = await res.json();
 
-        console.log(user);
+        if (res.status === 'success') {
+            setSelected(2);
+        }
+        else {
+            if (res.error && res.error.code == 11000)
+                setMessage('Email is already registered');
+            else if (res.error && res.error.message)
+                setMessage(res.error.message);
+            else
+                setMessage('Unknown error occurred');
+        }
+    }
+
+    if (selected === 2) {
+        return <View className = 'box' style = {{textAlign: 'center'}}><b>Confirm Your Email</b><br/><br/>We have sent you an email. Click on the link in the email to confirm your email.</View>
     }
 
     const login = async (e) => {
@@ -120,6 +139,19 @@ export default function (props) {
                         <FormRenderer 
                             fields = {signupFields}
                         />
+                        <View className = 'field-container'>
+                            <p className = 'field-title'>Countries</p>
+                            <Countries className = 'field-select'/>
+                        </View>
+                        <View className = 'field-container'>
+                            <p className = 'field-title'>State</p>
+                            <input
+                                type="text"
+                                name="state"
+                                className="field-input"
+                                placeholder="State"
+                            />
+                        </View>
                         <br /><br />
                         <label>
                             <input 

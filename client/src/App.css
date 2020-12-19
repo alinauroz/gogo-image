@@ -54,6 +54,12 @@ input:focus, button:focus {
   border-radius: 2px;
   margin-bottom: 50px;
   margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.field-select {
+  height: 30px !important;
+  width: calc(100% - 16px) !important;
 }
 
 .inline-box {
@@ -97,6 +103,7 @@ input:focus, button:focus {
   border-radius: 2px;
   width: calc(100% - 24px);
   height: 20px;
+  border-radius: 3px;
 }
 
 .action-button {
@@ -534,6 +541,7 @@ input:focus, button:focus {
   .box {
     border: 0px;
     margin-top: 20px;
+    margin-bottom: 20px;
   }
   .page-container {
     overflow: hidden;
