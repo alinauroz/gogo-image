@@ -28,6 +28,7 @@ input:focus, button:focus {
   padding: 10px;
   border: 1px solid #333;
   box-shadow: 2px 2px 4px #333;
+  margin-bottom: 40px;
 }
 
 .navbox-title {
@@ -336,6 +337,7 @@ input:focus, button:focus {
 .order-container {
   width: 100%;
   overflow-x: auto;
+  margin-bottom: 40px;
 }
 
 .note {

@@ -83,7 +83,7 @@ export default function (props) {
                     </View>
                     <Viewer 
                         data = {data.slice(startIndex, pageSize + startIndex)}
-                        hidden = {['price', 'coupon', 'invoiceNo', 'submission', 'createdAt', 'items', '_id', 'updatedAt', 'user', 'complete', 'nextDayService']}
+                        hidden = {['price', 'coupon', 'subtotal', 'invoiceNo', 'submission', 'createdAt', 'items', '_id', 'updatedAt', 'user', 'complete', 'nextDayService']}
                         actions = {[
                             {onClick: getOrderFile, value: '⬇ Files', className : 'btn btn-primary'},
                             {onClick: getOrderFile, value: '⬇ Submission', className : 'btn btn-primary', condition: 'complete'}

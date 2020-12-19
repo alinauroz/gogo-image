@@ -85,6 +85,9 @@ export default function (props) {
                         value = 'Profile'
                         className = 'dropdown-button'
                         style = {{marginTop: 5}}
+                        onClick = {() => {
+                            setDDView('none')
+                        }}
                     />
                 </Link>
                 <Link to = '/change-password'>
@@ -92,6 +95,9 @@ export default function (props) {
                         type = 'button'
                         value = 'Security'
                         className = 'dropdown-button'
+                        onClick = {() => {
+                            setDDView('none')
+                        }}
                     />
                 </Link>
                 <input 
