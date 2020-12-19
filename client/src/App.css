@@ -346,8 +346,8 @@ input:focus, button:focus {
 }
 
 .blog-container {
-  width: 80%;
-  margin-left: 10%;
+  width: 60%;
+  margin-left: 20%;
 }
 
 .order-container {
@@ -412,11 +412,11 @@ input:focus, button:focus {
     margin-left: 0px;
   }
 
-  .blog-list-item-container {
+  /*.blog-list-item-container {
     width: calc(50vw - 10px) !important;
     margin-right: 5px !important;
     margin: 5px;
-  }
+  }*/
 
   .blog-list-image {
     height: 50vw !important;
