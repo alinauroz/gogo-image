@@ -62,6 +62,11 @@ export default function (props) {
             <View className = 'only-mobile' style = {{marginTop: 10, marginLeft: 20, fontSize: 13, fontStyle: 'italic'}}>
                 <Text>Scroll the table to view more</Text>
             </View>
+            <View>
+                <Text style = {{fontSize: 12, fontStyle: 'italic', marginTop: 10, marginLeft: '10%', width: '80%'}}>
+                    * Final delivery may vary in colors and sharpness slightly due to different color calibration. Superimpose and Text positioning will be at artist's discretion. No revision is allowed.
+                </Text>
+            </View>
             <View style = {{display: 'flex', justifyContent: 'flex-end', paddingRight: '10%', paddingTop: 20}}>
                 {
                     (() => {
@@ -73,6 +78,7 @@ export default function (props) {
                     })()
                 }
             </View>
+            
             <View style = {{display: 'flex', justifyContent: 'flex-end', paddingRight: '10%', paddingTop: 20}}>
                 <Link to = '/checkout'>
                     <input 
