@@ -21,6 +21,7 @@ import BlogPost from './Components/pages/BlogPost'
 import Orders from './Components/pages/Orders'
 import Order from './Components/pages/Order'
 import ContactUs from './Components/pages/ContactUs'
+import MaintenanceMode from './Components/pages/MaintenanceMode'
 import ForgotPass from './Components/pages/ForgotPass'
 
 const admin = JSON.parse(localStorage.getItem('admin') || '{}');
@@ -30,6 +31,11 @@ let cartContent = JSON.parse(localStorage.getItem('cart') || '[]')
 function Signup () {
   return <Login selected={1} />
 }
+
+const modes = Object.freeze({
+  MAINTENANCE: 1,
+  LOADING: 0,
+})
 
 let posts_ = [
   {tags: [], use: ['party', 'dance'], images: ['https://cdn.britannica.com/67/19367-050-885866B4/Valley-Taurus-Mountains-Turkey.jpg']},
@@ -57,6 +63,7 @@ let posts_ = [
 ]
 
 function App() {
+  const [mode, setMode] = React.useState(modes.LOADING);
   const [cart, setCart] = React.useState(cartContent)
   const [pages, setPages] = React.useState();
   const [posts, setPosts] = React.useState();
@@ -82,6 +89,10 @@ function App() {
         let _info = (d.data ? d.data[0] || {}: {})
         setInfo({... _info, isAdmin: admin.role && true});
         document.title = d.data ? d.data[0].name : '...'
+        if (_info.maintenanceMode) {
+          setMode(1);
+        }
+        else setMode(2);
       })
     }
 
@@ -102,6 +113,12 @@ function App() {
     localStorage.setItem('cart', JSON.stringify(cart));
     setCart([ ... cart]);
   }
+
+  if (mode === modes.LOADING)
+    return <>...</>
+
+  if (mode === modes.MAINTENANCE)
+    return (<MaintenanceMode />)
 
   return (
     <>
