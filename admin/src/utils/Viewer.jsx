@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Unit (props) {
-
+    let index = props.index;
     return (
         <tr>
             {
@@ -29,9 +29,9 @@ function Unit (props) {
 
                     if(props.actions) {
                         var actions_ = [];
-                        props.actions.map(Action => {
-                            if (((!Action.checkValue) || (props.data[Action.condition] === Action.checkValue)) && (props.data[Action.condition] !== false)) {
-                                actions_.push(<input style = {{marginBottom: 3}} type = 'button' className = {Action.className} value = {Action.value} onClick = {(e) => {Action.onClick(e, props.data)}} />);
+                        props.actions.map((Action) => {
+                            if (((typeof Action.checkValue === 'undefined') || (props.data[Action.condition] === Action.checkValue)) && (props.data[Action.condition] !== false)) {
+                                actions_.push(<input key = {String(Math.random() * Date.now())} style = {{marginBottom: 3}} type = 'button' className = {Action.className} value = {Action.value} onClick = {(e) => {Action.onClick(e, props.data, index)}} />);
                             }
                         })
                     }
@@ -78,8 +78,8 @@ export default function (props) {
             </tr>
             <tbody>
                 {
-                    props.data.map(entry => {
-                        return <Unit data = {entry} actions = {props.actions} hidden = {props.hidden} heads = {rawHeads} />
+                    props.data.map((entry, index) => {
+                        return <Unit data = {entry} index = {index} actions = {props.actions} hidden = {props.hidden} heads = {rawHeads} />
                     })
                 }
             </tbody>

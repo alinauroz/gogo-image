@@ -14,8 +14,26 @@ export default function (props) {
         setStartIndex(--i_ * pageSize)
     }
 
-    const EditAction = (e, data) => {
-        console.log(data)
+    const EditAction = async (e, _data, index) => {
+        console.log(_data._id, _data.status, index)
+        let res = await request({
+            route: 'users/',
+            credentials: 'include',
+            params: _data._id,
+            method: 'PUT',
+            body: {
+                status: (_data.status == 0 ? 1 : 0)
+            }
+        });
+
+        if (res.status === 'success') {
+            data.data[index].status = (_data.status == 0 ? 1 : 0);
+            setData({ ... data});
+        }
+        else {
+            alert(res.message || 'Unknown error occurred');
+        }
+        console.log(res.data._id, res.data.status);
     }
 
     (async () => {
@@ -40,7 +58,8 @@ export default function (props) {
                     data = {data.data.slice(startIndex, pageSize + startIndex)}
                     hidden = {['_id', 'emailConfirmToken']}
                     actions = {[
-                            {onClick: EditAction, value: 'Edit', className : 'btn btn-primary', condition: 'status', checkValue: 1},
+                            {onClick: EditAction, value: '🔓', className : 'btn btn-primary', condition: 'status', checkValue: 1},
+                            {onClick: EditAction, value: '🔒', className : 'btn btn-primary', condition: 'status', checkValue: 0},
                     //    {onClick: EditAction, value: 'Delete', className : 'btn btn-danger', break: true}
                     ]}
                 />
