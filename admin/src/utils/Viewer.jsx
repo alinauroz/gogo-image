@@ -20,10 +20,19 @@ function Unit (props) {
                         html.push(<td>{String(props.data[head])}</td>);
                     })
                     
+                    //if(props.actions) {
+                    //    var actions_ = [];
+                    //    props.actions.map(Action => {
+                    //        actions_.push(<input style = {{marginBottom: 3}} type = 'button' className = {Action.className} value = {Action.value} onClick = {(e) => {Action.onClick(e, props.data)}} />);
+                    //    })
+                    //}
+
                     if(props.actions) {
                         var actions_ = [];
                         props.actions.map(Action => {
-                            actions_.push(<input style = {{marginBottom: 3}} type = 'button' className = {Action.className} value = {Action.value} onClick = {(e) => {Action.onClick(e, props.data)}} />);
+                            if (((!Action.checkValue) || (props.data[Action.condition] === Action.checkValue)) && (props.data[Action.condition] !== false)) {
+                                actions_.push(<input style = {{marginBottom: 3}} type = 'button' className = {Action.className} value = {Action.value} onClick = {(e) => {Action.onClick(e, props.data)}} />);
+                            }
                         })
                     }
 

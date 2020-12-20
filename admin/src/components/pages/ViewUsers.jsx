@@ -2,6 +2,7 @@ import React from 'react'
 import {api} from '../../data/api'
 import Viewer from '../../utils/Viewer'
 import Pager from '../../utils/Pager'
+import {request} from '../../utils/request'
 
 export default function (props) {
 
@@ -13,9 +14,8 @@ export default function (props) {
         setStartIndex(--i_ * pageSize)
     }
 
-    const EditAction = (data) => {
-        props.setBase(data);
-        props.setScreen('Home');
+    const EditAction = (e, data) => {
+        console.log(data)
     }
 
     (async () => {
@@ -39,10 +39,10 @@ export default function (props) {
                 <Viewer 
                     data = {data.data.slice(startIndex, pageSize + startIndex)}
                     hidden = {['_id', 'emailConfirmToken']}
-                    //actions = {[
-                    //    {onClick: EditAction, value: 'Edit', className : 'btn btn-primary'},
+                    actions = {[
+                            {onClick: EditAction, value: 'Edit', className : 'btn btn-primary', condition: 'status', checkValue: 1},
                     //    {onClick: EditAction, value: 'Delete', className : 'btn btn-danger', break: true}
-                    //]}
+                    ]}
                 />
                 <div className = 'order-pager-container'>
                     <span style = {{float: 'left'}}>

@@ -127,6 +127,24 @@ export default function () {
                     onChange = {handleOnchange}
                 />
                 <Field 
+                    name = 'domain'
+                    title = 'Domain'
+                    placeholder = 'Domain'
+                    inputType = 'text'
+                    style = {{marginTop: 10}}
+                    value = {info.domain}
+                    onChange = {handleOnchange}
+                />
+                <Field 
+                    name = 'api'
+                    title = 'API Link (domain or IP)'
+                    placeholder = 'API Link'
+                    inputType = 'text'
+                    style = {{marginTop: 10}}
+                    value = {info.api}
+                    onChange = {handleOnchange}
+                />
+                <Field 
                     name = 'email'
                     title = 'Email'
                     placeholder = 'Email'
