@@ -145,6 +145,15 @@ export default function () {
                     onChange = {handleOnchange}
                 />
                 <Field 
+                    name="sendgridKey"
+                    title="Sendgrid API Key"
+                    placeholder="Sendgrid API Key"
+                    inputType="text"
+                    style = {{marginTop: 10}}
+                    value = {info.sendgridKey}
+                    onChange = {handleOnchange}
+                />
+                <Field 
                     name = 'email'
                     title = 'Email'
                     placeholder = 'Email'
@@ -189,6 +198,16 @@ export default function () {
                     value = {info.insta}
                     onChange = {handleOnchange}
                 />
+
+                <div style = {{marginTop: 10}}>
+                    <p className = 'field-title'>Maintenance Mode</p>
+                    <select className = 'form-control' name="maintenanceMode">
+                    <option value={info.maintenanceMode}>{info.maintenanceMode ? 'On' : 'Off'}</option>
+                        <option value={true}>On</option>
+                        <option value={false}>Off</option>
+                    </select>
+                </div>
+
                 <div style = {{marginTop: 5}}>
                     <p>Upload Logo</p>
                     <ImageLoader 
