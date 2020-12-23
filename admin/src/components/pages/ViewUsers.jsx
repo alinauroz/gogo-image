@@ -58,8 +58,8 @@ export default function (props) {
                     data = {data.data.slice(startIndex, pageSize + startIndex)}
                     hidden = {['_id', 'emailConfirmToken']}
                     actions = {[
-                            {onClick: EditAction, value: '🔓', className : 'btn btn-primary', condition: 'status', checkValue: 1},
-                            {onClick: EditAction, value: '🔒', className : 'btn btn-primary', condition: 'status', checkValue: 0},
+                            {onClick: EditAction, value: '🔓', className : 'btn btn-primary', condition: 'status', checkValue: 0},
+                            {onClick: EditAction, value: '🔒', className : 'btn btn-primary', condition: 'status', checkValue: 1},
                     //    {onClick: EditAction, value: 'Delete', className : 'btn btn-danger', break: true}
                     ]}
                 />
