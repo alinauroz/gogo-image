@@ -17,6 +17,7 @@ import AddFaq from './components/pages/AddFaq'
 import ViewFAQ from './components/pages/ViewFAQ'
 import EditFAQ from './components/pages/EditFAQ'
 import ViewBlogs from './components/pages/ViewBlogs'
+import ViewPosts from './components/pages/ViewPosts'
 import ViewAdmins from './components/pages/ViewAdmins'
 import EditStaff from './components/pages/EditStaff'
 import Topbar from './components/Topbar'
@@ -58,12 +59,11 @@ export default function () {
     {title: 'FAQs', onClick: () => setScreen('ViewFAQ')},
     {title: 'Add FAQs', onClick: () => setScreen('AddFAQ')},
     {title: 'Price & Fee', onClick: () => setScreen('SetPrice')},
-    {title: 'Manage Posting'},
     {title: 'Sales Data'},
     {title: 'Orders', onClick: () => setScreen('ViewOrders')},
     {title: 'Submit Order', onClick: () => setScreen('SubmitOrder')},
-    {title: 'Products', onClick: () => setScreen('ViewProducts')},
-    {title: 'Add Product', onClick: () => setScreen('AddProduct')},
+    {title: 'Manage Templates', onClick: () => setScreen('ViewPosts')},
+    {title: 'Add Template', onClick: () => setScreen('AddProduct')},
     {title: 'Blogs', onClick: () => setScreen('ViewBlogs')},
     {title: 'Add Blog', onClick: () => setScreen('AddBlog')},
     {title: 'View Coupons', onClick: () => setScreen('ViewCoupons')},
@@ -138,6 +138,9 @@ export default function () {
         </div>
         <div style = {{display : screen == 'EditStaff' ? 'block' : 'none'}}>
           <EditStaff base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'ViewPosts' ? 'block' : 'none'}}>
+          <ViewPosts base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
       </div>
     </>
