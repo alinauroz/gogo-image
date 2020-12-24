@@ -3,12 +3,13 @@ import {request} from '../../utils/request'
 import Viewer from '../../utils/Viewer'
 import {api} from '../../data/api'
 import Pager from '../../utils/Pager'
+import { conciseDate, addDays } from '../../utils/Date'
 
 export default function (props) {
 
     const [orders, setOrders] = React.useState();
     const [error, setError] = React.useState('');
-    const [pageSize, setPageSize] = React.useState(3);
+    const [pageSize, setPageSize] = React.useState(15);
     const [startIndex, setStartIndex] = React.useState(0);
 
     const setPage = (i_) => {
@@ -41,6 +42,13 @@ export default function (props) {
         }).then(res => {
 
             if (res.data) {
+                res.data.map(order => {    
+                    order.status = order.complete ? 'Completed' : 'In Progress'
+                    order.date = conciseDate(order.createdAt)
+                    order.fullfillment = conciseDate(addDays(order.createdAt, order.nextDayService ? 1: 7))
+                    order.Coupon = order.coupon;
+                    order.Price = '$' + (order.price || 0);
+                })
                 setOrders(res.data);
             }
             else {
@@ -58,7 +66,7 @@ export default function (props) {
                 <>
                 <Viewer 
                     data = {orders.slice(startIndex, pageSize + startIndex)}
-                    hidden = {['submission', 'items', '_id', 'updatedAt']}
+                    hidden = {['submission', 'items', '_id', 'updatedAt', 'createdAt', 'complete', 'nextDayService', 'price', 'subtotal', 'coupon']}
                     actions = {[
                         {onClick: getOrderFile, value: '⬇', className : 'btn btn-primary'}
                     ]}
