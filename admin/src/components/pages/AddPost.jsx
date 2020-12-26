@@ -63,6 +63,7 @@ export default function () {
         setTypes(types)
     }
 
+    const [name, setName] = React.useState('');
     const [tags, setTags] = React.useState([]);
     const [tagsView, setTagsView] = React.useState([]);
     const [images, setImages] = React.useState([])
@@ -70,6 +71,8 @@ export default function () {
     const [types, setTypes] = React.useState([]);
     const [sizes, setSizes] = React.useState([]); 
     const [message, setMessage] = React.useState('')
+    const [typeOfUse, setTypeOfUse] = React.useState([]);
+    const [typeOfUseView, setTypeOfUseView] = React.useState([]);
     const [ImageInputs, setImageInputs] = React.useState([<PostInput index = {0} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />])
 
     React.useEffect(() => {
@@ -85,6 +88,18 @@ export default function () {
 
         setTags(tags_);
         setTagsView(tagsHtml)
+    }
+
+    const handleTypeOfUse = (e) => {
+
+        let tags_ = e.target.value.split(' ').filter((tag) => tag !== ' ' && tag !== '');
+        let tagsHtml = []
+        tags_.map(tag => {
+            tagsHtml.push(<span style = {{margin: 3, marginLeft: 0, borderRadius: 3, padding: 4, background: 'grey', color: 'white', fontSize: 12}}>{tag}</span>)
+        })
+
+        setTypeOfUse(tags_);
+        setTypeOfUseView(tagsHtml)
     }
 
     const submitPost = async (e) => {
@@ -164,6 +179,8 @@ export default function () {
                 method: 'POST',
                 credentials: 'include',
                 body: {
+                    name,
+                    typeOfUse,
                     items: postData,
                     tags
                 }
@@ -187,6 +204,21 @@ export default function () {
     return (
         <div className = 'card'>
             <h3 style = {{margin: 0, marginBottom: 15}}>Add a Post</h3>
+            <Field 
+                name="name"
+                title="Name"
+                placeholder="Name of the template"
+                onChange={(e) => setName(e.target.value)}
+            />
+            <Field 
+                name="typeOfUse"
+                title="Type of Use"
+                placeholder="Type of Use"
+                onChange={handleTypeOfUse}
+            />
+            <p style = {{margin: 5, marginBottom: 10}}>
+                {typeOfUseView}
+            </p>
             <Field 
                 name = 'tags'
                 title = 'Add Tags'

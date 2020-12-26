@@ -15,7 +15,6 @@ export default function (props) {
     }
 
     const EditAction = async (e, _data, index) => {
-        console.log(_data._id, _data.status, index)
         let res = await request({
             route: 'users/',
             credentials: 'include',
@@ -33,7 +32,6 @@ export default function (props) {
         else {
             alert(res.message || 'Unknown error occurred');
         }
-        console.log(res.data._id, res.data.status);
     }
 
     (async () => {
@@ -42,6 +40,14 @@ export default function (props) {
 
         let res = await fetch(api + 'posts');
         let data_ = await res.json();
+
+        data_.data.forEach(post => {
+            post.img = {
+                type: 'image',
+                src: api + 'images/' +post.items[0].thumb
+            }
+        })
+
         setData(data_);
         props.setBase(data_, 'posts');
 
@@ -49,14 +55,14 @@ export default function (props) {
 
     return (
         <div className = 'card'>
-            <h3 style = {{margin: 0, marginBottom: 10}}>View Users</h3>
+            <h3 style = {{margin: 0, marginBottom: 10}}>View Templates</h3>
             <br />
             {
                 data ?
                 <>
                 <Viewer 
                     data = {data.data.slice(startIndex, pageSize + startIndex)}
-                    hidden = {['_id', 'emailConfirmToken']}
+                    hidden = {['_id', 'createdAt', 'updatedAt', 'items']}
                     actions = {[
                             {onClick: EditAction, value: '🔓', className : 'btn btn-primary', condition: 'status', checkValue: 0},
                             {onClick: EditAction, value: '🔒', className : 'btn btn-primary', condition: 'status', checkValue: 1},

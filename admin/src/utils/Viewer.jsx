@@ -17,7 +17,22 @@ function Unit (props) {
                     //}
 
                     props.heads.map(head => {
-                        html.push(<td>{String(props.data[head])}</td>);
+                        if (typeof props.data[head] === 'string') {
+                            html.push(<td>{String(props.data[head])}</td>);
+                        }
+                        else if (typeof props.data[head] === 'object') {
+                            if (props.data[head].type === 'image') {
+                                html.push(
+                                    <td><img src={props.data[head].src} className="viewer-image" /></td>
+                                );
+                            }
+                            else {
+                                html.push(<td>{String(props.data[head])}</td>);
+                            }
+                        }
+                        else {
+                            html.push(<td>{String(props.data[head])}</td>);
+                        }
                     })
                     
                     //if(props.actions) {
