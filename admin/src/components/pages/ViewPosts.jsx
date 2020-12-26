@@ -14,6 +14,17 @@ export default function (props) {
         setStartIndex(--i_ * pageSize)
     }
 
+    const deletePage = async (e, data) => {
+        e.target.disabled = true;
+        let res = await request({
+            route: 'posts/',
+            params: data._id,
+            method: 'DELETE',
+            credentials: 'include'
+        })
+        if (res.status == 'success') setData('')
+    }
+
     const EditAction = async (e, _data, index) => {
         let res = await request({
             route: 'users/',
@@ -64,9 +75,8 @@ export default function (props) {
                     data = {data.data.slice(startIndex, pageSize + startIndex)}
                     hidden = {['_id', 'createdAt', 'updatedAt', 'items']}
                     actions = {[
-                            {onClick: EditAction, value: '🔓', className : 'btn btn-primary', condition: 'status', checkValue: 0},
-                            {onClick: EditAction, value: '🔒', className : 'btn btn-primary', condition: 'status', checkValue: 1},
-                    //    {onClick: EditAction, value: 'Delete', className : 'btn btn-danger', break: true}
+                        {onClick: EditAction, value: 'Edit', className : 'btn btn-primary margin-5'},
+                        {onClick: deletePage, value: 'Delete', className : 'btn btn-danger margin-5', break: true}
                     ]}
                 />
                 <div className = 'order-pager-container'>

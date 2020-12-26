@@ -181,3 +181,7 @@ input:focus, textarea:focus, button:focus {
   max-width: 120px;
   border: 5px solid transparent;
 }
+
+.margin-5 {
+  margin: 2.5px;
+}
