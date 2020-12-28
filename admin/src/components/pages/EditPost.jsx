@@ -64,6 +64,7 @@ export default function (props) {
         setTypes(types)
     }
 
+    const [id, setId] = React.useState('');
     const [name, setName] = React.useState(postData.name);
     const [tags, setTags] = React.useState(postData.tags);
     const [tagsView, setTagsView] = React.useState();
@@ -181,8 +182,8 @@ export default function (props) {
             }
 
             let data = await request({
-                route: 'posts',
-                method: 'POST',
+                route: 'posts/' + id,
+                method: 'PUT',
                 credentials: 'include',
                 body: {
                     name,
@@ -213,6 +214,10 @@ export default function (props) {
 
     if (! typeOfUse && postData.typeOfUse) {
         handleTypeOfUse({target: {value: postData.typeOfUse ? postData.typeOfUse.join(' '): ''}});
+    }
+
+    if (!id && postData._id) {
+        setId(postData._id);
     }
 
     return (
