@@ -18,6 +18,7 @@ import ViewFAQ from './components/pages/ViewFAQ'
 import EditFAQ from './components/pages/EditFAQ'
 import ViewBlogs from './components/pages/ViewBlogs'
 import ViewPosts from './components/pages/ViewPosts'
+import EditPost from './components/pages/EditPost'
 import ViewAdmins from './components/pages/ViewAdmins'
 import EditStaff from './components/pages/EditStaff'
 import Topbar from './components/Topbar'
@@ -141,6 +142,9 @@ export default function () {
         </div>
         <div style = {{display : screen == 'ViewPosts' ? 'block' : 'none'}}>
           <ViewPosts base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'EditPost' ? 'block' : 'none'}}>
+          <EditPost base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
       </div>
     </>

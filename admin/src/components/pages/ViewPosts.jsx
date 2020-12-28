@@ -26,23 +26,8 @@ export default function (props) {
     }
 
     const EditAction = async (e, _data, index) => {
-        let res = await request({
-            route: 'users/',
-            credentials: 'include',
-            params: _data._id,
-            method: 'PUT',
-            body: {
-                status: (_data.status == 0 ? 1 : 0)
-            }
-        });
-
-        if (res.status === 'success') {
-            data.data[index].status = (_data.status == 0 ? 1 : 0);
-            setData({ ... data});
-        }
-        else {
-            alert(res.message || 'Unknown error occurred');
-        }
+        props.setBase(data.data[index], 'post', true);
+        props.setScreen('EditPost');
     }
 
     (async () => {
@@ -55,7 +40,7 @@ export default function (props) {
         data_.data.forEach(post => {
             post.img = {
                 type: 'image',
-                src: api + 'images/' +post.items[0].thumb
+                src: api + 'images/' +(post.items[0] && post.items[0].thumb)
             }
         })
 
