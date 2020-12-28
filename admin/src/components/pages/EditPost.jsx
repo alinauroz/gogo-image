@@ -220,6 +220,10 @@ export default function (props) {
         setId(postData._id);
     }
 
+    if (!name && postData.name) {
+        setName(postData.name)
+    }
+
     return (
         <div className = 'card'>
             <h3 style = {{margin: 0, marginBottom: 15}}>Add a Post</h3>
@@ -227,7 +231,7 @@ export default function (props) {
                 name={"name"}
                 title="Name"
                 placeholder="Name of the template"
-                value={postData.name}
+                value={name}
                 onChange={(e) => setName(e.target.value)}
             />
             <Field 
