@@ -2,6 +2,7 @@ import React from 'react'
 import Field from '../unit/Field'
 import ImageLoader from '../../utils/ImageLoader'
 import { request } from '../../utils/request'
+import { api } from '../../data/api'
 
 function duplicateExists(w){
     return new Set(w).size !== w.length 
@@ -69,7 +70,7 @@ export default function (props) {
     const [tags, setTags] = React.useState(postData.tags);
     const [tagsView, setTagsView] = React.useState();
     const [tagsString, setTagsString] = React.useState('');
-    const [images, setImages] = React.useState(postData.items ? postData.items.map(item => item.image) : [])
+    const [images, setImages] = React.useState([])
     const [thumbs, setThumbs] = React.useState([]);
     const [types, setTypes] = React.useState([]);
     const [sizes, setSizes] = React.useState([]); 
@@ -78,6 +79,7 @@ export default function (props) {
     const [typeOfUseView, setTypeOfUseView] = React.useState();
     const [typeOfUseString, setTypeOfUseString] = React.useState('');
     const [ImageInputs, setImageInputs] = React.useState([<PostInput index = {0} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />])
+    const [previousItems, setPreviousItems] = React.useState();
 
     React.useEffect(() => {
     })
@@ -188,7 +190,7 @@ export default function (props) {
                 body: {
                     name,
                     typeOfUse,
-                    items: postData,
+                    items: postData.concat(previousItems || []),
                     tags
                 }
             });
@@ -224,6 +226,10 @@ export default function (props) {
         setName(postData.name)
     }
 
+    if (!previousItems && postData.items) {
+        setPreviousItems(postData.items);
+    }
+
     return (
         <div className = 'card'>
             <h3 style = {{margin: 0, marginBottom: 15}}>Add a Post</h3>
@@ -251,9 +257,26 @@ export default function (props) {
                 onChange = {handleTags}
                 value = {tagsString}
             />
+            
             <p style = {{margin: 5, marginBottom: 10}}>
                 {tagsView}
             </p>
+
+            <p style={{marginTop: 20}}>Previously Added Photos</p>
+            {
+                postData.items && postData.items.map((item, index) => {
+                    return item ?
+                     (
+                        <div style = {{display: 'inline-block', verticalAlign: 'top', padding: 5, border: '1px solid lightgrey', marginRight: 5}}>
+                            <img src={api + 'images/' +item.thumb} style={{height: 200, minWidth: 120}}/>
+                            <p>{item.type + " - " + item.size}</p>
+                            <button className='btn btn-danger'>Remove</button>
+                        </div>
+                    )
+                    : null
+                })
+            }
+
             {ImageInputs}
             <p style = {{marginTop: 10}}>
                 {message}
