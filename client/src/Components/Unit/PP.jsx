@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ({total}) {
+export default function ({total, onSuccess = null, onFailure = null}) {
 
     const [paid, setPaid] = React.useState(false);
     const [error, setError] = React.useState(null);
@@ -36,13 +36,11 @@ export default function ({total}) {
       }, []);
 
     if (paid) {
-        return <div>Payment successful.!</div>;
+        return onSuccess();
     }
 
     if (error) {
-        console.log("ERROR")
-        console.log(error)
-      return <div>Error Occurred in processing payment.! Please try again.</div>;
+        return onFailure();
     }
 
 
