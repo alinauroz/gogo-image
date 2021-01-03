@@ -26,7 +26,6 @@ export default function ({total, onSuccess = null, onFailure = null}) {
             onApprove: async (data, actions) => {
               const order = await actions.order.capture();
               setPaid(true);
-              console.log(order);
             },
             onError: (err) => {
                 setError(err);
@@ -36,11 +35,13 @@ export default function ({total, onSuccess = null, onFailure = null}) {
       }, []);
 
     if (paid) {
-        return onSuccess();
+        onSuccess();
+        return null;
     }
 
     if (error) {
-        return onFailure();
+        onFailure();
+        return null;
     }
 
 
