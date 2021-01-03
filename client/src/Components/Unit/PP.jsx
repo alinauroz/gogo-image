@@ -17,7 +17,7 @@ export default function ({total}) {
                     description: "Your description",
                     amount: {
                       currency_code: "USD",
-                      value: total || 0.0,
+                      value: parseFloat(total).toFixed(1) || 0.0,
                     },
                   },
                 ],
@@ -29,8 +29,7 @@ export default function ({total}) {
               console.log(order);
             },
             onError: (err) => {
-            //   setError(err),
-              console.error(err);
+                setError(err);
             },
           })
           .render(paypalRef.current);
@@ -41,6 +40,8 @@ export default function ({total}) {
     }
 
     if (error) {
+        console.log("ERROR")
+        console.log(error)
       return <div>Error Occurred in processing payment.! Please try again.</div>;
     }
 

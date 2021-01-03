@@ -1,6 +1,7 @@
 import React from 'react'
 import {View, Text} from '../Basic/AppComponents'
 import {request} from '../../utils/AppRequest'
+import PP from '../Unit/PP'
 
 const CheckoutField = (props) => {
     return (
@@ -99,6 +100,7 @@ export default function (props) {
     const [finalPrice, setFinalPrice] = React.useState(calulatePrice(1) - discount)
 
     const placeOrder = async () => {
+        console.log("PLACING ORDER")
         let res = await request({
             route: 'orders',
             method: 'POST',
@@ -124,7 +126,20 @@ export default function (props) {
     if (ppView) {
         return (
             <div style={{position:'fixed', top: 0, left: 0, width:'100%', height: '100%', background: '#333333aa'}}>
-                
+                <div style={{textAlign: 'right', color: 'white', margin: 20}}>
+                    <span 
+                        style={{cursor: 'pointer', fontSize: 22}}
+                        onClick={() => setPPView(false)}
+                    >
+                    ✕
+                    </span>
+                </div>
+                <div style={{textAlign: 'center', marginTop: 100}}>
+                    <PP 
+                        total={parseFloat(finalPrice).toFixed(1)}
+                        onSuccess={placeOrder}
+                    />
+                </div>
             </div>
         )
     }
