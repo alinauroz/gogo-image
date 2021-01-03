@@ -2,6 +2,8 @@ import React from 'react'
 import {View, Text} from '../Basic/AppComponents'
 import {request} from '../../utils/AppRequest'
 import PP from '../Unit/PP'
+import Box from '../Container/Box'
+import { Link } from 'react-router-dom'
 
 const CheckoutField = (props) => {
     return (
@@ -98,6 +100,7 @@ export default function (props) {
     const [price, setPrice] = React.useState(calulatePrice());
     const [totalPrice, setTotalPrice] = React.useState(calulatePrice(1))
     const [finalPrice, setFinalPrice] = React.useState(calulatePrice(1) - discount)
+    const [paymentStatus, setPaymentStatus] = React.useState(1);
 
     const placeOrder = async () => {
         console.log("PLACING ORDER")
@@ -114,7 +117,14 @@ export default function (props) {
             }
         })
 
-        console.log(res)
+        setPPView(false);
+
+        if (res.status === 'success') {
+            setPaymentStatus(1);
+        }
+        else {
+            setPaymentStatus(2);
+        }
 
     }
 
@@ -122,6 +132,55 @@ export default function (props) {
         var user = JSON.parse(localStorage.getItem('user') || '{}');
     else
         return 'Login to Continue'
+
+    if (paymentStatus === 1) {
+        return (
+            <Box
+                style={{textAlign: 'center', paddingLeft: 50, paddingRight: 50}}
+            >
+
+                <b>Congratulations</b><br/><br/>
+                Your transaction has been approved.<br/>
+                An Invoice has been sent to your email address.<br/>
+                Go to 'Order History' to View All Purchasing Details<br/><br/>
+                <div>
+                    <Link 
+                        to="gallery"
+                    >
+                        <input 
+                            type="button"
+                            className="action-button"
+                            value="Continue Shopping"
+                            style={{width: 140, marginLeft: 10, marginRight: 10}}
+                        />
+                    </Link>
+                    <Link 
+                        to="orders"
+                    >
+                        <input 
+                            type="button"
+                            className="action-button"
+                            value="Order History"
+                            style={{width: 120, marginLeft: 10, marginRight: 10}}
+                        />
+                    </Link>
+                    <Link 
+                        to="/"
+                    >
+                        <input 
+                            type="button"
+                            className="action-button"
+                            value="Exit"
+                            style={{width: 120, marginLeft: 10, marginRight: 10}}
+                        />
+                    </Link>
+                </div>
+            </Box>
+        )
+    }
+    else if (paymentStatus === 2) {
+
+    }
 
     if (ppView) {
         return (
