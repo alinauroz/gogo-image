@@ -2,7 +2,7 @@ import colors from './colors'
 
 export default {
     container: {
-        width: '100%',
+        width: 'calc(100% - 10px)',
         height: '60px',
         padding: '0px 5px',
         borderBottom: '2px solid #333'
