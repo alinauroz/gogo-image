@@ -23,7 +23,7 @@ import Order from './Components/pages/Order'
 import ContactUs from './Components/pages/ContactUs'
 import MaintenanceMode from './Components/pages/MaintenanceMode'
 import ForgotPass from './Components/pages/ForgotPass'
-import PP from './Components/Unit/PP'
+import PP from './Components/pages/test'
 
 const admin = JSON.parse(localStorage.getItem('admin') || '{}');
 

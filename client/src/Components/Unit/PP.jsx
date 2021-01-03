@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function () {
+export default function ({total}) {
 
     const [paid, setPaid] = React.useState(false);
     const [error, setError] = React.useState(null);
@@ -17,7 +17,7 @@ export default function () {
                     description: "Your description",
                     amount: {
                       currency_code: "USD",
-                      value: 500.0,
+                      value: total || 0.0,
                     },
                   },
                 ],

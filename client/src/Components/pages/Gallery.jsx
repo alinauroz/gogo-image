@@ -19,7 +19,7 @@ export default function (props) {
                 posts.map(post => {
                     return (
                         <Link to = {'/post/' + post._id}>
-                            <div className = 'gallery-item-container'><img src = {api + 'images/' +post.items[0].thumb} className = 'gallery-item' /></div>
+                            <div className = 'gallery-item-container'><img src = {api + 'images/' +(post.items[0] ? post.items[0].thumb: '')} className = 'gallery-item' /></div>
                         </Link>
                     )
                 })

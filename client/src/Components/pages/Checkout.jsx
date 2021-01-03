@@ -25,10 +25,11 @@ const getDiscount = (coupon, totalPrice) => {
 
 export default function (props) {
 
-    const [nextDayService, setNextDayService] = React.useState(false)
-    const [couponCode, setCouponCode] = React.useState('')
-    const [couponMessage, setCouponMessage] = React.useState('')
+    const [nextDayService, setNextDayService] = React.useState(false);
+    const [couponCode, setCouponCode] = React.useState('');
+    const [couponMessage, setCouponMessage] = React.useState('');
     const [discount, setDiscount] = React.useState(0);
+    const [ppView, setPPView] = React.useState(false);
 
     React.useEffect(() => {
         document.title = 'Checkout - ' + (props.info ? props.info.name: '');
@@ -120,6 +121,14 @@ export default function (props) {
     else
         return 'Login to Continue'
 
+    if (ppView) {
+        return (
+            <div style={{position:'fixed', top: 0, left: 0, width:'100%', height: '100%', background: '#333333aa'}}>
+                
+            </div>
+        )
+    }
+
     return (
         <View style = {{textAlign: 'center', marginTop: 20}}>
             <View className = 'box inline-box' style = {{textAlign: 'left', border: 0, padding: 0, width: 360}}>
@@ -177,7 +186,7 @@ export default function (props) {
                             type = 'button'
                             value = 'Pay Now'
                             className = 'action-button'
-                            onClick = {placeOrder}
+                            onClick = {() => setPPView(true)}
                             style = {{width: 120}}
                         />
                         <input 
