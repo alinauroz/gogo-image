@@ -100,7 +100,7 @@ export default function (props) {
     const [price, setPrice] = React.useState(calulatePrice());
     const [totalPrice, setTotalPrice] = React.useState(calulatePrice(1))
     const [finalPrice, setFinalPrice] = React.useState(calulatePrice(1) - discount)
-    const [paymentStatus, setPaymentStatus] = React.useState(1);
+    const [paymentStatus, setPaymentStatus] = React.useState(3);
 
     const placeOrder = async () => {
         console.log("PLACING ORDER")
@@ -123,7 +123,7 @@ export default function (props) {
             setPaymentStatus(1);
         }
         else {
-            setPaymentStatus(2);
+            setPaymentStatus(3);
         }
 
     }
@@ -180,6 +180,38 @@ export default function (props) {
     }
     else if (paymentStatus === 2) {
 
+    }
+    else if (paymentStatus === 3) {
+        return (
+            <Box
+                style={{textAlign: 'center', paddingLeft: 50, paddingRight: 50}}
+            >
+                <b>Payment Unsuccessful</b><br/><br/>
+                Please check with your credit card issuing bank or use another credit card.<br/>
+                <div>
+                    <Link
+                        to="cart"
+                    >
+                        <input 
+                            type="button"
+                            className="action-button"
+                            value="Back To My Order"
+                            style={{width: 150, marginLeft: 10, marginRight: 10}}
+                        />
+                    </Link>
+                    <Link 
+                        to="/"
+                    >
+                        <input 
+                            type="button"
+                            className="action-button"
+                            value="Exit"
+                            style={{width: 120, marginLeft: 10, marginRight: 10}}
+                        />
+                    </Link>
+                </div>
+            </Box>
+        )
     }
 
     if (ppView) {
