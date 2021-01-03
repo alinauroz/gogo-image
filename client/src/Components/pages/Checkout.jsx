@@ -100,7 +100,7 @@ export default function (props) {
     const [price, setPrice] = React.useState(calulatePrice());
     const [totalPrice, setTotalPrice] = React.useState(calulatePrice(1))
     const [finalPrice, setFinalPrice] = React.useState(calulatePrice(1) - discount)
-    const [paymentStatus, setPaymentStatus] = React.useState(3);
+    const [paymentStatus, setPaymentStatus] = React.useState(2);
 
     const placeOrder = async () => {
         console.log("PLACING ORDER")
@@ -123,7 +123,7 @@ export default function (props) {
             setPaymentStatus(1);
         }
         else {
-            setPaymentStatus(3);
+            setPaymentStatus(2);
         }
 
     }
@@ -286,6 +286,14 @@ export default function (props) {
                     <View style = {{marginTop: 5}}>
                         <input id = 'agree-with-terms' type = 'checkbox' />
                         <label for = 'agree-with-terms' style = {{display: 'inline-block', verticalAlign: 'top', marginTop: 3}}>I agree with Terms & Conditions</label>
+                    </View>
+                    <View>
+                        <br/>
+                        {
+                            paymentStatus === 2 ?  
+                            'Unable to place order. Try again.'
+                            : null
+                        }
                     </View>
                     <View style = {{marginTop: 20}}>
                         <input 
