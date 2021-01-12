@@ -42,6 +42,9 @@ export default function () {
 
     return (
         <div class = 'card'>
+            <h3 style={{marginTop: 0}}>
+                Create Page
+            </h3>
             <Field 
                 name = 'title'
                 placeholder = 'Title'

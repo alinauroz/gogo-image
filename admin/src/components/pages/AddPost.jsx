@@ -203,7 +203,7 @@ export default function () {
 
     return (
         <div className = 'card'>
-            <h3 style = {{margin: 0, marginBottom: 15}}>Add a Post</h3>
+            <h3 style = {{margin: 0, marginBottom: 15}}>Add a Template</h3>
             <Field 
                 name="name"
                 title="Name"
