@@ -51,7 +51,21 @@ export default function (props) {
 
     return (
         <div className = 'card'>
-            <h3 style = {{margin: 0, marginBottom: 10}}>View Templates</h3>
+            <h3 style = {{margin: 0, marginBottom: 10}}>
+                View Templates
+                <span
+                    style={{
+                        float: 'right'
+                    }}
+                >
+                    <input
+                        type = 'button'
+                        value = 'Add'
+                        className = 'btn btn-success'
+                        onClick = {() => props.setScreen('AddProduct')}
+                    />
+                </span>
+            </h3>
             <br />
             {
                 data ?
