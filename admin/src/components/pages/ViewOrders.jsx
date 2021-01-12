@@ -4,6 +4,8 @@ import Viewer from '../../utils/Viewer'
 import {api} from '../../data/api'
 import Pager from '../../utils/Pager'
 import { conciseDate, addDays } from '../../utils/Date'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpload } from "@fortawesome/free-solid-svg-icons";
 
 export default function (props) {
 
@@ -68,7 +70,8 @@ export default function (props) {
                     data = {orders.slice(startIndex, pageSize + startIndex)}
                     hidden = {['submission', 'items', '_id', 'updatedAt', 'createdAt', 'complete', 'nextDayService', 'price', 'subtotal', 'coupon']}
                     actions = {[
-                        {onClick: getOrderFile, value: '⬇', className : 'btn btn-primary'}
+                        {onClick: getOrderFile, value: '⬇', className : 'btn btn-primary'},
+                        {onClick: () => props.setScreen('SubmitOrder'), value: <FontAwesomeIcon icon={faUpload} />, className : 'btn btn-primary'}
                     ]}
                 />
                 <div className = 'order-pager-container'>

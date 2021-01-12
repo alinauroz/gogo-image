@@ -46,7 +46,7 @@ function Unit (props) {
                         var actions_ = [];
                         props.actions.map((Action) => {
                             if (((typeof Action.checkValue === 'undefined') || (props.data[Action.condition] === Action.checkValue)) && (props.data[Action.condition] !== false)) {
-                                actions_.push(<input key = {String(Math.random() * Date.now())} style = {{marginBottom: 3}} type = 'button' className = {Action.className} value = {Action.value} onClick = {(e) => {Action.onClick(e, props.data, index)}} />);
+                                actions_.push(<button key = {String(Math.random() * Date.now())} style = {{marginBottom: 3}} type = 'button' className = {Action.className} value = {Action.value} onClick = {(e) => {Action.onClick(e, props.data, index)}} >{Action.value}</button>);
                             }
                         })
                     }

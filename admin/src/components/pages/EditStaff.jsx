@@ -76,7 +76,6 @@ export default function (props) {
         let id_ = e.target.id;
         let privilige = PRIVILIGES[id_];
         console.log(priviliges)
-        alert(privilige)
 
         if (isChecked && priviliges.indexOf(privilige) === -1) {
             priviliges.push(privilige)
