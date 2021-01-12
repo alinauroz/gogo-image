@@ -24,7 +24,21 @@ export default function (props) {
 
     return (
         <div className = 'card'>
-            <h3 style = {{margin: 0, marginBottom: 10}}>View Blogs</h3>
+            <h3 style = {{margin: 0, marginBottom: 10}}>
+                View Blogs
+                <span
+                    style={{
+                        float: 'right'
+                    }}
+                >
+                    <input
+                        type = 'button'
+                        value = 'Add'
+                        className = 'btn btn-success'
+                        onClick = {() => props.setScreen('AddBlog')}
+                    />
+                </span>
+            </h3>
             <br />
             {
                 data ?
