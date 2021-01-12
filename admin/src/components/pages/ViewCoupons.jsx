@@ -62,7 +62,21 @@ export default function (props) {
     if (data) {
         return (
             <div class = 'card'>
-            <h2 style = {{marginTop: 2, marginBottom: 10}}>View Coupons</h2>
+            <h2 style = {{marginTop: 2, marginBottom: 10}}>
+                View Coupons
+                <span
+                    style={{
+                        float: 'right'
+                    }}
+                >
+                    <input
+                        type = 'button'
+                        value = 'Add'
+                        className = 'btn btn-success'
+                        onClick = {() => props.setScreen('AddCoupon')}
+                    />
+                </span>
+            </h2>
             <Viewer 
                 data = {data}
                 hidden = {['_id', 'validFor', 'forAll', 'updatedAt', 'startDate', 'endDate', 'active']}

@@ -62,10 +62,10 @@ export default function (props) {
 
     return (
         <div className = 'card'>
-            <h3 style = {{margin: 0, marginBottom: 10}}>Add Blog</h3>
+            <h3 style = {{margin: 0, marginBottom: 10}}>Add FAQ</h3>
 
             <div style = {{display: 'inline-block', width: 'calc(50% - 20px)', marginRight: 20}}>
-                <p>Blog Category</p>
+                <p>FAQ Category</p>
                 <select className = 'form-control' onChange = {handleCategory}>
                     <option >Select Category</option>
                     {
