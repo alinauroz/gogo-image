@@ -8,6 +8,7 @@ export default function (props) {
 
     const [posts, setPosts] = React.useState(props.posts);
     const [selected, setSelected] = React.useState('');
+    const [pageSize, setPageSize] = React.useState(20);
 
     React.useEffect(() => {
         document.title = 'Gallery - ' + (props.info ? props.info.name: '');
@@ -72,7 +73,8 @@ export default function (props) {
             </div>
             {
                 posts ?
-                posts.map(post => {
+                posts.map((post, index) => {
+                    if (index >= pageSize) return null;
                     return (
                         <Link to = {'/post/' + post._id}>
                             <div className = 'gallery-item-container'><img src = {api + 'images/' +(post.items[0] ? post.items[0].thumb: '')} className = 'gallery-item' /></div>
@@ -81,6 +83,18 @@ export default function (props) {
                 })
                 : ''
             }
+            </div>
+            <div style={{textAlign: 'center', backgroundColor: 'rgba(51, 51, 51, 0.667)', paddingBottom: 20,}}>
+                <input
+                    type='button'
+                    className='action-button'
+                    onClick={() => setPageSize(pageSize + 10)}
+                    value='Load More'
+                    style={{
+                        width: 150,
+                        background: '#000'
+                    }}
+                />
             </div>
         </>
     )
