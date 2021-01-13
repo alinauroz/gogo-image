@@ -1,4 +1,4 @@
-const categories = [
+export const categories = [
     ['Borders', 'BR'],
     ['Condensation', 'CN'],
     ['DUST', 'DT'],

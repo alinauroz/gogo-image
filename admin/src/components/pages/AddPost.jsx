@@ -2,6 +2,7 @@ import React from 'react'
 import Field from '../unit/Field'
 import ImageLoader from '../../utils/ImageLoader'
 import { request } from '../../utils/request'
+import {categories} from '../../data/post.res'
 
 function duplicateExists(w){
     return new Set(w).size !== w.length 
@@ -64,6 +65,7 @@ export default function () {
     }
 
     const [name, setName] = React.useState('');
+    const [category, setCategory] = React.useState('');
     const [tags, setTags] = React.useState([]);
     const [tagsView, setTagsView] = React.useState([]);
     const [images, setImages] = React.useState([])
@@ -180,6 +182,7 @@ export default function () {
                 credentials: 'include',
                 body: {
                     name,
+                    category,
                     typeOfUse,
                     items: postData,
                     tags
@@ -210,6 +213,19 @@ export default function () {
                 placeholder="Name of the template"
                 onChange={(e) => setName(e.target.value)}
             />
+            <div>
+                <p className = 'field-title'>Category</p>
+                <select className='form-control' name='category' onChange={(e) => setCategory(e.target.value)}>
+                    <option value='other'></option>
+                    {
+                        categories.map((cat) => (
+                            <option value={cat[1]}>
+                                {cat[0]}({cat[1]})
+                            </option>
+                        ))
+                    }
+                </select>
+            </div>
             <Field 
                 name="typeOfUse"
                 title="Type of Use"
