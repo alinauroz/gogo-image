@@ -8,7 +8,7 @@ export default function (props) {
 
     const [posts, setPosts] = React.useState(props.posts);
     const [selected, setSelected] = React.useState('');
-    const [pageSize, setPageSize] = React.useState(20);
+    const [pageSize, setPageSize] = React.useState(10);
 
     React.useEffect(() => {
         document.title = 'Gallery - ' + (props.info ? props.info.name: '');
@@ -84,7 +84,7 @@ export default function (props) {
                 : ''
             }
             </div>
-            <div style={{textAlign: 'center', backgroundColor: 'rgba(51, 51, 51, 0.667)', paddingBottom: 20,}}>
+            <div style={{display: (pageSize >= posts.length ? 'none': 'block'), textAlign: 'center', backgroundColor: 'rgba(51, 51, 51, 0.667)', paddingBottom: 20,}}>
                 <input
                     type='button'
                     className='action-button'
