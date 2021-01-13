@@ -5,7 +5,7 @@ import FormRenderer from '../../utils/FormRenderer'
 import { api } from '../../data/api'
 
 const resetFields = [
-    {title: 'Enter Your Email', name: 'email', type: 'email', required: true, style : {
+    {title: 'Enter Your Email', name: 'email', type: 'email',placeholder: 'Enter Your Email', required: true, style : {
             container: {width: 'calc(100% - 12px)'},
             input: {width: '100%'}
         }
@@ -68,11 +68,21 @@ export default function (props) {
         }
         <Box>
             <View>
+                <h2>
+                    Forgot Password
+                </h2>
                 <form action = '' onSubmit = {sendLink}>
                     <FormRenderer 
                         fields = {resetFields}
                     />
-                    <input type = 'submit' value = 'Reset Password' className = 'action-button' />
+                    <input 
+                        type = 'submit'
+                        value = 'Reset Password'
+                        className = 'action-button'
+                        style={{
+                            backgroundColor: 'green'
+                        }}
+                    />
                 </form>
             </View>
         </Box>
