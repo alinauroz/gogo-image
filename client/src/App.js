@@ -26,6 +26,7 @@ import ForgotPass from './Components/pages/ForgotPass'
 import PP from './Components/pages/test'
 
 const admin = JSON.parse(localStorage.getItem('admin') || '{}');
+const user = JSON.parse(localStorage.getItem('user') || '{}');
 
 let cartContent = JSON.parse(localStorage.getItem('cart') || '[]')
 
@@ -75,9 +76,58 @@ function App() {
   const [pages, setPages] = React.useState();
   const [posts, setPosts] = React.useState();
   const [info, setInfo] = React.useState();
-  const [innerHeight, setInnerHeight] = React.useState(window.innerHeight)
+  const [innerHeight, setInnerHeight] = React.useState(window.innerHeight);
+  const [likes, setLikes] = React.useState([]);
+  const [likeId, setLikeId] = React.useState('');
+
+  const like = (id) => {
+    if (likes.indexOf(id) > -1)
+      return;
+    let _likes = likes;
+    _likes.push(id);
+    setLikes(_likes);
+
+    if (likeId) {
+      var param = likeId;
+      var method = 'PUT';
+    }
+    else {
+      var param = '';
+      var method = 'POST';
+    }
+
+    request({
+      route: 'like/',
+      param: param,
+      method,
+      credentials: 'include',
+      body: {
+        likes,
+        id: user._id
+      }
+    }).then(d => {
+      if (!likeId && d.data)
+        setLikeId(d.data._id)
+    });
+
+  }
 
   React.useEffect(() => {
+
+    if (user._id) {
+      request({
+        route: 'like',
+        query: {
+          id: user._id
+        },
+        credentials: 'include',
+      }).then(d => {
+        if(d.status === 'success' && d.data.length > 0) {
+          setLikes(d.data[0]);
+          setLikeId(d.data[0]._id);
+        }
+      })
+    }
     
     if (! pages) {
       request({route: 'pages'}).then(d => {
@@ -105,7 +155,7 @@ function App() {
 
     window.addEventListener('resize', () => setInnerHeight(window.innerHeight))
 
-  })
+  }, [])
 
   const addToCart = ({cartItem}) => {
     setCart([

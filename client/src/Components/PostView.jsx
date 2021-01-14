@@ -27,16 +27,6 @@ export default function (props) {
         })()
     }
 
-    const prices_ = {
-        template: 35,
-        retouchSingle: 5,
-        retouchGroup: 10,
-        text: 3,
-        year: 2,
-        superimpose1: 10,
-        superimpose2: 10
-    }
-
     React.useEffect(async () => {
         let res = await request({
             route: 'price',
