@@ -33,7 +33,7 @@ export default function (props) {
     return (
         <View className = 'page-container'>
             <Image
-                source = {cover}
+                source = {props.info.banner ? api + 'images/' + props.info.banner : cover}
                 style = {{width: "100%"}}
             />
             <View style = {{textAlign: 'center'}}>

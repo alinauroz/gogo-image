@@ -3,6 +3,8 @@ import {request} from '../../utils/AppRequest'
 import { Link } from 'react-router-dom'
 import {api} from '../../data/api'
 import {categories} from '../../data/post.res'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 export default function (props) {
 
@@ -12,6 +14,25 @@ export default function (props) {
     const [selected, setSelected] = React.useState('');
     const [selectedSub, setSelectedSub] = React.useState('');
     const [pageSize, setPageSize] = React.useState(10);
+    const [likes, setLikes] = React.useState(props.likes || []);
+
+    const like = (id) => {
+        if (likes.indexOf(id) > -1)
+          return setLikes([... likes]);
+        let _likes = likes;
+        _likes.push(id);
+        setLikes([... _likes]);
+    }
+
+    const unlike = (id) => {
+        let index = likes.indexOf(id);
+        if (index === -1)
+            return setLikes([... likes]);
+        
+        let _likes = likes;
+        _likes.splice(index, 1);
+        setLikes([... _likes]);
+      }
 
 
     React.useEffect(() => {
@@ -135,14 +156,41 @@ export default function (props) {
 
                     return (
                         <Link to = {'/post/' + post._id} key={post._id}>
-                            <div className = 'gallery-item-container'><img src = {api + 'images/' +(img)} className = 'gallery-item' /></div>
+                            <div className = 'gallery-item-container'>
+                                <div style={{position: 'relative', margin: 10, marginBottom: -25, float: 'right', textAlign: 'right'}}>
+                                <FontAwesomeIcon
+                                    icon={faHeart}
+                                    onClick={(e) => {
+                                        if(likes.indexOf(post._id) === -1) {
+                                            props.like(post._id);
+                                            like(post._id);
+                                        }
+                                        else {
+                                            props.unlike(post._id);
+                                            unlike(post._id);
+                                        }
+                                        e.preventDefault()
+                                    }}
+                                    style={{
+                                        fontSize: 18,
+                                        color: (likes.indexOf(post._id) === -1 ? 'white': 'red'),
+                                        float: 'right',
+                                        textAlign: 'right',
+                                        textShadow: '10px 0px 10px ligthgrey'
+                                    }}
+                                />
+                                </div>
+                                <div>
+                                    <img src = {api + 'images/' +(img)} className = 'gallery-item' style={{marginTop: 0}}/>
+                                </div>
+                            </div>
                         </Link>
                     )
                 })
                 : ''
             }
             </div>
-            <div style={{display: (pageSize >= posts.length ? 'none': 'block'), textAlign: 'center', backgroundColor: 'rgba(51, 51, 51, 0.667)', paddingBottom: 20,}}>
+            <div style={{display: (pageSize >= posts ? posts.length: 0 ? 'none': 'block'), textAlign: 'center', backgroundColor: 'rgba(51, 51, 51, 0.667)', paddingBottom: 20,}}>
                 <input
                     type='button'
                     className='action-button'

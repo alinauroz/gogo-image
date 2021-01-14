@@ -98,7 +98,7 @@ function App() {
 
     request({
       route: 'like/',
-      param: param,
+      params: param,
       method,
       credentials: 'include',
       body: {
@@ -112,6 +112,16 @@ function App() {
 
   }
 
+  const unlike = (id) => {
+    let index = likes.indexOf(id);
+    if (index === -1)
+      return;
+    
+    let _likes = likes;
+    _likes.splice(index, 1);
+    setLikes(_likes);
+  }
+
   React.useEffect(() => {
 
     if (user._id) {
@@ -123,7 +133,7 @@ function App() {
         credentials: 'include',
       }).then(d => {
         if(d.status === 'success' && d.data.length > 0) {
-          setLikes(d.data[0]);
+          setLikes(d.data[0].likes);
           setLikeId(d.data[0]._id);
         }
       })
@@ -198,7 +208,7 @@ function App() {
             <Route path="/dashboard" component={(props) => <Dashboard {... props} info = {info} />} />
             <Route path="/signup" component={(props) => <Signup {...props} info = {info} />} />
             <Route path="/cart" component={() => <Cart removeFromCart = {removeFromCart} info = {info} cart = {cart} ></Cart>} />
-            <Route path='/gallery' component={() => <Gallery posts = {posts} info = {info} />}/>
+            <Route path='/gallery' component={() => <Gallery posts = {posts} likes={likes} like={like} unlike={unlike} info = {info} />}/>
             <Route path="/post/:id" component={(props) => <PostView {... props} info = {info} addToCart = {addToCart} ></PostView>} />
             <Route path="/blogpost/:id" component={(props) => <BlogPost {... props} info = {info} ></BlogPost>} />
             <Route path="/reset-password" component={() => <ResetPassword info = {info} />} />
