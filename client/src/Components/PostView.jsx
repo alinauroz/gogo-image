@@ -10,6 +10,7 @@ export default function (props) {
     let id = props.match.params.id;
     const [post, setPost] = React.useState()
     const [message, setMessage] = React.useState('')
+    const [prices, setPrices] = React.useState({});
 
     if (! post) {
         (async () => {
@@ -26,7 +27,7 @@ export default function (props) {
         })()
     }
 
-    const prices = {
+    const prices_ = {
         template: 35,
         retouchSingle: 5,
         retouchGroup: 10,
@@ -35,6 +36,16 @@ export default function (props) {
         superimpose1: 10,
         superimpose2: 10
     }
+
+    React.useEffect(async () => {
+        let res = await request({
+            route: 'price',
+            method: 'GET'
+        })
+        if (res.status === 'success' && res.data.length > 0) {
+            setPrices(res.data[0])
+        }
+    }, [])
 
     return (
         <View className = 'postview-container'>
