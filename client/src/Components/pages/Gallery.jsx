@@ -6,20 +6,42 @@ import {categories} from '../../data/post.res'
 
 export default function (props) {
 
-    const [posts, setPosts] = React.useState(props.posts);
+    const subCategories = ['All', 'Potrait', 'Landscape']
+
+    const [posts, setPosts] = React.useState(props.posts || []);
     const [selected, setSelected] = React.useState('');
+    const [selectedSub, setSelectedSub] = React.useState('');
     const [pageSize, setPageSize] = React.useState(10);
+
 
     React.useEffect(() => {
         document.title = 'Gallery - ' + (props.info ? props.info.name: '');
+
+        let _posts = props.posts || [];
+
         if (selected) {
-            let _posts = props.posts.filter( post => post.category === selected)
+            _posts = props.posts.filter( post => post.category === selected)
             setPosts(_posts);
+            setPageSize(10);
         }
         else {
-            setPosts(props.posts)
+            setPosts(props.posts);
         }
-    }, [selected])
+
+        if (selectedSub && selectedSub !== 'all') {
+            _posts = _posts.filter((post) => {
+                console.log("POST")
+                console.log(post)
+                for (let i = 0; post.items && i < post.items.length; i++) {
+                    console.log(post.items[i].type, selectedSub)
+                    if (post.items[i].type === selectedSub)
+                        return true;
+                }
+            })
+            setPosts(_posts)
+        }
+
+    }, [selected, selectedSub])
 
     return (
         <>
@@ -66,6 +88,29 @@ export default function (props) {
                                 }}
                             >
                                 {cat[0]}({cat[1]})
+                            </a>
+                        </span>
+                    ))
+                }
+                <br/>
+                <br/>
+                {
+                    subCategories.map((cat) => (
+                        <span
+                            style={{
+                                margin: '0px 20px',
+                                cursor: 'pointer'
+                            }}
+                        >
+                            <a
+                                onClick={() => setSelectedSub(cat.toLowerCase())}
+                                style={{
+                                    color: selectedSub === cat.toLocaleLowerCase() ? 'red' : '#fff',
+                                    fontSize: 12,
+                                    textDecoration: 'none'
+                                }}
+                            >
+                                {cat}
                             </a>
                         </span>
                     ))

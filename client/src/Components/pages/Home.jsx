@@ -1,6 +1,7 @@
 import React from 'react'
 import {View, Image, Text} from '../Basic/AppComponents'
 import Tagline from '../../data/images/tagline.png'
+import { Link } from 'react-router-dom'
 
 import cover from '../../data/images/cover.jpg'
 
@@ -28,7 +29,7 @@ export default function (props) {
             {
                 posts ?
                 posts.map(post => {
-                    return <div className = 'gallery-item-container'><img src = {post.images[0]} className = 'gallery-item' /></div>
+                    return <Link to="/gallery"><div className = 'gallery-item-container'><img src = {post.images[0]} className = 'gallery-item' /></div></Link>
                 })
                 : ""
             }
