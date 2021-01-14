@@ -28,18 +28,20 @@ export default function (props) {
             setPosts(props.posts);
         }
 
-        if (selectedSub && selectedSub !== 'all') {
-            _posts = _posts.filter((post) => {
-                console.log("POST")
-                console.log(post)
-                for (let i = 0; post.items && i < post.items.length; i++) {
-                    console.log(post.items[i].type, selectedSub)
-                    if (post.items[i].type === selectedSub)
-                        return true;
-                }
-            })
-            setPosts(_posts)
-        }
+        //if (selectedSub && selectedSub !== 'all') {
+        //    _posts = _posts.filter((post) => {
+        //        if (!post.items) return false;
+        //        for (let i = 0; i < post.items.length; i++) {
+        //            let b = false;
+        //            if (post.items[i].type === selectedSub) {
+        //                b = true;
+        //                break;
+        //            }
+        //            return b;
+        //        }
+        //    })
+        //    setPosts(_posts)
+        //}
 
     }, [selected, selectedSub])
 
@@ -119,10 +121,21 @@ export default function (props) {
             {
                 posts ?
                 posts.map((post, index) => {
+                    let img;
                     if (index >= pageSize) return null;
+
+                    if (selectedSub === 'landscape')
+                        img = post.items[0] ? post.items[0].thumb: '' 
+                    else if (selectedSub === 'potrait')
+                        img = post.items[1] ? post.items[1].thumb: ''
+                    else
+                        img = post.items[0] ? post.items[0].thumb: '' 
+                    
+                    if (!img) return null;
+
                     return (
-                        <Link to = {'/post/' + post._id}>
-                            <div className = 'gallery-item-container'><img src = {api + 'images/' +(post.items[0] ? post.items[0].thumb: '')} className = 'gallery-item' /></div>
+                        <Link to = {'/post/' + post._id} key={post._id}>
+                            <div className = 'gallery-item-container'><img src = {api + 'images/' +(img)} className = 'gallery-item' /></div>
                         </Link>
                     )
                 })
