@@ -15,19 +15,15 @@ function PostInput (props) {
     return (
         <div>
             <div style = {{display: 'inline-block', verticalAlign: 'top', width: 'calc(50% - 10px)', padding: 10, paddingLeft: 0}}>
-                <Field 
-                    title = 'Size'
-                    placeholder = 'Size of the Image'
-                    onChange = {(e) => props.setSize(e.target.value, props.index)}
-                />
-                <div style = {{marginTop: 10}}>
+                {/*<div style = {{marginTop: 10}}>
                     <p>Select Image Type</p>
                     <select class = 'form-control' onChange = {(e) => props.setType(e.target.value, props.index)}>
                         <option></option>
                         <option value = 'portrait' >Portrait</option>
                         <option value = 'landscape' >Landscape</option>
                     </select>
-                </div>
+                </div>*/}
+                {props.index === 0 ? <h2>{'Landscape->'}</h2>: <h2>{'Portrait->'}</h2>}
             </div>
             <div style = {{display: 'inline-block', verticalAlign: 'top', width: 'calc(50% - 20px)', padding: 10, height: '100%'}}>
                 <p>Upload an Image</p>
@@ -75,7 +71,10 @@ export default function () {
     const [message, setMessage] = React.useState('')
     const [typeOfUse, setTypeOfUse] = React.useState([]);
     const [typeOfUseView, setTypeOfUseView] = React.useState([]);
-    const [ImageInputs, setImageInputs] = React.useState([<PostInput index = {0} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />])
+    const [ImageInputs, setImageInputs] = React.useState([
+        <PostInput index = {0} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />,
+        <PostInput index = {1} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />
+    ])
 
     React.useEffect(() => {
     })
@@ -112,7 +111,7 @@ export default function () {
 
             for (let i = 0; i < ImageInputs.length; i++) {
                 if (! thumbs[i]) {
-                    if(window.confirm('Thumb for post # ' + i + ' is missing. Press ok to Skip Post ' + i + '. Press Cancel to go back')) {
+                    if(window.confirm('Thumb for ' + (i == 0 ? 'landscape': 'portrait') + ' is missing. Press ok to Skip Post ' + i + '. Press Cancel to go back')) {
                         toSkip.push(i);
                         continue;
                     }
@@ -194,7 +193,10 @@ export default function () {
             }
 
             setImageInputs([])
-            setImageInputs([<PostInput index = {0} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />]);
+            setImageInputs([
+                <PostInput index = {0} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />,
+                <PostInput index = {1} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />
+            ]);
             setTagsView([]);
 
             e.target.disabled = false;
@@ -255,6 +257,7 @@ export default function () {
                     className = 'btn btn-success'
                     onClick = {submitPost}
                 />
+                {/*
                 <input
                     type = 'button'
                     value = 'Add More Images'
@@ -266,6 +269,7 @@ export default function () {
                         setImageInputs(a)
                     }}
                 />
+                */}
             </div>
         </div>
     )

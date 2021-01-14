@@ -4,11 +4,12 @@ import getFormData from '../../utils/getFormData'
 import ImageLoader from '../../utils/ImageLoader'
 import {request} from '../../utils/request'
 
-export default function () {
+export default function (props) {
 
-    const [logo, setLogo] = React.useState('')
-    const [info, setInfo] = React.useState()
-    const [message, setMessage] = React.useState('')
+    const [logo, setLogo] = React.useState('');
+    const [banner, setBanner] = React.useState('');
+    const [info, setInfo] = React.useState();
+    const [message, setMessage] = React.useState('');
 
     if (! info) {
         request({
@@ -48,6 +49,22 @@ export default function () {
 
         }
 
+        if (banner) {
+
+            let res = await request({
+                route: 'images',
+                method: 'POST',
+                body: {
+                    base64: banner
+                }
+            })
+
+            if (res.fileName) {
+                formData.banner = res.fileName;
+            }
+
+        }
+
         //for (let x in formData) {
         //    if (formData[x] == '')
         //        delete formData[x]
@@ -68,13 +85,15 @@ export default function () {
     }
 
     const handleImage = (images) => setLogo(images.logo)
+    const handleBanner = (images) => setBanner(images.banner)
 
     return info ?
     (
         <div className = 'card'>
-            <h3 style = {{margin: 0, marginBottom: 10}}>Company Profile</h3>
             <div style = {{minWidth: 300, width: '60%'}}>
                 <form action ='/' onSubmit = {handleForm}>
+                <div style={{display: props.page==='profile' ? 'block': 'none' }}>
+                <h3 style = {{margin: 0, marginBottom: 10}}>Company Profile</h3>
                 <Field 
                     name = 'name'
                     title = 'Company Name'
@@ -126,6 +145,12 @@ export default function () {
                     value = {info.telephone}
                     onChange = {handleOnchange}
                 />
+                </div>
+                <div style={{display: props.page==='config' ? 'block': 'none' }}>
+                <h2>
+                    Website Configuration
+                </h2>
+
                 <Field 
                     name = 'domain'
                     title = 'Domain'
@@ -215,6 +240,16 @@ export default function () {
                         setImages = {handleImage}
                     />
                 </div>
+
+                <div style = {{marginTop: 5}}>
+                    <p>Upload Banner</p>
+                    <ImageLoader 
+                        sizes = {{banner: {minWidthOrHeight: 1440}}}
+                        setImages = {handleBanner}
+                    />
+                </div>
+                </div>
+
                 <p style = {{margin: '5px 0px'}}>
                     {message}
                 </p>

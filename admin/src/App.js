@@ -70,6 +70,7 @@ export default function () {
     {title: 'View Coupons', onClick: () => setScreen('ViewCoupons')},
     {title: 'Add Coupon', onClick: () => setScreen('AddCoupon')},
     {title: 'Company Profile', onClick: () => setScreen('CompanyProfile')},
+    {title: 'Configuration', onClick: () => setScreen('Configuration')},
   ]);
 
   if (isLoggedIn) {
@@ -102,7 +103,10 @@ export default function () {
           <AddCoupon base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
         <div style = {{display : screen == 'CompanyProfile' ? 'block' : 'none'}}>
-          <CompanyProfile base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+          <CompanyProfile page="profile" base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'Configuration' ? 'block' : 'none'}}>
+          <CompanyProfile page="config" base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
         <div style = {{display : screen == 'ViewBlogs' ? 'block' : 'none'}}>
           <ViewBlogs base = {base} setBase = {setAppBase} setScreen = {setScreen} />
