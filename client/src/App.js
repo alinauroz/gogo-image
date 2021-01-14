@@ -137,7 +137,7 @@ function App() {
       <main style = {{marginTop: 0, minHeight: innerHeight - 200}}>
         <Switch>
           <Route>
-            <Route path="/" info = {info} component={() => <Home posts = {posts_} info = {info} />} exact />
+            <Route path="/" info = {info} component={() => <Home posts = {posts} info = {info} />} exact />
 
             {
               pages ? pages.map(page => {

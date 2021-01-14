@@ -2,30 +2,33 @@ import React from 'react'
 import {View, Image, Text} from '../Basic/AppComponents'
 import Tagline from '../../data/images/tagline.png'
 import { Link } from 'react-router-dom'
+import { api } from '../../data/api'
 
 import cover from '../../data/images/cover.jpg'
 
+function getRandom(arr, n) {
+    if (arr.length < n)
+        n = arr.length
+    var result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
+    if (n > len)
+        throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+        var x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
+    }
+    return result;
+}
+
 export default function (props) {
 
-    let posts = props.posts;
+    let posts = getRandom(props.posts || [], 20);
 
     React.useEffect(() => {
         document.title = 'Home - ' + (props.info ? props.info.name || '' : '')
     })
-
-    function getRandom(arr, n) {
-        var result = new Array(n),
-            len = arr.length,
-            taken = new Array(len);
-        if (n > len)
-            throw new RangeError("getRandom: more elements taken than available");
-        while (n--) {
-            var x = Math.floor(Math.random() * len);
-            result[n] = arr[x in taken ? taken[x] : x];
-            taken[x] = --len in taken ? taken[len] : len;
-        }
-        return result;
-    }
 
     return (
         <View className = 'page-container'>
@@ -43,7 +46,10 @@ export default function (props) {
             {
                 posts ?
                 posts.map(post => {
-                    return <Link to="/gallery"><div className = 'gallery-item-container'><img src = {post.images[0]} className = 'gallery-item' /></div></Link>
+                    let img = post.items && post.items.length > 0 ? post.items[0].thumb : '';
+                    //if (!img) return null;
+                    console.log('THUMB', post.items)
+                    return <Link to="/gallery"><div className = 'gallery-item-container'><img src = {api + 'images/' +img} className = 'gallery-item' /></div></Link>
                 })
                 : ""
             }
