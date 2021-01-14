@@ -140,12 +140,8 @@ export default function (props) {
                     <Text style = {{marginTop: 10, fontSize: 13}} className = 'itemviewer-sub-container'>
                         <table>
                             <tr>
-                                <td>Size</td>
-                                <td>{props.item ? props.item.size : ''}</td>
-                            </tr>
-                            <tr>
-                                <td>Type</td>
-                                <td>{capitalize(props.type)}</td>
+                                <td>{capitalize(props.type)}  -  ${prices.template} </td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>
@@ -253,19 +249,19 @@ export default function (props) {
                                     />
                                 </td>
                             </tr>
-                            <tr>
+                            {/*<tr>
                                 <td>Total for this</td>
                                 <td>{'\t$' + price}</td>
-                            </tr>
+                            </tr>*/}
                         </table>
                         <div style = {{margin: '5px 0px'}}>
                             {message}
                         </div>
                         <input 
                             type = 'button'
-                            value = 'Add to Cart'
+                            value = {'Add to Cart - $' + price}
                             className = 'action-button'
-                            style = {{width: 120}}
+                            style = {{width: 150}}
                             onClick = {addToCart}
                         />
                     </Text>
