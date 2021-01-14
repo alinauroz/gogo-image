@@ -10,6 +10,7 @@ export default function (props) {
     const [banner, setBanner] = React.useState('');
     const [info, setInfo] = React.useState();
     const [message, setMessage] = React.useState('');
+    const [invoiceLogo, setInvoiceLogo] = React.useState('');
 
     if (! info) {
         request({
@@ -45,6 +46,22 @@ export default function (props) {
 
             if (res.fileName) {
                 formData.logo = res.fileName;
+            }
+
+        }
+
+        if (invoiceLogo) {
+
+            let res = await request({
+                route: 'images',
+                method: 'POST',
+                body: {
+                    base64: invoiceLogo
+                }
+            })
+
+            if (res.fileName) {
+                formData.invoiceLogo = res.fileName;
             }
 
         }
@@ -86,6 +103,7 @@ export default function (props) {
 
     const handleImage = (images) => setLogo(images.logo)
     const handleBanner = (images) => setBanner(images.banner)
+    const handleInvoiceLogo = (images) => setInvoiceLogo(images.logo)
 
     return info ?
     (
@@ -240,12 +258,18 @@ export default function (props) {
                         setImages = {handleImage}
                     />
                 </div>
-
                 <div style = {{marginTop: 5}}>
-                    <p>Upload Banner</p>
+                    <p>Upload Homepage Banner</p>
                     <ImageLoader 
                         sizes = {{banner: {minWidthOrHeight: 1440}}}
                         setImages = {handleBanner}
+                    />
+                </div>
+                <div style = {{marginTop: 5}}>
+                    <p>Upload Invoice Logo</p>
+                    <ImageLoader 
+                        sizes = {{logo: {minWidthOrHeight: 400}}}
+                        setImages = {handleInvoiceLogo}
                     />
                 </div>
                 </div>
