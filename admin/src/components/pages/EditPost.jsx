@@ -111,35 +111,20 @@ export default function (props) {
         setTypeOfUseView(tagsHtml);
     }
 
+    const isTypeExists = (type) => {
+        return postData.items ?
+                postData.items.reduce((prev, item) => {
+                    if (typeof prev !== 'boolean')
+                        prev = false;
+                    return (prev || item.type === type)
+                }): false
+    }
+
     const submitPost = async (e) => {
         try {
             e.target.disabled = true;
             let toSkip = []
             let postData = [];
-
-            for (let i = 0; i < ImageInputs.length; i++) {
-                if (! thumbs[i]) {
-                    if(window.confirm('Thumb for post # ' + i + ' is missing. Press ok to Skip Post ' + i + '. Press Cancel to go back')) {
-                        toSkip.push(i);
-                        continue;
-                    }
-                    else return e.target.disabled = false;;
-                }
-                if (! sizes[i]) {
-                    if(window.confirm('Size for post # ' + i + ' is missing. Press ok to Skip Post ' + i + '. Press Cancel to go back')) {
-                        toSkip.push(i);
-                        continue;
-                    }
-                    else return e.target.disabled = false;;
-                }
-                if (! types[i]) {
-                    if(window.confirm('Type for post # ' + i + ' is missing. Press ok to Skip Post ' + i + '. Press Cancel to go back')) {
-                        toSkip.push(i);
-                        continue;
-                    }
-                    else return e.target.disabled = false;;
-                }
-            }
 
             setMessage('Saving Images ....')
 
