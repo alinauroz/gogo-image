@@ -111,13 +111,16 @@ export default function (props) {
         setTypeOfUseView(tagsHtml);
     }
 
+    const [, updateState] = React.useState();
+    const forceUpdate = React.useCallback(() => updateState({}), []);
+
     const isTypeExists = (type) => {
-        return postData.items ?
-                postData.items.reduce((prev, item) => {
-                    if (typeof prev !== 'boolean')
-                        prev = false;
-                    return (prev || item.type === type)
-                }): false
+        for (let i = 0; postData.items && i < postData.items.length; i++) {
+            alert(type, postData.items[i].type)
+            if (type === postData.items[i].type)
+                return true;
+        }
+        return false;
     }
 
     const submitPost = async (e) => {
@@ -129,9 +132,21 @@ export default function (props) {
             setMessage('Saving Images ....')
 
             for (let i = 0; i < ImageInputs.length; i++) {
+                if (! thumbs[i]) {
+                    toSkip.push(i);
+                    continue;
+                }
+                if (isTypeExists(types[i])) {
+                    alert(types[i] + " is already present. Remove the current image to add new");
+                    setMessage('');
+                    return e.target.disabled = false;
+                }
+            }
+
+            for (let i = 0; i < ImageInputs.length; i++) {
 
                 if (toSkip.indexOf(i) !== -1) continue
-
+                alert('SAVING')
                 let thumbInfo = await request({
                     route: 'images',
                     method: 'POST',
@@ -157,15 +172,10 @@ export default function (props) {
                 postData.push({
                     image: imageInfo.fileName,
                     thumb: thumbInfo.fileName,
-                    size: sizes[i],
+                    size: 'xxx',
                     type: types[i]
                 })
 
-            }
-
-            if (duplicateExists(sizes)) {
-                setMessage('All sizes should be unique');
-                return e.target.disabled = false;
             }
 
             let data = await request({
@@ -255,7 +265,17 @@ export default function (props) {
                         <div style = {{display: 'inline-block', verticalAlign: 'top', padding: 5, border: '1px solid lightgrey', marginRight: 5}}>
                             <img src={api + 'images/' +item.thumb} style={{height: 200, minWidth: 120}}/>
                             <p>{item.type + " - " + item.size}</p>
-                            <button className='btn btn-danger'>Remove</button>
+                            <button 
+                                className='btn btn-danger'
+                                onClick = {
+                                    () => {
+                                        postData.items.splice(index, 1); 
+                                        setPreviousItems([... postData.items]);
+                                        alert(postData.items.length)
+                                        forceUpdate();
+                                    }
+                                }
+                            >Remove</button>
                         </div>
                     )
                     : null
