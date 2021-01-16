@@ -59,6 +59,7 @@ export default function (props) {
                     )
                     : ""
                 }
+                <Link to = '/contactus' className = 'topbar-links'>Contact Us</Link>
                 <span style = {{float: 'right'}}>
                 <Link to = '/cart' className = 'topbar-links'>
                     <View style = {{display: 'inline', overflow: 'hidden'}}>
@@ -69,6 +70,7 @@ export default function (props) {
                     />
                     </View>
                 </Link>
+
                 {
                     isLoggedIn ?
                     <a style = {{cursor: 'pointer'}} onClick = {() => setDDView('block')} className = 'topbar-links'>{user.firstName + ' ' + user.lastName}</a>
