@@ -242,6 +242,25 @@ export default function (props) {
                     onChange = {handleOnchange}
                 />
 
+                <Field 
+                    name = 'ppClient'
+                    title = 'Paypal Client Id'
+                    placeholder = 'Paypal Client Id here'
+                    inputType = 'text'
+                    style = {{marginTop: 10}}
+                    value = {info.insta}
+                    onChange = {handleOnchange}
+                />
+                <Field 
+                    name = 'ppCurrency'
+                    title = 'Currency'
+                    placeholder = 'Enter Currency here'
+                    inputType = 'text'
+                    style = {{marginTop: 10}}
+                    value = {info.insta}
+                    onChange = {handleOnchange}
+                />
+
                 <div style = {{marginTop: 10}}>
                     <p className = 'field-title'>Maintenance Mode</p>
                     <select className = 'form-control' name="maintenanceMode">
