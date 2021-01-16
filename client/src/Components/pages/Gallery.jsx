@@ -145,10 +145,22 @@ export default function (props) {
                     let img;
                     if (index >= pageSize) return null;
 
-                    if (selectedSub === 'landscape')
-                        img = post.items[0] ? post.items[0].thumb: '' 
-                    else if (selectedSub === 'potrait')
-                        img = post.items[1] ? post.items[1].thumb: ''
+                    if (selectedSub === 'landscape'){
+                        if (post.items && post.items[0] && post.items[0].type === 'landscape') {
+                            img = post.items[0].thumb;
+                        }
+                        else if (post.items && post.items[1] && post.items[1].type === 'landscape') { 
+                            img = post.items[1].thumb;
+                        }
+                    }
+                    else if (selectedSub === 'potrait'){
+                        if (post.items && post.items[0] && post.items[0].type === 'portrait') {
+                            img = post.items[0].thumb;
+                        }
+                        else if (post.items && post.items[1] && post.items[1].type === 'portrait') { 
+                            img = post.items[1].thumb;
+                        }
+                    }
                     else
                         img = post.items[0] ? post.items[0].thumb: '' 
                     

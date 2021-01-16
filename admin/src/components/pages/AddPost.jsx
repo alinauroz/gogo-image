@@ -117,20 +117,6 @@ export default function () {
                     }
                     else return e.target.disabled = false;;
                 }
-                if (! sizes[i]) {
-                    if(window.confirm('Size for post # ' + i + ' is missing. Press ok to Skip Post ' + i + '. Press Cancel to go back')) {
-                        toSkip.push(i);
-                        continue;
-                    }
-                    else return e.target.disabled = false;;
-                }
-                if (! types[i]) {
-                    if(window.confirm('Type for post # ' + i + ' is missing. Press ok to Skip Post ' + i + '. Press Cancel to go back')) {
-                        toSkip.push(i);
-                        continue;
-                    }
-                    else return e.target.disabled = false;;
-                }
             }
 
             setMessage('Saving Images ....')
@@ -164,16 +150,16 @@ export default function () {
                 postData.push({
                     image: imageInfo.fileName,
                     thumb: thumbInfo.fileName,
-                    size: sizes[i],
-                    type: types[i]
+                    size: '0x0',
+                    type: i === 0 ? 'landscape': 'portrait'
                 })
 
             }
 
-            if (duplicateExists(sizes)) {
-                setMessage('All sizes should be unique');
-                return e.target.disabled = false;
-            }
+            //if (duplicateExists(sizes)) {
+            //    setMessage('All sizes should be unique');
+            //    return e.target.disabled = false;
+            //}
 
             let data = await request({
                 route: 'posts',
