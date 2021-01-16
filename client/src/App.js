@@ -122,6 +122,14 @@ function App() {
     setLikes(_likes);
   }
 
+  const loadPP = (__info) => {
+    let ppClient = 'AdDcHqZGWHLODIfyXZwvZzGIEkTAtB8RVbpC0o-CUHxijeMtLl-pBZ1x9608w25_uKht07p8-u1Hvq9w';
+    let url = 'https://www.paypal.com/sdk/js?client-id='+__info.ppClient+'&currency='+__info.ppCurrency;
+    var script = document.createElement('script');
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
   React.useEffect(() => {
 
     if (user._id) {
@@ -154,6 +162,7 @@ function App() {
     if (! info) {
       request({route: 'info'}).then(d => {
         let _info = (d.data ? d.data[0] || {}: {})
+        loadPP(_info);
         setInfo({... _info, isAdmin: admin.role && true});
         document.title = d.data ? d.data[0].name : '...'
         if (_info.maintenanceMode) {
