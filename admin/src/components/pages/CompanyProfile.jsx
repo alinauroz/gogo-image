@@ -248,7 +248,7 @@ export default function (props) {
                     placeholder = 'Paypal Client Id here'
                     inputType = 'text'
                     style = {{marginTop: 10}}
-                    value = {info.insta}
+                    value = {info.ppClient}
                     onChange = {handleOnchange}
                 />
                 <Field 
@@ -257,7 +257,7 @@ export default function (props) {
                     placeholder = 'Enter Currency here'
                     inputType = 'text'
                     style = {{marginTop: 10}}
-                    value = {info.insta}
+                    value = {info.ppCurrency}
                     onChange = {handleOnchange}
                 />
 
