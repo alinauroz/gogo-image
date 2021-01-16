@@ -28,7 +28,7 @@ function PostInput (props) {
             <div style = {{display: 'inline-block', verticalAlign: 'top', width: 'calc(50% - 20px)', padding: 10, height: '100%'}}>
                 <p>Upload an Image</p>
                 <ImageLoader 
-                    sizes = {{original: 'original', thumb: {maxWidthOrHeight: 300}}}
+                    sizes = {{original: 'original', thumb: {maxWidthOrHeight: 450}}}
                     setImages = {setImage}
                 />
             </div>
