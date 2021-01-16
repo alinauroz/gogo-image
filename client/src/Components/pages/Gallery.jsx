@@ -208,7 +208,7 @@ export default function (props) {
                 : ''
             }
             </div>
-            <div style={{display: (pageSize >= posts ? posts.length: 0 ? 'none': 'block'), textAlign: 'center', backgroundColor: 'rgba(51, 51, 51, 0.667)', paddingBottom: 20,}}>
+            <div style={{display: (pageSize >= (posts ? posts.length: 0) ? 'none': 'block'), textAlign: 'center', backgroundColor: 'rgba(51, 51, 51, 0.667)', paddingBottom: 20,}}>
                 <input
                     type='button'
                     className='action-button'
