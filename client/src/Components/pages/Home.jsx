@@ -24,7 +24,7 @@ function getRandom(arr, n) {
 
 export default function (props) {
 
-    let posts = getRandom(props.posts || [], 20);
+    let posts = getRandom(props.posts || [], 25);
 
     React.useEffect(() => {
         document.title = 'Home - ' + (props.info ? props.info.name || '' : '')
@@ -46,9 +46,12 @@ export default function (props) {
             {
                 posts ?
                 posts.map(post => {
-                    let img = post.items && post.items.length > 0 ? post.items[0].thumb : '';
-                    //if (!img) return null;
-                    console.log('THUMB', post.items)
+                    let img = post.items && post.items.length > 0 ? (() => {
+                        if (post.items[0].type === 'portrait')
+                            return post.items[0].thumb;
+                        else
+                            return post.items[1] && post.items[1].type === 'portrait' ? post.items[1].thumb: post.items[0].thumb;;
+                    })() : '';
                     return <Link to="/gallery"><div className = 'gallery-item-container'><img src = {api + 'images/' +img} className = 'gallery-item' /></div></Link>
                 })
                 : ""
