@@ -13,7 +13,7 @@ export default function (props) {
     const [posts, setPosts] = React.useState(props.posts || []);
     const [selected, setSelected] = React.useState('');
     const [selectedSub, setSelectedSub] = React.useState('');
-    const [pageSize, setPageSize] = React.useState(10);
+    const [pageSize, setPageSize] = React.useState(20);
     const [likes, setLikes] = React.useState(props.likes || []);
 
     const like = (id) => {
@@ -161,8 +161,14 @@ export default function (props) {
                             img = post.items[1].thumb;
                         }
                     }
-                    else
-                        img = post.items[0] ? post.items[0].thumb: '' 
+                    else {
+                        img = post.items && post.items.length > 0 ? (() => {
+                            if (post.items[0].type === 'portrait')
+                                return post.items[0].thumb;
+                            else
+                                return post.items[1] && post.items[1].type === 'portrait' ? post.items[1].thumb: post.items[0].thumb;;
+                        })() : '';
+                    }
                     
                     if (!img) return null;
 
