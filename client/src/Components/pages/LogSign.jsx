@@ -102,6 +102,8 @@ export default function (props) {
     const login = async (e) => {
 
         e.preventDefault();
+        setMessage('');
+        setStatus(0);
 
         let form = new FormData(e.target);
         let data = [... form];
@@ -123,6 +125,7 @@ export default function (props) {
 
         if (data_.status === 'fail') {
             setMessage(data_.message);
+            setStatus(2);
         }
         else {
             localStorage.setItem('token', data_.token);
@@ -197,9 +200,6 @@ export default function (props) {
                         <FormRenderer 
                             fields = {loginFields}
                         />
-                        <p style = {{fontSize: 13, marginTop: 10, marginBottom: 5}}>
-                            {message}
-                        </p>
                         <Link to = '/reset-password' style = {{fontSize: 13}}>
                             Forgot Password
                         </Link>
