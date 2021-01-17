@@ -25,6 +25,7 @@ const signupFields = [
 const resSet = Object.freeze({
     INITAL: 0,
     C_MAIL_SENT: 1,
+    ERROR: 2
 });
 
 export default function (props) {
@@ -77,12 +78,18 @@ export default function (props) {
             e.target.reset();
         }
         else {
-            if (res.error && res.error.code == 11000)
+            if (res.error && res.error.code == 11000) {
                 setMessage('Email is already registered');
-            else if (res.error && res.error.message)
+                setStatus(2);
+            }
+            else if (res.error && res.error.message) {
                 setMessage(res.error.message);
-            else
+                setStatus(2);
+            }
+            else {
                 setMessage('Unknown error occurred');
+                setStatus(2);
+            }
         }
     }
 
@@ -133,6 +140,10 @@ export default function (props) {
             <View className = 'notification-bar notification-bar-success' style={{marginBottom: 60}}>
                 Please check your email account for the verification email
             </View>
+            : status === resSet.ERROR ?
+            <View className = 'notification-bar notification-bar-fail'>
+                {message}
+            </View>
             : ""
         }
         <Box>
@@ -177,9 +188,6 @@ export default function (props) {
                             />
                             <Text style = {{display: 'inline', fontSize: 13}}>I agree domain.com <Link to = '/terms'>terms</Link></Text>
                         </label>
-                        <p style = {{fontSize: 13, marginTop: 10}}>
-                            {message}
-                        </p>
                         <input type = 'submit' value = 'Sign Up' className = 'action-button' />
                     </form>
                     : 
