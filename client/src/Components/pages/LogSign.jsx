@@ -22,11 +22,17 @@ const signupFields = [
     //{title: "State", name: "state", type: "text", required: true},
 ]
 
+const resSet = Object.freeze({
+    INITAL: 0,
+    C_MAIL_SENT: 1,
+});
+
 export default function (props) {
 
     const [selected, setSelected] = React.useState(props.selected || 0);
     const [message, setMessage] = React.useState('');
     const [agreed, setAgreed] = React.useState(false);
+    const [status, setStatus] = React.useState(0);
 
     React.useEffect(() => {
         selected?
@@ -67,7 +73,8 @@ export default function (props) {
         res = await res.json();
 
         if (res.status === 'success') {
-            setSelected(2);
+            setStatus(1);
+            e.target.reset();
         }
         else {
             if (res.error && res.error.code == 11000)
@@ -79,9 +86,9 @@ export default function (props) {
         }
     }
 
-    if (selected === 2) {
-        return <View className = 'box' style = {{textAlign: 'center'}}><b>Confirm Your Email</b><br/><br/>We have sent you an email. Click on the link in the email to confirm your email.</View>
-    }
+    //if (selected === 2) {
+    //    return <View className = 'box' style = {{textAlign: 'center'}}><b>Confirm Your Email</b><br/><br/>We have sent you an email. Click on the link in the email to confirm your email.</View>
+    //}
 
     const login = async (e) => {
 
@@ -120,6 +127,14 @@ export default function (props) {
     }
 
     return (
+        <>
+        {
+            status === resSet.C_MAIL_SENT ?
+            <View className = 'notification-bar notification-bar-success' style={{marginBottom: 60}}>
+                Please check your email account for the verification email
+            </View>
+            : ""
+        }
         <Box>
             <View>
                 <Button 
@@ -187,6 +202,7 @@ export default function (props) {
                 }
             </View>
         </Box>
+        </>
     )
 
 }
