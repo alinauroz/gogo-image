@@ -44,8 +44,10 @@ export default function (props) {
     const signup = async (e) => {
         e.preventDefault();
         setMessage('');
-        if (! agreed)
+        if (! agreed) {
+            setStatus(2);
             return setMessage('You must agree with terms and conditions');
+        }
 
         let form = new FormData(e.target);
         let data = [... form];
