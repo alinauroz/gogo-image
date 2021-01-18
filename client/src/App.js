@@ -24,9 +24,11 @@ import ContactUs from './Components/pages/ContactUs'
 import MaintenanceMode from './Components/pages/MaintenanceMode'
 import ForgotPass from './Components/pages/ForgotPass'
 import PP from './Components/pages/test'
+import cookieParser from './utils/cookieParser'
 
 const admin = JSON.parse(localStorage.getItem('admin') || '{}');
 const user = JSON.parse(localStorage.getItem('user') || '{}');
+const cookies = (cookieParser(document.cookie));
 
 let cartContent = JSON.parse(localStorage.getItem('cart') || '[]')
 
@@ -79,6 +81,7 @@ function App() {
   const [innerHeight, setInnerHeight] = React.useState(window.innerHeight);
   const [likes, setLikes] = React.useState([]);
   const [likeId, setLikeId] = React.useState('');
+  const [likedPosts, setLikedPosts] = React.useState([]);
 
   const like = (id) => {
     if (likes.indexOf(id) > -1)
@@ -141,8 +144,12 @@ function App() {
         credentials: 'include',
       }).then(d => {
         if(d.status === 'success' && d.data.length > 0) {
-          setLikes(d.data[0].likes);
+          let _likes = d.data[0].likes;
+          setLikes(_likes);
           setLikeId(d.data[0]._id);
+
+          let _likedPosts = posts ? posts.filter(post => _likes.indexOf(post._id) !== -1) : []
+          setLikedPosts(_likedPosts);
         }
       })
     }
@@ -174,7 +181,7 @@ function App() {
 
     window.addEventListener('resize', () => setInnerHeight(window.innerHeight))
 
-  }, [])
+  }, [posts])
 
   const addToCart = ({cartItem}) => {
     setCart([
@@ -228,8 +235,16 @@ function App() {
             <Route path='/orders' component = {() => <Orders info = {info}/>} />
             <Route path="/order/:invoice" component={(props) => <Order {... props} info = {info} />} />
             <Route path='/contactus' component = {() => <ContactUs info = {info} />} />
+            <Route path='/likes' component={() => {
+              if (user.type==='user')
+                return (
+                <Gallery 
+                  posts={posts}  
+                />)
+              return "Login to Continue";
+            }} />
             <Route path='/test12' component={PP} />
-          </Route>
+            </Route>
         </Switch>
       </main>
       <Footer 
