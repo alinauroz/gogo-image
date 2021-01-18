@@ -123,6 +123,30 @@ function App() {
     let _likes = likes;
     _likes.splice(index, 1);
     setLikes(_likes);
+
+    if (likeId) {
+      var param = likeId;
+      var method = 'PUT';
+    }
+    else {
+      var param = '';
+      var method = 'POST';
+    }
+
+    request({
+      route: 'like/',
+      params: param,
+      method,
+      credentials: 'include',
+      body: {
+        likes,
+        id: user._id
+      }
+    }).then(d => {
+      if (!likeId && d.data)
+        setLikeId(d.data._id)
+    });
+
   }
 
   const loadPP = (__info) => {
@@ -236,10 +260,14 @@ function App() {
             <Route path="/order/:invoice" component={(props) => <Order {... props} info = {info} />} />
             <Route path='/contactus' component = {() => <ContactUs info = {info} />} />
             <Route path='/likes' component={() => {
-              if (user.type==='user')
+              if (user.type!=='user')
                 return (
                 <Gallery 
-                  posts={posts}  
+                  posts={likedPosts}
+                  likes={likes}  
+                  like={like} 
+                  unlike={unlike} 
+                  info = {info} 
                 />)
               return "Login to Continue";
             }} />

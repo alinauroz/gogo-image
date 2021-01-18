@@ -32,6 +32,7 @@ export default function (props) {
         let _likes = likes;
         _likes.splice(index, 1);
         setLikes([... _likes]);
+
       }
 
 
