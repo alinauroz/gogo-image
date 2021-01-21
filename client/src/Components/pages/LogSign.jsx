@@ -185,12 +185,23 @@ export default function (props) {
                             />
                         </View>
                         <br />
-
+                        <div
+                            style={{
+                                marginTop: 15,
+                                textAlign: 'center'
+                            }}
+                        >
                         <ReCAPTCHA
-                          sitekey="6Le8jDYaAAAAAMjbW-dL9Fq9z-4XbVlpmJ3OwgpV"
-                          onChange={(e,d) => {console.log(e,d)}}
+                            sitekey="6LdJnDYaAAAAAJ9MhDvgtGqEY7WiEpEgmoETMTtW"
+                            onChange={(e,d) => {console.log(e,d)}}
+                            style={{
+                                marginLeft: 'calc(100% - 400px)',
+                                display: 'inline-block',
+                                width: '100%',
+                                textAlign: 'center'
+                            }}
                         />
-
+                        </div>
                         <br /><br />
                         <label>
                             <input 
