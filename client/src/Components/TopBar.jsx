@@ -61,7 +61,6 @@ export default function (props) {
                     )
                     : ""
                 }
-                
                 <Link to = '/contactus' className = 'topbar-links'>Contact Us</Link>
                 <span style = {{float: 'right'}}>
                 {

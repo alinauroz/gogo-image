@@ -5,6 +5,12 @@ import {api} from '../../data/api'
 import {categories} from '../../data/post.res'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import cookieParser from '../../utils/cookieParser'
+
+const cookies = (cookieParser(document.cookie));
+
+if (cookies.type === 'user')
+    var isLoggedIn = true;
 
 export default function (props) {
 
@@ -179,6 +185,7 @@ export default function (props) {
                         <Link to = {'/post/' + post._id} key={post._id}>
                             <div className = 'gallery-item-container' style={{display: 'inline-block', marginLeft: 20, marginTop: 20}}>
                                 <div style={{position: 'relative', margin: 10, marginBottom: -25, float: 'right', textAlign: 'right'}}>
+                                {isLoggedIn?
                                 <FontAwesomeIcon
                                     icon={faHeart}
                                     onClick={(e) => {
@@ -199,7 +206,7 @@ export default function (props) {
                                         textAlign: 'right',
                                         textShadow: '10px 0px 10px ligthgrey'
                                     }}
-                                />
+                                />: null}
                                 </div>
                                 <div>
                                     <img src = {api + 'images/' +(img)} className = 'gallery-item' style={{marginTop: 0}}/>
