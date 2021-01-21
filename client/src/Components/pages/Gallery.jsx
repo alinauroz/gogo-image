@@ -69,11 +69,13 @@ export default function (props) {
 
     return (
         <>
-            <div className = 'gallery-container' style = {{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', background: '#333333aa', marginTop: 20, minHeight: 20, paddingLeft: '5%', paddingRight: '5%', paddingBottom: 10}}>
+            <div className = 'gallery-container' style = {{
+                background: '#333333aa', 
+                textAlign: 'center',
+                paddingBottom: 10,
+                paddingTop: 10,
+            }}>
             <div style={{
-                paddingLeft: '10%',
-                paddingRight: '10%',
-                width: '80%',
                 textAlign: 'center',
                 overflow: 'hidden',
                 margin: '50px 0px'
@@ -175,7 +177,7 @@ export default function (props) {
 
                     return (
                         <Link to = {'/post/' + post._id} key={post._id}>
-                            <div className = 'gallery-item-container'>
+                            <div className = 'gallery-item-container' style={{display: 'inline-block', marginLeft: 20, marginTop: 20}}>
                                 <div style={{position: 'relative', margin: 10, marginBottom: -25, float: 'right', textAlign: 'right'}}>
                                 <FontAwesomeIcon
                                     icon={faHeart}
