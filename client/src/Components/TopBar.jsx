@@ -61,8 +61,12 @@ export default function (props) {
                     )
                     : ""
                 }
+                
                 <Link to = '/contactus' className = 'topbar-links'>Contact Us</Link>
                 <span style = {{float: 'right'}}>
+                {
+                isLoggedIn?
+                <>
                 <Link to = '/likes'>
                 <FontAwesomeIcon
                     icon={faHeart}
@@ -90,7 +94,8 @@ export default function (props) {
                     />
                     </View>
                 </Link>
-
+                </>
+                : null}
                 {
                     isLoggedIn ?
                     <a style = {{cursor: 'pointer', verticalAlign: 'top', marginTop: 15, paddingTop: 10}} onClick = {() => setDDView('block')} className = 'topbar-links'>{user.firstName + ' ' + user.lastName}</a>
