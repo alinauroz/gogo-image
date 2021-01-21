@@ -17,8 +17,8 @@ export default {
         padding: 3,
         display: 'inline-block',
         fontSize: 10,
-        marginLeft: 15,
-        marginTop: -20,
+        marginLeft: 20,
+        marginTop: 2,
         width: 10,
         textAlign: 'center'
     }

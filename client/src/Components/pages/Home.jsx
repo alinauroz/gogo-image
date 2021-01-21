@@ -30,7 +30,7 @@ export default function (props) {
         small: [
             0,1,1,1,
             0,0,1,
-            0,1,1,1
+            1,0,1,1
         ],
         large: [
             0,0,0,1,1,
