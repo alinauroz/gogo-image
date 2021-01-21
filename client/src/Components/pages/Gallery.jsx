@@ -19,7 +19,7 @@ export default function (props) {
     const [posts, setPosts] = React.useState(props.posts || []);
     const [selected, setSelected] = React.useState('');
     const [selectedSub, setSelectedSub] = React.useState('');
-    const [pageSize, setPageSize] = React.useState(20);
+    const [pageSize, setPageSize] = React.useState(19);
     const [likes, setLikes] = React.useState(props.likes || []);
 
     const like = (id) => {

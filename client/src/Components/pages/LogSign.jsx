@@ -5,6 +5,7 @@ import FormRenderer from '../../utils/FormRenderer'
 import { Link } from 'react-router-dom'
 import { api } from '../../data/api'
 import Countries from '../../utils/Countries'
+import ReCAPTCHA from "react-google-recaptcha";
 
 const loginFields = [
     {title: 'Email', name: 'email', type: 'email', required: true},
@@ -183,6 +184,13 @@ export default function (props) {
                                 placeholder="State"
                             />
                         </View>
+                        <br />
+
+                        <ReCAPTCHA
+                          sitekey="6Le8jDYaAAAAAMjbW-dL9Fq9z-4XbVlpmJ3OwgpV"
+                          onChange={(e,d) => {console.log(e,d)}}
+                        />
+
                         <br /><br />
                         <label>
                             <input 
