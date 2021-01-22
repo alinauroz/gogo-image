@@ -31,8 +31,6 @@ const resSet = Object.freeze({
 
 export default function (props) {
 
-    console.log("LSPROPS", props)
-
     const [selected, setSelected] = React.useState(props.selected || 0);
     const [message, setMessage] = React.useState('');
     const [agreed, setAgreed] = React.useState(false);
@@ -104,6 +102,11 @@ export default function (props) {
             );
         }
 
+        if (formData.password.length < 8) {
+            setStatus(2);
+            return setMessage('1. Password must have 8 characters')
+        }
+
         if (formData['password'] !== formData['confirm-password']) {
             return setMessage('Password does not match');
         }
@@ -159,6 +162,26 @@ export default function (props) {
         data.map(val => {
             formData[val[0]] = val[1];
         });
+
+        let error = []
+
+        if (formData.email === '') {
+            error.push((Math.ceil((error.length + 1)/2)) + ". Please enter email");
+            error.push(<br />)
+        }
+        if (formData.password === '') {
+            error.push((Math.ceil((error.length + 1)/2)) + ". Please enter password");
+            error.push(<br />)
+        }
+
+        if (error.length > 0) {
+            setStatus(2);
+            return setMessage(
+                <div style={{width: 300, marginLeft: 'calc(50% - 150px)', textAlign: 'left'}}>
+                {error}
+                </div>
+            );
+        }
 
         let res = await fetch(api + 'users/login', {
             method: 'POST',
