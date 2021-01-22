@@ -31,6 +31,8 @@ const resSet = Object.freeze({
 
 export default function (props) {
 
+    console.log("LSPROPS", props)
+
     const [selected, setSelected] = React.useState(props.selected || 0);
     const [message, setMessage] = React.useState('');
     const [agreed, setAgreed] = React.useState(false);
@@ -254,7 +256,7 @@ export default function (props) {
                                     setAgreed(e.target.checked);
                                 }}
                             />
-                            <Text style = {{display: 'inline', fontSize: 13}}>I agree domain.com <Link to = '/terms'>terms</Link></Text>
+                            <Text style = {{display: 'inline', fontSize: 13}}>I agree with {props.info ? props.info.domain : ''} <Link to = '/terms'>terms</Link></Text>
                         </label>
                         <input type = 'submit' value = 'Sign Up' className = 'action-button' />
                     </form>
