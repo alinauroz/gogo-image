@@ -8,17 +8,17 @@ import Countries from '../../utils/Countries'
 import ReCAPTCHA from "react-google-recaptcha";
 
 const loginFields = [
-    {title: 'Email', name: 'email', type: 'email', required: true},
-    {title: 'Password', name: 'password', type: 'password', required: true}
+    {title: 'Email', name: 'email', type: 'email',},
+    {title: 'Password', name: 'password', type: 'password',}
 ]
 
 const signupFields = [
-    {title: "First Name", name: "firstName", type: "text", required: true},
-    {title: "Last Name", name: "lastName", type: "text", required: true},
-    {title: "Email Address", name: "email", type: "email", required: true},
-    {title: "Retype Email", name: "retypeEmail", type: "email", required: true},
-    {title: "Enter Password", name: "password", type: "password", required: true},
-    {title: "Confirm Password", name: "confirm-password", type: "password", required: true},
+    {title: "First Name", name: "firstName", type: "text", },
+    {title: "Last Name", name: "lastName", type: "text",},
+    {title: "Email Address", name: "email", type: "email", },
+    {title: "Retype Email", name: "retypeEmail", type: "email", },
+    {title: "Enter Password", name: "password", type: "password", },
+    {title: "Confirm Password", name: "confirm-password", type: "password",},
     //{title: "Country", name: "country", type: "text", required: true},
     //{title: "State", name: "state", type: "text", required: true},
 ]
@@ -45,6 +45,8 @@ export default function (props) {
     const signup = async (e) => {
         e.preventDefault();
         setMessage('');
+        let error = []
+
         if (! agreed) {
             setStatus(2);
             return setMessage('You must agree with terms and conditions');
@@ -57,6 +59,48 @@ export default function (props) {
         data.map(val => {
             formData[val[0]] = val[1];
         });
+
+        if (formData.firstName === '') {
+            error.push(Math.ceil((error.length + 1)/2) + ". Please enter First Name");
+            error.push(<br />)
+        }
+        if (formData.lastName === '') {
+            error.push((Math.ceil((error.length + 1)/2)) + ". Please enter Last Name");
+            error.push(<br />)
+        }
+        if (formData.email === '') {
+            error.push((Math.ceil((error.length + 1)/2)) + ". Please enter Email Address");
+            error.push(<br />)
+        }
+        if (formData.retypeEmail === '') {
+            error.push((Math.ceil((error.length + 1)/2)) + ". Please enter Retype Email");
+            error.push(<br />)
+        }
+        if (formData.password === '') {
+            error.push((Math.ceil((error.length + 1)/2)) + ". Please enter Password");
+            error.push(<br />)
+        }
+        if (formData.password === '') {
+            error.push((Math.ceil((error.length + 1)/2)) + ". Please enter Confirm Password");
+            error.push(<br />)
+        }
+        if (formData.password === '') {
+            error.push((Math.ceil((error.length + 1)/2)) + ". Please enter Country");
+            error.push(<br />)
+        }
+        if (formData.password === '') {
+            error.push((Math.ceil((error.length + 1)/2)) + ". Please enter State");
+            error.push(<br />)
+        }
+
+        if (error.length > 0) {
+            setStatus(2);
+            return setMessage(
+                <div style={{width: 300, marginLeft: 'calc(50% - 150px)', textAlign: 'left'}}>
+                {error}
+                </div>
+            );
+        }
 
         if (formData['password'] !== formData['confirm-password']) {
             return setMessage('Password does not match');
@@ -152,7 +196,7 @@ export default function (props) {
             </View>
             : ""
         }
-        <Box>
+        <Box style={{marginTop: 100}}>
             <View>
                 <Button 
                     value = "Login"
