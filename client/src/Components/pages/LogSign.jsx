@@ -9,7 +9,11 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 const loginFields = [
     {title: 'Email', name: 'email', type: 'email',},
-    {title: 'Password', name: 'password', type: 'password',}
+    {title: 'Password', name: 'password', type: 'password',},
+    {type: 'hidden'},
+    {type: 'hidden'},
+    {type: 'hidden'},
+    {type: 'hidden'},
 ]
 
 const signupFields = [
@@ -288,7 +292,7 @@ export default function (props) {
                         <FormRenderer 
                             fields = {loginFields}
                         />
-                        <Link to = '/reset-password' style = {{fontSize: 13}}>
+                        <Link to = '/reset-password' style = {{fontSize: 13, marginTop: -20, display: 'block'}}>
                             Forgot Password
                         </Link>
                         <input 
