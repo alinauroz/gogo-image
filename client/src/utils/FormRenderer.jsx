@@ -10,8 +10,12 @@ export default function (props) {
                     let html = [];
                     if (props.fields) {
                         props.fields.forEach(field => {
-                            const [icon, setIcon] = React.useState(faEye)
                             let ref;
+                            const [icon, setIcon] = React.useState(
+                                (ref && ref.getAttribute('type') === 'password') ?
+                                faEyeSlash:
+                                faEye
+                            )
                             html.push(
                                 <div className = 'field-container' style = {field.style ? field.style.container: {}}>
                                     <p className = 'field-title'>{field.title}</p>
@@ -32,7 +36,11 @@ export default function (props) {
                                         <>
                                         <input 
                                             className = 'field-input'
-                                            type = {field.type} 
+                                            type = {
+                                                (field.type !== 'password') ?
+                                                field.type:
+                                                icon ===  faEye ? 'password' : 'text'
+                                            } 
                                             ref = {e => ref = e}
                                             name = {field.name} 
                                             required = {field.required} 
