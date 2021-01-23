@@ -10,6 +10,7 @@ export default function (props) {
                     let html = [];
                     if (props.fields) {
                         props.fields.forEach(field => {
+                            const [icon, setIcon] = React.useState(faEye)
                             let ref;
                             html.push(
                                 <div className = 'field-container' style = {field.style ? field.style.container: {}}>
@@ -60,15 +61,14 @@ export default function (props) {
                                                     cursor: 'pointer'
                                                 }}
                                             >
-                                                {(field.currentType === 'text')  ?
-                                                <FontAwesomeIcon
-                                                    icon={faEyeSlash}
-                                                />
-                                                :
-                                                <FontAwesomeIcon
-                                                    icon={faEye}
-                                                />
-                                                }
+                                            <FontAwesomeIcon
+                                                onClick={() => {
+                                                    icon === faEye ?
+                                                    setIcon(faEyeSlash)
+                                                    : setIcon(faEye)
+                                                }}
+                                                icon={icon}
+                                            />
                                             </span>: null
                                         }
                                         </>
