@@ -39,6 +39,7 @@ export default function (props) {
     const [message, setMessage] = React.useState('');
     const [agreed, setAgreed] = React.useState(false);
     const [status, setStatus] = React.useState(0);
+    const [recap, setRecap] = React.useState('');
 
     React.useEffect(() => {
         selected?
@@ -105,6 +106,7 @@ export default function (props) {
                 </div>
             );
         }
+        formData.humanKey = recap;
 
         if (formData.password.length < 8) {
             setStatus(2);
@@ -140,6 +142,10 @@ export default function (props) {
             }
             else if (res.error && res.error.message) {
                 setMessage(res.error.message);
+                setStatus(2);
+            }
+            else if (res.message) {
+                setMessage(res.message);
                 setStatus(2);
             }
             else {
@@ -266,7 +272,7 @@ export default function (props) {
                         >
                         <ReCAPTCHA
                             sitekey="6LdJnDYaAAAAAJ9MhDvgtGqEY7WiEpEgmoETMTtW"
-                            onChange={(e,d) => {console.log(e,d)}}
+                            onChange={(e,d) => {setRecap(e)}}
                             style={{
                                 marginLeft: 'calc(100% - 400px)',
                                 display: 'inline-block',
