@@ -1,4 +1,6 @@
 import React from 'react'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export default function (props) {
     return (
@@ -34,7 +36,7 @@ export default function (props) {
                                             name = {field.name} 
                                             required = {field.required} 
                                             step = {field.step}
-                                            style = {field.style ? { ... field.style.input, marginRight: -20 }: {marginRight: -20}}
+                                            style = {field.style ? { ... field.style.input, marginRight: -25 }: {marginRight: -25}}
                                             onChange = {props.onChange ? props.onChange : () => ""}
                                         />
                                         {
@@ -42,19 +44,32 @@ export default function (props) {
                                             <span
                                                 onClick = {() => {
                                                     if (ref.getAttribute('type') === 'password') {
-                                                        ref.setAttribute('type', 'text')
+                                                        ref.setAttribute('type', 'text');
+                                                        field.currentType='text';
                                                     }
                                                     else {
-                                                        ref.setAttribute('type', 'password')
+                                                        ref.setAttribute('type', 'password');
+                                                        field.currentType='password';
                                                     }
                                                 }}
                                                 style={{
                                                     float: 'right',
                                                     marginTop: 10, 
                                                     marginRight: 50, 
-                                                    position: 'absolute'
+                                                    position: 'absolute',
+                                                    cursor: 'pointer'
                                                 }}
-                                            >H</span>: null
+                                            >
+                                                {(field.currentType === 'text')  ?
+                                                <FontAwesomeIcon
+                                                    icon={faEyeSlash}
+                                                />
+                                                :
+                                                <FontAwesomeIcon
+                                                    icon={faEye}
+                                                />
+                                                }
+                                            </span>: null
                                         }
                                         </>
                                     }
