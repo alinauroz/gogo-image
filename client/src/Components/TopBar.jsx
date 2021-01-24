@@ -3,6 +3,8 @@ import {Text, View, Image} from './Basic/AppComponents'
 import { Link } from 'react-router-dom'
 import {api} from '../data/api'
 import cookieParser from '../utils/cookieParser'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 import logo from '../data/images/logo.png'
 import cartIcon from '../data/icons/cart.png'
@@ -40,12 +42,12 @@ export default function (props) {
             >
                 <Link to = '/' className = 'topbar-links'>Home</Link>
                 <Link to = '/gallery' className = 'topbar-links'>Gallery</Link>
-                <Link to = '/blogs' className = 'topbar-links'>Blogs</Link>
-                <Link to = '/faqs' className = 'topbar-links'>FAQs</Link>
                 {
                     props.pages ?
                     props.pages.map(page => {
-                        return <Link to = {page.url} className = 'topbar-links'>{page.title}</Link>
+                        if (!page.hideOnTopBar)
+                            return <Link to = {page.url} className = 'topbar-links'>{page.title}</Link>
+                        return null;
                     })
                     : ""
                 }
@@ -59,10 +61,34 @@ export default function (props) {
                     )
                     : ""
                 }
+                <Link to = '/blogs' className = 'topbar-links'>Blogs</Link>
+                <Link to = '/faqs' className = 'topbar-links'>FAQ</Link>
                 <Link to = '/contactus' className = 'topbar-links'>Contact Us</Link>
+
                 <span style = {{float: 'right'}}>
-                <Link to = '/cart' className = 'topbar-links'>
-                    <View style = {{display: 'inline', overflow: 'hidden'}}>
+                {
+                isLoggedIn?
+                <>
+                <Link to = '/likes'>
+                <FontAwesomeIcon
+                    icon={faHeart}
+                    style={{
+                        fontSize: 18,
+                        color: 'red',
+                        textAlign: 'right',
+                        textShadow: '10px 0px 10px ligthgrey',
+                        overflow: 'hidden'
+                    }}
+                />
+                </Link>
+                <Link to = '/cart' className = 'topbar-links' 
+                    style={{
+                        display: 'inline-block',
+                        verticalAlign: 'top',
+                        marginTop: -10,
+                    }}
+                >
+                    <View style = {{display: 'inline', verticalAlign: 'top'}}>
                         <Text style = {styles.cartItemCount}>{props.cartLength}</Text>
                     <Image 
                         source = {cartIcon}
@@ -70,10 +96,11 @@ export default function (props) {
                     />
                     </View>
                 </Link>
-
+                </>
+                : null}
                 {
                     isLoggedIn ?
-                    <a style = {{cursor: 'pointer'}} onClick = {() => setDDView('block')} className = 'topbar-links'>{user.firstName + ' ' + user.lastName}</a>
+                    <a style = {{cursor: 'pointer', verticalAlign: 'top', marginTop: 15, paddingTop: 10}} onClick = {() => setDDView('block')} className = 'topbar-links'>{user.firstName + ' ' + user.lastName}</a>
                     : <Link to = '/login' className = 'topbar-links'>Login/Sign Up</Link>
                 }
                 </span>

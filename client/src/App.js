@@ -32,10 +32,6 @@ const cookies = (cookieParser(document.cookie));
 
 let cartContent = JSON.parse(localStorage.getItem('cart') || '[]')
 
-function Signup () {
-  return <Login selected={1} />
-}
-
 const modes = Object.freeze({
   MAINTENANCE: 1,
   LOADING: 0,
@@ -82,6 +78,10 @@ function App() {
   const [likes, setLikes] = React.useState([]);
   const [likeId, setLikeId] = React.useState('');
   const [likedPosts, setLikedPosts] = React.useState([]);
+
+  function Signup () {
+    return <Login selected={1} info = {info}/>
+  }
 
   const like = (id) => {
     if (likes.indexOf(id) > -1)
@@ -246,7 +246,7 @@ function App() {
             }
             <Route path="/login" component={(props) => <Login {... props} info = {info}></Login>} />
             <Route path="/dashboard" component={(props) => <Dashboard {... props} info = {info} />} />
-            <Route path="/signup" component={(props) => <Signup {...props} info = {info} />} />
+            <Route path="/signup" component={(props) => <Signup {...props} info = {info} domain={info ? info.domain : ''} />} />
             <Route path="/cart" component={() => <Cart removeFromCart = {removeFromCart} info = {info} cart = {cart} ></Cart>} />
             <Route path='/gallery' component={() => <Gallery posts = {posts} likes={likes} like={like} unlike={unlike} info = {info} />}/>
             <Route path="/post/:id" component={(props) => <PostView {... props} info = {info} addToCart = {addToCart} ></PostView>} />

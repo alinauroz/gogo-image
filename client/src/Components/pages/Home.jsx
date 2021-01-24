@@ -25,6 +25,19 @@ function getRandom(arr, n) {
 export default function (props) {
 
     let posts = getRandom(props.posts || [], 25);
+    let screenSize = window.screen.width < 1300 ? 'small' : 'large'
+    let sequence = {
+        small: [
+            0,1,1,1,
+            0,0,1,
+            1,0,1,1
+        ],
+        large: [
+            0,0,0,1,1,
+            0,0,1,1,1,1,
+            0,0,0,1,1
+        ]
+    }
 
     React.useEffect(() => {
         document.title = 'Home - ' + (props.info ? props.info.name || '' : '')
@@ -38,21 +51,48 @@ export default function (props) {
             />
             <View style = {{textAlign: 'center'}}>
                 <Image source = {Tagline} className = 'home-tagline' style = {{height: 40, margin: '20px 0px'}} />
-                <Text style = {{maxWidth: '80%', marginLeft: '10%'}}>
-                    Perfect for Senior Photos, Weddings, Retical, Valentine, Holiday Greetings, Birthdays, Special Occasions & more. Spice up with your photos now.
+                <Text style = {{maxWidth: '90%', marginLeft: '5%', fontSize: 16,}}>
+                    Perfect for Senior Photos, Weddings, Recital, Boudoir, Valentine, Holiday Greetings, Birthdays, Special Occasion and more.<br/> Spice up your photos now.
                 </Text>
             </View>
-            <div className = 'home-gallery-container' style = {{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', background: '#333333aa', marginTop: 20, minHeight: 20, paddingLeft: '5%', paddingRight: '5%', paddingBottom: 10}}>
+            <div className = 'home-gallery-container' style = {{
+                background: '#333333aa', 
+                marginTop: 20, 
+                minHeight: 20,
+                paddingBottom: 10,
+                textAlign: 'center'
+            }}>
             {
                 posts ?
-                posts.map(post => {
-                    let img = post.items && post.items.length > 0 ? (() => {
-                        if (post.items[0].type === 'portrait')
-                            return post.items[0].thumb;
-                        else
-                            return post.items[1] && post.items[1].type === 'portrait' ? post.items[1].thumb: post.items[0].thumb;;
-                    })() : '';
-                    return <Link to="/gallery"><div className = 'gallery-item-container'><img src = {api + 'images/' +img} className = 'gallery-item' /></div></Link>
+                posts.map((post, index) => {
+
+                    //let img = post.items && post.items.length > 0 ? (() => {
+                    //    if (post.items[0].type === 'portrait')
+                    //        return post.items[0].thumb;
+                    //    else
+                    //        return post.items[1] && post.items[1].type === 'portrait' ? post.items[1].thumb: post.items[0].thumb;;
+                    //})() : '';
+
+                    let toFetch = sequence[screenSize], img;
+                    if ( toFetch[index] === 0 ) {
+                        img = post.items && post.items.length > 0 ? (() => {
+                            if (post.items[0].type === 'landscape')
+                                return post.items[0].thumb;
+                            else
+                                return post.items[1] && post.items[1].type === 'landscape' ? post.items[1].thumb: post.items[0].thumb;;
+                        })() : '';
+                    }
+                    else if ( toFetch[index] === 1 ) {
+                        img = post.items && post.items.length > 0 ? (() => {
+                            if (post.items[0].type === 'portrait')
+                                return post.items[0].thumb;
+                            else
+                                return post.items[1] && post.items[1].type === 'portrait' ? post.items[1].thumb: post.items[0].thumb;;
+                        })() : '';
+                    }
+                    else return null;
+
+                    return <Link to="/gallery"><div className = 'gallery-item-container' style={{display: 'inline-block', marginLeft: 20, marginTop: 20}}><img src = {api + 'images/' +img} className = 'gallery-item' /></div></Link>
                 })
                 : ""
             }

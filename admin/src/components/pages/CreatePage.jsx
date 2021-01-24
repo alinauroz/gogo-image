@@ -11,6 +11,7 @@ export default function () {
     const [html, setHtml] = React.useState('');
     const [toPreview, setToPreview] = React.useState();
     const [message, setMessage] = React.useState('');
+    const [hidden, setHidden] = React.useState(false);
 
     const submitPage = async (e) => {
         try {
@@ -21,6 +22,7 @@ export default function () {
                 body: {
                     url,
                     title,
+                    hideOnTopBar: hidden,
                     content: html
                 }
             })
@@ -73,6 +75,10 @@ export default function () {
                 value = {url.substr(1, url.length)}
                 onChange = {(e) => setURL('/' + e.target.value)}
             />
+            <div style={{marginTop: 10}}>
+                <input name="topbar-hidden"type = "checkbox" onClick={(e) => setHidden(e.target.checked)} />
+                <label id="topbar-hidden">Hide this on Topbar</label>
+            </div>
             <p style = {{marginTop: 5}}>
                 {message}
             </p>

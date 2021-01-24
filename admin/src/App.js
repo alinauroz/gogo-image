@@ -33,7 +33,7 @@ const isLoggedIn = cookieParser(document.cookie).type === 'admin';
 
 export default function () {
 
-  const [screen, setScreen] = React.useState('ViewAdmins');
+  const [screen, setScreen] = React.useState('Home');
   const [base, setBase] = React.useState({isc: {}});
 
   const setAppBase = (data, key, isc) => {
@@ -60,7 +60,7 @@ export default function () {
     {title: 'FAQs', onClick: () => setScreen('ViewFAQ')},
     {title: 'Add FAQs', onClick: () => setScreen('AddFAQ')},
     {title: 'Price & Fee', onClick: () => setScreen('SetPrice')},
-    {title: 'Sales Data'},
+    //{title: 'Sales Data'},
     {title: 'Orders', onClick: () => setScreen('ViewOrders')},
     {title: 'Submit Order', onClick: () => setScreen('SubmitOrder')},
     {title: 'Manage Templates', onClick: () => setScreen('ViewPosts')},

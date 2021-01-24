@@ -5,6 +5,12 @@ import {api} from '../../data/api'
 import {categories} from '../../data/post.res'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import cookieParser from '../../utils/cookieParser'
+
+const cookies = (cookieParser(document.cookie));
+
+if (cookies.type === 'user')
+    var isLoggedIn = true;
 
 export default function (props) {
 
@@ -13,7 +19,7 @@ export default function (props) {
     const [posts, setPosts] = React.useState(props.posts || []);
     const [selected, setSelected] = React.useState('');
     const [selectedSub, setSelectedSub] = React.useState('');
-    const [pageSize, setPageSize] = React.useState(20);
+    const [pageSize, setPageSize] = React.useState(19);
     const [likes, setLikes] = React.useState(props.likes || []);
 
     const like = (id) => {
@@ -69,11 +75,13 @@ export default function (props) {
 
     return (
         <>
-            <div className = 'gallery-container' style = {{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', background: '#333333aa', marginTop: 20, minHeight: 20, paddingLeft: '5%', paddingRight: '5%', paddingBottom: 10}}>
+            <div className = 'gallery-container' style = {{
+                background: '#333333aa', 
+                textAlign: 'center',
+                paddingBottom: 10,
+                paddingTop: 10,
+            }}>
             <div style={{
-                paddingLeft: '10%',
-                paddingRight: '10%',
-                width: '80%',
                 textAlign: 'center',
                 overflow: 'hidden',
                 margin: '50px 0px'
@@ -175,8 +183,9 @@ export default function (props) {
 
                     return (
                         <Link to = {'/post/' + post._id} key={post._id}>
-                            <div className = 'gallery-item-container'>
+                            <div className = 'gallery-item-container' style={{display: 'inline-block', marginLeft: 20, marginTop: 20}}>
                                 <div style={{position: 'relative', margin: 10, marginBottom: -25, float: 'right', textAlign: 'right'}}>
+                                {isLoggedIn?
                                 <FontAwesomeIcon
                                     icon={faHeart}
                                     onClick={(e) => {
@@ -197,7 +206,7 @@ export default function (props) {
                                         textAlign: 'right',
                                         textShadow: '10px 0px 10px ligthgrey'
                                     }}
-                                />
+                                />: null}
                                 </div>
                                 <div>
                                     <img src = {api + 'images/' +(img)} className = 'gallery-item' style={{marginTop: 0}}/>

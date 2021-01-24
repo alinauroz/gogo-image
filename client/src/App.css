@@ -135,7 +135,7 @@ input:focus, button:focus {
 }
 
 .notification-bar-fail {
-  background-color: #fddfdf;
+  background-color: #fde0e1;
   color: #fe0100;
 }
 

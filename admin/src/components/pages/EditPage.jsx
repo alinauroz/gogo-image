@@ -10,7 +10,8 @@ export default function (props) {
     const [title, setTitle] = React.useState("");
     const [url, setURL] = React.useState("");
     const [toPreview, setToPreview] = React.useState();
-    const [message, setMessage] = React.useState('')
+    const [message, setMessage] = React.useState('');
+    const [hidden, setHidden] = React.useState(false);
 
     React.useEffect(() => {
 
@@ -33,7 +34,8 @@ export default function (props) {
                 body: {
                     url: url || props.base.isc.page.url,
                     title: title || props.base.isc.page.title,
-                    content: html || props.base.isc.page.content
+                    content: html || props.base.isc.page.content,
+                    hideOnTopBar: (typeof hidden !== undefined) ? hidden : props.base.isc.page.hideOnTopBar,
                 }
             })
         
@@ -101,6 +103,10 @@ export default function (props) {
                 }}
                 addon = '/'
             />
+            <div style={{marginTop: 10}}>
+                <input name="topbar-hidden"type = "checkbox" checked = {(typeof hidden !== undefined) ? hidden : props.base.isc.page.hideOnTopBar} onClick={(e) => setHidden(e.target.checked)} />
+                <label id="topbar-hidden">Hide this on Topbar</label>
+            </div>
             <div style = {{margin: '10px 0px'}}>
                 {message}
             </div>
