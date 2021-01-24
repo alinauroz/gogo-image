@@ -42,12 +42,12 @@ export default function (props) {
             >
                 <Link to = '/' className = 'topbar-links'>Home</Link>
                 <Link to = '/gallery' className = 'topbar-links'>Gallery</Link>
-                <Link to = '/blogs' className = 'topbar-links'>Blogs</Link>
-                <Link to = '/faqs' className = 'topbar-links'>FAQs</Link>
                 {
                     props.pages ?
                     props.pages.map(page => {
-                        return <Link to = {page.url} className = 'topbar-links'>{page.title}</Link>
+                        if (!page.hideOnTopBar)
+                            return <Link to = {page.url} className = 'topbar-links'>{page.title}</Link>
+                        return null;
                     })
                     : ""
                 }
@@ -61,7 +61,10 @@ export default function (props) {
                     )
                     : ""
                 }
+                <Link to = '/blogs' className = 'topbar-links'>Blogs</Link>
+                <Link to = '/faqs' className = 'topbar-links'>FAQ</Link>
                 <Link to = '/contactus' className = 'topbar-links'>Contact Us</Link>
+
                 <span style = {{float: 'right'}}>
                 {
                 isLoggedIn?

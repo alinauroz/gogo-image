@@ -51,8 +51,8 @@ export default function (props) {
             />
             <View style = {{textAlign: 'center'}}>
                 <Image source = {Tagline} className = 'home-tagline' style = {{height: 40, margin: '20px 0px'}} />
-                <Text style = {{maxWidth: '80%', marginLeft: '10%'}}>
-                    Perfect for Senior Photos, Weddings, Retical, Valentine, Holiday Greetings, Birthdays, Special Occasions & more. Spice up with your photos now.
+                <Text style = {{maxWidth: '90%', marginLeft: '5%', fontSize: 16,}}>
+                    Perfect for Senior Photos, Weddings, Recital, Boudoir, Valentine, Holiday Greetings, Birthdays, Special Occasion and more.<br/> Spice up your photos now.
                 </Text>
             </View>
             <div className = 'home-gallery-container' style = {{
