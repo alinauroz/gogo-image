@@ -30,6 +30,7 @@ const resize = async (file, options = {}) => {
 export default function (props) {
 
     const [images, setImages] = React.useState({});
+    const [meta, setMeta] = React.useState({});
     const [toView, setToView] = React.useState();
 
     useEffect(() => {
@@ -42,6 +43,9 @@ export default function (props) {
 
         let file = e.target.files[0];
 
+        setMeta({
+            name: e.target.files[0] ? e.target.files[0].name: ''
+        })
         
         for (let x in props.sizes) {
             if (typeof props.sizes[x] === 'object') {
@@ -64,26 +68,27 @@ export default function (props) {
         let thumb = await resize(file, {maxWidthOrHeight: 120});
         setToView(thumb);
 
-        console.log(images)
-
     }
 
     return (
         <View style = {{}}>
-            <View style = {{flexDirection: 'row', justifyContent: 'center', textAlign: 'center', width: '100%'}}>
+            <View style = {{flexDirection: 'row', justifyContent: 'center', width: '100%'}}>
                 {
                     Object.keys(images).length === 0 ?
-                    <View style = {{display: 'inline-block', verticalAlign: 'top', height: 25, width: 'calc(100% - 20px)'}}>
-                        <input onChange = {handleChange} type = 'file' style = {{width: 'calc(100% - 0px)', height: '100%', margin: 0, opacity: 0}} />
-                        <View style = {{overflow: 'hidden', width: 'calc(100% - 0px)', height: '100%', marginTop: '-25px', zIndex: 2, textAlign: 'center'}}>
+                    <View style = {{display: 'inline-block', verticalAlign: 'top', height: 25, width: '100px'}}>
+                        <input onChange = {handleChange} type = 'file' style = {{width: '100px', height: '100%', margin: 0, opacity: 0}} />
+                        <View style = {{width: '100px', height: '100%', cursor: 'pointer', marginTop: '-30px', zIndex: 2,}}>
                             <Text style = {{marginTop: 5}}>Upload</Text>
                         </View>
                     </View>
                     :
                     <>
-                        <img src = {toView} />
+                        {props.display === 'image' ?
+                            <img src = {toView} />
+                            : <Text style={{display: 'inline'}}>{meta.name ? meta.name.substr(0, 15) : ''}</Text>
+                        }
                         <span 
-                            style = {{padding: 3, verticalAlign: 'top', cursor: 'pointer'}}
+                            style = {{padding: 3, verticalAlign: 'top', cursor: 'pointer', color: 'red'}}
                             onClick = {() => {
                                 setToView('');
                                 setImages({});
