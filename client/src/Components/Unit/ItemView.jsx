@@ -96,6 +96,7 @@ export default function (props) {
     const [main, setMain] = React.useState();
     const [superimpose1, setSuperimpose1] = React.useState();
     const [superimpose2, setSuperimpose2] = React.useState();
+    const [postMessage, setPostMessage] = React.useState('');
 
     const calculatePrice = () => {
         
@@ -184,6 +185,23 @@ export default function (props) {
                                         />
                                         <label for = {`item-retouch-group-${props.type}`} >${prices.retouchGroup} - Group</label>
                                     </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Message</td>
+                                <td>
+                                    <input 
+                                        className = 'itemviewer-input'
+                                        placeholder = 'Max. 25 Characters'
+                                        value = {postMessage}
+                                        onChange = {
+                                            (e) => {
+                                                e.target.value.length <= 25 ?
+                                                setPostMessage(e.target.value)
+                                                : alert('Max Length is 25')
+                                            }
+                                        }
+                                    />
                                 </td>
                             </tr>
                             <tr>
