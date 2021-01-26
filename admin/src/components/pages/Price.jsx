@@ -9,6 +9,7 @@ export default function (props) {
     const [price, setPrice] = React.useState({})
 
     const [text, setTextPrice] = React.useState();
+    const [message, setMessagePrice] = React.useState();
     const [year, setYearPrice] = React.useState();
     const [template, setTemplatePrice] = React.useState();
     const [superimpose1, setSuperimpose1Price] = React.useState();
@@ -34,11 +35,10 @@ export default function (props) {
                     superimpose2,
                     retouchSingle,
                     retouchGroup,
-                    nextDayService
+                    nextDayService,
+                    message
                 }
             })
-
-            console.log(response)
 
             e.target.disabled = false;
         }
@@ -68,6 +68,7 @@ export default function (props) {
                     setRetouchSinglePrice(prices.retouchSingle)
                     setRetouchGroupPrice(prices.retouchGroup)
                     setNextDayServicePrice(prices.nextDayService)
+                    setMessagePrice(prices.message)
 
                 }
                 setShouldLoad(false);
@@ -114,6 +115,15 @@ export default function (props) {
                     addon = '$'
                     value = {text}
                     onChange = {(e) =>  setTextPrice(e.target.value)}
+                />
+                <Field 
+                    title = 'Message'
+                    placeholder = 'Message Price'
+                    inputType = 'number'
+                    style = {{marginTop: 10}}
+                    addon = '$'
+                    value = {message}
+                    onChange = {(e) =>  setMessagePrice(e.target.value)}
                 />
                 <Field 
                     title = 'Year'
