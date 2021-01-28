@@ -10,7 +10,7 @@ function duplicateExists(w){
 
 function PostInput (props) {
 
-    const setImage = (data) => props.onChange({... data, index: props.index});
+    const setImage = (data, meta) => props.onChange({... data, index: props.index}, meta);
 
     return (
         <div>
@@ -39,15 +39,16 @@ function PostInput (props) {
 
 export default function () {
 
-    const handleImagesAndThumbs = ({original, thumb, index}) => {
+    const handleImagesAndThumbs = ({original, thumb, index}, meta) => {
 
         let thumbs_ = thumbs;
         thumbs_[index] = thumb;
         setThumbs(thumbs_);
-
         let images_ = images;
         images_[index] = original;
+        imagesNames[index] = meta.name;
         setImages(images_);
+        setImagesNames(imagesNames);
     }
 
     const handleSize = (value, index) => {
@@ -65,6 +66,7 @@ export default function () {
     const [tags, setTags] = React.useState([]);
     const [tagsView, setTagsView] = React.useState([]);
     const [images, setImages] = React.useState([])
+    const [imagesNames, setImagesNames] = React.useState([]);
     const [thumbs, setThumbs] = React.useState([]);
     const [types, setTypes] = React.useState([]);
     const [sizes, setSizes] = React.useState([]); 
@@ -146,9 +148,10 @@ export default function () {
                 })
 
                 setMessage('Saved Image # ' + i)
-
+                alert(imagesNames[i])
                 postData.push({
                     image: imageInfo.fileName,
+                    filename: imagesNames[i],
                     thumb: thumbInfo.fileName,
                     size: '0x0',
                     type: i === 0 ? 'landscape': 'portrait'

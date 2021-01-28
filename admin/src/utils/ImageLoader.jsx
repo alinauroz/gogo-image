@@ -30,16 +30,22 @@ export default function (props) {
 
     const [images, setImages] = React.useState({});
     const [toView, setToView] = React.useState();
+    const [meta, setMeta] = React.useState({})
 
     useEffect(() => {
         if (Object.keys(images).length !== 0 && props.setImages) {
-            props.setImages(images)
+            props.setImages(images, meta)
         }
     });
 
     const handleChange = async (e) => {
 
         let file = e.target.files[0];
+
+        setMeta({
+            ... meta,
+            name: file.name,
+        })
 
         let images_ = {};
         
@@ -60,7 +66,7 @@ export default function (props) {
             }
         }
         
-        setImages(images_);
+        setImages(images_, meta);
 
         let thumb = await resize(file, {maxWidthOrHeight: 120});
         setToView(thumb);
