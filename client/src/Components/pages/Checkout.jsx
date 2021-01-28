@@ -103,7 +103,6 @@ export default function (props) {
     const [paymentStatus, setPaymentStatus] = React.useState(2);
 
     const placeOrder = async () => {
-        console.log("PLACING ORDER")
         let res = await request({
             route: 'orders',
             method: 'POST',
@@ -300,7 +299,10 @@ export default function (props) {
                             type = 'button'
                             value = 'Pay Now'
                             className = 'action-button'
-                            onClick = {() => setPPView(true)}
+                            onClick = {() =>{
+                                placeOrder();
+                                //setPPView(true)
+                            }}
                             style = {{width: 120}}
                         />
                         <input 

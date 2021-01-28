@@ -73,6 +73,7 @@ export default function (props) {
                 year,
                 retouch: (retouch && retouchValue) ? retouchValue: 'none',
                 price,
+                message: postMessage,
                 template: props.item.image,
                 size: props.item ? props.item.size : '',
                 templateId: props.item ? props.item._id: '',
@@ -120,6 +121,9 @@ export default function (props) {
 
         if (superimpose2)
             price_ += prices.superimpose2
+
+        if (postMessage)
+            price_ += prices.message
 
         return main ? price_ + prices.template : price_
 
@@ -188,7 +192,7 @@ export default function (props) {
                                 </td>
                             </tr>
                             <tr>
-                                <td>Message</td>
+                                <td>Message: ${prices.message}</td>
                                 <td>
                                     <input 
                                         className = 'itemviewer-input'

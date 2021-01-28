@@ -22,6 +22,7 @@ export default function (props) {
                                 <p style = {{margin: 0}}>Retouch: {capitalize(props.item.retouch)}</p>
                                 <p>Text: {props.item.text}</p>
                                 <p>Year: {props.item.year}</p>
+                                <p>Message: {props.item.message}</p>
                                 <br />
                                 {props.item.superimpose1 ? <p>Superimpose One</p>: ""}
                                 {props.item.superimpose2 ? <p>Superimpose Two</p>: ""}
