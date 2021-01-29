@@ -172,12 +172,37 @@ export default function (props) {
                     }
                     else {
                         img = post.items && post.items.length > 0 ? (() => {
-                            if (post.items[0].type === 'portrait')
-                                return post.items[0].thumb;
+                            let sequence = {
+                                small: [
+                                    0,1,1,1,
+                                    0,0,1,
+                                    1,0,1,1
+                                ],
+                                large: [
+                                    0,0,0,1,1,
+                                    0,0,1,1,1,1,
+                                    0,0,0,1,1
+                                ]
+                            }
+
+                            let size;
+                            if (window.innerWidth < 1300)
+                                size = 'small'
                             else
-                                return post.items[1] && post.items[1].type === 'portrait' ? post.items[1].thumb: post.items[0].thumb;;
-                        })() : '';
+                                size = 'large'
+
+                            return post.items[sequence[size][index%sequence[size].length]] ? post.items[sequence[size][index%sequence[size].length]].thumb : null;
+
+                        })(): null;
                     }
+                    //else {
+                    //    img = post.items && post.items.length > 0 ? (() => {
+                    //        if (post.items[0].type === 'portrait' && Math.floor(Math.random() * 2))
+                    //            return post.items[0].thumb;
+                    //        else
+                    //            return post.items[1] && post.items[1].type === 'portrait' ? post.items[1].thumb: post.items[0].thumb;;
+                    //    })() : '';
+                    //}
                     
                     if (!img) return null;
 
