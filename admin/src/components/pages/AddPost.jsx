@@ -148,7 +148,7 @@ export default function () {
                 })
 
                 setMessage('Saved Image # ' + i)
-                alert(imagesNames[i])
+                
                 postData.push({
                     image: imageInfo.fileName,
                     filename: imagesNames[i],
