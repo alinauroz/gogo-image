@@ -185,18 +185,24 @@ export default function (props) {
                         <Link to = {'/post/' + post._id} key={post._id}>
                             <div className = 'gallery-item-container' style={{display: 'inline-block', marginLeft: 20, marginTop: 20}}>
                                 <div style={{position: 'relative', margin: 10, marginBottom: -25, float: 'right', textAlign: 'right'}}>
-                                {isLoggedIn?
+                                {(isLoggedIn||true)?
                                 <FontAwesomeIcon
                                     icon={faHeart}
                                     onClick={(e) => {
-                                        if(likes.indexOf(post._id) === -1) {
-                                            props.like(post._id);
-                                            like(post._id);
+                                        if (isLoggedIn) {
+                                            if(likes.indexOf(post._id) === -1) {
+                                                props.like(post._id);
+                                                like(post._id);
+                                            }
+                                            else {
+                                                props.unlike(post._id);
+                                                unlike(post._id);
+                                            }
                                         }
                                         else {
-                                            props.unlike(post._id);
-                                            unlike(post._id);
+                                            window.location.href='/login';
                                         }
+
                                         e.preventDefault()
                                     }}
                                     style={{
