@@ -107,7 +107,7 @@ export default function (props) {
                     categories.map((cat) => (
                         <span
                             style={{
-                                margin: '0px 20px',
+                                margin: '0px 7.5px',
                                 cursor: 'pointer'
                             }}
                         >
