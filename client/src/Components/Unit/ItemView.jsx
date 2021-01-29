@@ -10,6 +10,7 @@ export default function (props) {
     const prices = props.prices || {}
     const [price, setPrice] = React.useState(0)
     const [message, setMessage] = React.useState('')
+    const [errorCode, setErrorCode] = React.useState('0')
 
     const addToCart = async () => {
 
@@ -18,6 +19,7 @@ export default function (props) {
             let cartItem = {};
 
             if (! main) {
+                setErrorCode('01');
                 return setMessage('You must provide a main image');
             }
 
@@ -71,10 +73,11 @@ export default function (props) {
                 ... cartItem,
                 text,
                 year,
+                filename: props.item.filename,
                 retouch: (retouch && retouchValue) ? retouchValue: 'none',
                 price,
                 message: postMessage,
-                template: props.item.image,
+                template: props.item ? props.item.size : '',
                 size: props.item ? props.item.size : '',
                 templateId: props.item ? props.item._id: '',
                 templateThumb: props.item ? props.item.thumb: '',
@@ -145,8 +148,8 @@ export default function (props) {
                     <Text style = {{marginTop: 10, fontSize: 13}} className = 'itemviewer-sub-container'>
                         <table>
                             <tr>
-                                <td>{capitalize(props.type)}  -  ${prices.template} </td>
-                                <td></td>
+                                <td colSpan={2}>{props.filename.substr(0,props.filename.length-4)}  -  ${prices.template} </td>
+                                
                             </tr>
                             <tr>
                                 <td>
@@ -192,7 +195,7 @@ export default function (props) {
                                 </td>
                             </tr>
                             <tr>
-                                <td>Message: ${prices.message}</td>
+                                <td><p style={{marginTop:-3}}><br/>Message: ${prices.message}</p></td>
                                 <td>
                                     <input 
                                         className = 'itemviewer-input'
@@ -210,7 +213,7 @@ export default function (props) {
                             </tr>
                             <tr>
                                 <td>
-                                    <Text style = {{paddingTop: 5}}>Text: ${prices.text}</Text>
+                                    <Text style = {{paddingTop: 5}}><br/>Text: ${prices.text}</Text>
                                 </td>
                                 <td>
                                     <input 
@@ -229,7 +232,7 @@ export default function (props) {
                             </tr>
                             <tr>
                                 <td>
-                                    <Text style = {{paddingTop: 5}}>Year: ${prices.year}</Text>
+                                    <Text style = {{paddingTop: 5}}><br/>Year: ${prices.year}</Text>
                                 </td>
                                 <td>
                                     <input 
@@ -245,15 +248,25 @@ export default function (props) {
                                 <td>
                                     <Text>Main Image</Text>
                                 </td>
-                                <td>
-                                    <ImageLoader sizes = {{original: 'original'}} setImages = {setMain} />
+                                <td style={{paddingLeft: 5}}>
+                                    <span>
+                                        <ImageLoader style = {{display: 'inline-block'}} sizes = {{original: 'original'}} setImages = {setMain} />
+                                    </span>
+                                    <Text 
+                                        style={{
+                                            color: 'red', 
+                                            display: errorCode === '01' ? 'inline-block': 'none'
+                                        }}
+                                    >
+                                        * Required
+                                    </Text>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <Text>Superimpose 1: ${prices.superimpose1}</Text>
                                 </td>
-                                <td>
+                                <td style={{paddingLeft: 5}}>
                                     <ImageLoader 
                                         sizes = {{original: 'original'}}
                                         setImages = {setSuperimpose1}
@@ -264,7 +277,7 @@ export default function (props) {
                                 <td>
                                 <Text>Superimpose 2: ${prices.superimpose1}</Text>
                                 </td>
-                                <td>
+                                <td style={{paddingLeft: 5}}>
                                     <ImageLoader 
                                         sizes = {{original: 'original'}}
                                         setImages = {setSuperimpose2}
@@ -276,7 +289,7 @@ export default function (props) {
                                 <td>{'\t$' + price}</td>
                             </tr>*/}
                         </table>
-                        <div style = {{margin: '5px 0px'}}>
+                        <div style = {{margin: '8px 0px'}}>
                             {message}
                         </div>
                         <input 

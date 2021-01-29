@@ -71,7 +71,7 @@ export default function (props) {
     }
 
     return (
-        <View style = {{}}>
+        <View style = {props.style || {}} className='IMAGE___LOADER'>
             <View style = {{flexDirection: 'row', justifyContent: 'center', width: '100%'}}>
                 {
                     Object.keys(images).length === 0 ?

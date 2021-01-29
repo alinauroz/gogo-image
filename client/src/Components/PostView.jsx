@@ -42,7 +42,7 @@ export default function (props) {
             {
                 post ? 
                 post.items.map(item => {
-                    return <ItemView item = {item} prices = {prices} url = {api + 'images/' +item.thumb} type = {item.type} addToCart = {props.addToCart} />
+                    return <ItemView item = {item} prices = {prices} url = {api + 'images/' +item.thumb} filename={item.filename} type = {item.type} addToCart = {props.addToCart} />
                 })
                 : <>{message}</>
             }

@@ -13,7 +13,7 @@ export default function (props) {
     })
 
     return (
-        <View style = {{display: 'block', marginTop: 50, width: '100%', marginLeft: 'calc(0% - 0px)'}}>
+        <View style = {{display: 'block', marginTop: 50, width: '100%', marginLeft: 'calc(0% - 0px)', marginBottom: 20}}>
             <View style = {{maxWidth: '100%', overflowX: 'auto'}}>
             <Table style = {{width: '100%'}}>
                 <Tr className = 'cart-tr'>
