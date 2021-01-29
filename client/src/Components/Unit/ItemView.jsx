@@ -22,6 +22,12 @@ export default function (props) {
                 setErrorCode('01');
                 return setMessage('You must provide a main image');
             }
+            else {
+                if (! main) {
+                    setErrorCode('0');
+                    setMessage('');
+                }
+            }
 
             if (superimpose1 && superimpose1.original) {
 
