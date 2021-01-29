@@ -300,8 +300,8 @@ export default function (props) {
                             value = 'Pay Now'
                             className = 'action-button'
                             onClick = {() =>{
-                                placeOrder();
-                                //setPPView(true)
+                                //placeOrder();
+                                setPPView(true)
                             }}
                             style = {{width: 120}}
                         />
