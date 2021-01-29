@@ -142,7 +142,7 @@ export default function (props) {
 
         setPrice(calculatePrice())
 
-    }, [text, retouch, retouchValue, year, main, superimpose1, superimpose2])
+    }, [text, retouch, retouchValue, year, main, superimpose1, superimpose2, postMessage])
 
     return (
         <View className = 'itemview-container'>
