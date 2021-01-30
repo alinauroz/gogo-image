@@ -592,7 +592,7 @@ input:focus, button:focus {
   }
 }
 
-.gallery-thumb {
+.gallery-thumb:active {
   outline-color: red;
   outline-style: solid;
 }
