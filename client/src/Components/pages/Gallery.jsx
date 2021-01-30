@@ -207,7 +207,7 @@ export default function (props) {
                     if (!img) return null;
 
                     return (
-                        <Link to = {'/post/' + post._id} key={post._id}>
+                        <Link to = {'/post/' + post._id} key={post._id} className='gallery-thumb'>
                             <div className = 'gallery-item-container' style={{display: 'inline-block', marginLeft: 20, marginTop: 20}}>
                                 <div style={{position: 'relative', margin: 10, marginBottom: -25, float: 'right', textAlign: 'right'}}>
                                 {(isLoggedIn||true)?

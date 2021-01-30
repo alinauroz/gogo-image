@@ -231,7 +231,7 @@ export default function (props) {
             </View>
             : ""
         }
-        <Box style={{marginTop: 100}}>
+        <Box>
             <View>
                 <Button 
                     value = "Login"
