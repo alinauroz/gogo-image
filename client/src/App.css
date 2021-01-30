@@ -22,7 +22,7 @@ input:focus, button:focus {
 }
 
 .navbox {
-  margin-top: 50px;
+  margin-top: 100px;
   max-width: 50%;
   margin-left: calc(25% - 20px);
   padding: 10px;
