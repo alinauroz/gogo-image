@@ -234,7 +234,7 @@ function App() {
         cartLength = {cart ? cart.length : 0}
         info = {info}
       />
-      <main style = {{marginTop: 0, minHeight: innerHeight - 300}}>
+      <main style = {{marginTop: 0, minHeight: innerHeight - 200, overflow: 'hidden'}}>
         <Switch>
           <Route>
             <Route path="/" info = {info} component={() => <Home posts = {posts} info = {info} />} exact />
