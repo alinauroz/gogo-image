@@ -3,6 +3,7 @@ import {View, Image, Text} from '../Basic/AppComponents'
 import Tagline from '../../data/images/tagline.png'
 import { Link } from 'react-router-dom'
 import { api } from '../../data/api'
+import shuffle from '../../utils/shuffle'
 
 import cover from '../../data/images/cover.jpg'
 
@@ -28,16 +29,20 @@ export default function (props) {
     let screenSize = window.screen.width < 1300 ? 'small' : 'large'
     let sequence = {
         small: [
-            0,1,1,1,
-            0,0,1,
-            1,0,1,1
+            [0,1,1,1],
+            [0,0,1],
+            [1,0,1,1]
         ],
         large: [
-            0,0,0,1,1,
-            0,0,1,1,1,1,
-            0,0,0,1,1
+            [0,0,0,1,1],
+            [0,0,1,1,1,1],
+            [0,0,0,1,1]
         ]
     }
+
+    sequence.small = (sequence.small.map(arr => shuffle(arr))).flat();
+    sequence.large = (sequence.large.map(arr => shuffle(arr))).flat();
+
 
     React.useEffect(() => {
         document.title = 'Home - ' + (props.info ? props.info.name || '' : '')
