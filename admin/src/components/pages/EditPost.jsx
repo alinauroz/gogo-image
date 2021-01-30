@@ -115,7 +115,6 @@ export default function (props) {
 
     const isTypeExists = (type) => {
         for (let i = 0; postData.items && i < postData.items.length; i++) {
-            alert(type, postData.items[i].type)
             if (type === postData.items[i].type)
                 return true;
         }
@@ -145,7 +144,6 @@ export default function (props) {
             for (let i = 0; i < ImageInputs.length; i++) {
 
                 if (toSkip.indexOf(i) !== -1) continue
-                alert('SAVING')
                 let thumbInfo = await request({
                     route: 'images',
                     method: 'POST',
@@ -179,7 +177,6 @@ export default function (props) {
             }
 
             let items_ = postData.concat(previousItems || [])
-            alert(items_.length)
 
             let data = await request({
                 route: 'posts/' + id,
