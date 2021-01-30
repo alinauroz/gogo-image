@@ -13,8 +13,8 @@ export default function (props) {
                             let ref;
                             const [icon, setIcon] = React.useState(
                                 (ref && ref.getAttribute('type') === 'password') ?
-                                faEyeSlash:
-                                faEye
+                                faEye:
+                                faEyeSlash
                             )
                             html.push(
                                 <div className = 'field-container' style = {field.style ? field.style.container: {}}>
