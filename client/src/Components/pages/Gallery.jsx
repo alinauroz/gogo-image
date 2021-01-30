@@ -6,11 +6,27 @@ import {categories} from '../../data/post.res'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import cookieParser from '../../utils/cookieParser'
+import shuffle from '../../utils/shuffle'
 
 const cookies = (cookieParser(document.cookie));
 
 if (cookies.type === 'user')
     var isLoggedIn = true;
+
+let sequence = {
+    small: [
+        [0,1,1,1],
+        [0,0,1],
+        [1,0,1,1]
+    ],
+    large: [
+        [0,0,0,1,1],
+        [0,0,1,1,1,1],
+        [0,0,0,1,1]
+    ]
+}
+sequence.small = (sequence.small.map(arr => shuffle(arr))).flat();
+sequence.large = (sequence.large.map(arr => shuffle(arr))).flat();
 
 export default function (props) {
 
@@ -172,18 +188,6 @@ export default function (props) {
                     }
                     else {
                         img = post.items && post.items.length > 0 ? (() => {
-                            let sequence = {
-                                small: [
-                                    0,1,1,1,
-                                    0,0,1,
-                                    1,0,1,1
-                                ],
-                                large: [
-                                    0,0,0,1,1,
-                                    0,0,1,1,1,1,
-                                    0,0,0,1,1
-                                ]
-                            }
 
                             let size;
                             if (window.innerWidth < 1300)
