@@ -44,7 +44,7 @@ export default function (props) {
         let file = e.target.files[0];
 
         setMeta({
-            name: e.target.files[0] ? e.target.files[0].name: ''
+            name: file && file.name ? file.name: '',
         })
         
         for (let x in props.sizes) {
