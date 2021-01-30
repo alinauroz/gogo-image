@@ -39,7 +39,7 @@ export default function (props) {
                                             type = {
                                                 (field.type !== 'password') ?
                                                 field.type:
-                                                icon ===  faEye ? 'password' : 'text'
+                                                icon ===  faEye ? 'text' : 'password'
                                             } 
                                             ref = {e => ref = e}
                                             name = {field.name} 
