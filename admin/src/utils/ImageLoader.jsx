@@ -44,7 +44,7 @@ export default function (props) {
 
         setMeta({
             ... meta,
-            name: file.name,
+            name: file && file.name ? file.name: '',
         })
 
         let images_ = {};

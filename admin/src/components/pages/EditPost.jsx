@@ -3,6 +3,7 @@ import Field from '../unit/Field'
 import ImageLoader from '../../utils/ImageLoader'
 import { request } from '../../utils/request'
 import { api } from '../../data/api'
+import {categories} from '../../data/post.res'
 
 function duplicateExists(w){
     return new Set(w).size !== w.length 
@@ -10,16 +11,12 @@ function duplicateExists(w){
 
 function PostInput (props) {
 
-    const setImage = (data) => props.onChange({... data, index: props.index});
+    const setImage = (data, meta) => props.onChange({... data, index: props.index}, meta);
 
     return (
         <div>
             <div style = {{display: 'inline-block', verticalAlign: 'top', width: 'calc(50% - 10px)', padding: 10, paddingLeft: 0}}>
-                <Field 
-                    title = 'Size'
-                    placeholder = 'Size of the Image'
-                    onChange = {(e) => props.setSize(e.target.value, props.index)}
-                />
+                
                 <div style = {{marginTop: 10}}>
                     <p>Select Image Type</p>
                     <select class = 'form-control' onChange = {(e) => props.setType(e.target.value, props.index)}>
@@ -44,15 +41,15 @@ function PostInput (props) {
 export default function (props) {
     let postData = props.base.isc.post ? props.base.isc.post : {};
 
-    const handleImagesAndThumbs = ({original, thumb, index}) => {
-
+    const handleImagesAndThumbs = ({original, thumb, index}, meta) => {
         let thumbs_ = thumbs;
         thumbs_[index] = thumb;
         setThumbs(thumbs_);
-
         let images_ = images;
         images_[index] = original;
+        imagesNames[index] = meta.name;
         setImages(images_);
+        setImagesNames(imagesNames);
     }
 
     const handleSize = (value, index) => {
@@ -67,6 +64,7 @@ export default function (props) {
 
     const [id, setId] = React.useState('');
     const [name, setName] = React.useState(postData.name);
+    const [category, setCategory] = React.useState('');
     const [tags, setTags] = React.useState(postData.tags);
     const [tagsView, setTagsView] = React.useState();
     const [tagsString, setTagsString] = React.useState('');
@@ -74,11 +72,12 @@ export default function (props) {
     const [thumbs, setThumbs] = React.useState([]);
     const [types, setTypes] = React.useState([]);
     const [sizes, setSizes] = React.useState([]); 
+    const [imagesNames, setImagesNames] = React.useState([]);
     const [message, setMessage] = React.useState('')
     const [typeOfUse, setTypeOfUse] = React.useState(postData.typeOfUse);
     const [typeOfUseView, setTypeOfUseView] = React.useState();
     const [typeOfUseString, setTypeOfUseString] = React.useState('');
-    const [ImageInputs, setImageInputs] = React.useState([<PostInput index = {0} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />])
+    const [ImageInputs, setImageInputs] = React.useState([])
     const [previousItems, setPreviousItems] = React.useState();
 
     React.useEffect(() => {
@@ -172,11 +171,15 @@ export default function (props) {
                 postData.push({
                     image: imageInfo.fileName,
                     thumb: thumbInfo.fileName,
+                    filename: imagesNames[i],
                     size: 'xxx',
                     type: types[i]
                 })
 
             }
+
+            let items_ = postData.concat(previousItems || [])
+            alert(items_.length)
 
             let data = await request({
                 route: 'posts/' + id,
@@ -185,7 +188,8 @@ export default function (props) {
                 body: {
                     name,
                     typeOfUse,
-                    items: postData.concat(previousItems || []),
+                    category,
+                    items: items_,
                     tags
                 }
             });
@@ -195,7 +199,7 @@ export default function (props) {
             }
 
             setImageInputs([])
-            setImageInputs([<PostInput index = {0} onChange = {handleImagesAndThumbs} setType = {handleType} setSize = {handleSize} />]);
+            setImageInputs([]);
             setTagsView([]);
 
             e.target.disabled = false;
@@ -220,6 +224,9 @@ export default function (props) {
     if (!name && postData.name) {
         setName(postData.name)
     }
+    if (!name && postData.category) {
+        setCategory(postData.category)
+    }
 
     if (!previousItems && postData.items) {
         setPreviousItems(postData.items);
@@ -235,6 +242,20 @@ export default function (props) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
             />
+            <div>
+                <p className = 'field-title'>Category</p>
+                <select className='form-control' name='category' onChange={(e) => setCategory(e.target.value)}>
+                    
+                    <option value='other'></option>
+                    {
+                        categories.map((cat) => (
+                            <option value={cat[1]} selected={cat[1] === category}>
+                                {cat[0]}({cat[1]})
+                            </option>
+                        ))
+                    }
+                </select>
+            </div>
             <Field 
                 name="typeOfUse"
                 title="Type of Use"
@@ -271,7 +292,6 @@ export default function (props) {
                                     () => {
                                         postData.items.splice(index, 1); 
                                         setPreviousItems([... postData.items]);
-                                        alert(postData.items.length)
                                         forceUpdate();
                                     }
                                 }
