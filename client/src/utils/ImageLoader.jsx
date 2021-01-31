@@ -85,7 +85,7 @@ export default function (props) {
                     <>
                         {props.display === 'image' ?
                             <img src = {toView} />
-                            : <Text style={{display: 'inline'}}>{meta.name ? meta.name.substr(0, 15) : ''}</Text>
+                            : <Text style={{display: 'inline-block', width: 100, height: 25}}>{meta.name ? meta.name.substr(0, 15) : ''}</Text>
                         }
                         <span 
                             style = {{padding: 3, verticalAlign: 'top', cursor: 'pointer', color: 'red'}}

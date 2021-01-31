@@ -10,7 +10,6 @@ export default function (props) {
     let iframeSrc;
 
     let iframe = ReactHtmlParser( ReactHtmlParser(props.info.tawkto) );
-    console.log(">>>", iframe && iframe[0] && iframe[0].props)
     if (iframe && iframe[0] && iframe[0].props ) {
         iframeSrc = iframe[0].props.src;
     }
