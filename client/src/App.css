@@ -222,7 +222,6 @@ input:focus, button:focus {
   display: inline-block;
   width: calc(50% - 10px);
   margin-left: 10px;
-  padding: 5px;
 }
 
 .itemviewer-sub-container {

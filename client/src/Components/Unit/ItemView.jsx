@@ -155,10 +155,10 @@ export default function (props) {
             </View>
             <View className = 'itemview-input-group' style = {{color: 'white'}}>
                 <View>
-                    <Text style = {{marginTop: 10, fontSize: 13}} className = 'itemviewer-sub-container'>
+                    <Text style = {{marginTop: 0, fontSize: 13}} className = 'itemviewer-sub-container'>
                         <table>
                             <tr>
-                                <td colSpan={2}>{props.filename.substr(0,props.filename.length-4)}  -  ${prices.template} </td>
+                                <td colSpan={2} style={{paddingTop: 0}}>{props.filename.substr(0,props.filename.length-4)}  -  ${prices.template} </td>
                                 
                             </tr>
                             <tr>
