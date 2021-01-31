@@ -260,6 +260,20 @@ export default function (props) {
                     value = {info.ppCurrency}
                     onChange = {handleOnchange}
                 />
+                <div style={{marginTop: 10}}>
+                    <label>Tawk To Iframe</label>
+                    <textarea
+                        name = 'tawkto'
+                        placeholder = 'Tawk To Iframe'
+                        placeholder = 'Enter TawkTo Iframe code which you get from Tawk.to'
+                        value = {info.tawkto}
+                        onChange={handleOnchange}
+                        className='form-control'
+                        style={{
+
+                        }}
+                    ></textarea>
+                </div>
 
                 <div style = {{marginTop: 10}}>
                     <p className = 'field-title'>Maintenance Mode</p>
