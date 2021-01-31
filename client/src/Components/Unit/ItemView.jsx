@@ -299,9 +299,6 @@ export default function (props) {
                                 <td>{'\t$' + price}</td>
                             </tr>*/}
                         </table>
-                        <div style = {{margin: '8px 0px'}}>
-                            {message}
-                        </div>
                         <input 
                             type = 'button'
                             value = {'Add to Cart - $' + price}
