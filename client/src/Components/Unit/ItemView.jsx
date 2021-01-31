@@ -134,6 +134,10 @@ export default function (props) {
         if (postMessage)
             price_ += prices.message
 
+        if (main)
+            setErrorCode('00');
+            setMessage('');
+
         return main ? price_ + prices.template : price_
 
     }

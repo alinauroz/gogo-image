@@ -92,7 +92,7 @@ export default function (props) {
                             onClick = {() => {
                                 setToView('');
                                 setImages({});
-                                if (props.setImages) props.setImages({})
+                                if (props.setImages) props.setImages(null)
                             }}
                         >✖</span>
                     </>
