@@ -8,8 +8,8 @@ import Countries from '../../utils/Countries'
 import ReCAPTCHA from "react-google-recaptcha";
 
 const loginFields = [
-    {title: 'Email', name: 'email', type: 'email',},
-    {title: 'Password', name: 'password', type: 'password',},
+    {title: 'Email', name: 'email', type: 'email', key: 'login_email'},
+    {title: 'Password', name: 'password', type: 'password', key: 'login_pass'},
     {type: 'hidden'},
     {type: 'hidden'},
     {type: 'hidden'},
@@ -35,11 +35,17 @@ const resSet = Object.freeze({
 
 export default function (props) {
 
-    const [selected, setSelected] = React.useState(props.selected || 0);
+    const [selected, _setSelected] = React.useState(props.selected || 0);
     const [message, setMessage] = React.useState('');
     const [agreed, setAgreed] = React.useState(false);
     const [status, setStatus] = React.useState(0);
     const [recap, setRecap] = React.useState('');
+
+    const setSelected = (val) => {
+        _setSelected(val);
+        setMessage('');
+        setStatus(0);
+    }
 
     React.useEffect(() => {
         selected?

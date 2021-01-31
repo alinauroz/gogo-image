@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import ReactHtmlParser from "react-html-parser";
 
 export default function (props) {
 
@@ -6,8 +7,19 @@ export default function (props) {
         document.title = 'Contact Us - ' + (props.info ? props.info.name: '');
     })
 
+    let iframeSrc;
+
+    let iframe = ReactHtmlParser( ReactHtmlParser(props.info.tawkto) );
+    console.log(">>>", iframe && iframe[0] && iframe[0].props)
+    if (iframe && iframe[0] && iframe[0].props ) {
+        iframeSrc = iframe[0].props.src;
+    }
+    else {
+        iframeSrc = ''
+    }
+
     return (
-        <iframe src = 'https://tawk.to/chat/5fbd5049a1d54c18d8ecfc6a/default' style = {{width: '100%', height: 500, border: 0}}></iframe>
+        <iframe src = {iframeSrc} style = {{width: '100%', height: 500, border: 0}}></iframe>
     )
 
 }

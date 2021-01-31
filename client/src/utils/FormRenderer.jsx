@@ -25,6 +25,7 @@ export default function (props) {
                                             className = 'field-input' 
                                             ref = {e => ref = e}
                                             type = {field.type} 
+                                            key={field.key || field.name}
                                             name = {field.name} 
                                             required = {field.required} 
                                             step = {field.step}
@@ -45,6 +46,7 @@ export default function (props) {
                                             name = {field.name} 
                                             required = {field.required} 
                                             step = {field.step}
+                                            key={field.key || field.name}
                                             style = {field.style ? { ... field.style.input, marginRight: -25 }: {marginRight: -25}}
                                             onChange = {props.onChange ? props.onChange : () => ""}
                                         />
