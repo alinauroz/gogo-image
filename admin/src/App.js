@@ -27,13 +27,14 @@ import SetPrice from './components/pages/Price'
 import AddBlog from './components/pages/AddBlog'
 import SubmitOrder from './components/pages/SubmitOrder'
 import cookieParser from './utils/cookieParser'
+import SalesData from './components/pages/SalesData'
 
 const admin = JSON.parse(localStorage.getItem('admin') || '{}');
 const isLoggedIn = cookieParser(document.cookie).type === 'admin';
 
 export default function () {
 
-  const [screen, setScreen] = React.useState('Home');
+  const [screen, setScreen] = React.useState('SalesData');
   const [base, setBase] = React.useState({isc: {}});
 
   const setAppBase = (data, key, isc) => {
@@ -83,6 +84,9 @@ export default function () {
       <div className = 'main-container'>
         <div style = {{display : screen == 'Home' ? 'block' : 'none'}}>
           <Home base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'SalesData' ? 'block' : 'none'}}>
+          <SalesData base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
         <div style = {{display : screen == 'AddStaff' ? 'block' : 'none'}}>
           <AddStaff base = {base} setBase = {setAppBase} setScreen = {setScreen} />
