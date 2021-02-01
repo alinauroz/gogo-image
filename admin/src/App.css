@@ -185,3 +185,48 @@ input:focus, textarea:focus, button:focus {
 .margin-5 {
   margin: 2.5px;
 }
+
+.cart-td {
+  border: 0;
+  margin: 0;
+  padding: 5px;
+  padding-top: 10px;
+  border-bottom: 1px solid lightgrey;
+  vertical-align: top;
+  font-size: 12px;
+}
+
+.cancel-button {
+  background-color: #cd6667;
+  padding: 8px;
+  color: white;
+  border: 0px;
+  border-radius: 1px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.cancel-button:hover {
+  background-color: #cd6660;
+}
+
+.cart-th {
+  border-bottom: 2px solid lightgrey;
+  border-top: 1px solid lightgrey;
+}
+
+.justified {
+  text-align: justify !important;
+}
+
+.justified:after {
+  content: "" !important;
+  display: inline-block !important;
+  width: 100% !important;
+}
+
+.justified img {
+  height: 200px !important;
+  display: inline-block !important;
+}
