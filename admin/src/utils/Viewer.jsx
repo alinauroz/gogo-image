@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react'
 
 function Unit (props) {
@@ -17,7 +18,12 @@ function Unit (props) {
                     //}
 
                     props.heads.map(head => {
-                        if (typeof props.data[head] === 'string') {
+                        if (head === 'createdAt' || head === 'updatedAt' || head === 'passwordChangedAt') {
+                            html.push(
+                                <td>{moment(new Date(props.data[head])).format("MM/DD/YYYY  HH:MM:S")}</td>
+                            );
+                        }
+                        else if (typeof props.data[head] === 'string') {
                             html.push(<td>{String(props.data[head])}</td>);
                         }
                         else if (typeof props.data[head] === 'object') {
