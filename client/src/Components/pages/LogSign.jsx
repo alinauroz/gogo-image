@@ -58,11 +58,6 @@ export default function (props) {
         setMessage('');
         let error = []
 
-        if (! agreed) {
-            setStatus(2);
-            return setMessage('You must agree with terms and conditions');
-        }
-
         let form = new FormData(e.target);
         let data = [... form];
         let formData = {};
@@ -125,6 +120,11 @@ export default function (props) {
 
         if (formData['email'] !== formData['retypeEmail']) {
             return setMessage('Email does not match');
+        }
+
+        if (! agreed) {
+            setStatus(2);
+            return setMessage('You must agree with terms and conditions');
         }
 
         let res = await fetch(api + 'users/signup', {
@@ -295,7 +295,7 @@ export default function (props) {
                                     setAgreed(e.target.checked);
                                 }}
                             />
-                            <Text style = {{display: 'inline', fontSize: 13}}>I agree with {props.info ? props.info.domain : ''} <Link to = '/terms'>terms</Link></Text>
+                            <Text style = {{display: 'inline-block', fontSize: 13, marginLeft: 5, marginTop: 3, verticalAlign: 'top'}}>I agree with {props.info ? props.info.domain : ''} <Link to = '/terms'>terms</Link></Text>
                         </label>
                         <input type = 'submit' value = 'Sign Up' className = 'action-button' />
                     </form>
