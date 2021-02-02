@@ -16,14 +16,16 @@ let fields = [
 const Contact = (props) => {
 
     const onSubmit = (e) => {
-        alert('Sub')
+        e.preventDefault();
+        let formData = getFormData(e.target);
+        console.log(formData);
     }
 
     return (
         <Nav
             title = 'Contact'
         >
-            <form>
+            <form onSubmit={onSubmit}>
                 <FormRenderrer 
                     fields={fields}
                 />
