@@ -53,7 +53,7 @@ export default function (props) {
                     order.status = order.complete ? 'Completed' : 'In Progress'
                     order.date = conciseDate(order.createdAt)
                     order.fullfillment = conciseDate(addDays(order.createdAt, order.nextDayService ? 1: 7))
-                    order.Coupon = order.coupon;
+                    order._dispute = order.dispute ? true: false;
                     order.Price = '$' + (order.price || 0);
                 })
 
@@ -83,10 +83,11 @@ export default function (props) {
                     </View>
                     <Viewer 
                         data = {data.slice(startIndex, pageSize + startIndex)}
-                        hidden = {['price', 'coupon', 'subtotal', 'invoiceNo', 'submission', 'createdAt', 'items', '_id', 'updatedAt', 'user', 'complete', 'nextDayService']}
+                        hidden = {['price', 'coupon', 'dispute', '_dispute', 'subtotal', 'invoiceNo', 'submission', 'createdAt', 'items', '_id', 'updatedAt', 'user', 'complete', 'nextDayService']}
                         actions = {[
                             {onClick: getOrderFile, value: '⬇ Files', className : 'btn btn-primary'},
-                            {onClick: getOrderFile, value: '⬇ Submission', className : 'btn btn-primary', condition: 'complete'}
+                            {onClick: getOrderFile, value: '⬇ Submission', className : 'btn btn-primary', condition: 'complete'},
+                            {onClick: ()=>{}, value: '⚠', condition1: 'dispute', className : 'btn btn-primary'}
                         ]}
                     />
                     <View className = 'order-pager-container'>
