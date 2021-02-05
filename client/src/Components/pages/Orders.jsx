@@ -12,7 +12,11 @@ export default function (props) {
     const [error, setError] = React.useState('');
     const [pageSize, setPageSize] = React.useState(10);
     const [startIndex, setStartIndex] = React.useState(0);
-    const [invoiceLink, setInvoiceLink] = React.useState('')
+    const [invoiceLink, setInvoiceLink] = React.useState('');
+    
+    const openDispute = (e, data) => {
+        
+    }
 
     const setPage = (i_) => {
         setStartIndex(--i_ * pageSize)
@@ -87,7 +91,7 @@ export default function (props) {
                         actions = {[
                             {onClick: getOrderFile, value: '⬇ Files', className : 'btn btn-primary'},
                             {onClick: getOrderFile, value: '⬇ Submission', className : 'btn btn-primary', condition: 'complete'},
-                            {onClick: ()=>{}, value: '⚠', condition1: 'dispute', className : 'btn btn-primary'}
+                            {onClick: openDispute, value: '⚠', condition1: 'dispute', className : 'btn btn-primary'}
                         ]}
                     />
                     <View className = 'order-pager-container'>
