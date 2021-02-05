@@ -1,6 +1,6 @@
 import {api} from '../data/api'
 
-const getToken = () => localStorage.getItem('token')
+const getToken = () => localStorage.getItem('token') || ''
 
 const toQuery = (query) => {
     let queryStr = '';
@@ -10,7 +10,7 @@ const toQuery = (query) => {
     return '?' + queryStr.slice(0, -1);
 }
 
-export const request = async ({route, params = '', body = {}, query = {}, method = 'GET', credentials = 'omit'}) => {
+export const request = async ({route, params = '', body = {}, query = {}, method, credentials = 'omit'}) => {
 
     try {
         
@@ -18,9 +18,10 @@ export const request = async ({route, params = '', body = {}, query = {}, method
             method,
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': credentials == 'include' ? true: null
             },
             credentials,
-            body: method !== 'GET' ? JSON.stringify(body): null
+            body: method == 'GET' ? null :JSON.stringify(body)
         });
 
         return res.json();

@@ -1,5 +1,6 @@
 import {capitalize} from '../utils/string'
 import {api} from '../data/api'
+import ImageLoader from '../utils/ImageLoader'
 
 function Text (props) {
     return ( <p 
@@ -132,21 +133,12 @@ export default function (props) {
                 </View>
                 </View>
             </Td>
-            {/*`<Td className = 'cart-td'>
-                <View>
-                    <input
-                        type = 'button'
-                        value = 'Remove'
-                        className = 'cancel-button'
-                        onClick = {() => window.confirm('Are you sure you want to remove this item from cart') ? props.removeFromCart(props.index): ''}
-                    />
-                </View>
+            <Td className='cart-td'>
+                <ImageLoader 
+                    sizes={['original']}
+                    setImages={(d, meta) => console.log(d, meta)}
+                />
             </Td>
-            <Td className = 'cart-td'>
-                <View>
-                    <Text style = {{marginTop: 12.5, fontSize: 14}}>{props.item.price}</Text>
-                </View>
-                </Td>`*/}
             <Td className = 'cart-td empty-th-td' style = {{minWidth: '50px'}}></Td>
         </Tr>
     )

@@ -5,6 +5,7 @@ import {request} from '../../utils/request'
 import {api} from '../../data/api'
 import { conciseDate, addDays } from '../../utils/Date'
 import Pager from '../../utils/Pager'
+import Dispute from './Dispute'
 
 export default function (props) {
 
@@ -12,7 +13,13 @@ export default function (props) {
     const [error, setError] = React.useState('');
     const [pageSize, setPageSize] = React.useState(10);
     const [startIndex, setStartIndex] = React.useState(0);
-    const [invoiceLink, setInvoiceLink] = React.useState('')
+    const [invoiceLink, setInvoiceLink] = React.useState('');
+    const [disputeId, setDisputeId] = React.useState(null)
+    
+    const openDispute = (e, data) => {
+        console.log(data.dispute)
+        setDisputeId(data.dispute);
+    }
 
     const setPage = (i_) => {
         setStartIndex(--i_ * pageSize)
@@ -49,11 +56,12 @@ export default function (props) {
             if (res.data) {
 
                 res.data.map(order => {    
-                    order.invoice = {type: 'link', value : order.invoiceNo, link: 'order/' + order.invoiceNo}
+                    //order.invoice = {type: 'link', value : order.invoiceNo, link: 'order/' + order.invoiceNo}
+                    order.invoice = order.invoiceNo
                     order.status = order.complete ? 'Completed' : 'In Progress'
                     order.date = conciseDate(order.createdAt)
                     order.fullfillment = conciseDate(addDays(order.createdAt, order.nextDayService ? 1: 7))
-                    order.Coupon = order.coupon;
+                    order._dispute = order.dispute ? true: false;
                     order.Price = '$' + (order.price || 0);
                 })
 
@@ -68,6 +76,13 @@ export default function (props) {
 
     return (
         <View className = 'viewer-table' style = {{marginTop: 50}}>
+            <div style={{display: disputeId? 'block': 'none'}}>
+            <Dispute 
+                id={disputeId}
+                hide={() => setDisputeId(null)}
+            />
+            </div>
+            <Text style = {{textAlign: 'center', fontWeight: 'bold', fontSize: 22}}>Sales Data</Text>
             <br />
             {
                 data ?
@@ -75,17 +90,15 @@ export default function (props) {
                 <View className = 'order-container'>
                     <View className = 'order-pager-container' style = {{textAlign: 'left', marginBottom: 20}}>
                         Show <input type = 'number' min={1} onChange = {(e) => e.target.value ? setPageSize(Number(e.target.value)): setPageSize(1)} value = {pageSize} className = 'field-input' style = {{width: 40, textAlign: 'center'}}/> entries
-                        <span style = {{float: 'right'}}>
-                            <input type = 'text' placeholder = 'Invoice No' onChange = {(e) => setInvoiceLink(e.target.value)} value = {invoiceLink} className = 'field-input' style = {{width: 140}}/>
-                            <a className = 'pager-button' style = {{margin: 0, marginLeft: 2, border: 0, backgroundColor: '#fff'}} href = {'/order/' + invoiceLink}>Find</a>
-                        </span>
+                        
                     </View>
                     <Viewer 
                         data = {data.slice(startIndex, pageSize + startIndex)}
-                        hidden = {['price', 'coupon', 'subtotal', 'invoiceNo', 'submission', 'createdAt', 'items', '_id', 'updatedAt', 'user', 'complete', 'nextDayService']}
+                        hidden = {['price', 'coupon', 'dispute', '_dispute', 'subtotal', 'invoiceNo', 'submission', 'createdAt', 'items', '_id', 'updatedAt', 'user', 'complete', 'nextDayService']}
                         actions = {[
                             {onClick: getOrderFile, value: '⬇ Files', className : 'btn btn-primary'},
-                            {onClick: getOrderFile, value: '⬇ Submission', className : 'btn btn-primary', condition: 'complete'}
+                            {onClick: getOrderFile, value: '⬇ Submission', className : 'btn btn-primary', condition: 'complete'},
+                            {onClick: openDispute, value: '⚠', condition1: 'dispute', className : 'btn btn-primary'}
                         ]}
                     />
                     <View className = 'order-pager-container'>
@@ -101,6 +114,7 @@ export default function (props) {
                 )
                 : error ? <Text>{error}</Text> : <Text>loading ...</Text>
             }
+            <Text className = 'note only-mobile'>Scroll Table to View More</Text>
         </View>
     )
 
