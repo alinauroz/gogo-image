@@ -7,10 +7,24 @@ const Dispute = (props) => {
     const [id, setId] = React.useState(props.id);
     const [error, setError] = React.useState('');
     const [data, setData] = React.useState({});
+    const [currentContent, setCurrentContent] = React.useState('');
 
     if (id != props.id) {
         setId(props.id);
         setError('');
+    }
+
+    const addMessage = () => {
+
+        if (! data.messages)
+            return;
+
+        data.messages.push({
+            content: currentContent,
+            fromUser: false,
+        })
+        setData({... data});
+        setCurrentContent('');
     }
 
     const getData = async () => {
@@ -67,7 +81,8 @@ const Dispute = (props) => {
                 {
                     loading ? <>Loading ...</>:
                     error ? <>{error}</>:
-                    <div style={{minHeight: 200, maxHeight: 'calc(100% - 80px)', overflow: 'auto'}}>
+                    <div>
+                    <div style={{height: 350, overflow: 'auto'}}>
                         {
                             data.messages ? data.messages.map(msg => {
                                 return (
@@ -88,6 +103,36 @@ const Dispute = (props) => {
                                 )
                             }): null
                         }
+
+                        </div>
+                        <div>
+                            <textarea 
+                                value={currentContent}
+                                onChange={(e) => setCurrentContent(e.target.value)}
+                                placeholder='Your message here ...' style={{width: '100%'}}></textarea>
+                            <div>
+                                <input 
+                                    type='button'
+                                    value='Attach'
+                                    className='btn btn-primary'
+                                />
+                                <span style={{float: 'right'}}>
+                                    <input 
+                                        type='button'
+                                        value='Send'
+                                        onClick={addMessage}
+                                        style={{marginLeft: 5,marginRight: 5}}
+                                        className='btn btn-primary'
+                                    />
+                                    <input 
+                                        type='button'
+                                        value='Cancel'
+                                        onClick={props.hide}
+                                        className='btn btn-primary'
+                                    />
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 }
             </div>
