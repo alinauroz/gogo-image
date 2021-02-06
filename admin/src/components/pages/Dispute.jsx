@@ -25,6 +25,12 @@ const Dispute = (props) => {
         })
         setData({... data});
         setCurrentContent('');
+
+        request({
+            method: 'PUT',
+            route: 'contact/' + id,
+            body: data
+        })
     }
 
     const getData = async () => {
