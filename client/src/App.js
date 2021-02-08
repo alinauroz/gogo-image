@@ -151,7 +151,10 @@ function App() {
 
   const loadPP = (__info) => {
     let ppClient = 'AdDcHqZGWHLODIfyXZwvZzGIEkTAtB8RVbpC0o-CUHxijeMtLl-pBZ1x9608w25_uKht07p8-u1Hvq9w';
-    let url = 'https://www.paypal.com/sdk/js?client-id='+__info.ppClient+'&currency='+__info.ppCurrency;
+
+    let ppclient = __info.ppMode === 'on' ? __info.ppClient : __info.ppSBClient;
+
+    let url = 'https://www.paypal.com/sdk/js?client-id='+ppclient+'&currency='+__info.ppCurrency;
     var script = document.createElement('script');
     script.src = url;
     document.getElementsByTagName('head')[0].appendChild(script);

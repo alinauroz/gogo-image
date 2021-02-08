@@ -43,7 +43,7 @@ function Unit (props) {
                         })
                     }
 
-                    html.push(<td>{actions_}</td>);
+                    html.push(<td style={{textAlign: 'left'}}>{actions_}</td>);
 
                     return html;
                 })()

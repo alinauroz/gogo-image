@@ -5,6 +5,7 @@ import {request} from '../../utils/AppRequest'
 import {api} from '../../data/api'
 import { conciseDate, addDays } from '../../utils/Date'
 import Pager from '../Pager'
+import Dispute from './Dispute'
 
 export default function (props) {
 
@@ -13,9 +14,11 @@ export default function (props) {
     const [pageSize, setPageSize] = React.useState(10);
     const [startIndex, setStartIndex] = React.useState(0);
     const [invoiceLink, setInvoiceLink] = React.useState('');
+    const [disputeId, setDisputeId] = React.useState(null)
     
     const openDispute = (e, data) => {
-        
+        console.log(data.dispute)
+        setDisputeId(data.dispute);
     }
 
     const setPage = (i_) => {
@@ -72,6 +75,12 @@ export default function (props) {
 
     return (
         <View className = 'viewer-table' style = {{marginTop: 50}}>
+            <div style={{display: disputeId? 'block': 'none'}}>
+            <Dispute 
+                id={disputeId}
+                hide={() => setDisputeId(null)}
+            />
+            </div>
             <Text style = {{textAlign: 'center', fontWeight: 'bold', fontSize: 22}}>My Orders</Text>
             <br />
             {
