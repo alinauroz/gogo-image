@@ -30,6 +30,9 @@ export default function (props) {
             {
                 data ?
                 <>
+                    <div>
+                        
+                    </div>
                     <OrderViewer 
                         items = {data.items}
                         price = {data.price}

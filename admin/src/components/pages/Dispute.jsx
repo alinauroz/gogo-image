@@ -1,5 +1,6 @@
 import React from 'react'
 import {request } from '../../utils/request'
+import moment from 'moment'
 
 const Dispute = (props) => {
 
@@ -102,7 +103,14 @@ const Dispute = (props) => {
                                                 maxWidth: '60%'
                                             }}
                                         >
-                                            <p><b>2021-02-05 13:10 - User</b></p>
+                                            <p><b>
+                                               {moment(new Date(msg.ts)).format('YYY-MM-DD / hh:mm')}
+                                                {
+                                                    msg.fromUser?
+                                                    data.firstName +' '+ data.lastName
+                                                    : 'Admin'
+                                                } 
+                                            </b></p>
                                             {msg.content}
                                         </div>
                                     </div>

@@ -244,11 +244,20 @@ export default function (props) {
 
                 <Field 
                     name = 'ppClient'
-                    title = 'Paypal Client Id'
-                    placeholder = 'Paypal Client Id here'
+                    title = 'Paypal Live Client Id'
+                    placeholder = 'Paypal Live Client Id here'
                     inputType = 'text'
                     style = {{marginTop: 10}}
                     value = {info.ppClient}
+                    onChange = {handleOnchange}
+                />
+                <Field 
+                    name = 'ppSBClient'
+                    title = 'Paypal Sandbox Client Id'
+                    placeholder = 'Paypal Sandbox Client Id here'
+                    inputType = 'text'
+                    style = {{marginTop: 10}}
+                    value = {info.ppSBClient}
                     onChange = {handleOnchange}
                 />
                 <Field 
@@ -260,6 +269,13 @@ export default function (props) {
                     value = {info.ppCurrency}
                     onChange = {handleOnchange}
                 />
+                <div>
+                    <p className = 'field-title'>Paypal Mode</p>
+                    <span>
+                        <input type='checkbox'  checked = {info.ppMode === 'on'} id='ppmode' onClick={handleOnchange} />
+                        <label for='ppmode' style={{marginLeft: 5}}>Live</label>
+                    </span>
+                </div>
                 <div style={{marginTop: 10}}>
                     <label>Tawk To Iframe</label>
                     <textarea
