@@ -272,8 +272,11 @@ export default function (props) {
                 <div>
                     <p className = 'field-title'>Paypal Mode</p>
                     <span>
-                        <input type='checkbox'  checked = {info.ppMode === 'on'} id='ppmode' onClick={handleOnchange} />
-                        <label for='ppmode' style={{marginLeft: 5}}>Live</label>
+                        {console.log("MODE", info.ppMode)}
+                        <input value = 'on' name = 'ppMode' onChange={handleOnchange} type='radio' name='ppMode' checked={info.ppMode == 'on'} />
+                        <label style={{marginLeft: 5}}>Live</label>
+                        <input value = 'off' name = 'ppMode' onChange={handleOnchange} type='radio' style={{marginLeft: 5}} name='ppMode' checked={info.ppMode == 'off'} />
+                        <label for='ppMode' style={{marginLeft: 5}}>Sandbox</label>
                     </span>
                 </div>
                 <div style={{marginTop: 10}}>
