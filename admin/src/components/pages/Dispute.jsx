@@ -1,6 +1,7 @@
 import React from 'react'
 import {request } from '../../utils/request'
 import moment from 'moment'
+import {api} from '../../data/api'
 
 const Dispute = (props) => {
 
@@ -9,13 +10,22 @@ const Dispute = (props) => {
     const [error, setError] = React.useState('');
     const [data, setData] = React.useState({});
     const [currentContent, setCurrentContent] = React.useState('');
+    const [attachmentName, setName] = React.useState('');
+    const [file, setFile] = React.useState(null);
 
     if (id != props.id) {
         setId(props.id);
         setError('');
     }
 
-    const addMessage = () => {
+    const handleOnChange = (e) => {
+        if (e.target.files.length <= 0) return;
+        let name = e.target.files[0].name;
+        setName(Date.now() + '-' + name)
+        setFile(e.target);
+    } 
+
+    const addMessage = async () => {
 
         if (! data.messages)
             return;
@@ -23,9 +33,22 @@ const Dispute = (props) => {
         data.messages.push({
             content: currentContent,
             fromUser: false,
+            attachment: attachmentName
         })
         setData({... data});
         setCurrentContent('');
+
+        if (file) {
+            console.log(attachmentName + "Name")
+            //upload file here
+            let formDataForZip = new FormData();
+            formDataForZip.append('submission', file.files[0], attachmentName);
+            let res = await fetch(api + 'zips', {
+                method: 'POST',
+                credentials: 'include',
+                body: formDataForZip,
+            })
+        }
 
         request({
             method: 'PUT',
@@ -38,7 +61,7 @@ const Dispute = (props) => {
         let res = await request({
             route: 'contact/' + id,
         });
-        console.log("RES", res);
+
         if (res.data) {
             console.log(res.data);
             setData(res.data)
@@ -112,6 +135,13 @@ const Dispute = (props) => {
                                                 } 
                                             </b></p>
                                             {msg.content}
+                                            <div>
+                                                {msg.attachment ?
+                                                <a target='_blank' href={api+'zips/submission/'+msg.attachment}>
+                                                    Download
+                                                </a>
+                                                : ''}
+                                            </div>
                                         </div>
                                     </div>
                                 )
@@ -126,9 +156,11 @@ const Dispute = (props) => {
                                 placeholder='Your message here ...' style={{width: '100%'}}></textarea>
                             <div>
                                 <input 
-                                    type='button'
-                                    value='Attach'
+                                    type='file'
+                                    name='submission'
                                     className='btn btn-primary'
+                                    onChange={handleOnChange}
+                                    style={{width: 180}}
                                 />
                                 <span style={{float: 'right'}}>
                                     <input 

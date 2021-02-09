@@ -19,7 +19,7 @@ export default function () {
         let res = await fetch(api + 'zips', {
             method: 'POST',
             credentials: 'include',
-            body: formData
+            body: formData,
         })
 
         let {status} = await res.json();
