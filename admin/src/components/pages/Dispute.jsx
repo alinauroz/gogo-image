@@ -135,10 +135,10 @@ const Dispute = (props) => {
                                                 } 
                                             </b></p>
                                             {msg.content}
-                                            <div>
+                                            <div style={{marginTop: 5}}>
                                                 {msg.attachment ?
-                                                <a target='_blank' href={api+'zips/submission/'+msg.attachment}>
-                                                    Download
+                                                <a target='_blank' href={api+'zips/submission/'+msg.attachment} className='btn btn-primary'>
+                                                    Download Attachment
                                                 </a>
                                                 : ''}
                                             </div>
