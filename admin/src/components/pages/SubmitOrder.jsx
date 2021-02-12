@@ -19,15 +19,22 @@ export default function (props) {
         _setImages(images)
     }
 
-    const submitOrder = () => {
+    const submitOrder = async () => {
         let zip = new JSZip();
         images.forEach(img => {
             let base64 = img.base64.split(',')[1];
             zip.file(img.data.name, base64, {base64: true});
         });
-        zip.generateAsync({type:"blob"}).then(function(content) {
-            console.log(content)
-        });
+        let content = await zip.generateAsync({type:"blob"});
+
+        let formData = new FormData();
+        formData.append('submission', content, invoiceNo+'.zip');
+        let res = await fetch(api + 'zips', {
+            method: 'POST',
+            credentials: 'include',
+            body: formData,
+        })
+
     }
 
     if (! data) {
