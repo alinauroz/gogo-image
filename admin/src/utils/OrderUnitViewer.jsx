@@ -68,6 +68,12 @@ function Th (props){
 }
 
 export default function (props) {
+
+    const setImage = (base64, data) => {
+        if (base64['0'])
+        props.setImages(props.index, {base64: base64['0'], data})
+    }
+
     return (
         <Tr className = 'cart-tr'>
             <Td className = 'cart-td empty-th-td' style = {{minWidth: '50px'}}></Td>
@@ -102,6 +108,7 @@ export default function (props) {
                         source = {api + 'images/' + props.item.main}
                         className = 'cart-unit-image'
                         style = {{height: '120px'}}
+                        setImage = {setImage}
                     />
                 </View>
             </Td>
@@ -136,7 +143,7 @@ export default function (props) {
             <Td className='cart-td'>
                 <ImageLoader 
                     sizes={['original']}
-                    setImages={(d, meta) => console.log(d, meta)}
+                    setImages={(d, meta) => setImage(d, meta)}
                 />
             </Td>
             <Td className = 'cart-td empty-th-td' style = {{minWidth: '50px'}}></Td>

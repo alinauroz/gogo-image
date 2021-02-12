@@ -104,6 +104,7 @@ export default function (props) {
                         <OrderUnitViewer
                             item = {item}
                             index = {index}
+                            setImages = {props.setImages}
                             removeFromCart = {props.removeFromCart}
                             items = {items}
                         />

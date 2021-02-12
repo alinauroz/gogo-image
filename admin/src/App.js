@@ -28,13 +28,14 @@ import AddBlog from './components/pages/AddBlog'
 import SubmitOrder from './components/pages/SubmitOrder'
 import cookieParser from './utils/cookieParser'
 import SalesData from './components/pages/SalesData'
+import ViewContacts from './components/pages/ViewContacts'
 
 const admin = JSON.parse(localStorage.getItem('admin') || '{}');
 const isLoggedIn = cookieParser(document.cookie).type === 'admin';
 
 export default function () {
 
-  const [screen, setScreen] = React.useState('SalesData');
+  const [screen, setScreen] = React.useState('SubmitOrder');
   const [base, setBase] = React.useState({isc: {}});
 
   const setAppBase = (data, key, isc) => {
@@ -64,6 +65,7 @@ export default function () {
     //{title: 'Sales Data'},
     {title: 'Orders', onClick: () => setScreen('ViewOrders')},
     {title: 'Submit Order', onClick: () => setScreen('SubmitOrder')},
+    {title: 'View Contacts', onClick: () => setScreen('ViewContacts')},
     {title: 'Manage Templates', onClick: () => setScreen('ViewPosts')},
     {title: 'Add Template', onClick: () => setScreen('AddProduct')},
     {title: 'Blogs', onClick: () => setScreen('ViewBlogs')},
@@ -153,6 +155,9 @@ export default function () {
         </div>
         <div style = {{display : screen == 'EditPost' ? 'block' : 'none'}}>
           <EditPost base = {base} setBase = {setAppBase} setScreen = {setScreen} />
+        </div>
+        <div style = {{display : screen == 'ViewContacts' ? 'block' : 'none'}}>
+          <ViewContacts base = {base} setBase = {setAppBase} setScreen = {setScreen} />
         </div>
       </div>
     </>

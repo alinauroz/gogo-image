@@ -18,7 +18,7 @@ function Unit (props) {
                     //}
 
                     props.heads.map(head => {
-                        if (head === 'createdAt' || head === 'updatedAt' || head === 'passwordChangedAt') {
+                        if (head === 'createdAt' || head === 'updatedAt' || head === 'passwordChangedAt' || head === 'date') {
                             html.push(
                                 <td>{moment(new Date(props.data[head])).format("MM/DD/YYYY  HH:MM:SS")}</td>
                             );

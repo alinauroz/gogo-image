@@ -3,12 +3,32 @@ import {request} from '../../utils/request'
 import {api} from '../../data/api'
 import {View, Text} from '../Basic/AppComponents'
 import OrderViewer from '../../utils/OrderViewer'
+import JSZip from 'jszip'
+import { saveAs } from 'file-saver';
 
 export default function (props) {
 
     const invoiceNo = 'PF1611868812607';
     const [data, setData] = React.useState();
     const [error, setError] = React.useState('');
+
+    const [images, _setImages] = React.useState([]);
+
+    const setImages = (index, base64) => {
+        images[index] = base64;
+        _setImages(images)
+    }
+
+    const submitOrder = () => {
+        let zip = new JSZip();
+        images.forEach(img => {
+            let base64 = img.base64.split(',')[1];
+            zip.file(img.data.name, base64, {base64: true});
+        });
+        zip.generateAsync({type:"blob"}).then(function(content) {
+            console.log(content)
+        });
+    }
 
     if (! data) {
         request({
@@ -31,11 +51,17 @@ export default function (props) {
                 data ?
                 <>
                     <div>
-                        
+                        <input 
+                            type = 'button'
+                            className = 'btn btn-success'
+                            value = 'Submit'
+                            onClick = {submitOrder}
+                        />
                     </div>
                     <OrderViewer 
                         items = {data.items}
                         price = {data.price}
+                        setImages = {setImages}
                     />
                 </>
                 : error ? <Text style = {{textAlign: 'center', marginTop: 20}}>{error}</Text> : <Text style = {{textAlign: 'center', marginTop: 20}}>Loading ...</Text>
