@@ -7,7 +7,7 @@ import JSZip from 'jszip'
 import { saveAs } from 'file-saver';
 
 export default function (props) {
-
+    console.log(">>", props)
     const invoiceNo = 'PF1611868812607';
     const [data, setData] = React.useState();
     const [error, setError] = React.useState('');

@@ -17,8 +17,12 @@ export default function (props) {
     const [disputeId, setDisputeId] = React.useState(null)
     
     const openDispute = (e, data) => {
-        console.log(data.dispute)
         setDisputeId(data.dispute);
+    }
+
+    const openSubmitOrder = (e, data) => {
+        props.setBase(data, 'salesData', true);
+        props.setScreen('SubmitOrder');
     }
 
     const setPage = (i_) => {
@@ -98,7 +102,8 @@ export default function (props) {
                         actions = {[
                             {onClick: getOrderFile, value: '⬇ Files', className : 'btn btn-primary'},
                             {onClick: getOrderFile, value: '⬇ Submission', className : 'btn btn-primary', condition: 'complete'},
-                            {onClick: openDispute, value: '⚠', condition1: 'dispute', className : 'btn btn-primary'}
+                            {onClick: openDispute, value: '⚠', condition1: 'dispute', className : 'btn btn-primary'},
+                            {onClick: openSubmitOrder, value: 'U', className: 'btn btn-primary'}
                         ]}
                     />
                     <View className = 'order-pager-container'>

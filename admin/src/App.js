@@ -35,7 +35,7 @@ const isLoggedIn = cookieParser(document.cookie).type === 'admin';
 
 export default function () {
 
-  const [screen, setScreen] = React.useState('SubmitOrder');
+  const [screen, setScreen] = React.useState('SalesData');
   const [base, setBase] = React.useState({isc: {}});
 
   const setAppBase = (data, key, isc) => {
